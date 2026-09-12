@@ -51,7 +51,3 @@ GET /profile/{id}?token=YOUR_TOKEN
 | `3` | `InvalidPassword` |
 
 Остальные общие значения см. в [Кодах результатов](/guide/result-codes/).
-
-:::danger
-Не клади session token в публичный репозиторий, issue или логи.
-:::
