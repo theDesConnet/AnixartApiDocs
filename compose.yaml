@@ -1,0 +1,9 @@
+services:
+  anixart-docs:
+    container_name: anixart-docs
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: always
+    ports:
+      - "12856:80"
