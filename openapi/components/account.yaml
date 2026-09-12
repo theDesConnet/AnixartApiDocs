@@ -13,7 +13,7 @@ ChangeEmailResendResponse:
   - $ref: ./common.yaml#/Response
   - type: object
     properties:
-      timestampExpires:
+      timestamp_expires:
         type: integer
         format: int64
         description: Временная метка «timestamp expires» в формате API.
@@ -32,7 +32,7 @@ ChangeEmailResponse:
       hash:
         type: string
         description: Серверный идентификатор текущего шага подтверждения; используется в следующем запросе.
-      timestampExpires:
+      timestamp_expires:
         type: integer
         format: int64
         description: Временная метка «timestamp expires» в формате API.
@@ -62,7 +62,7 @@ ChangeLogin:
       type: integer
       format: int64
       description: Уникальный идентификатор.
-    newLogin:
+    new_login:
       type: string
       description: Новый логин профиля.
     timestamp:
@@ -74,14 +74,14 @@ ChangeLoginInfoResponse:
   - $ref: ./common.yaml#/Response
   - type: object
     properties:
-      isChangeAvailable:
+      is_change_available:
         type: boolean
         description: Смена значения сейчас доступна.
-      lastChangeAt:
+      last_change_at:
         type: integer
         format: int64
         description: Время последней смены логина в формате API.
-      nextChangeAvailableAt:
+      next_change_available_at:
         type: integer
         format: int64
         description: Время, после которого логин снова можно изменить.
@@ -96,7 +96,7 @@ ChangeLoginResponse:
   - $ref: ./common.yaml#/Response
   - type: object
     properties:
-      suggestedLogins:
+      suggested_logins:
         type: array
         items:
           type: string
@@ -140,7 +140,7 @@ GoogleResponse:
   - $ref: ./common.yaml#/Response
   - type: object
     properties:
-      codeTimestampExpires:
+      code_timestamp_expires:
         type: integer
         format: int64
         description: Временная метка «code timestamp expires» в формате API.
@@ -150,10 +150,10 @@ GoogleResponse:
       profile:
         $ref: ./profiles.yaml#/Profile
         description: Связанный профиль пользователя.
-      profileToken:
+      profile_token:
         $ref: ./auth.yaml#/ProfileToken
         description: Сессионный токен профиля.
-      suggestedLogins:
+      suggested_logins:
         type: array
         items:
           type: string
@@ -189,11 +189,11 @@ ProfileDeletionResponse:
   - $ref: ./common.yaml#/Response
   - type: object
     properties:
-      deleteAt:
+      delete_at:
         type: integer
         format: int64
         description: Планируемое время окончательного удаления аккаунта.
-      requestedAt:
+      requested_at:
         type: integer
         format: int64
         description: Время создания запроса на удаление аккаунта.
@@ -212,73 +212,73 @@ ProfilePreferenceResponse:
       badge:
         $ref: ./profiles.yaml#/Badge
         description: Значок, выбранный для профиля.
-      banChangeAvatarExpires:
+      ban_change_avatar_expires:
         type: integer
         format: int64
         description: Временная метка «ban change avatar expires» в формате API.
-      banChangeLoginExpires:
+      ban_change_login_expires:
         type: integer
         format: int64
         description: Временная метка «ban change login expires» в формате API.
-      channelId:
+      channel_id:
         type:
         - integer
         - 'null'
         format: int64
         description: Идентификатор канала.
-      emailHint:
+      email_hint:
         type: string
         description: Маскированная подсказка текущего адреса электронной почты.
-      episodeChannelWidgetsHidden:
+      episode_channel_widgets_hidden:
         type: boolean
         description: Виджеты эпизодов скрыты в настройках профиля.
-      isChangeAvatarBanned:
+      is_change_avatar_banned:
         type: boolean
         description: Смена аватара временно запрещена.
-      isChangeLoginBanned:
+      is_change_login_banned:
         type: boolean
         description: Смена логина временно запрещена.
-      isGoogleBound:
+      is_google_bound:
         type: boolean
         description: К профилю привязан Google-аккаунт.
-      isIncognito:
+      is_incognito:
         type: boolean
         description: Для профиля включён режим инкогнито.
-      isLoginChanged:
+      is_login_changed:
         type: boolean
         description: Логин профиля уже менялся.
-      isTelegramBound:
+      is_telegram_bound:
         type: boolean
         description: К профилю привязан Telegram.
-      isVkBound:
+      is_vk_bound:
         type: boolean
         description: К профилю привязан VK.
-      isYandexBound:
+      is_yandex_bound:
         type: boolean
         description: К профилю привязан Yandex.
-      pinnedSectionId:
+      pinned_section_id:
         type:
         - integer
         - 'null'
         format: int32
         description: Идентификатор закреплённого раздела.
-      privacyCounts:
+      privacy_counts:
         type: integer
         format: int32
         description: Уровень видимости счётчиков профиля.
-      privacyFriendRequests:
+      privacy_friend_requests:
         type: integer
         format: int32
         description: Настройка того, кто может отправлять заявки в друзья.
-      privacySocial:
+      privacy_social:
         type: integer
         format: int32
         description: Уровень видимости социальных ссылок.
-      privacyStats:
+      privacy_stats:
         type: integer
         format: int32
         description: Уровень видимости статистики профиля.
-      selectedThemeId:
+      selected_theme_id:
         type: integer
         format: int64
         description: Идентификатор выбранной темы.
@@ -288,13 +288,13 @@ ProfilePreferenceResponse:
       status:
         type: string
         description: Текущий текстовый статус профиля.
-      vkPage:
+      vk_page:
         type: string
         description: Ссылка или идентификатор страницы VK.
-      tgPage:
+      tg_page:
         type: string
         description: Ссылка или имя пользователя Telegram.
-      availableThemes:
+      available_themes:
         type: array
         items:
           $ref: '#/AvailableTheme'
@@ -319,19 +319,19 @@ ProfileSocialResponse:
   - $ref: ./common.yaml#/Response
   - type: object
     properties:
-      vkPage:
+      vk_page:
         type: string
         description: Ссылка или идентификатор страницы VK.
-      tgPage:
+      tg_page:
         type: string
         description: Ссылка или имя пользователя Telegram.
-      instPage:
+      inst_page:
         type: string
         description: Ссылка или имя профиля Instagram.
-      ttPage:
+      tt_page:
         type: string
         description: Ссылка или имя профиля TikTok.
-      discordPage:
+      discord_page:
         type: string
         description: Ссылка или имя пользователя Discord.
 SelectThemeRequest:
@@ -356,19 +356,19 @@ SocialEditResponse:
 SocialPagesEditRequest:
   type: object
   properties:
-    discordPage:
+    discord_page:
       type: string
       description: Ссылка или имя пользователя Discord.
-    instPage:
+    inst_page:
       type: string
       description: Ссылка или имя профиля Instagram.
-    tgPage:
+    tg_page:
       type: string
       description: Ссылка или имя пользователя Telegram.
-    ttPage:
+    tt_page:
       type: string
       description: Ссылка или имя профиля TikTok.
-    vkPage:
+    vk_page:
       type: string
       description: Ссылка или идентификатор страницы VK.
 TelegramBindResponse:
@@ -388,7 +388,7 @@ TelegramResponse:
   - $ref: ./common.yaml#/Response
   - type: object
     properties:
-      codeTimestampExpires:
+      code_timestamp_expires:
         type: integer
         format: int64
         description: Временная метка «code timestamp expires» в формате API.
@@ -398,10 +398,10 @@ TelegramResponse:
       profile:
         $ref: ./profiles.yaml#/Profile
         description: Связанный профиль пользователя.
-      profileToken:
+      profile_token:
         $ref: ./auth.yaml#/ProfileToken
         description: Сессионный токен профиля.
-      suggestedLogins:
+      suggested_logins:
         type: array
         items:
           type: string
@@ -429,52 +429,52 @@ Theme:
   type: object
   description: Оформление профиля и его декоративные параметры.
   properties:
-    themeAnimationEnabled:
+    theme_animation_enabled:
       type: boolean
       description: Анимации темы включены.
-    themeAnimationSpeed:
+    theme_animation_speed:
       $ref: ./enums.yaml#/ThemedContainerLayout_AnimationSpeed
       description: Скорость анимации элементов темы.
-    themeBackgroundAlpha:
+    theme_background_alpha:
       type:
       - number
       - 'null'
       format: float
       description: Прозрачность фонового изображения темы.
-    themeBackgroundMode:
+    theme_background_mode:
       $ref: ./enums.yaml#/ThemedContainerLayout_BackgroundMode
       description: Способ масштабирования или повторения фонового изображения.
-    themeBackgroundUrl:
+    theme_background_url:
       type: string
       description: URL фонового изображения темы.
-    themeGradientAngle:
+    theme_gradient_angle:
       $ref: ./enums.yaml#/ThemedContainerLayout_GradientAngle
       description: Направление или тип фонового градиента.
-    themeGradientEndColor:
+    theme_gradient_end_color:
       type: string
       description: Конечный цвет градиента.
-    themeGradientStartColor:
+    theme_gradient_start_color:
       type: string
       description: Начальный цвет градиента.
-    themeIconAlpha:
+    theme_icon_alpha:
       type:
       - number
       - 'null'
       format: float
       description: Прозрачность декоративных иконок темы.
-    themeIconColor:
+    theme_icon_color:
       type: string
       description: Цвет декоративных иконок темы.
-    themeIconDensity:
+    theme_icon_density:
       $ref: ./enums.yaml#/ThemedContainerLayout_IconDensity
       description: Плотность декоративных иконок.
-    themeIconResName:
+    theme_icon_res_name:
       type: string
       description: Имя встроенного Android-ресурса декоративной иконки.
-    themeIconSize:
+    theme_icon_size:
       $ref: ./enums.yaml#/ThemedContainerLayout_IconSize
       description: Размер декоративных иконок.
-    themeIconUrl:
+    theme_icon_url:
       type: string
       description: URL внешнего набора/изображения иконок темы.
     id:
@@ -484,7 +484,7 @@ Theme:
     name:
       type: string
       description: Отображаемое название.
-    themeEnabled:
+    theme_enabled:
       type: boolean
       description: Тема доступна для выбора.
   x-response-constants:
@@ -499,157 +499,157 @@ TogglesResponse:
   - $ref: ./common.yaml#/Response
   - type: object
     properties:
-      adBannerDelay:
+      ad_banner_delay:
         type: integer
         format: int64
         description: Задержка показа баннерной рекламы.
-      adBannerSizeType:
+      ad_banner_size_type:
         type: integer
         format: int64
         description: Код размера рекламного баннера.
-      adInterstitialDelay:
+      ad_interstitial_delay:
         type: integer
         format: int64
         description: Задержка между полноэкранными рекламными показами.
-      codecProfile:
+      codec_profile:
         type: string
         description: Профиль видеокодека, рекомендуемый клиенту.
-      impMessageEnabled:
+      imp_message_enabled:
         type: boolean
         description: Показ важного системного сообщения включён.
-      inAppUpdates:
+      in_app_updates:
         type: boolean
         description: Встроенные обновления приложения включены.
-      inAppUpdatesFlexibleDelay:
+      in_app_updates_flexible_delay:
         type: integer
         format: int64
         description: Задержка для гибкого сценария встроенного обновления.
-      inAppUpdatesImmediate:
+      in_app_updates_immediate:
         type: boolean
         description: Для обновления используется немедленный сценарий установки.
-      kodikIframeAd:
+      kodik_iframe_ad:
         type: boolean
         description: В Kodik iframe разрешён рекламный блок.
-      lastGPVersionCode:
+      last_gp_version_code:
         type: integer
         format: int32
         description: Код последней версии в Google Play.
-      lastVersionCode:
+      last_version_code:
         type: integer
         format: int32
         description: Код последней доступной версии.
-      minBlogCreateRatingScore:
+      min_blog_create_rating_score:
         type: integer
         format: int32
         description: Минимальный рейтинговый балл профиля для создания блога.
-      minGPVersionCode:
+      min_gp_version_code:
         type: integer
         format: int32
         description: Минимальная поддерживаемая версия клиента из Google Play.
-      minVersionCode:
+      min_version_code:
         type: integer
         format: int32
         description: Минимальная версия клиента, которой разрешена работа с API.
-      overrideGPVersion:
+      override_gp_version:
         type: boolean
         description: Серверное значение версии имеет приоритет над версией Google Play.
-      sibnetRandUserAgent:
+      sibnet_rand_user_agent:
         type: boolean
         description: Для Sibnet клиент случайно выбирает User-Agent.
       snowfall:
         type: boolean
         description: Сезонный эффект «снег» включён.
-      sponsorshipAvailable:
+      sponsorship_available:
         type: boolean
         description: Раздел поддержки/спонсорства доступен.
-      sponsorshipPromotion:
+      sponsorship_promotion:
         type: boolean
         description: Промо-блок спонсорства включён.
-      whatsNew:
+      whats_new:
         type: string
         description: Текст с изменениями последней версии.
-      downloadLink:
+      download_link:
         type: string
         description: Ссылка для загрузки актуальной версии приложения.
-      gpWhatsNew:
+      gp_whats_new:
         type: string
         description: Текст изменений версии из Google Play.
-      gpDownloadLink:
+      gp_download_link:
         type: string
         description: Ссылка на актуальную версию в Google Play.
-      impMessageText:
+      imp_message_text:
         type: string
         description: Текст важного сообщения, показываемого клиентом.
-      impMessageBackgroundColor:
+      imp_message_background_color:
         type: string
         description: Цвет фона важного сообщения.
-      impMessageTextColor:
+      imp_message_text_color:
         type: string
         description: Цвет текста важного сообщения.
-      impMessageLink:
+      imp_message_link:
         type: string
         description: Ссылка из важного сообщения.
-      adBannerBlockId:
+      ad_banner_block_id:
         type: string
         description: Идентификатор связанного объекта «ad banner block».
-      adInterstitialBlockId:
+      ad_interstitial_block_id:
         type: string
         description: Идентификатор связанного объекта «ad interstitial block».
-      kodikVideoLinksUrl:
+      kodik_video_links_url:
         type: string
         description: Адрес сервиса/шаблона для получения ссылок Kodik.
-      sibnetUserAgent:
+      sibnet_user_agent:
         type: string
         description: User-Agent для запросов к Sibnet.
-      torlookUrl:
+      torlook_url:
         type: string
         description: Адрес TorLook, используемый клиентом.
-      baseUrl:
+      base_url:
         type: string
         description: Базовый URL связанного сервиса.
-      iframeEmbedUrl:
+      iframe_embed_url:
         type: string
         description: Шаблон/адрес встраиваемого iframe-плеера.
-      kodikAdIframeUrl:
+      kodik_ad_iframe_url:
         type: string
         description: Адрес рекламного iframe Kodik.
-      editorUrl:
+      editor_url:
         type: string
         description: Адрес веб-редактора или сервиса редактора.
-      staticDomain:
+      static_domain:
         type: string
         description: Домен статических ресурсов.
-      sponsorshipText:
+      sponsorship_text:
         type: string
         description: Текст блока поддержки/спонсорства.
-      pageNoConnectionUrl:
+      page_no_connection_url:
         type: string
         description: Страница, открываемая клиентом при отсутствии соединения.
-      searchBarIconUrl:
+      search_bar_icon_url:
         type: string
         description: URL дополнительной иконки в строке поиска.
-      searchBarIconTint:
+      search_bar_icon_tint:
         type: boolean
         description: К дополнительной иконке поиска применяется цветовая тонировка.
-      searchBarIconAction:
+      search_bar_icon_action:
         type: string
         description: Действие по нажатию на дополнительную иконку поиска.
-      searchBarIconValue:
+      search_bar_icon_value:
         type: string
         description: Параметр действия дополнительной иконки поиска.
-      googleAuthAvailable:
+      google_auth_available:
         type: boolean
         description: Авторизация через Google доступна.
-      telegramAuthAvailable:
+      telegram_auth_available:
         type: boolean
         description: Авторизация через Telegram доступна.
-      vkAuthAvailable:
+      vk_auth_available:
         type: boolean
         description: Авторизация через VK доступна.
-      yandexAuthAvailable:
+      yandex_auth_available:
         type: boolean
         description: Авторизация через Yandex доступна.
-      consentRequired:
+      consent_required:
         type: boolean
         description: Перед продолжением клиент должен получить согласие пользователя.
   description: Feature flags и удалённая конфигурация мобильного клиента.
@@ -670,7 +670,7 @@ VkResponse:
   - $ref: ./common.yaml#/Response
   - type: object
     properties:
-      codeTimestampExpires:
+      code_timestamp_expires:
         type: integer
         format: int64
         description: Временная метка «code timestamp expires» в формате API.
@@ -680,10 +680,10 @@ VkResponse:
       profile:
         $ref: ./profiles.yaml#/Profile
         description: Связанный профиль пользователя.
-      profileToken:
+      profile_token:
         $ref: ./auth.yaml#/ProfileToken
         description: Сессионный токен профиля.
-      suggestedLogins:
+      suggested_logins:
         type: array
         items:
           type: string
@@ -724,7 +724,7 @@ YandexResponse:
   - $ref: ./common.yaml#/Response
   - type: object
     properties:
-      codeTimestampExpires:
+      code_timestamp_expires:
         type: integer
         format: int64
         description: Временная метка «code timestamp expires» в формате API.
@@ -737,10 +737,10 @@ YandexResponse:
       profile:
         $ref: ./profiles.yaml#/Profile
         description: Связанный профиль пользователя.
-      profileToken:
+      profile_token:
         $ref: ./auth.yaml#/ProfileToken
         description: Сессионный токен профиля.
-      suggestedLogins:
+      suggested_logins:
         type: array
         items:
           type: string

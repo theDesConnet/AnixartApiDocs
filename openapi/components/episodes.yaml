@@ -2,7 +2,7 @@ Episode:
   type: object
   description: Эпизод релиза в конкретном источнике.
   properties:
-    addedDate:
+    added_date:
       type: integer
       format: int64
       description: Время добавления в формате API.
@@ -13,16 +13,16 @@ Episode:
     iframe:
       type: boolean
       description: Видео открывается через iframe-плеер.
-    isFiller:
+    is_filler:
       type: boolean
       description: Эпизод помечен как филлер.
-    isWatched:
+    is_watched:
       type: boolean
       description: Эпизод отмечен просмотренным.
     name:
       type: string
       description: Отображаемое название.
-    playbackPosition:
+    playback_position:
       type: integer
       format: int64
       description: Сохранённая позиция воспроизведения эпизода в формате API.
@@ -37,14 +37,14 @@ Episode:
     release:
       $ref: ./releases.yaml#/Release
       description: Связанный релиз.
-    releaseId:
+    release_id:
       type: integer
       format: int64
       description: Идентификатор релиза.
     source:
       $ref: '#/Source'
       description: Источник данных или источник эпизодов - в зависимости от модели.
-    sourceId:
+    source_id:
       type: integer
       format: int64
       description: Идентификатор источника.
@@ -90,22 +90,22 @@ EpisodeUnwatchResponse:
 EpisodeUpdate:
   type: object
   properties:
-    lastEpisodeSourceUpdateId:
+    last_episode_source_update_id:
       type: integer
       format: int64
       description: Идентификатор связанного объекта «last episode source update».
-    lastEpisodeTypeUpdateId:
+    last_episode_type_update_id:
       type: integer
       format: int64
       description: Идентификатор связанного объекта «last episode type update».
-    lastEpisodeUpdateDate:
+    last_episode_update_date:
       type: integer
       format: int64
       description: Временная метка «last episode update date» в формате API.
-    lastEpisodeUpdateName:
+    last_episode_update_name:
       type: string
       description: Название последнего обновлённого эпизода.
-    lastEpisodeSourceUpdateName:
+    last_episode_source_update_name:
       type: string
       description: Название источника последнего обновления эпизода.
     lastEpisodeTypeUpdateName:
@@ -120,7 +120,7 @@ Source:
   type: object
   description: Источник эпизодов с привязанной озвучкой/даббером.
   properties:
-    episodesCount:
+    episodes_count:
       type: integer
       format: int64
       description: Количество эпизодов.
@@ -162,7 +162,7 @@ Type:
   type: object
   description: Озвучка/даббер, доступный для релиза.
   properties:
-    episodesCount:
+    episodes_count:
       type: integer
       format: int64
       description: Количество эпизодов.
@@ -170,7 +170,7 @@ Type:
       type: integer
       format: int64
       description: Уникальный идентификатор.
-    isSub:
+    is_sub:
       type: boolean
       description: Озвучка является субтитрами, а не дубляжом.
     pinned:
@@ -180,7 +180,7 @@ Type:
       type: integer
       format: int32
       description: Числовой показатель качества озвучки/источника.
-    viewCount:
+    view_count:
       type: integer
       format: int64
       description: Количество просмотров.
@@ -198,7 +198,7 @@ TypeChannelResponse:
   - $ref: ./common.yaml#/Response
   - type: object
     properties:
-      areWidgetsHiddenGlobally:
+      are_widgets_hidden_globally:
         type: boolean
         description: Виджеты озвучек глобально скрыты настройкой сервера.
       articles:
@@ -209,10 +209,10 @@ TypeChannelResponse:
       channel:
         $ref: ./channels.yaml#/Channel
         description: Связанный канал.
-      isHiddenByUser:
+      is_hidden_by_user:
         type: boolean
         description: Текущий профиль вручную скрыл этот виджет.
-      isWidgetEligible:
+      is_widget_eligible:
         type: boolean
         description: Для этой озвучки можно показывать виджет.
 TypeCompact:

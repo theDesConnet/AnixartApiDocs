@@ -7,15 +7,15 @@ PageableResponse:
         type: array
         items: {}
         description: Элементы текущей страницы. Конкретный тип задаётся схемой ответа метода.
-      currentPage:
+      current_page:
         type: integer
         format: int32
         description: Номер текущей страницы, начиная с `0`.
-      totalCount:
+      total_count:
         type: integer
         format: int64
         description: Общее количество элементов во всей выборке.
-      totalPageCount:
+      total_page_count:
         type: integer
         format: int32
         description: Общее количество страниц.

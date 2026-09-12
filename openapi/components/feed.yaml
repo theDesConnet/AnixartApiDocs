@@ -6,7 +6,7 @@ Interesting:
       type: integer
       format: int64
       description: Уникальный идентификатор.
-    isHidden:
+    is_hidden:
       type: boolean
       description: Карточка скрыта в интерфейсе.
     type:
@@ -30,7 +30,7 @@ LatestArticleResponse:
   - $ref: ./common.yaml#/Response
   - type: object
     properties:
-      articleId:
+      article_id:
         type:
         - integer
         - 'null'

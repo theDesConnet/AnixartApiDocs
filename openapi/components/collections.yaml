@@ -2,11 +2,11 @@ Collection:
   type: object
   description: Пользовательская коллекция релизов.
   properties:
-    commentCount:
+    comment_count:
       type: integer
       format: int64
       description: Количество комментариев.
-    creationDate:
+    creation_date:
       type: integer
       format: int64
       description: Время создания объекта в формате API.
@@ -16,7 +16,7 @@ Collection:
     delete:
       type: boolean
       description: Объект помечен как удалённый/подлежащий удалению.
-    favoriteCount:
+    favorites_count:
       type: integer
       format: int32
       description: Количество добавлений в избранное.
@@ -24,13 +24,13 @@ Collection:
       type: integer
       format: int64
       description: Уникальный идентификатор.
-    isFavorite:
+    is_favorite:
       type: boolean
       description: Объект находится в избранном текущего профиля.
-    isPrivate:
+    is_private:
       type: boolean
       description: Коллекция доступна только в приватном режиме.
-    lastUpdateDate:
+    last_update_date:
       type: integer
       format: int64
       description: Время последнего обновления объекта в формате API.
@@ -67,7 +67,7 @@ CollectionCreateEditRequest:
     description:
       type: string
       description: Текстовое описание.
-    isPrivate:
+    is_private:
       type: boolean
       description: Коллекция доступна только в приватном режиме.
     releases:
@@ -131,23 +131,23 @@ CollectionResponse:
       collection:
         $ref: '#/Collection'
         description: Связанная коллекция.
-      completedCount:
+      completed_count:
         type: integer
         format: int64
         description: Количество профилей со статусом «Просмотрено».
-      droppedCount:
+      dropped_count:
         type: integer
         format: int64
         description: Количество профилей со статусом «Брошено».
-      holdOnCount:
+      hold_on_count:
         type: integer
         format: int64
         description: Количество профилей со статусом «Отложено».
-      planCount:
+      plan_count:
         type: integer
         format: int64
         description: Количество профилей со статусом «В планах».
-      watchingCount:
+      watching_count:
         type: integer
         format: int64
         description: Количество профилей со статусом «Смотрю».

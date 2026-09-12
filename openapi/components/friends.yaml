@@ -15,7 +15,7 @@ RemoveFriendRequestResponse:
   - $ref: ./common.yaml#/Response
   - type: object
     properties:
-      friendStatus:
+      friend_status:
         $ref: ./enums.yaml#/Profile_FriendStatus
         description: Текущее состояние дружбы или заявки между профилями.
       code:
@@ -30,7 +30,7 @@ SendFriendRequestResponse:
   - $ref: ./common.yaml#/Response
   - type: object
     properties:
-      friendStatus:
+      friend_status:
         $ref: ./enums.yaml#/Profile_FriendStatus
         description: Текущее состояние дружбы или заявки между профилями.
       code:

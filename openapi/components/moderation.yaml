@@ -2,57 +2,57 @@ ProfileEnforcement:
   type: object
   description: Ограничение или модерационное действие в отношении профиля/контента.
   properties:
-    appealExpiresTimestamp:
+    appeal_expires_timestamp:
       type:
       - integer
       - 'null'
       format: int64
       description: Время, до которого доступна апелляция, в формате API.
-    appealProcessMessage:
+    appeal_process_message:
       type: string
       description: Комментарий по результату рассмотрения апелляции.
-    appealProcessTimestamp:
+    appeal_process_timestamp:
       type:
       - integer
       - 'null'
       format: int64
       description: Время обработки апелляции в формате API.
-    appealStatus:
+    appeal_status:
       $ref: ./enums.yaml#/ProfileEnforcement_AppealStatus
       description: Текущий статус апелляции.
-    appealSubmitTimestamp:
+    appeal_submit_timestamp:
       type:
       - integer
       - 'null'
       format: int64
       description: Время отправки апелляции в формате API.
-    appealType:
+    appeal_type:
       $ref: ./enums.yaml#/ProfileEnforcement_AppealType
       description: Доступный тип апелляции.
-    creationTimestamp:
+    creation_timestamp:
       type: integer
       format: int64
       description: Время создания ограничения в формате API.
-    entityType:
+    entity_type:
       $ref: ./enums.yaml#/ProfileEnforcement_EntityType
       description: Тип объекта, к которому применено ограничение.
     id:
       type: integer
       format: int64
       description: Уникальный идентификатор.
-    isRevoked:
+    is_revoked:
       type: boolean
       description: Ограничение отменено.
     reason:
       type: string
       description: Причина действия или ограничения.
-    revocationTimestamp:
+    revocation_timestamp:
       type:
       - integer
       - 'null'
       format: int64
       description: Время отмены ограничения в формате API.
-    targetEntityType:
+    target_entity_type:
       $ref: ./enums.yaml#/ProfileEnforcement_TargetEntityType
       description: Тип целевого объекта, связанного с ограничением.
 ProfileEnforcementAppealRequest:
@@ -77,11 +77,11 @@ ProfileEnforcementResponse:
 ReleaseVideoAppealRequest:
   type: object
   properties:
-    categoryId:
+    category_id:
       type: integer
       format: int64
       description: Идентификатор категории.
-    releaseId:
+    release_id:
       type: integer
       format: int64
       description: Идентификатор релиза.
@@ -116,15 +116,15 @@ ReportReason:
 ReportRequest:
   type: object
   properties:
-    entityId:
+    entity_id:
       description: Идентификатор связанного объекта «entity».
     message:
       type: string
       description: Дополнительное пояснение к жалобе.
-    reasonId:
+    reason:
       type: integer
       format: int64
-      description: Идентификатор связанного объекта «reason».
+      description: Идентификатор причины жалобы.
 ReportResponse:
   allOf:
   - $ref: ./common.yaml#/Response

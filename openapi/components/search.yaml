@@ -35,7 +35,7 @@ SearchRequest:
     query:
       type: string
       description: Поисковая строка.
-    searchBy:
+    search_by:
       type: integer
       format: int32
       description: Поле/режим, по которому выполняется поиск.

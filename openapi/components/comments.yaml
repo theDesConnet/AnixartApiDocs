@@ -15,14 +15,14 @@ ArticleCommentCompact:
       article:
         $ref: ./articles.yaml#/ArticleCompact
         description: Связанная статья.
-      embeddableDescription:
+      embeddable_description:
         type: string
         description: Краткое описание объекта, к которому относится комментарий.
-      embeddableId:
+      embeddable_id:
         type: integer
         format: int64
         description: Идентификатор связанного объекта «embeddable».
-      embeddableTitle:
+      embeddable_title:
         type: string
         description: Заголовок объекта, к которому относится комментарий.
 CollectionComment:
@@ -42,11 +42,11 @@ CollectionCommentCompact:
       collection:
         $ref: ./collections.yaml#/CollectionCompact
         description: Связанная коллекция.
-      embeddableId:
+      embeddable_id:
         type: integer
         format: int64
         description: Идентификатор связанного объекта «embeddable».
-      embeddableTitle:
+      embeddable_title:
         type: string
         description: Заголовок объекта, к которому относится комментарий.
 Comment:
@@ -57,23 +57,23 @@ Comment:
       type: integer
       format: int64
       description: Уникальный идентификатор.
-    isDeleted:
+    is_deleted:
       type: boolean
       description: Объект помечен удалённым.
-    isEdited:
+    is_edited:
       type: boolean
       description: Комментарий был отредактирован.
-    isReply:
+    is_reply:
       type: boolean
       description: Комментарий является ответом.
-    isSpoiler:
+    is_spoiler:
       type: boolean
       description: Содержимое помечено как спойлер.
-    likesCount:
+    likes_count:
       type: integer
       format: int32
       description: Количество лайков.
-    parentCommentId:
+    parent_comment_id:
       type:
       - integer
       - 'null'
@@ -82,7 +82,7 @@ Comment:
     profile:
       $ref: ./profiles.yaml#/ProfileCompact
       description: Автор комментария.
-    replyCount:
+    reply_count:
       type: integer
       format: int64
       description: Количество ответов.
@@ -98,14 +98,14 @@ Comment:
       type: integer
       format: int32
       description: Голос текущего профиля за комментарий.
-    voteCount:
+    vote_count:
       type: integer
       format: int32
       description: Количество голосов.
     message:
       type: string
       description: Текст комментария.
-    canLike:
+    can_like:
       type: boolean
       description: Текущий профиль может поставить реакцию этому комментарию.
 CommentAddRequest:
@@ -114,13 +114,13 @@ CommentAddRequest:
     message:
       type: string
       description: Текст нового комментария.
-    parentCommentId:
+    parent_comment_id:
       type:
       - integer
       - 'null'
       format: int64
       description: Идентификатор родительского комментария.
-    replyToProfileId:
+    reply_to_profile_id:
       type:
       - integer
       - 'null'
@@ -150,14 +150,14 @@ CommentCompact:
   type: object
   description: Компактное представление комментария.
   properties:
-    embeddableDescription:
+    embeddable_description:
       type: string
       description: Краткое описание объекта, к которому относится комментарий.
     id:
       type: integer
       format: int64
       description: Уникальный идентификатор.
-    isSpoiler:
+    is_spoiler:
       type: boolean
       description: Содержимое помечено как спойлер.
     message:
@@ -202,22 +202,22 @@ CommentEditResponse:
 CommentProcessRequest:
   type: object
   properties:
-    banExpires:
+    ban_expires:
       type:
       - integer
       - 'null'
       format: int64
       description: Срок блокировки автора комментария в формате API; `null` - без заданного срока.
-    banReason:
+    ban_reason:
       type: string
       description: Причина блокировки автора комментария.
-    isBanned:
+    is_banned:
       type: boolean
       description: Нужно ли применить блокировку к автору комментария.
-    isDeleted:
+    is_deleted:
       type: boolean
       description: Нужно ли пометить комментарий удалённым.
-    isSpoiler:
+    is_spoiler:
       type: boolean
       description: Нужно ли пометить комментарий как спойлер.
     message:
@@ -244,7 +244,7 @@ PopularComment:
       type: integer
       format: int64
       description: Временная метка.
-    voteCount:
+    vote_count:
       type: integer
       format: int32
       description: Количество голосов.
@@ -268,11 +268,11 @@ ReleaseCommentCompact:
   - $ref: '#/CommentCompact'
   - type: object
     properties:
-      embeddableId:
+      embeddable_id:
         type: integer
         format: int64
         description: Идентификатор связанного объекта «embeddable».
-      embeddableTitle:
+      embeddable_title:
         type: string
         description: Заголовок объекта, к которому относится комментарий.
       release:

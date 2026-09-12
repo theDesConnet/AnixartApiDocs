@@ -8,50 +8,50 @@ Article:
     channel:
       $ref: ./channels.yaml#/Channel
       description: Канал или блог, в котором опубликована статья.
-    commentCount:
+    comment_count:
       type: integer
       format: int64
       description: Количество комментариев.
-    containsRepostArticle:
+    contains_repost_article:
       type: boolean
       description: Статья содержит вложенный репост другой статьи.
-    creationDate:
+    creation_date:
       type: integer
       format: int64
       description: Время создания объекта в формате API.
-    hasDeleteEnforcement:
+    has_delete_enforcement:
       type: boolean
       description: Для статьи есть модерационное решение об удалении.
     id:
       type: integer
       format: int64
       description: Уникальный идентификатор.
-    isDeleted:
+    is_deleted:
       type: boolean
       description: Объект помечен удалённым.
-    isMuted:
+    is_muted:
       type: boolean
       description: Для объекта включён режим mute.
-    isPinned:
+    is_pinned:
       type: boolean
       description: Объект закреплён.
-    isSigned:
+    is_signed:
       type: boolean
       description: Публикация отображается с подписью автора.
-    lastUpdateDate:
+    last_update_date:
       type: integer
       format: int64
       description: Время последнего обновления объекта в формате API.
     payload:
       $ref: '#/ArticlePayload'
       description: Структурированное содержимое статьи.
-    popularComment:
+    popular_comment:
       $ref: ./comments.yaml#/PopularComment
       description: Комментарий, который сервер выбрал для превью публикации.
-    repostArticle:
+    repost_article:
       $ref: '#/Article'
       description: Исходная статья, если публикация является репостом.
-    repostCount:
+    repost_count:
       type: integer
       format: int64
       description: Количество репостов.
@@ -59,7 +59,7 @@ Article:
       type: integer
       format: int32
       description: Голос текущего профиля за статью.
-    voteCount:
+    vote_count:
       type: integer
       format: int32
       description: Количество голосов.
@@ -82,7 +82,7 @@ ArticleCompact:
     channel:
       $ref: ./channels.yaml#/ChannelCompact
       description: Связанный канал.
-    creationDate:
+    creation_date:
       type: integer
       format: int64
       description: Время создания объекта в формате API.
@@ -90,7 +90,7 @@ ArticleCompact:
       type: integer
       format: int64
       description: Уникальный идентификатор.
-    lastUpdateDate:
+    last_update_date:
       type: integer
       format: int64
       description: Время последнего обновления объекта в формате API.
@@ -100,13 +100,13 @@ ArticleCompact:
 ArticleCreateEditRequest:
   type: object
   properties:
-    isSigned:
+    is_signed:
       type: boolean
       description: Публикация отображается с подписью автора.
     payload:
       type: string
       description: Структурированное содержимое статьи.
-    repostArticleId:
+    repost_article_id:
       type:
       - integer
       - 'null'
@@ -130,7 +130,7 @@ ArticleCreateEditResponse:
 ArticleData:
   type: object
   properties:
-    isExpandAvailable:
+    is_expand_available:
       type: boolean
       description: Элемент можно развернуть в интерфейсе.
 ArticleDeleteResponse:
@@ -190,7 +190,7 @@ ArticlePayload:
   type: object
   description: Структурированное содержимое статьи.
   properties:
-    blockCount:
+    block_count:
       type: integer
       format: int32
       description: Количество элементов категории «block».
@@ -201,10 +201,10 @@ ArticlePayload:
         x-generic-arguments:
         - '?'
       description: Блоки, из которых состоит статья.
-    isCollapseAvailable:
+    is_collapse_available:
       type: boolean
       description: Элемент можно свернуть в интерфейсе.
-    isExpandAvailable:
+    is_expand_available:
       type: boolean
       description: Элемент можно развернуть в интерфейсе.
     time:
@@ -250,14 +250,14 @@ ArticleSuggestionDeleteResponse:
 ArticleSuggestionsFilterRequest:
   type: object
   properties:
-    channelId:
+    channel_id:
       type: integer
       format: int64
       description: Идентификатор канала.
 ArticlesSearchRequest:
   type: object
   properties:
-    channelId:
+    channel_id:
       type: integer
       format: int64
       description: Идентификатор канала.
@@ -269,7 +269,7 @@ EditorAvailableResponse:
   - $ref: ./common.yaml#/Response
   - type: object
     properties:
-      mediaUploadToken:
+      media_upload_token:
         type: string
         description: Временный токен для загрузки медиа из редактора.
       code:
@@ -289,10 +289,10 @@ EditorChannel:
       type: integer
       format: int64
       description: Уникальный идентификатор.
-    isBlog:
+    is_blog:
       type: boolean
       description: Канал является персональным блогом.
-    subscriberCount:
+    subscriber_count:
       type: integer
       format: int32
       description: Количество подписчиков.

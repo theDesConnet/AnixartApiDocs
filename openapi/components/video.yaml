@@ -8,7 +8,7 @@ ReleaseVideo:
     delete:
       type: boolean
       description: Объект помечен как удалённый/подлежащий удалению.
-    favoriteCount:
+    favorites_count:
       type: integer
       format: int32
       description: Количество добавлений в избранное.
@@ -19,7 +19,7 @@ ReleaseVideo:
       type: integer
       format: int64
       description: Уникальный идентификатор.
-    isFavorite:
+    is_favorite:
       type: boolean
       description: Объект находится в избранном текущего профиля.
     profile:
@@ -41,18 +41,18 @@ ReleaseVideo:
     url:
       type: string
       description: URL ресурса.
-    playerUrl:
+    player_url:
       type: string
       description: Ссылка, которую клиент открывает во встроенном проигрывателе.
 ReleaseVideoBanner:
   type: object
   description: Баннер в разделе видео с действием по нажатию.
   properties:
-    actionId:
+    action_id:
       type: integer
       format: int64
       description: Идентификатор действия баннера.
-    isNew:
+    is_new:
       type: boolean
       description: Элемент ещё не был просмотрен пользователем.
     name:
@@ -125,10 +125,10 @@ ReleaseVideosResponse:
         items:
           $ref: '#/ReleaseVideoBlock'
         description: Блоки, из которых состоит статья.
-      canAppeal:
+      can_appeal:
         type: boolean
         description: Текущий профиль может отправить апелляцию.
-      lastVideos:
+      last_videos:
         type: array
         items:
           $ref: '#/ReleaseVideo'
@@ -136,7 +136,7 @@ ReleaseVideosResponse:
       release:
         $ref: ./releases.yaml#/Release
         description: Связанный релиз.
-      streamingPlatforms:
+      streaming_platforms:
         type: array
         items:
           $ref: ./releases.yaml#/ReleaseStreamingPlatform

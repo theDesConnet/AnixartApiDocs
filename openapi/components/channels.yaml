@@ -17,41 +17,41 @@ Channel:
   type: object
   description: Канал или персональный блог Anixart.
   properties:
-    articleCount:
+    article_count:
       type: integer
       format: int32
       description: Количество статей.
     avatar:
       type: string
       description: URL или идентификатор изображения профиля.
-    badgeId:
+    badge_id:
       type:
       - integer
       - 'null'
       format: int64
       description: Идентификатор значка.
-    badgeName:
+    badge_name:
       type: string
       description: Отображаемое название значка.
-    badgeType:
+    badge_type:
       type:
       - integer
       - 'null'
       format: int32
       description: Тип значка (статический или анимированный).
-    badgeUrl:
+    badge_url:
       type: string
       description: URL изображения или анимации значка.
-    blockExpireDate:
+    block_expire_date:
       type:
       - integer
       - 'null'
       format: int64
       description: Временная метка «block expire date» в формате API.
-    blockReason:
+    block_reason:
       type: string
       description: Причина блокировки в канале.
-    blogProfileId:
+    blog_profile_id:
       type:
       - integer
       - 'null'
@@ -60,11 +60,11 @@ Channel:
     cover:
       type: string
       description: URL обложки канала.
-    creationDate:
+    creation_date:
       type: integer
       format: int64
       description: Время создания объекта в формате API.
-    episodeChannelWidgetSort:
+    episode_channel_widget_sort:
       type: integer
       format: int32
       description: Способ сортировки статей в виджете эпизодов.
@@ -78,41 +78,41 @@ Channel:
       type: integer
       format: int64
       description: Уникальный идентификатор.
-    isArticleSuggestionEnabled:
+    is_article_suggestion_enabled:
       type: boolean
       description: В канале разрешено отправлять предложения статей.
-    isBlocked:
+    is_blocked:
       type: boolean
       description: Объект заблокирован для текущего профиля.
-    isBlog:
+    is_blog:
       type: boolean
       description: Канал является персональным блогом.
-    isCommentingEnabled:
+    is_commenting_enabled:
       type: boolean
       description: Комментарии для объекта включены.
-    isDeleted:
+    is_deleted:
       type: boolean
       description: Объект помечен удалённым.
-    isLinkedToType:
+    is_linked_to_type:
       type: boolean
       description: Канал связан с конкретной озвучкой/даббером.
-    isMuted:
+    is_muted:
       type: boolean
       description: Для объекта включён режим mute.
-    isPermBlocked:
+    is_perm_blocked:
       type: boolean
       description: Блокировка является постоянной.
-    isSubscribed:
+    is_subscribed:
       type: boolean
       description: Текущий профиль подписан на канал.
-    isVerified:
+    is_verified:
       type: boolean
       description: Профиль/канал подтверждён.
-    lastArticleDate:
+    last_article_date:
       type: integer
       format: int64
       description: Временная метка «last article date» в формате API.
-    lastUpdateDate:
+    last_update_date:
       type: integer
       format: int64
       description: Время последнего обновления объекта в формате API.
@@ -120,11 +120,11 @@ Channel:
       type: integer
       format: int32
       description: Уровень прав пользователя в канале.
-    recentArticleCount:
+    recent_article_count:
       type: integer
       format: int32
       description: Количество недавних статей.
-    subscriberCount:
+    subscriber_count:
       type: integer
       format: int32
       description: Количество подписчиков.
@@ -134,10 +134,10 @@ Channel:
     description:
       type: string
       description: Текстовое описание.
-    isEpisodeChannelWidgetEnabled:
+    is_episode_channel_widget_enabled:
       type: boolean
       description: В канале включён виджет последних эпизодов.
-    episodeChannelWidgetPopularityPeriod:
+    episode_channel_widget_popularity_period:
       type: integer
       format: int32
       description: Период, по которому виджет рассчитывает популярность статей.
@@ -149,7 +149,7 @@ Channel:
       - 24_HOURS
       - 3_DAYS
       - 7_DAYS
-    episodeChannelWidgetArticleCount:
+    episode_channel_widget_article_count:
       type: integer
       format: int32
       description: Количество статей в виджете эпизодов.
@@ -181,18 +181,18 @@ Channel:
 ChannelBlock:
   type: object
   properties:
-    addedDate:
+    added_date:
       type: integer
       format: int64
       description: Время добавления в формате API.
-    expireDate:
+    expire_date:
       type: integer
       format: int64
       description: Временная метка «expire date» в формате API.
-    isPermBlocked:
+    is_perm_blocked:
       type: boolean
       description: Блокировка является постоянной.
-    isReasonShowingEnabled:
+    is_reason_showing_enabled:
       type: boolean
       description: Причина блокировки показывается заблокированному пользователю.
     reason:
@@ -201,25 +201,25 @@ ChannelBlock:
 ChannelBlockManageRequest:
   type: object
   properties:
-    expireDate:
+    expire_date:
       type:
       - integer
       - 'null'
       format: int64
       description: Временная метка «expire date» в формате API.
-    isBlocked:
+    is_blocked:
       type: boolean
       description: Объект заблокирован для текущего профиля.
-    isPermBlocked:
+    is_perm_blocked:
       type: boolean
       description: Блокировка является постоянной.
-    isReasonShowingEnabled:
+    is_reason_showing_enabled:
       type: boolean
       description: Причина блокировки показывается заблокированному пользователю.
     reason:
       type: string
       description: Причина действия или ограничения.
-    targetProfileId:
+    target_profile_id:
       type: integer
       format: int64
       description: Идентификатор связанного объекта «target profile».
@@ -228,7 +228,7 @@ ChannelBlockResponse:
   - $ref: ./common.yaml#/Response
   - type: object
     properties:
-      channelBlock:
+      channel_block:
         $ref: '#/ChannelBlock'
         description: Информация о блокировке пользователя в канале.
       code:
@@ -244,7 +244,7 @@ ChannelCompact:
     avatar:
       type: string
       description: URL или идентификатор изображения профиля.
-    blogProfileId:
+    blog_profile_id:
       type:
       - integer
       - 'null'
@@ -260,13 +260,13 @@ ChannelCompact:
       type: integer
       format: int64
       description: Уникальный идентификатор.
-    isBlog:
+    is_blog:
       type: boolean
       description: Канал является персональным блогом.
-    isCommentingEnabled:
+    is_commenting_enabled:
       type: boolean
       description: Комментарии для объекта включены.
-    isDeleted:
+    is_deleted:
       type: boolean
       description: Объект помечен удалённым.
     permission:
@@ -282,13 +282,13 @@ ChannelCreateEditRequest:
     description:
       type: string
       description: Текстовое описание.
-    episodeChannelWidgetArticleCount:
+    episode_channel_widget_article_count:
       type:
       - integer
       - 'null'
       format: int32
       description: Количество статей в виджете эпизодов.
-    episodeChannelWidgetPopularityPeriod:
+    episode_channel_widget_popularity_period:
       type:
       - integer
       - 'null'
@@ -302,7 +302,7 @@ ChannelCreateEditRequest:
       - 24_HOURS
       - 3_DAYS
       - 7_DAYS
-    episodeChannelWidgetSort:
+    episode_channel_widget_sort:
       type:
       - integer
       - 'null'
@@ -314,13 +314,13 @@ ChannelCreateEditRequest:
       x-enum-varnames:
       - CHRONOLOGY
       - POPULARITY
-    isArticleSuggestionEnabled:
+    is_article_suggestion_enabled:
       type: boolean
       description: В канале разрешено отправлять предложения статей.
-    isCommentingEnabled:
+    is_commenting_enabled:
       type: boolean
       description: Комментарии для объекта включены.
-    isEpisodeChannelWidgetEnabled:
+    is_episode_channel_widget_enabled:
       type:
       - boolean
       - 'null'
@@ -352,7 +352,7 @@ ChannelPermissionManageRequest:
       - 'null'
       format: int32
       description: Уровень прав пользователя в канале.
-    targetProfileId:
+    target_profile_id:
       type: integer
       format: int64
       description: Идентификатор связанного объекта «target profile».
@@ -380,30 +380,30 @@ ChannelProfile:
   - $ref: ./profiles.yaml#/ProfileCompact
   - type: object
     properties:
-      blockExpireDate:
+      block_expire_date:
         type:
         - integer
         - 'null'
         format: int64
         description: Временная метка «block expire date» в формате API.
-      blockReason:
+      block_reason:
         type: string
         description: Причина блокировки в канале.
-      channelId:
+      channel_id:
         type: integer
         format: int64
         description: Идентификатор канала.
-      isBlocked:
+      is_blocked:
         type: boolean
         description: Объект заблокирован для текущего профиля.
-      isPermBlocked:
+      is_perm_blocked:
         type: boolean
         description: Блокировка является постоянной.
       permission:
         type: integer
         format: int32
         description: Уровень прав пользователя в канале.
-      permissionCreationDate:
+      permission_creation_date:
         type: integer
         format: int64
         description: Временная метка «permission creation date» в формате API.
@@ -426,7 +426,7 @@ ChannelResponse:
       channel:
         $ref: '#/Channel'
         description: Связанный канал.
-      suggestionCount:
+      suggestion_count:
         type: integer
         format: int64
         description: Количество элементов категории «suggestion».
@@ -479,12 +479,12 @@ ChannelUploadCoverAvatarResponse:
 ChannelsFilterRequest:
   type: object
   properties:
-    isBlog:
+    is_blog:
       type:
       - boolean
       - 'null'
       description: Канал является персональным блогом.
-    isSubscribed:
+    is_subscribed:
       type:
       - boolean
       - 'null'
@@ -511,12 +511,12 @@ ChannelsFilterRequest:
 ChannelsSearchRequest:
   type: object
   properties:
-    isBlog:
+    is_blog:
       type:
       - boolean
       - 'null'
       description: Канал является персональным блогом.
-    isSubscribed:
+    is_subscribed:
       type:
       - boolean
       - 'null'
@@ -535,7 +535,7 @@ SubscriptionCountResponse:
   - $ref: ./common.yaml#/Response
   - type: object
     properties:
-      subscriptionCount:
+      subscription_count:
         type: integer
         format: int32
         description: Количество элементов категории «subscription».

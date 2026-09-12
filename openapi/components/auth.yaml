@@ -6,7 +6,7 @@ CheckLoginResponse:
       available:
         type: boolean
         description: Запрошенное значение свободно и доступно.
-      suggestedLogins:
+      suggested_logins:
         type: array
         items:
           type: string
@@ -34,7 +34,7 @@ ResendResponse:
   - $ref: ./common.yaml#/Response
   - type: object
     properties:
-      timestampExpires:
+      timestamp_expires:
         type: integer
         format: int64
         description: Временная метка «timestamp expires» в формате API.
@@ -50,7 +50,7 @@ RestoreResendResponse:
   - $ref: ./common.yaml#/Response
   - type: object
     properties:
-      timestampExpires:
+      timestamp_expires:
         type: integer
         format: int64
         description: Временная метка «timestamp expires» в формате API.
@@ -66,7 +66,7 @@ RestoreResponse:
   - $ref: ./common.yaml#/Response
   - type: object
     properties:
-      codeTimestampExpires:
+      code_timestamp_expires:
         type: integer
         format: int64
         description: Временная метка «code timestamp expires» в формате API.
@@ -88,7 +88,7 @@ RestoreVerifyResponse:
       profile:
         $ref: ./profiles.yaml#/Profile
         description: Связанный профиль пользователя.
-      profileToken:
+      profile_token:
         $ref: '#/ProfileToken'
         description: Сессионный токен профиля.
       code:
@@ -106,7 +106,7 @@ SignInResponse:
       profile:
         $ref: ./profiles.yaml#/Profile
         description: Связанный профиль пользователя.
-      profileToken:
+      profile_token:
         $ref: '#/ProfileToken'
         description: Сессионный токен профиля.
       code:
@@ -121,14 +121,14 @@ SignUpResponse:
   - $ref: ./common.yaml#/Response
   - type: object
     properties:
-      codeTimestampExpires:
+      code_timestamp_expires:
         type: integer
         format: int64
         description: Временная метка «code timestamp expires» в формате API.
       hash:
         type: string
         description: Серверный идентификатор текущего шага подтверждения; используется в следующем запросе.
-      suggestedLogins:
+      suggested_logins:
         type: array
         items:
           type: string
@@ -148,10 +148,10 @@ VerifyResponse:
       profile:
         $ref: ./profiles.yaml#/Profile
         description: Связанный профиль пользователя.
-      profileToken:
+      profile_token:
         $ref: '#/ProfileToken'
         description: Сессионный токен профиля.
-      suggestedLogins:
+      suggested_logins:
         type: array
         items:
           type: string

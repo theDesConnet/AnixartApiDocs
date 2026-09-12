@@ -1,7 +1,7 @@
 BookmarksExportRequest:
   type: object
   properties:
-    bookmarksExportProfileLists:
+    bookmarks_export_profile_lists:
       type: array
       items:
         type:
@@ -41,7 +41,7 @@ BookmarksImportRequest:
         type: integer
         format: int64
       description: Идентификаторы релизов, которые нужно поместить в список «Брошено».
-    holdOn:
+    hold_on:
       type: array
       items:
         type: integer
@@ -53,7 +53,7 @@ BookmarksImportRequest:
         type: integer
         format: int64
       description: Идентификаторы релизов, которые нужно поместить в список «В планах».
-    selectedImporterName:
+    selected_importer_name:
       type: string
       description: Имя выбранного импортёра/источника списка.
     watching:

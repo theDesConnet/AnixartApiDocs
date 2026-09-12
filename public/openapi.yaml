@@ -9934,16 +9934,16 @@ components:
         - $ref: "#/components/schemas/Response"
         - type: object
           properties:
-            downloadLinks:
+            download_links:
               type: object
               additionalProperties:
                 type: string
               description: Список ссылок или зеркал для загрузки AnixPlayer.
-            lastVersionCode:
+            last_version_code:
               type: integer
               format: int64
               description: Код последней доступной версии.
-            whatsNew:
+            whats_new:
               type: string
               description: Текст с изменениями последней версии.
     Article:
@@ -9956,50 +9956,50 @@ components:
         channel:
           $ref: "#/components/schemas/Channel"
           description: Канал или блог, в котором опубликована статья.
-        commentCount:
+        comment_count:
           type: integer
           format: int64
           description: Количество комментариев.
-        containsRepostArticle:
+        contains_repost_article:
           type: boolean
           description: Статья содержит вложенный репост другой статьи.
-        creationDate:
+        creation_date:
           type: integer
           format: int64
           description: Время создания объекта в формате API.
-        hasDeleteEnforcement:
+        has_delete_enforcement:
           type: boolean
           description: Для статьи есть модерационное решение об удалении.
         id:
           type: integer
           format: int64
           description: Уникальный идентификатор.
-        isDeleted:
+        is_deleted:
           type: boolean
           description: Объект помечен удалённым.
-        isMuted:
+        is_muted:
           type: boolean
           description: Для объекта включён режим mute.
-        isPinned:
+        is_pinned:
           type: boolean
           description: Объект закреплён.
-        isSigned:
+        is_signed:
           type: boolean
           description: Публикация отображается с подписью автора.
-        lastUpdateDate:
+        last_update_date:
           type: integer
           format: int64
           description: Время последнего обновления объекта в формате API.
         payload:
           $ref: "#/components/schemas/ArticlePayload"
           description: Структурированное содержимое статьи.
-        popularComment:
+        popular_comment:
           $ref: "#/components/schemas/PopularComment"
           description: Комментарий, который сервер выбрал для превью публикации.
-        repostArticle:
+        repost_article:
           $ref: "#/components/schemas/Article"
           description: Исходная статья, если публикация является репостом.
-        repostCount:
+        repost_count:
           type: integer
           format: int64
           description: Количество репостов.
@@ -10007,7 +10007,7 @@ components:
           type: integer
           format: int32
           description: Голос текущего профиля за статью.
-        voteCount:
+        vote_count:
           type: integer
           format: int32
           description: Количество голосов.
@@ -10041,14 +10041,14 @@ components:
             article:
               $ref: "#/components/schemas/ArticleCompact"
               description: Связанная статья.
-            embeddableDescription:
+            embeddable_description:
               type: string
               description: Краткое описание объекта, к которому относится комментарий.
-            embeddableId:
+            embeddable_id:
               type: integer
               format: int64
               description: Идентификатор связанного объекта «embeddable».
-            embeddableTitle:
+            embeddable_title:
               type: string
               description: Заголовок объекта, к которому относится комментарий.
     ArticleCompact:
@@ -10057,7 +10057,7 @@ components:
         channel:
           $ref: "#/components/schemas/ChannelCompact"
           description: Связанный канал.
-        creationDate:
+        creation_date:
           type: integer
           format: int64
           description: Время создания объекта в формате API.
@@ -10065,7 +10065,7 @@ components:
           type: integer
           format: int64
           description: Уникальный идентификатор.
-        lastUpdateDate:
+        last_update_date:
           type: integer
           format: int64
           description: Время последнего обновления объекта в формате API.
@@ -10075,13 +10075,13 @@ components:
     ArticleCreateEditRequest:
       type: object
       properties:
-        isSigned:
+        is_signed:
           type: boolean
           description: Публикация отображается с подписью автора.
         payload:
           type: string
           description: Структурированное содержимое статьи.
-        repostArticleId:
+        repost_article_id:
           type:
             - integer
             - "null"
@@ -10105,7 +10105,7 @@ components:
     ArticleData:
       type: object
       properties:
-        isExpandAvailable:
+        is_expand_available:
           type: boolean
           description: Элемент можно развернуть в интерфейсе.
     ArticleDeleteResponse:
@@ -10165,7 +10165,7 @@ components:
       type: object
       description: Структурированное содержимое статьи.
       properties:
-        blockCount:
+        block_count:
           type: integer
           format: int32
           description: Количество элементов категории «block».
@@ -10176,10 +10176,10 @@ components:
             x-generic-arguments:
               - "?"
           description: Блоки, из которых состоит статья.
-        isCollapseAvailable:
+        is_collapse_available:
           type: boolean
           description: Элемент можно свернуть в интерфейсе.
-        isExpandAvailable:
+        is_expand_available:
           type: boolean
           description: Элемент можно развернуть в интерфейсе.
         time:
@@ -10225,14 +10225,14 @@ components:
     ArticleSuggestionsFilterRequest:
       type: object
       properties:
-        channelId:
+        channel_id:
           type: integer
           format: int64
           description: Идентификатор канала.
     ArticlesSearchRequest:
       type: object
       properties:
-        channelId:
+        channel_id:
           type: integer
           format: int64
           description: Идентификатор канала.
@@ -10253,7 +10253,7 @@ components:
       type: object
       description: Значок, отображаемый рядом с профилем.
       properties:
-        badgeUrl:
+        image_url:
           type: string
           description: URL изображения или анимации значка.
         id:
@@ -10308,7 +10308,7 @@ components:
     BookmarksExportRequest:
       type: object
       properties:
-        bookmarksExportProfileLists:
+        bookmarks_export_profile_lists:
           type: array
           items:
             type:
@@ -10348,7 +10348,7 @@ components:
             type: integer
             format: int64
           description: Идентификаторы релизов, которые нужно поместить в список «Брошено».
-        holdOn:
+        hold_on:
           type: array
           items:
             type: integer
@@ -10360,7 +10360,7 @@ components:
             type: integer
             format: int64
           description: Идентификаторы релизов, которые нужно поместить в список «В планах».
-        selectedImporterName:
+        selected_importer_name:
           type: string
           description: Имя выбранного импортёра/источника списка.
         watching:
@@ -10408,7 +10408,7 @@ components:
         - $ref: "#/components/schemas/Response"
         - type: object
           properties:
-            timestampExpires:
+            timestamp_expires:
               type: integer
               format: int64
               description: Временная метка «timestamp expires» в формате API.
@@ -10427,7 +10427,7 @@ components:
             hash:
               type: string
               description: Серверный идентификатор текущего шага подтверждения; используется в следующем запросе.
-            timestampExpires:
+            timestamp_expires:
               type: integer
               format: int64
               description: Временная метка «timestamp expires» в формате API.
@@ -10457,7 +10457,7 @@ components:
           type: integer
           format: int64
           description: Уникальный идентификатор.
-        newLogin:
+        new_login:
           type: string
           description: Новый логин профиля.
         timestamp:
@@ -10469,14 +10469,14 @@ components:
         - $ref: "#/components/schemas/Response"
         - type: object
           properties:
-            isChangeAvailable:
+            is_change_available:
               type: boolean
               description: Смена значения сейчас доступна.
-            lastChangeAt:
+            last_change_at:
               type: integer
               format: int64
               description: Время последней смены логина в формате API.
-            nextChangeAvailableAt:
+            next_change_available_at:
               type: integer
               format: int64
               description: Время, после которого логин снова можно изменить.
@@ -10491,7 +10491,7 @@ components:
         - $ref: "#/components/schemas/Response"
         - type: object
           properties:
-            suggestedLogins:
+            suggested_logins:
               type: array
               items:
                 type: string
@@ -10522,41 +10522,41 @@ components:
       type: object
       description: Канал или персональный блог Anixart.
       properties:
-        articleCount:
+        article_count:
           type: integer
           format: int32
           description: Количество статей.
         avatar:
           type: string
           description: URL или идентификатор изображения профиля.
-        badgeId:
+        badge_id:
           type:
             - integer
             - "null"
           format: int64
           description: Идентификатор значка.
-        badgeName:
+        badge_name:
           type: string
           description: Отображаемое название значка.
-        badgeType:
+        badge_type:
           type:
             - integer
             - "null"
           format: int32
           description: Тип значка (статический или анимированный).
-        badgeUrl:
+        badge_url:
           type: string
           description: URL изображения или анимации значка.
-        blockExpireDate:
+        block_expire_date:
           type:
             - integer
             - "null"
           format: int64
           description: Временная метка «block expire date» в формате API.
-        blockReason:
+        block_reason:
           type: string
           description: Причина блокировки в канале.
-        blogProfileId:
+        blog_profile_id:
           type:
             - integer
             - "null"
@@ -10565,11 +10565,11 @@ components:
         cover:
           type: string
           description: URL обложки канала.
-        creationDate:
+        creation_date:
           type: integer
           format: int64
           description: Время создания объекта в формате API.
-        episodeChannelWidgetSort:
+        episode_channel_widget_sort:
           type: integer
           format: int32
           description: Способ сортировки статей в виджете эпизодов.
@@ -10583,41 +10583,41 @@ components:
           type: integer
           format: int64
           description: Уникальный идентификатор.
-        isArticleSuggestionEnabled:
+        is_article_suggestion_enabled:
           type: boolean
           description: В канале разрешено отправлять предложения статей.
-        isBlocked:
+        is_blocked:
           type: boolean
           description: Объект заблокирован для текущего профиля.
-        isBlog:
+        is_blog:
           type: boolean
           description: Канал является персональным блогом.
-        isCommentingEnabled:
+        is_commenting_enabled:
           type: boolean
           description: Комментарии для объекта включены.
-        isDeleted:
+        is_deleted:
           type: boolean
           description: Объект помечен удалённым.
-        isLinkedToType:
+        is_linked_to_type:
           type: boolean
           description: Канал связан с конкретной озвучкой/даббером.
-        isMuted:
+        is_muted:
           type: boolean
           description: Для объекта включён режим mute.
-        isPermBlocked:
+        is_perm_blocked:
           type: boolean
           description: Блокировка является постоянной.
-        isSubscribed:
+        is_subscribed:
           type: boolean
           description: Текущий профиль подписан на канал.
-        isVerified:
+        is_verified:
           type: boolean
           description: Профиль/канал подтверждён.
-        lastArticleDate:
+        last_article_date:
           type: integer
           format: int64
           description: Временная метка «last article date» в формате API.
-        lastUpdateDate:
+        last_update_date:
           type: integer
           format: int64
           description: Время последнего обновления объекта в формате API.
@@ -10625,11 +10625,11 @@ components:
           type: integer
           format: int32
           description: Уровень прав пользователя в канале.
-        recentArticleCount:
+        recent_article_count:
           type: integer
           format: int32
           description: Количество недавних статей.
-        subscriberCount:
+        subscriber_count:
           type: integer
           format: int32
           description: Количество подписчиков.
@@ -10639,10 +10639,10 @@ components:
         description:
           type: string
           description: Текстовое описание.
-        isEpisodeChannelWidgetEnabled:
+        is_episode_channel_widget_enabled:
           type: boolean
           description: В канале включён виджет последних эпизодов.
-        episodeChannelWidgetPopularityPeriod:
+        episode_channel_widget_popularity_period:
           type: integer
           format: int32
           description: Период, по которому виджет рассчитывает популярность статей.
@@ -10654,7 +10654,7 @@ components:
             - 24_HOURS
             - 3_DAYS
             - 7_DAYS
-        episodeChannelWidgetArticleCount:
+        episode_channel_widget_article_count:
           type: integer
           format: int32
           description: Количество статей в виджете эпизодов.
@@ -10686,18 +10686,18 @@ components:
     ChannelBlock:
       type: object
       properties:
-        addedDate:
+        added_date:
           type: integer
           format: int64
           description: Время добавления в формате API.
-        expireDate:
+        expire_date:
           type: integer
           format: int64
           description: Временная метка «expire date» в формате API.
-        isPermBlocked:
+        is_perm_blocked:
           type: boolean
           description: Блокировка является постоянной.
-        isReasonShowingEnabled:
+        is_reason_showing_enabled:
           type: boolean
           description: Причина блокировки показывается заблокированному пользователю.
         reason:
@@ -10706,25 +10706,25 @@ components:
     ChannelBlockManageRequest:
       type: object
       properties:
-        expireDate:
+        expire_date:
           type:
             - integer
             - "null"
           format: int64
           description: Временная метка «expire date» в формате API.
-        isBlocked:
+        is_blocked:
           type: boolean
           description: Объект заблокирован для текущего профиля.
-        isPermBlocked:
+        is_perm_blocked:
           type: boolean
           description: Блокировка является постоянной.
-        isReasonShowingEnabled:
+        is_reason_showing_enabled:
           type: boolean
           description: Причина блокировки показывается заблокированному пользователю.
         reason:
           type: string
           description: Причина действия или ограничения.
-        targetProfileId:
+        target_profile_id:
           type: integer
           format: int64
           description: Идентификатор связанного объекта «target profile».
@@ -10733,7 +10733,7 @@ components:
         - $ref: "#/components/schemas/Response"
         - type: object
           properties:
-            channelBlock:
+            channel_block:
               $ref: "#/components/schemas/ChannelBlock"
               description: Информация о блокировке пользователя в канале.
             code:
@@ -10749,7 +10749,7 @@ components:
         avatar:
           type: string
           description: URL или идентификатор изображения профиля.
-        blogProfileId:
+        blog_profile_id:
           type:
             - integer
             - "null"
@@ -10765,13 +10765,13 @@ components:
           type: integer
           format: int64
           description: Уникальный идентификатор.
-        isBlog:
+        is_blog:
           type: boolean
           description: Канал является персональным блогом.
-        isCommentingEnabled:
+        is_commenting_enabled:
           type: boolean
           description: Комментарии для объекта включены.
-        isDeleted:
+        is_deleted:
           type: boolean
           description: Объект помечен удалённым.
         permission:
@@ -10787,13 +10787,13 @@ components:
         description:
           type: string
           description: Текстовое описание.
-        episodeChannelWidgetArticleCount:
+        episode_channel_widget_article_count:
           type:
             - integer
             - "null"
           format: int32
           description: Количество статей в виджете эпизодов.
-        episodeChannelWidgetPopularityPeriod:
+        episode_channel_widget_popularity_period:
           type:
             - integer
             - "null"
@@ -10807,7 +10807,7 @@ components:
             - 24_HOURS
             - 3_DAYS
             - 7_DAYS
-        episodeChannelWidgetSort:
+        episode_channel_widget_sort:
           type:
             - integer
             - "null"
@@ -10819,13 +10819,13 @@ components:
           x-enum-varnames:
             - CHRONOLOGY
             - POPULARITY
-        isArticleSuggestionEnabled:
+        is_article_suggestion_enabled:
           type: boolean
           description: В канале разрешено отправлять предложения статей.
-        isCommentingEnabled:
+        is_commenting_enabled:
           type: boolean
           description: Комментарии для объекта включены.
-        isEpisodeChannelWidgetEnabled:
+        is_episode_channel_widget_enabled:
           type:
             - boolean
             - "null"
@@ -10857,7 +10857,7 @@ components:
             - "null"
           format: int32
           description: Уровень прав пользователя в канале.
-        targetProfileId:
+        target_profile_id:
           type: integer
           format: int64
           description: Идентификатор связанного объекта «target profile».
@@ -10885,30 +10885,30 @@ components:
         - $ref: "#/components/schemas/ProfileCompact"
         - type: object
           properties:
-            blockExpireDate:
+            block_expire_date:
               type:
                 - integer
                 - "null"
               format: int64
               description: Временная метка «block expire date» в формате API.
-            blockReason:
+            block_reason:
               type: string
               description: Причина блокировки в канале.
-            channelId:
+            channel_id:
               type: integer
               format: int64
               description: Идентификатор канала.
-            isBlocked:
+            is_blocked:
               type: boolean
               description: Объект заблокирован для текущего профиля.
-            isPermBlocked:
+            is_perm_blocked:
               type: boolean
               description: Блокировка является постоянной.
             permission:
               type: integer
               format: int32
               description: Уровень прав пользователя в канале.
-            permissionCreationDate:
+            permission_creation_date:
               type: integer
               format: int64
               description: Временная метка «permission creation date» в формате API.
@@ -10931,7 +10931,7 @@ components:
             channel:
               $ref: "#/components/schemas/Channel"
               description: Связанный канал.
-            suggestionCount:
+            suggestion_count:
               type: integer
               format: int64
               description: Количество элементов категории «suggestion».
@@ -10984,12 +10984,12 @@ components:
     ChannelsFilterRequest:
       type: object
       properties:
-        isBlog:
+        is_blog:
           type:
             - boolean
             - "null"
           description: Канал является персональным блогом.
-        isSubscribed:
+        is_subscribed:
           type:
             - boolean
             - "null"
@@ -11016,12 +11016,12 @@ components:
     ChannelsSearchRequest:
       type: object
       properties:
-        isBlog:
+        is_blog:
           type:
             - boolean
             - "null"
           description: Канал является персональным блогом.
-        isSubscribed:
+        is_subscribed:
           type:
             - boolean
             - "null"
@@ -11043,7 +11043,7 @@ components:
             available:
               type: boolean
               description: Запрошенное значение свободно и доступно.
-            suggestedLogins:
+            suggested_logins:
               type: array
               items:
                 type: string
@@ -11059,11 +11059,11 @@ components:
       type: object
       description: Пользовательская коллекция релизов.
       properties:
-        commentCount:
+        comment_count:
           type: integer
           format: int64
           description: Количество комментариев.
-        creationDate:
+        creation_date:
           type: integer
           format: int64
           description: Время создания объекта в формате API.
@@ -11073,7 +11073,7 @@ components:
         delete:
           type: boolean
           description: Объект помечен как удалённый/подлежащий удалению.
-        favoriteCount:
+        favorites_count:
           type: integer
           format: int32
           description: Количество добавлений в избранное.
@@ -11081,13 +11081,13 @@ components:
           type: integer
           format: int64
           description: Уникальный идентификатор.
-        isFavorite:
+        is_favorite:
           type: boolean
           description: Объект находится в избранном текущего профиля.
-        isPrivate:
+        is_private:
           type: boolean
           description: Коллекция доступна только в приватном режиме.
-        lastUpdateDate:
+        last_update_date:
           type: integer
           format: int64
           description: Время последнего обновления объекта в формате API.
@@ -11122,11 +11122,11 @@ components:
             collection:
               $ref: "#/components/schemas/CollectionCompact"
               description: Связанная коллекция.
-            embeddableId:
+            embeddable_id:
               type: integer
               format: int64
               description: Идентификатор связанного объекта «embeddable».
-            embeddableTitle:
+            embeddable_title:
               type: string
               description: Заголовок объекта, к которому относится комментарий.
     CollectionCompact:
@@ -11148,7 +11148,7 @@ components:
         description:
           type: string
           description: Текстовое описание.
-        isPrivate:
+        is_private:
           type: boolean
           description: Коллекция доступна только в приватном режиме.
         releases:
@@ -11212,23 +11212,23 @@ components:
             collection:
               $ref: "#/components/schemas/Collection"
               description: Связанная коллекция.
-            completedCount:
+            completed_count:
               type: integer
               format: int64
               description: Количество профилей со статусом «Просмотрено».
-            droppedCount:
+            dropped_count:
               type: integer
               format: int64
               description: Количество профилей со статусом «Брошено».
-            holdOnCount:
+            hold_on_count:
               type: integer
               format: int64
               description: Количество профилей со статусом «Отложено».
-            planCount:
+            plan_count:
               type: integer
               format: int64
               description: Количество профилей со статусом «В планах».
-            watchingCount:
+            watching_count:
               type: integer
               format: int64
               description: Количество профилей со статусом «Смотрю».
@@ -11247,23 +11247,23 @@ components:
           type: integer
           format: int64
           description: Уникальный идентификатор.
-        isDeleted:
+        is_deleted:
           type: boolean
           description: Объект помечен удалённым.
-        isEdited:
+        is_edited:
           type: boolean
           description: Комментарий был отредактирован.
-        isReply:
+        is_reply:
           type: boolean
           description: Комментарий является ответом.
-        isSpoiler:
+        is_spoiler:
           type: boolean
           description: Содержимое помечено как спойлер.
-        likesCount:
+        likes_count:
           type: integer
           format: int32
           description: Количество лайков.
-        parentCommentId:
+        parent_comment_id:
           type:
             - integer
             - "null"
@@ -11272,7 +11272,7 @@ components:
         profile:
           $ref: "#/components/schemas/ProfileCompact"
           description: Автор комментария.
-        replyCount:
+        reply_count:
           type: integer
           format: int64
           description: Количество ответов.
@@ -11288,14 +11288,14 @@ components:
           type: integer
           format: int32
           description: Голос текущего профиля за комментарий.
-        voteCount:
+        vote_count:
           type: integer
           format: int32
           description: Количество голосов.
         message:
           type: string
           description: Текст комментария.
-        canLike:
+        can_like:
           type: boolean
           description: Текущий профиль может поставить реакцию этому комментарию.
     CommentAddRequest:
@@ -11304,13 +11304,13 @@ components:
         message:
           type: string
           description: Текст нового комментария.
-        parentCommentId:
+        parent_comment_id:
           type:
             - integer
             - "null"
           format: int64
           description: Идентификатор родительского комментария.
-        replyToProfileId:
+        reply_to_profile_id:
           type:
             - integer
             - "null"
@@ -11340,14 +11340,14 @@ components:
       type: object
       description: Компактное представление комментария.
       properties:
-        embeddableDescription:
+        embeddable_description:
           type: string
           description: Краткое описание объекта, к которому относится комментарий.
         id:
           type: integer
           format: int64
           description: Уникальный идентификатор.
-        isSpoiler:
+        is_spoiler:
           type: boolean
           description: Содержимое помечено как спойлер.
         message:
@@ -11392,22 +11392,22 @@ components:
     CommentProcessRequest:
       type: object
       properties:
-        banExpires:
+        ban_expires:
           type:
             - integer
             - "null"
           format: int64
           description: Срок блокировки автора комментария в формате API; `null` - без заданного срока.
-        banReason:
+        ban_reason:
           type: string
           description: Причина блокировки автора комментария.
-        isBanned:
+        is_banned:
           type: boolean
           description: Нужно ли применить блокировку к автору комментария.
-        isDeleted:
+        is_deleted:
           type: boolean
           description: Нужно ли пометить комментарий удалённым.
-        isSpoiler:
+        is_spoiler:
           type: boolean
           description: Нужно ли пометить комментарий как спойлер.
         message:
@@ -11421,34 +11421,34 @@ components:
       type: object
       description: Адреса API и внешних сервисов, получаемые клиентом при запуске.
       properties:
-        apiUrls:
+        api_urls:
           type: array
           uniqueItems: true
           items:
             type: string
           description: Базовые адреса API/зеркал, доступные клиенту.
-        consentRequired:
+        consent_required:
           type: boolean
           description: Перед продолжением клиент должен получить согласие пользователя.
-        editorUrl:
+        editor_url:
           type: string
           description: Адрес веб-редактора или сервиса редактора.
-        googleAuthAvailable:
+        google_auth_available:
           type: boolean
           description: Авторизация через Google доступна.
-        shouldUseMirrorUrls:
+        should_use_mirror_urls:
           type: boolean
           description: Клиенту следует использовать зеркальные адреса API.
-        staticDomain:
+        static_domain:
           type: string
           description: Домен статических ресурсов.
-        telegramAuthAvailable:
+        telegram_auth_available:
           type: boolean
           description: Авторизация через Telegram доступна.
-        vkAuthAvailable:
+        vk_auth_available:
           type: boolean
           description: Авторизация через VK доступна.
-        yandexAuthAvailable:
+        yandex_auth_available:
           type: boolean
           description: Авторизация через Yandex доступна.
     DeleteVoteReleaseResponse:
@@ -11461,7 +11461,7 @@ components:
         - $ref: "#/components/schemas/Response"
         - type: object
           properties:
-            mediaUploadToken:
+            media_upload_token:
               type: string
               description: Временный токен для загрузки медиа из редактора.
             code:
@@ -11481,10 +11481,10 @@ components:
           type: integer
           format: int64
           description: Уникальный идентификатор.
-        isBlog:
+        is_blog:
           type: boolean
           description: Канал является персональным блогом.
-        subscriberCount:
+        subscriber_count:
           type: integer
           format: int32
           description: Количество подписчиков.
@@ -11505,7 +11505,7 @@ components:
       type: object
       description: Эпизод релиза в конкретном источнике.
       properties:
-        addedDate:
+        added_date:
           type: integer
           format: int64
           description: Время добавления в формате API.
@@ -11516,16 +11516,16 @@ components:
         iframe:
           type: boolean
           description: Видео открывается через iframe-плеер.
-        isFiller:
+        is_filler:
           type: boolean
           description: Эпизод помечен как филлер.
-        isWatched:
+        is_watched:
           type: boolean
           description: Эпизод отмечен просмотренным.
         name:
           type: string
           description: Отображаемое название.
-        playbackPosition:
+        playback_position:
           type: integer
           format: int64
           description: Сохранённая позиция воспроизведения эпизода в формате API.
@@ -11540,14 +11540,14 @@ components:
         release:
           $ref: "#/components/schemas/Release"
           description: Связанный релиз.
-        releaseId:
+        release_id:
           type: integer
           format: int64
           description: Идентификатор релиза.
         source:
           $ref: "#/components/schemas/Source"
           description: Источник данных или источник эпизодов - в зависимости от модели.
-        sourceId:
+        source_id:
           type: integer
           format: int64
           description: Идентификатор источника.
@@ -11593,22 +11593,22 @@ components:
     EpisodeUpdate:
       type: object
       properties:
-        lastEpisodeSourceUpdateId:
+        last_episode_source_update_id:
           type: integer
           format: int64
           description: Идентификатор связанного объекта «last episode source update».
-        lastEpisodeTypeUpdateId:
+        last_episode_type_update_id:
           type: integer
           format: int64
           description: Идентификатор связанного объекта «last episode type update».
-        lastEpisodeUpdateDate:
+        last_episode_update_date:
           type: integer
           format: int64
           description: Временная метка «last episode update date» в формате API.
-        lastEpisodeUpdateName:
+        last_episode_update_name:
           type: string
           description: Название последнего обновлённого эпизода.
-        lastEpisodeSourceUpdateName:
+        last_episode_source_update_name:
           type: string
           description: Название источника последнего обновления эпизода.
         lastEpisodeTypeUpdateName:
@@ -11669,7 +11669,7 @@ components:
       type: object
       description: Параметры расширенного фильтра релизов.
       properties:
-        categoryId:
+        category_id:
           type:
             - integer
             - "null"
@@ -11680,37 +11680,37 @@ components:
             - string
             - "null"
           description: Страна производства релиза.
-        endYear:
+        end_year:
           type:
             - integer
             - "null"
           format: int32
           description: Верхняя граница года выпуска.
-        episodeDurationFrom:
+        episode_duration_from:
           type:
             - integer
             - "null"
           format: int32
           description: Минимальная длительность эпизода для фильтра.
-        episodeDurationTo:
+        episode_duration_to:
           type:
             - integer
             - "null"
           format: int32
           description: Максимальная длительность эпизода для фильтра.
-        episodesFrom:
+        episodes_from:
           type:
             - integer
             - "null"
           format: int32
           description: Минимальное количество эпизодов.
-        episodesTo:
+        episodes_to:
           type:
             - integer
             - "null"
           format: int32
           description: Максимальное количество эпизодов.
-        genresMode:
+        genres_mode:
           type:
             - integer
             - "null"
@@ -11724,7 +11724,7 @@ components:
             - ALL
             - ANY
             - EXCLUDE
-        isGenresExcludeModeEnabled:
+        is_genres_exclude_mode_enabled:
           type: boolean
           description: Выбранные жанры используются как исключения.
         season:
@@ -11738,13 +11738,13 @@ components:
             - string
             - "null"
           description: Фильтр по строковому названию/источнику релиза.
-        startYear:
+        start_year:
           type:
             - integer
             - "null"
           format: int32
           description: Нижняя граница года выпуска.
-        statusId:
+        status_id:
           type:
             - integer
             - "null"
@@ -11784,7 +11784,7 @@ components:
           items:
             type: string
           description: Жанры релиза в строковом формате API.
-        profileListExclusions:
+        profile_list_exclusions:
           type: array
           items:
             type: integer
@@ -11796,7 +11796,7 @@ components:
             type: integer
             format: int64
           description: Идентификаторы выбранных озвучек/дабберов.
-        ageRatings:
+        age_ratings:
           type: array
           items:
             type: integer
@@ -11853,7 +11853,7 @@ components:
         - $ref: "#/components/schemas/Response"
         - type: object
           properties:
-            topicName:
+            topic_name:
               type: string
               description: Название Firebase topic для push-уведомлений.
     GoogleBindResponse:
@@ -11873,7 +11873,7 @@ components:
         - $ref: "#/components/schemas/Response"
         - type: object
           properties:
-            codeTimestampExpires:
+            code_timestamp_expires:
               type: integer
               format: int64
               description: Временная метка «code timestamp expires» в формате API.
@@ -11883,10 +11883,10 @@ components:
             profile:
               $ref: "#/components/schemas/Profile"
               description: Связанный профиль пользователя.
-            profileToken:
+            profile_token:
               $ref: "#/components/schemas/ProfileToken"
               description: Сессионный токен профиля.
-            suggestedLogins:
+            suggested_logins:
               type: array
               items:
                 type: string
@@ -11923,7 +11923,7 @@ components:
           type: integer
           format: int64
           description: Уникальный идентификатор.
-        isHidden:
+        is_hidden:
           type: boolean
           description: Карточка скрыта в интерфейсе.
         type:
@@ -11947,7 +11947,7 @@ components:
         - $ref: "#/components/schemas/Response"
         - type: object
           properties:
-            articleId:
+            article_id:
               type:
                 - integer
                 - "null"
@@ -11967,39 +11967,39 @@ components:
         - $ref: "#/components/schemas/Response"
         - type: object
           properties:
-            isArticleNotificationsEnabled:
+            is_article_notifications_enabled:
               type: boolean
               description: Уведомления о статьях включены.
-            isCommentNotificationsEnabled:
+            is_comment_notifications_enabled:
               type: boolean
               description: Уведомления о комментариях включены.
-            isEpisodeNotificationsEnabled:
+            is_episode_notifications_enabled:
               type: boolean
               description: Уведомления о новых эпизодах включены.
-            isFirstEpisodeNotificationEnabled:
+            is_first_episode_notification_enabled:
               type: boolean
               description: Уведомление о первом эпизоде включено.
-            isMyArticleCommentNotificationsEnabled:
+            is_my_article_comment_notifications_enabled:
               type: boolean
               description: Уведомления об ответах на собственные комментарии к статьям включены.
-            isMyCollectionCommentNotificationsEnabled:
+            is_my_collection_comment_notifications_enabled:
               type: boolean
               description: Уведомления об ответах на собственные комментарии к коллекциям включены.
-            isRelatedReleaseNotificationsEnabled:
+            is_related_release_notifications_enabled:
               type: boolean
               description: Уведомления о связанных релизах включены.
-            isReleaseTypeNotificationsEnabled:
+            is_release_type_notifications_enabled:
               type: boolean
               description: Уведомления по выбранным озвучкам релиза включены.
-            isReportProcessNotificationsEnabled:
+            is_report_process_notifications_enabled:
               type: boolean
               description: Уведомления о результатах рассмотрения жалоб включены.
-            profileStatusNotificationPreferences:
+            profile_status_notification_preferences:
               type: array
               items:
                 $ref: "#/components/schemas/ProfileStatusNotificationPreference"
               description: Настройки уведомлений для статусов профиля/списков.
-            profileTypeNotificationPreferences:
+            profile_type_notification_preferences:
               type: array
               items:
                 $ref: "#/components/schemas/ProfileTypeNotificationPreference"
@@ -12013,15 +12013,15 @@ components:
               type: array
               items: {}
               description: Элементы текущей страницы. Конкретный тип задаётся схемой ответа метода.
-            currentPage:
+            current_page:
               type: integer
               format: int32
               description: Номер текущей страницы, начиная с `0`.
-            totalCount:
+            total_count:
               type: integer
               format: int64
               description: Общее количество элементов во всей выборке.
-            totalPageCount:
+            total_page_count:
               type: integer
               format: int32
               description: Общее количество страниц.
@@ -12054,7 +12054,7 @@ components:
           type: integer
           format: int64
           description: Временная метка.
-        voteCount:
+        vote_count:
           type: integer
           format: int32
           description: Количество голосов.
@@ -12072,83 +12072,83 @@ components:
         badge:
           $ref: "#/components/schemas/Badge"
           description: Значок, выбранный для профиля.
-        badgeId:
+        badge_id:
           type:
             - integer
             - "null"
           format: int64
           description: Идентификатор значка.
-        badgeName:
+        badge_name:
           type: string
           description: Отображаемое название значка.
-        badgeType:
+        badge_type:
           type:
             - integer
             - "null"
           format: int32
           description: Тип значка (статический или анимированный).
-        badgeUrl:
+        badge_url:
           type: string
           description: URL изображения или анимации значка.
-        banExpires:
+        ban_expires:
           type: integer
           format: int64
           description: Временная метка «ban expires» в формате API.
-        banReason:
+        ban_reason:
           type: string
           description: Причина блокировки.
-        blockListAddedDate:
+        added_date:
           type: integer
           format: int64
-          description: Временная метка «block list added date» в формате API.
-        collectionCount:
+          description: Время добавления профиля в чёрный список.
+        collection_count:
           type: integer
           format: int32
           description: Количество коллекций.
-        collectionsPreview:
+        collections_preview:
           type: array
           items:
             $ref: "#/components/schemas/Collection"
           description: Коллекции, показанные в превью профиля.
-        commentCount:
+        comment_count:
           type: integer
           format: int32
           description: Количество комментариев.
-        commentsPreview:
+        comments_preview:
           type: array
           items:
             $ref: "#/components/schemas/Comment"
             x-generic-arguments:
               - "? extends ProfileCompact"
           description: Комментарии, показанные в превью профиля.
-        completedCount:
+        completed_count:
           type: integer
           format: int32
           description: Количество профилей со статусом «Просмотрено».
-        deletionDeleteAt:
+        deletion_delete_at:
           type: integer
           format: int64
           description: Планируемое время окончательного удаления аккаунта.
-        deletionRequestedAt:
+        deletion_requested_at:
           type: integer
           format: int64
           description: Время, когда было запрошено удаление аккаунта.
-        droppedCount:
+        dropped_count:
           type: integer
           format: int32
           description: Количество профилей со статусом «Брошено».
-        favoriteCount:
+        favorite_count:
           type: integer
           format: int32
           description: Количество добавлений в избранное.
-        friendCount:
+        friend_count:
           type: integer
           format: int32
           description: Количество друзей профиля.
-        friendStatus:
+        friend_status:
           $ref: "#/components/schemas/Profile_FriendStatus"
           description: Текущее состояние дружбы или заявки между профилями.
-        friendsPreview:
+        friends_preview:
           type: array
           items:
             $ref: "#/components/schemas/Profile"
@@ -12158,7 +12158,7 @@ components:
           items:
             $ref: "#/components/schemas/Release"
           description: Недавняя история просмотров профиля.
-        holdOnCount:
+        hold_on_count:
           type: integer
           format: int32
           description: Количество профилей со статусом «Отложено».
@@ -12166,115 +12166,115 @@ components:
           type: integer
           format: int64
           description: Уникальный идентификатор.
-        isBanned:
+        is_banned:
           type: boolean
           description: Профиль заблокирован.
-        isBlocked:
+        is_blocked:
           type: boolean
           description: Объект заблокирован для текущего профиля.
-        isCommentNotificationsEnabled:
+        is_comment_notifications_enabled:
           type: boolean
           description: Уведомления о комментариях включены.
-        isCountsHidden:
+        is_counts_hidden:
           type: boolean
           description: Счётчики профиля скрыты от других пользователей.
-        isDeleted:
+        is_deleted:
           type: boolean
           description: Объект помечен удалённым.
-        isDeletionRequested:
+        is_deletion_requested:
           type: boolean
           description: Для аккаунта уже запрошено удаление.
-        isEpisodeNotificationsEnabled:
+        is_episode_notifications_enabled:
           type: boolean
           description: Уведомления о новых эпизодах включены.
-        isFirstEpisodeNotificationEnabled:
+        is_first_episode_notification_enabled:
           type: boolean
           description: Уведомление о первом эпизоде включено.
-        isFriendRequestsDisallowed:
+        is_friend_requests_disallowed:
           type: boolean
           description: Новые заявки в друзья запрещены настройками профиля.
-        isGoogleBound:
+        is_google_bound:
           type: boolean
           description: К профилю привязан Google-аккаунт.
-        isIncognito:
+        is_incognito:
           type: boolean
           description: Для профиля включён режим инкогнито.
-        isLoginChanged:
+        is_login_changed:
           type: boolean
           description: Логин профиля уже менялся.
-        isMeBlocked:
+        is_me_blocked:
           type: boolean
           description: Целевой профиль заблокировал текущий профиль.
-        isOnline:
+        is_online:
           type: boolean
           description: Профиль сейчас отмечен онлайн.
-        isPermBanned:
+        is_perm_banned:
           type: boolean
           description: Профиль заблокирован без ограничения по сроку.
-        isSocial:
+        is_social:
           type: boolean
           description: Профиль участвует в социальных функциях клиента.
-        isSocialHidden:
+        is_social_hidden:
           type: boolean
           description: Социальные ссылки профиля скрыты.
-        isSponsor:
+        is_sponsor:
           type: boolean
           description: У профиля активен статус спонсора.
-        isStatsHidden:
+        is_stats_hidden:
           type: boolean
           description: Статистика профиля скрыта.
-        isTelegramBound:
+        is_telegram_bound:
           type: boolean
           description: К профилю привязан Telegram.
-        isVerified:
+        is_verified:
           type: boolean
           description: Профиль/канал подтверждён.
-        isVkBound:
+        is_vk_bound:
           type: boolean
           description: К профилю привязан VK.
-        isYandexBound:
+        is_yandex_bound:
           type: boolean
           description: К профилю привязан Yandex.
-        lastActivityTime:
+        last_activity_time:
           type: integer
           format: int64
           description: Время последней активности профиля в формате API.
-        pinnedSectionId:
+        pinned_section_id:
           type: integer
           format: int32
           description: Идентификатор закреплённого раздела.
-        planCount:
+        plan_count:
           type: integer
           format: int32
           description: Количество профилей со статусом «В планах».
-        preferredAudiences:
+        preferred_audiences:
           type: array
           items:
             $ref: "#/components/schemas/ProfileGenre"
           description: Предпочитаемые возрастные/аудиторные категории профиля.
-        preferredGenres:
+        preferred_genres:
           type: array
           items:
             $ref: "#/components/schemas/ProfileGenre"
           description: Предпочитаемые жанры профиля.
-        preferredThemes:
+        preferred_themes:
           type: array
           items:
             $ref: "#/components/schemas/ProfileGenre"
           description: Предпочитаемые тематические категории профиля.
-        privilegeLevel:
+        privilege_level:
           type: integer
           format: int64
           description: Уровень системных привилегий профиля.
-        ratingScore:
+        rating_score:
           type: integer
           format: int32
           description: Репутация/рейтинговый балл профиля.
-        registerDate:
+        register_date:
           type: integer
           format: int64
           description: Время регистрации профиля в формате API.
-        releaseVideosPreview:
+        release_videos_preview:
           type: array
           items:
             $ref: "#/components/schemas/ReleaseVideo"
@@ -12284,66 +12284,66 @@ components:
           items:
             $ref: "#/components/schemas/RoleDto"
           description: Роли профиля.
-        sponsorshipExpires:
+        sponsorship_expires:
           type: integer
           format: int64
           description: Временная метка «sponsorship expires» в формате API.
-        themeAnimationEnabled:
+        theme_animation_enabled:
           type:
             - boolean
             - "null"
           description: Анимации темы включены.
-        themeAnimationSpeed:
+        theme_animation_speed:
           $ref: "#/components/schemas/ThemedContainerLayout_AnimationSpeed"
           description: Скорость анимации элементов темы.
-        themeBackgroundAlpha:
+        theme_background_alpha:
           type:
             - number
             - "null"
           format: float
           description: Прозрачность фонового изображения темы.
-        themeBackgroundMode:
+        theme_background_mode:
           $ref: "#/components/schemas/ThemedContainerLayout_BackgroundMode"
           description: Способ масштабирования или повторения фонового изображения.
-        themeBackgroundUrl:
+        theme_background_url:
           type: string
           description: URL фонового изображения темы.
-        themeEnabled:
+        theme_enabled:
           type:
             - boolean
             - "null"
           description: Тема доступна для выбора.
-        themeGradientAngle:
+        theme_gradient_angle:
           $ref: "#/components/schemas/ThemedContainerLayout_GradientAngle"
           description: Направление или тип фонового градиента.
-        themeGradientEndColor:
+        theme_gradient_end_color:
           type: string
           description: Конечный цвет градиента.
-        themeGradientStartColor:
+        theme_gradient_start_color:
           type: string
           description: Начальный цвет градиента.
-        themeIconAlpha:
+        theme_icon_alpha:
           type:
             - number
             - "null"
           format: float
           description: Прозрачность декоративных иконок темы.
-        themeIconColor:
+        theme_icon_color:
           type: string
           description: Цвет декоративных иконок темы.
-        themeIconDensity:
+        theme_icon_density:
           $ref: "#/components/schemas/ThemedContainerLayout_IconDensity"
           description: Плотность декоративных иконок.
-        themeIconResName:
+        theme_icon_res_name:
           type: string
           description: Имя встроенного Android-ресурса декоративной иконки.
-        themeIconSize:
+        theme_icon_size:
           $ref: "#/components/schemas/ThemedContainerLayout_IconSize"
           description: Размер декоративных иконок.
-        themeIconUrl:
+        theme_icon_url:
           type: string
           description: URL внешнего набора/изображения иконок темы.
-        videoCount:
+        video_count:
           type: integer
           format: int32
           description: Количество пользовательских видео профиля.
@@ -12356,20 +12356,20 @@ components:
           items:
             $ref: "#/components/schemas/Release"
           description: Релизы/объекты, связанные с голосованием профиля.
-        watchDynamics:
+        watch_dynamics:
           type: array
           items:
             $ref: "#/components/schemas/ProfileWatchDynamics"
           description: Динамика просмотров профиля по временным интервалам.
-        watchedEpisodeCount:
+        watched_episode_count:
           type: integer
           format: int64
           description: Общее количество просмотренных эпизодов.
-        watchedTime:
+        watched_time:
           type: integer
           format: int64
           description: Суммарное время просмотра, накопленное профилем, в единицах API.
-        watchingCount:
+        watching_count:
           type: integer
           format: int32
           description: Количество профилей со статусом «Смотрю».
@@ -12385,19 +12385,19 @@ components:
         status:
           type: string
           description: Текстовый статус профиля.
-        vkPage:
+        vk_page:
           type: string
           description: Ссылка или идентификатор страницы VK.
-        tgPage:
+        tg_page:
           type: string
           description: Ссылка или имя пользователя Telegram.
-        instPage:
+        inst_page:
           type: string
           description: Ссылка или имя профиля Instagram.
-        ttPage:
+        tt_page:
           type: string
           description: Ссылка или имя профиля TikTok.
-        discordPage:
+        discord_page:
           type: string
           description: Ссылка или имя пользователя Discord.
       x-response-constants:
@@ -12460,7 +12460,7 @@ components:
             comment:
               $ref: "#/components/schemas/CommentCompact"
               description: Комментарий, из-за которого создано уведомление.
-            parentComment:
+            parent_comment:
               $ref: "#/components/schemas/CommentCompact"
               description: Родительский комментарий для уведомления об ответе.
     ProfileCompact:
@@ -12485,27 +12485,27 @@ components:
         badge_url:
           type: string
           description: URL изображения или анимации значка.
-        banExpires:
+        ban_expires:
           type: integer
           format: int64
           description: Временная метка «ban expires» в формате API.
-        banReason:
+        ban_reason:
           type: string
           description: Причина блокировки.
         id:
           type: integer
           format: int64
           description: Уникальный идентификатор.
-        isBanned:
+        is_banned:
           type: boolean
           description: Профиль заблокирован.
-        isSponsor:
+        is_sponsor:
           type: boolean
           description: У профиля активен статус спонсора.
-        isVerified:
+        is_verified:
           type: boolean
           description: Профиль/канал подтверждён.
-        privilegeLevel:
+        privilege_level:
           type: integer
           format: int64
           description: Уровень системных привилегий профиля.
@@ -12520,11 +12520,11 @@ components:
         - $ref: "#/components/schemas/Response"
         - type: object
           properties:
-            deleteAt:
+            delete_at:
               type: integer
               format: int64
               description: Планируемое время окончательного удаления аккаунта.
-            requestedAt:
+            requested_at:
               type: integer
               format: int64
               description: Время создания запроса на удаление аккаунта.
@@ -12539,57 +12539,57 @@ components:
       type: object
       description: Ограничение или модерационное действие в отношении профиля/контента.
       properties:
-        appealExpiresTimestamp:
+        appeal_expires_timestamp:
           type:
             - integer
             - "null"
           format: int64
           description: Время, до которого доступна апелляция, в формате API.
-        appealProcessMessage:
+        appeal_process_message:
           type: string
           description: Комментарий по результату рассмотрения апелляции.
-        appealProcessTimestamp:
+        appeal_process_timestamp:
           type:
             - integer
             - "null"
           format: int64
           description: Время обработки апелляции в формате API.
-        appealStatus:
+        appeal_status:
           $ref: "#/components/schemas/ProfileEnforcement_AppealStatus"
           description: Текущий статус апелляции.
-        appealSubmitTimestamp:
+        appeal_submit_timestamp:
           type:
             - integer
             - "null"
           format: int64
           description: Время отправки апелляции в формате API.
-        appealType:
+        appeal_type:
           $ref: "#/components/schemas/ProfileEnforcement_AppealType"
           description: Доступный тип апелляции.
-        creationTimestamp:
+        creation_timestamp:
           type: integer
           format: int64
           description: Время создания ограничения в формате API.
-        entityType:
+        entity_type:
           $ref: "#/components/schemas/ProfileEnforcement_EntityType"
           description: Тип объекта, к которому применено ограничение.
         id:
           type: integer
           format: int64
           description: Уникальный идентификатор.
-        isRevoked:
+        is_revoked:
           type: boolean
           description: Ограничение отменено.
         reason:
           type: string
           description: Причина действия или ограничения.
-        revocationTimestamp:
+        revocation_timestamp:
           type:
             - integer
             - "null"
           format: int64
           description: Время отмены ограничения в формате API.
-        targetEntityType:
+        target_entity_type:
           $ref: "#/components/schemas/ProfileEnforcement_TargetEntityType"
           description: Тип целевого объекта, связанного с ограничением.
     ProfileEnforcementAppealRequest:
@@ -12624,7 +12624,7 @@ components:
         - $ref: "#/components/schemas/ProfileNotification"
         - type: object
           properties:
-            byProfile:
+            by_profile:
               $ref: "#/components/schemas/ProfileSlim"
               description: Профиль, который инициировал заявку или действие.
             status:
@@ -12645,27 +12645,27 @@ components:
         - $ref: "#/components/schemas/Response"
         - type: object
           properties:
-            banCount:
+            ban_count:
               type: integer
               format: int64
               description: Количество элементов категории «ban».
-            banFor3MonthCount:
+            ban_for_3_month_count:
               type: integer
               format: int64
               description: Количество элементов категории «ban for3 month».
-            blogMuteExpires:
+            blog_mute_expires:
               type: integer
               format: int64
               description: Временная метка «blog mute expires» в формате API.
-            blogSuspensionExpires:
+            blog_suspension_expires:
               type: integer
               format: int64
               description: Временная метка «blog suspension expires» в формате API.
-            lastBanExpires:
+            last_ban_expires:
               type: integer
               format: int64
               description: Временная метка «last ban expires» в формате API.
-            lastBanTimestamp:
+            last_ban_timestamp:
               type: integer
               format: int64
               description: Время последней блокировки аккаунта в формате API.
@@ -12674,27 +12674,27 @@ components:
         - $ref: "#/components/schemas/Response"
         - type: object
           properties:
-            channelId:
+            channel_id:
               type:
                 - integer
                 - "null"
               format: int64
               description: Идентификатор канала.
-            isPermBanned:
+            is_perm_banned:
               type: boolean
               description: Профиль заблокирован без ограничения по сроку.
-            isSponsor:
+            is_sponsor:
               type: boolean
               description: У профиля активен статус спонсора.
-            privilegeLevel:
+            privilege_level:
               type: integer
               format: int64
               description: Уровень системных привилегий профиля.
-            ratingScore:
+            rating_score:
               type: integer
               format: int32
               description: Репутация/рейтинговый балл профиля.
-            sponsorshipExpires:
+            sponsorship_expires:
               type: integer
               format: int64
               description: Временная метка «sponsorship expires» в формате API.
@@ -12710,10 +12710,10 @@ components:
           type: integer
           format: int64
           description: Уникальный идентификатор.
-        isNew:
+        is_new:
           type: boolean
           description: Элемент ещё не был просмотрен пользователем.
-        isPushed:
+        is_pushed:
           type: boolean
           description: Для уведомления уже отправлен push.
         timestamp:
@@ -12728,73 +12728,73 @@ components:
             badge:
               $ref: "#/components/schemas/Badge"
               description: Значок, выбранный для профиля.
-            banChangeAvatarExpires:
+            ban_change_avatar_expires:
               type: integer
               format: int64
               description: Временная метка «ban change avatar expires» в формате API.
-            banChangeLoginExpires:
+            ban_change_login_expires:
               type: integer
               format: int64
               description: Временная метка «ban change login expires» в формате API.
-            channelId:
+            channel_id:
               type:
                 - integer
                 - "null"
               format: int64
               description: Идентификатор канала.
-            emailHint:
+            email_hint:
               type: string
               description: Маскированная подсказка текущего адреса электронной почты.
-            episodeChannelWidgetsHidden:
+            episode_channel_widgets_hidden:
               type: boolean
               description: Виджеты эпизодов скрыты в настройках профиля.
-            isChangeAvatarBanned:
+            is_change_avatar_banned:
               type: boolean
               description: Смена аватара временно запрещена.
-            isChangeLoginBanned:
+            is_change_login_banned:
               type: boolean
               description: Смена логина временно запрещена.
-            isGoogleBound:
+            is_google_bound:
               type: boolean
               description: К профилю привязан Google-аккаунт.
-            isIncognito:
+            is_incognito:
               type: boolean
               description: Для профиля включён режим инкогнито.
-            isLoginChanged:
+            is_login_changed:
               type: boolean
               description: Логин профиля уже менялся.
-            isTelegramBound:
+            is_telegram_bound:
               type: boolean
               description: К профилю привязан Telegram.
-            isVkBound:
+            is_vk_bound:
               type: boolean
               description: К профилю привязан VK.
-            isYandexBound:
+            is_yandex_bound:
               type: boolean
               description: К профилю привязан Yandex.
-            pinnedSectionId:
+            pinned_section_id:
               type:
                 - integer
                 - "null"
               format: int32
               description: Идентификатор закреплённого раздела.
-            privacyCounts:
+            privacy_counts:
               type: integer
               format: int32
               description: Уровень видимости счётчиков профиля.
-            privacyFriendRequests:
+            privacy_friend_requests:
               type: integer
               format: int32
               description: Настройка того, кто может отправлять заявки в друзья.
-            privacySocial:
+            privacy_social:
               type: integer
               format: int32
               description: Уровень видимости социальных ссылок.
-            privacyStats:
+            privacy_stats:
               type: integer
               format: int32
               description: Уровень видимости статистики профиля.
-            selectedThemeId:
+            selected_theme_id:
               type: integer
               format: int64
               description: Идентификатор выбранной темы.
@@ -12804,13 +12804,13 @@ components:
             status:
               type: string
               description: Текущий текстовый статус профиля.
-            vkPage:
+            vk_page:
               type: string
               description: Ссылка или идентификатор страницы VK.
-            tgPage:
+            tg_page:
               type: string
               description: Ссылка или имя пользователя Telegram.
-            availableThemes:
+            available_themes:
               type: array
               items:
                 $ref: "#/components/schemas/AvailableTheme"
@@ -12818,16 +12818,16 @@ components:
     ProfileProcessRequest:
       type: object
       properties:
-        banExpires:
+        ban_expires:
           type:
             - integer
             - "null"
           format: int64
           description: Временная метка «ban expires» в формате API.
-        banReason:
+        ban_reason:
           type: string
           description: Причина блокировки.
-        isBanned:
+        is_banned:
           type: boolean
           description: Профиль заблокирован.
     ProfileRelatedReleaseNotification:
@@ -12852,7 +12852,7 @@ components:
     ProfileReleaseTypeNotificationPreferencesEditRequest:
       type: object
       properties:
-        profileReleaseTypeNotificationPreferences:
+        profile_release_type_notification_preferences:
           type: array
           items:
             type:
@@ -12860,7 +12860,7 @@ components:
               - "null"
             format: int64
           description: Настройки уведомлений по озвучкам конкретного релиза.
-        releaseId:
+        release_id:
           type: integer
           format: int64
           description: Идентификатор релиза.
@@ -12869,7 +12869,7 @@ components:
         - $ref: "#/components/schemas/Response"
         - type: object
           properties:
-            profileReleaseTypeNotificationPreferences:
+            profile_release_type_notification_preferences:
               type: array
               items:
                 $ref: "#/components/schemas/ProfileReleaseTypeNotificationPreference"
@@ -12879,7 +12879,7 @@ components:
         - $ref: "#/components/schemas/Response"
         - type: object
           properties:
-            isMyProfile:
+            is_my_profile:
               type: boolean
               description: Ответ относится к профилю текущей сессии.
             profile:
@@ -12890,7 +12890,7 @@ components:
         - $ref: "#/components/schemas/ProfileCompact"
         - type: object
           properties:
-            isOnline:
+            is_online:
               type: boolean
               description: Профиль сейчас отмечен онлайн.
             roles:
@@ -12932,19 +12932,19 @@ components:
         - $ref: "#/components/schemas/Response"
         - type: object
           properties:
-            vkPage:
+            vk_page:
               type: string
               description: Ссылка или идентификатор страницы VK.
-            tgPage:
+            tg_page:
               type: string
               description: Ссылка или имя пользователя Telegram.
-            instPage:
+            inst_page:
               type: string
               description: Ссылка или имя профиля Instagram.
-            ttPage:
+            tt_page:
               type: string
               description: Ссылка или имя профиля TikTok.
-            discordPage:
+            discord_page:
               type: string
               description: Ссылка или имя пользователя Discord.
     ProfileStatusNotificationPreference:
@@ -12956,7 +12956,7 @@ components:
     ProfileStatusNotificationPreferencesEditRequest:
       type: object
       properties:
-        profileStatusNotificationPreferences:
+        profile_status_notification_preferences:
           type: array
           items:
             type:
@@ -12984,7 +12984,7 @@ components:
     ProfileTypeNotificationPreferencesEditRequest:
       type: object
       properties:
-        profileTypeNotificationPreferences:
+        profile_type_notification_preferences:
           type: array
           items:
             type:
@@ -13025,11 +13025,11 @@ components:
           items:
             type: string
           description: Дополнительные изображения связанной группы релизов.
-        releaseCount:
+        release_count:
           type: integer
           format: int64
           description: Количество релизов.
-        nameRu:
+        name_ru:
           type: string
           description: Русское название группы связанных релизов.
         description:
@@ -13042,11 +13042,11 @@ components:
       type: object
       description: Полная карточка релиза с метаданными и состоянием текущего профиля.
       properties:
-        ageRating:
+        age_rating:
           type: integer
           format: int32
           description: Возрастное ограничение релиза.
-        airedOnDate:
+        aired_on_date:
           type: integer
           format: int64
           description: Дата/время начала показа релиза в формате API.
@@ -13057,24 +13057,24 @@ components:
           type: integer
           format: int32
           description: Числовые данные о трансляции релиза, как их передаёт клиент.
-        canTorlookSearch:
+        can_torlook_search:
           type: boolean
           description: Для релиза доступен поиск через TorLook.
-        canVideoAppeal:
+        can_video_appeal:
           type: boolean
           description: Для релиза разрешена отправка апелляции по видео.
         category:
           $ref: "#/components/schemas/Category"
           description: Категория релиза (TV, фильм, OVA и т. п. - по справочнику API).
-        collectionCount:
+        collection_count:
           type: integer
           format: int64
           description: Количество коллекций.
-        commentCount:
+        comment_count:
           type: integer
           format: int64
           description: Количество комментариев.
-        commentPerDayCount:
+        comment_per_day_count:
           type: integer
           format: int32
           description: Среднее/расчётное количество комментариев в день, которое возвращает сервер.
@@ -13083,7 +13083,7 @@ components:
           items:
             $ref: "#/components/schemas/ReleaseComment"
           description: Комментарии, включённые в карточку релиза.
-        completedCount:
+        completed_count:
           type: integer
           format: int32
           description: Количество профилей со статусом «Просмотрено».
@@ -13096,7 +13096,7 @@ components:
         director:
           type: string
           description: Режиссёр.
-        droppedCount:
+        dropped_count:
           type: integer
           format: int32
           description: Количество профилей со статусом «Брошено».
@@ -13104,16 +13104,16 @@ components:
           type: integer
           format: int32
           description: Продолжительность релиза/эпизода в единицах, используемых API.
-        episodeLastUpdate:
+        episode_last_update:
           $ref: "#/components/schemas/EpisodeUpdate"
           description: Информация о последнем обновлении эпизодов.
-        episodesTotal:
+        episodes_total:
           type:
             - integer
             - "null"
           format: int32
           description: Заявленное общее количество эпизодов.
-        favoriteCount:
+        favorites_count:
           type: integer
           format: int32
           description: Количество добавлений в избранное.
@@ -13124,7 +13124,7 @@ components:
           type: number
           format: double
           description: Средняя пользовательская оценка релиза.
-        holdOnCount:
+        hold_on_count:
           type: integer
           format: int32
           description: Количество профилей со статусом «Отложено».
@@ -13135,102 +13135,102 @@ components:
         image:
           type: string
           description: URL или идентификатор изображения.
-        isAdult:
+        is_adult:
           type: boolean
           description: Релиз относится к контенту для взрослых.
-        isDeleted:
+        is_deleted:
           type: boolean
           description: Объект помечен удалённым.
-        isFavorite:
+        is_favorite:
           type: boolean
           description: Объект находится в избранном текущего профиля.
-        isPlayDisabled:
+        is_play_disabled:
           type: boolean
           description: Воспроизведение релиза отключено сервером.
-        isReleaseTypeNotificationsEnabled:
+        is_release_type_notifications_enabled:
           type: boolean
           description: Уведомления по выбранным озвучкам релиза включены.
-        isRuBlocked:
+        is_ru_blocked:
           type: boolean
           description: Релиз ограничен для российского региона.
-        isThirdPartyPlatformsDisabled:
+        is_tpp_disabled:
           type: boolean
           description: Переходы на сторонние стриминговые платформы отключены.
-        isViewBlocked:
+        is_view_blocked:
           type: boolean
           description: Просмотр карточки/контента релиза ограничен.
-        isViewed:
+        is_viewed:
           type: boolean
           description: Релиз отмечен просмотренным текущим профилем.
-        lastSetCompletedDate:
+        last_set_completed_date:
           type: integer
           format: int64
           description: Время последнего добавления релиза в список «Просмотрено».
-        lastSetDroppedDate:
+        last_set_dropped_date:
           type: integer
           format: int64
           description: Время последнего добавления релиза в список «Брошено».
-        lastSetFavoriteDate:
+        last_set_favorite_date:
           type: integer
           format: int64
           description: Время последнего добавления релиза в избранное.
-        lastSetHoldOnDate:
+        last_set_hold_on_date:
           type: integer
           format: int64
           description: Время последнего добавления релиза в список «Отложено».
-        lastSetPlanDate:
+        last_set_plan_date:
           type: integer
           format: int64
           description: Время последнего добавления релиза в список «В планах».
-        lastSetViewedDate:
+        last_set_viewed_date:
           type: integer
           format: int64
           description: Время последней отметки релиза как просмотренного.
-        lastSetWatchingDate:
+        last_set_watching_date:
           type: integer
           format: int64
           description: Время последнего добавления релиза в список «Смотрю».
-        lastViewEpisode:
+        last_view_episode:
           $ref: "#/components/schemas/Episode"
           description: Последний эпизод, открытый текущим профилем.
-        lastViewEpisodeName:
+        last_view_episode_name:
           type: string
           description: Название последнего просмотренного эпизода.
-        lastViewEpisodeTypeName:
+        last_view_episode_type_name:
           type: string
           description: Название озвучки последнего просмотренного эпизода.
-        lastViewTimestamp:
+        last_view_timestamp:
           type: integer
           format: int64
           description: Время последнего просмотра в формате API.
         note:
           type: string
           description: Служебная заметка, которую сервер показывает для релиза.
-        noteBackgroundColorDark:
+        note_background_color_dark:
           type: string
           description: Цвет фона заметки в тёмной теме.
-        noteBackgroundColorLight:
+        note_background_color_light:
           type: string
           description: Цвет фона заметки в светлой теме.
-        noteTextColorDark:
+        note_text_color_dark:
           type: string
           description: Цвет текста заметки в тёмной теме.
-        noteTextColorLight:
+        note_text_color_light:
           type: string
           description: Цвет текста заметки в светлой теме.
-        planCount:
+        plan_count:
           type: integer
           format: int32
           description: Количество профилей со статусом «В планах».
-        profileListStatus:
+        profile_list_status:
           type: integer
           format: int32
           description: Статус релиза в списке текущего профиля.
-        profileReleaseTypeNotificationPreferenceCount:
+        profile_release_type_notification_preference_count:
           type: integer
           format: int32
           description: Количество настроек уведомлений по озвучкам этого релиза.
-        profileReleaseTypeNotificationPreferences:
+        profile_release_type_notification_preferences:
           type: array
           items:
             $ref: "#/components/schemas/ProfileReleaseTypeNotificationPreference"
@@ -13239,7 +13239,7 @@ components:
           type: integer
           format: int32
           description: Рейтинг релиза, рассчитанный сервером.
-        recommendedReleases:
+        recommended_releases:
           type: array
           items:
             $ref: "#/components/schemas/Release"
@@ -13247,19 +13247,19 @@ components:
         related:
           $ref: "#/components/schemas/Related"
           description: Группа/франшиза связанных релизов.
-        relatedCount:
+        related_count:
           type: integer
           format: int64
           description: Количество элементов категории «related».
-        relatedReleases:
+        related_releases:
           type: array
           items:
             $ref: "#/components/schemas/Release"
           description: Другие релизы из той же связанной группы.
-        releaseDate:
+        release_date:
           type: string
           description: Временная метка «release date» в формате API.
-        screenshotImages:
+        screenshot_images:
           type: array
           items:
             type: string
@@ -13274,84 +13274,84 @@ components:
         status:
           $ref: "#/components/schemas/ReleaseStatus"
           description: Статус выхода релиза.
-        statusId:
+        status_id:
           type: integer
           format: int64
           description: Идентификатор статуса релиза.
         studio:
           type: string
           description: Студия, выпустившая релиз.
-        titleOriginal:
+        title_original:
           type: string
           description: Оригинальное название релиза.
-        titleRu:
+        title_ru:
           type: string
           description: Русское название релиза.
         translators:
           type: string
           description: Переводчики или команды перевода.
-        videoBanners:
+        video_banners:
           type: array
           items:
             $ref: "#/components/schemas/ReleaseVideoBanner"
           description: Баннеры раздела пользовательских видео.
-        vote1Count:
+        vote_1_count:
           type: integer
           format: int32
           description: Количество элементов категории «vote1».
-        vote2Count:
+        vote_2_count:
           type: integer
           format: int32
           description: Количество элементов категории «vote2».
-        vote3Count:
+        vote_3_count:
           type: integer
           format: int32
           description: Количество элементов категории «vote3».
-        vote4Count:
+        vote_4_count:
           type: integer
           format: int32
           description: Количество элементов категории «vote4».
-        vote5Count:
+        vote_5_count:
           type: integer
           format: int32
           description: Количество элементов категории «vote5».
-        voteCount:
+        vote_count:
           type: integer
           format: int32
           description: Количество голосов.
-        votedAt:
+        voted_at:
           type: integer
           format: int64
           description: Время выставления оценки в формате API.
-        watchingCount:
+        watching_count:
           type: integer
           format: int32
           description: Количество профилей со статусом «Смотрю».
         year:
           type: string
           description: Год выпуска; API хранит значение строкой.
-        titleAlt:
+        title_alt:
           type: string
           description: Альтернативное название релиза.
-        episodesReleased:
+        episodes_released:
           type:
             - integer
             - "null"
           format: int32
           description: Количество уже вышедших эпизодов.
-        creationDate:
+        creation_date:
           type:
             - integer
             - "null"
           format: int32
           description: Время создания объекта в формате API.
-        lastUpdateDate:
+        last_update_date:
           type:
             - integer
             - "null"
           format: int32
           description: Время последнего обновления объекта в формате API.
-        yourVote:
+        your_vote:
           type:
             - integer
             - "null"
@@ -13359,7 +13359,7 @@ components:
           description: Оценка текущего профиля от 1 до 5; значение без оценки определяется сервером.
           minimum: 0
           maximum: 5
-        myVote:
+        my_vote:
           type:
             - integer
             - "null"
@@ -13399,11 +13399,11 @@ components:
         - $ref: "#/components/schemas/CommentCompact"
         - type: object
           properties:
-            embeddableId:
+            embeddable_id:
               type: integer
               format: int64
               description: Идентификатор связанного объекта «embeddable».
-            embeddableTitle:
+            embeddable_title:
               type: string
               description: Заголовок объекта, к которому относится комментарий.
             release:
@@ -13420,7 +13420,7 @@ components:
         image:
           type: string
           description: URL или идентификатор изображения.
-        titleRu:
+        title_ru:
           type: string
           description: Русское название релиза.
     ReleaseResponse:
@@ -13483,7 +13483,7 @@ components:
         delete:
           type: boolean
           description: Объект помечен как удалённый/подлежащий удалению.
-        favoriteCount:
+        favorites_count:
           type: integer
           format: int32
           description: Количество добавлений в избранное.
@@ -13494,7 +13494,7 @@ components:
           type: integer
           format: int64
           description: Уникальный идентификатор.
-        isFavorite:
+        is_favorite:
           type: boolean
           description: Объект находится в избранном текущего профиля.
         profile:
@@ -13516,17 +13516,17 @@ components:
         url:
           type: string
           description: URL ресурса.
-        playerUrl:
+        player_url:
           type: string
           description: Ссылка, которую клиент открывает во встроенном проигрывателе.
     ReleaseVideoAppealRequest:
       type: object
       properties:
-        categoryId:
+        category_id:
           type: integer
           format: int64
           description: Идентификатор категории.
-        releaseId:
+        release_id:
           type: integer
           format: int64
           description: Идентификатор релиза.
@@ -13552,11 +13552,11 @@ components:
       type: object
       description: Баннер в разделе видео с действием по нажатию.
       properties:
-        actionId:
+        action_id:
           type: integer
           format: int64
           description: Идентификатор действия баннера.
-        isNew:
+        is_new:
           type: boolean
           description: Элемент ещё не был просмотрен пользователем.
         name:
@@ -13629,10 +13629,10 @@ components:
               items:
                 $ref: "#/components/schemas/ReleaseVideoBlock"
               description: Блоки, из которых состоит статья.
-            canAppeal:
+            can_appeal:
               type: boolean
               description: Текущий профиль может отправить апелляцию.
-            lastVideos:
+            last_videos:
               type: array
               items:
                 $ref: "#/components/schemas/ReleaseVideo"
@@ -13640,7 +13640,7 @@ components:
             release:
               $ref: "#/components/schemas/Release"
               description: Связанный релиз.
-            streamingPlatforms:
+            streaming_platforms:
               type: array
               items:
                 $ref: "#/components/schemas/ReleaseStreamingPlatform"
@@ -13657,7 +13657,7 @@ components:
         - $ref: "#/components/schemas/Response"
         - type: object
           properties:
-            friendStatus:
+            friend_status:
               $ref: "#/components/schemas/Profile_FriendStatus"
               description: Текущее состояние дружбы или заявки между профилями.
             code:
@@ -13680,15 +13680,15 @@ components:
     ReportRequest:
       type: object
       properties:
-        entityId:
+        entity_id:
           description: Идентификатор связанного объекта «entity».
         message:
           type: string
           description: Дополнительное пояснение к жалобе.
-        reasonId:
+        reason:
           type: integer
           format: int64
-          description: Идентификатор связанного объекта «reason».
+          description: Идентификатор причины жалобы.
     ReportResponse:
       allOf:
         - $ref: "#/components/schemas/Response"
@@ -13706,7 +13706,7 @@ components:
         - $ref: "#/components/schemas/Response"
         - type: object
           properties:
-            timestampExpires:
+            timestamp_expires:
               type: integer
               format: int64
               description: Временная метка «timestamp expires» в формате API.
@@ -13746,7 +13746,7 @@ components:
         - $ref: "#/components/schemas/Response"
         - type: object
           properties:
-            timestampExpires:
+            timestamp_expires:
               type: integer
               format: int64
               description: Временная метка «timestamp expires» в формате API.
@@ -13762,7 +13762,7 @@ components:
         - $ref: "#/components/schemas/Response"
         - type: object
           properties:
-            codeTimestampExpires:
+            code_timestamp_expires:
               type: integer
               format: int64
               description: Временная метка «code timestamp expires» в формате API.
@@ -13784,7 +13784,7 @@ components:
             profile:
               $ref: "#/components/schemas/Profile"
               description: Связанный профиль пользователя.
-            profileToken:
+            profile_token:
               $ref: "#/components/schemas/ProfileToken"
               description: Сессионный токен профиля.
             code:
@@ -13855,7 +13855,7 @@ components:
         query:
           type: string
           description: Поисковая строка.
-        searchBy:
+        search_by:
           type: integer
           format: int32
           description: Поле/режим, по которому выполняется поиск.
@@ -13878,7 +13878,7 @@ components:
         - $ref: "#/components/schemas/Response"
         - type: object
           properties:
-            friendStatus:
+            friend_status:
               $ref: "#/components/schemas/Profile_FriendStatus"
               description: Текущее состояние дружбы или заявки между профилями.
             code:
@@ -13896,7 +13896,7 @@ components:
             profile:
               $ref: "#/components/schemas/Profile"
               description: Связанный профиль пользователя.
-            profileToken:
+            profile_token:
               $ref: "#/components/schemas/ProfileToken"
               description: Сессионный токен профиля.
             code:
@@ -13911,14 +13911,14 @@ components:
         - $ref: "#/components/schemas/Response"
         - type: object
           properties:
-            codeTimestampExpires:
+            code_timestamp_expires:
               type: integer
               format: int64
               description: Временная метка «code timestamp expires» в формате API.
             hash:
               type: string
               description: Серверный идентификатор текущего шага подтверждения; используется в следующем запросе.
-            suggestedLogins:
+            suggested_logins:
               type: array
               items:
                 type: string
@@ -13945,26 +13945,26 @@ components:
     SocialPagesEditRequest:
       type: object
       properties:
-        discordPage:
+        discord_page:
           type: string
           description: Ссылка или имя пользователя Discord.
-        instPage:
+        inst_page:
           type: string
           description: Ссылка или имя профиля Instagram.
-        tgPage:
+        tg_page:
           type: string
           description: Ссылка или имя пользователя Telegram.
-        ttPage:
+        tt_page:
           type: string
           description: Ссылка или имя профиля TikTok.
-        vkPage:
+        vk_page:
           type: string
           description: Ссылка или идентификатор страницы VK.
     Source:
       type: object
       description: Источник эпизодов с привязанной озвучкой/даббером.
       properties:
-        episodesCount:
+        episodes_count:
           type: integer
           format: int64
           description: Количество эпизодов.
@@ -14013,7 +14013,7 @@ components:
         - $ref: "#/components/schemas/Response"
         - type: object
           properties:
-            subscriptionCount:
+            subscription_count:
               type: integer
               format: int32
               description: Количество элементов категории «subscription».
@@ -14034,7 +14034,7 @@ components:
         - $ref: "#/components/schemas/Response"
         - type: object
           properties:
-            codeTimestampExpires:
+            code_timestamp_expires:
               type: integer
               format: int64
               description: Временная метка «code timestamp expires» в формате API.
@@ -14044,10 +14044,10 @@ components:
             profile:
               $ref: "#/components/schemas/Profile"
               description: Связанный профиль пользователя.
-            profileToken:
+            profile_token:
               $ref: "#/components/schemas/ProfileToken"
               description: Сессионный токен профиля.
-            suggestedLogins:
+            suggested_logins:
               type: array
               items:
                 type: string
@@ -14075,52 +14075,52 @@ components:
       type: object
       description: Оформление профиля и его декоративные параметры.
       properties:
-        themeAnimationEnabled:
+        theme_animation_enabled:
           type: boolean
           description: Анимации темы включены.
-        themeAnimationSpeed:
+        theme_animation_speed:
           $ref: "#/components/schemas/ThemedContainerLayout_AnimationSpeed"
           description: Скорость анимации элементов темы.
-        themeBackgroundAlpha:
+        theme_background_alpha:
           type:
             - number
             - "null"
           format: float
           description: Прозрачность фонового изображения темы.
-        themeBackgroundMode:
+        theme_background_mode:
           $ref: "#/components/schemas/ThemedContainerLayout_BackgroundMode"
           description: Способ масштабирования или повторения фонового изображения.
-        themeBackgroundUrl:
+        theme_background_url:
           type: string
           description: URL фонового изображения темы.
-        themeGradientAngle:
+        theme_gradient_angle:
           $ref: "#/components/schemas/ThemedContainerLayout_GradientAngle"
           description: Направление или тип фонового градиента.
-        themeGradientEndColor:
+        theme_gradient_end_color:
           type: string
           description: Конечный цвет градиента.
-        themeGradientStartColor:
+        theme_gradient_start_color:
           type: string
           description: Начальный цвет градиента.
-        themeIconAlpha:
+        theme_icon_alpha:
           type:
             - number
             - "null"
           format: float
           description: Прозрачность декоративных иконок темы.
-        themeIconColor:
+        theme_icon_color:
           type: string
           description: Цвет декоративных иконок темы.
-        themeIconDensity:
+        theme_icon_density:
           $ref: "#/components/schemas/ThemedContainerLayout_IconDensity"
           description: Плотность декоративных иконок.
-        themeIconResName:
+        theme_icon_res_name:
           type: string
           description: Имя встроенного Android-ресурса декоративной иконки.
-        themeIconSize:
+        theme_icon_size:
           $ref: "#/components/schemas/ThemedContainerLayout_IconSize"
           description: Размер декоративных иконок.
-        themeIconUrl:
+        theme_icon_url:
           type: string
           description: URL внешнего набора/изображения иконок темы.
         id:
@@ -14130,7 +14130,7 @@ components:
         name:
           type: string
           description: Отображаемое название.
-        themeEnabled:
+        theme_enabled:
           type: boolean
           description: Тема доступна для выбора.
       x-response-constants:
@@ -14145,157 +14145,157 @@ components:
         - $ref: "#/components/schemas/Response"
         - type: object
           properties:
-            adBannerDelay:
+            ad_banner_delay:
               type: integer
               format: int64
               description: Задержка показа баннерной рекламы.
-            adBannerSizeType:
+            ad_banner_size_type:
               type: integer
               format: int64
               description: Код размера рекламного баннера.
-            adInterstitialDelay:
+            ad_interstitial_delay:
               type: integer
               format: int64
               description: Задержка между полноэкранными рекламными показами.
-            codecProfile:
+            codec_profile:
               type: string
               description: Профиль видеокодека, рекомендуемый клиенту.
-            impMessageEnabled:
+            imp_message_enabled:
               type: boolean
               description: Показ важного системного сообщения включён.
-            inAppUpdates:
+            in_app_updates:
               type: boolean
               description: Встроенные обновления приложения включены.
-            inAppUpdatesFlexibleDelay:
+            in_app_updates_flexible_delay:
               type: integer
               format: int64
               description: Задержка для гибкого сценария встроенного обновления.
-            inAppUpdatesImmediate:
+            in_app_updates_immediate:
               type: boolean
               description: Для обновления используется немедленный сценарий установки.
-            kodikIframeAd:
+            kodik_iframe_ad:
               type: boolean
               description: В Kodik iframe разрешён рекламный блок.
-            lastGPVersionCode:
+            last_gp_version_code:
               type: integer
               format: int32
               description: Код последней версии в Google Play.
-            lastVersionCode:
+            last_version_code:
               type: integer
               format: int32
               description: Код последней доступной версии.
-            minBlogCreateRatingScore:
+            min_blog_create_rating_score:
               type: integer
               format: int32
               description: Минимальный рейтинговый балл профиля для создания блога.
-            minGPVersionCode:
+            min_gp_version_code:
               type: integer
               format: int32
               description: Минимальная поддерживаемая версия клиента из Google Play.
-            minVersionCode:
+            min_version_code:
               type: integer
               format: int32
               description: Минимальная версия клиента, которой разрешена работа с API.
-            overrideGPVersion:
+            override_gp_version:
               type: boolean
               description: Серверное значение версии имеет приоритет над версией Google Play.
-            sibnetRandUserAgent:
+            sibnet_rand_user_agent:
               type: boolean
               description: Для Sibnet клиент случайно выбирает User-Agent.
             snowfall:
               type: boolean
               description: Сезонный эффект «снег» включён.
-            sponsorshipAvailable:
+            sponsorship_available:
               type: boolean
               description: Раздел поддержки/спонсорства доступен.
-            sponsorshipPromotion:
+            sponsorship_promotion:
               type: boolean
               description: Промо-блок спонсорства включён.
-            whatsNew:
+            whats_new:
               type: string
               description: Текст с изменениями последней версии.
-            downloadLink:
+            download_link:
               type: string
               description: Ссылка для загрузки актуальной версии приложения.
-            gpWhatsNew:
+            gp_whats_new:
               type: string
               description: Текст изменений версии из Google Play.
-            gpDownloadLink:
+            gp_download_link:
               type: string
               description: Ссылка на актуальную версию в Google Play.
-            impMessageText:
+            imp_message_text:
               type: string
               description: Текст важного сообщения, показываемого клиентом.
-            impMessageBackgroundColor:
+            imp_message_background_color:
               type: string
               description: Цвет фона важного сообщения.
-            impMessageTextColor:
+            imp_message_text_color:
               type: string
               description: Цвет текста важного сообщения.
-            impMessageLink:
+            imp_message_link:
               type: string
               description: Ссылка из важного сообщения.
-            adBannerBlockId:
+            ad_banner_block_id:
               type: string
               description: Идентификатор связанного объекта «ad banner block».
-            adInterstitialBlockId:
+            ad_interstitial_block_id:
               type: string
               description: Идентификатор связанного объекта «ad interstitial block».
-            kodikVideoLinksUrl:
+            kodik_video_links_url:
               type: string
               description: Адрес сервиса/шаблона для получения ссылок Kodik.
-            sibnetUserAgent:
+            sibnet_user_agent:
               type: string
               description: User-Agent для запросов к Sibnet.
-            torlookUrl:
+            torlook_url:
               type: string
               description: Адрес TorLook, используемый клиентом.
-            baseUrl:
+            base_url:
               type: string
               description: Базовый URL связанного сервиса.
-            iframeEmbedUrl:
+            iframe_embed_url:
               type: string
               description: Шаблон/адрес встраиваемого iframe-плеера.
-            kodikAdIframeUrl:
+            kodik_ad_iframe_url:
               type: string
               description: Адрес рекламного iframe Kodik.
-            editorUrl:
+            editor_url:
               type: string
               description: Адрес веб-редактора или сервиса редактора.
-            staticDomain:
+            static_domain:
               type: string
               description: Домен статических ресурсов.
-            sponsorshipText:
+            sponsorship_text:
               type: string
               description: Текст блока поддержки/спонсорства.
-            pageNoConnectionUrl:
+            page_no_connection_url:
               type: string
               description: Страница, открываемая клиентом при отсутствии соединения.
-            searchBarIconUrl:
+            search_bar_icon_url:
               type: string
               description: URL дополнительной иконки в строке поиска.
-            searchBarIconTint:
+            search_bar_icon_tint:
               type: boolean
               description: К дополнительной иконке поиска применяется цветовая тонировка.
-            searchBarIconAction:
+            search_bar_icon_action:
               type: string
               description: Действие по нажатию на дополнительную иконку поиска.
-            searchBarIconValue:
+            search_bar_icon_value:
               type: string
               description: Параметр действия дополнительной иконки поиска.
-            googleAuthAvailable:
+            google_auth_available:
               type: boolean
               description: Авторизация через Google доступна.
-            telegramAuthAvailable:
+            telegram_auth_available:
               type: boolean
               description: Авторизация через Telegram доступна.
-            vkAuthAvailable:
+            vk_auth_available:
               type: boolean
               description: Авторизация через VK доступна.
-            yandexAuthAvailable:
+            yandex_auth_available:
               type: boolean
               description: Авторизация через Yandex доступна.
-            consentRequired:
+            consent_required:
               type: boolean
               description: Перед продолжением клиент должен получить согласие пользователя.
       description: Feature flags и удалённая конфигурация мобильного клиента.
@@ -14303,7 +14303,7 @@ components:
       type: object
       description: Озвучка/даббер, доступный для релиза.
       properties:
-        episodesCount:
+        episodes_count:
           type: integer
           format: int64
           description: Количество эпизодов.
@@ -14311,7 +14311,7 @@ components:
           type: integer
           format: int64
           description: Уникальный идентификатор.
-        isSub:
+        is_sub:
           type: boolean
           description: Озвучка является субтитрами, а не дубляжом.
         pinned:
@@ -14321,7 +14321,7 @@ components:
           type: integer
           format: int32
           description: Числовой показатель качества озвучки/источника.
-        viewCount:
+        view_count:
           type: integer
           format: int64
           description: Количество просмотров.
@@ -14339,7 +14339,7 @@ components:
         - $ref: "#/components/schemas/Response"
         - type: object
           properties:
-            areWidgetsHiddenGlobally:
+            are_widgets_hidden_globally:
               type: boolean
               description: Виджеты озвучек глобально скрыты настройкой сервера.
             articles:
@@ -14350,10 +14350,10 @@ components:
             channel:
               $ref: "#/components/schemas/Channel"
               description: Связанный канал.
-            isHiddenByUser:
+            is_hidden_by_user:
               type: boolean
               description: Текущий профиль вручную скрыл этот виджет.
-            isWidgetEligible:
+            is_widget_eligible:
               type: boolean
               description: Для этой озвучки можно показывать виджет.
     TypeCompact:
@@ -14391,10 +14391,10 @@ components:
             profile:
               $ref: "#/components/schemas/Profile"
               description: Связанный профиль пользователя.
-            profileToken:
+            profile_token:
               $ref: "#/components/schemas/ProfileToken"
               description: Сессионный токен профиля.
-            suggestedLogins:
+            suggested_logins:
               type: array
               items:
                 type: string
@@ -14423,7 +14423,7 @@ components:
         - $ref: "#/components/schemas/Response"
         - type: object
           properties:
-            codeTimestampExpires:
+            code_timestamp_expires:
               type: integer
               format: int64
               description: Временная метка «code timestamp expires» в формате API.
@@ -14433,10 +14433,10 @@ components:
             profile:
               $ref: "#/components/schemas/Profile"
               description: Связанный профиль пользователя.
-            profileToken:
+            profile_token:
               $ref: "#/components/schemas/ProfileToken"
               description: Сессионный токен профиля.
-            suggestedLogins:
+            suggested_logins:
               type: array
               items:
                 type: string
@@ -14482,7 +14482,7 @@ components:
         - $ref: "#/components/schemas/Response"
         - type: object
           properties:
-            codeTimestampExpires:
+            code_timestamp_expires:
               type: integer
               format: int64
               description: Временная метка «code timestamp expires» в формате API.
@@ -14495,10 +14495,10 @@ components:
             profile:
               $ref: "#/components/schemas/Profile"
               description: Связанный профиль пользователя.
-            profileToken:
+            profile_token:
               $ref: "#/components/schemas/ProfileToken"
               description: Сессионный токен профиля.
-            suggestedLogins:
+            suggested_logins:
               type: array
               items:
                 type: string
