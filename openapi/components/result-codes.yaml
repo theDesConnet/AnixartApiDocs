@@ -1,0 +1,1479 @@
+CommonResult:
+  type: integer
+  format: int32
+  description: Общие коды результата, которые могут встречаться в ответах API. Имена приведены в форме CommonResult из AnixartJS.
+    В APK v10 базовый Response называет 0/1/402/403 как SUCCESSFUL/FAILED/BANNED/PERM_BANNED; отдельной именованной константы
+    401 в базовом Response APK не обнаружено.
+  enum:
+  - 0
+  - 1
+  - 401
+  - 402
+  - 403
+  x-enum-varnames:
+  - Ok
+  - UnexpectedError
+  - Unauthorized
+  - InvalidUserAgent
+  - PermBan
+  x-enum-descriptions:
+    '0': 'Операция выполнена успешно. APK: SUCCESSFUL.'
+    '1': 'Непредвиденная или общая ошибка. APK: FAILED.'
+    '401': Пользовательская сессия отсутствует или не авторизована. Значение присутствует в AnixartJS CommonResult.
+    '402': 'Клиент или User-Agent отклонён сервером. AnixartJS: InvalidUserAgent; APK v10 использует имя BANNED.'
+    '403': 'Постоянная блокировка. APK: PERM_BANNED.'
+  x-apk-constant-names:
+  - SUCCESSFUL
+  - FAILED
+  - null
+  - BANNED
+  - PERM_BANNED
+  example: 0
+BlockListAddResult:
+  type: integer
+  format: int32
+  description: Дополнительные result-коды ответа `BlockProfileListAddResponse`. Общие значения вынесены в `CommonResult`.
+  enum:
+  - 2
+  x-enum-varnames:
+  - AlreadyInBlocklist
+  x-apk-constant-names:
+  - ALREADY_IN_BLOCKLIST
+  x-enum-descriptions:
+    '2': Профиль уже находится в блок-листе.
+ArticleCreateEditResult:
+  type: integer
+  format: int32
+  description: Дополнительные result-коды ответа `ArticleCreateEditResponse`. Общие значения вынесены в `CommonResult`.
+  enum:
+  - 2
+  - 3
+  - 4
+  - 5
+  - 6
+  - 7
+  - 8
+  - 9
+  - 10
+  - 11
+  - 12
+  - 13
+  x-enum-varnames:
+  - InvalidRepostArticle
+  - InvalidPayload
+  - InvalidTags
+  - TemporarilyDisabled
+  - ArticleLimitReached
+  - ChannelNotFound
+  - ChannelNotOwned
+  - ChannelCreatorBanned
+  - ChannelBlocked
+  - ArticleNotFound
+  - ArticleDeleted
+  - BlogNotCreated
+  x-apk-constant-names:
+  - INVALID_REPOST_ARTICLE
+  - INVALID_PAYLOAD
+  - INVALID_TAGS
+  - TEMPORARILY_DISABLED
+  - ARTICLE_LIMIT_REACHED
+  - CHANNEL_NOT_FOUND
+  - CHANNEL_NOT_OWNED
+  - CHANNEL_CREATOR_BANNED
+  - CHANNEL_BLOCKED
+  - ARTICLE_NOT_FOUND
+  - ARTICLE_DELETED
+  - BLOG_NOT_CREATED
+  x-enum-descriptions:
+    '2': Указанная статья не может быть использована как репост.
+    '3': Содержимое статьи не прошло проверку.
+    '4': Набор тегов не прошёл проверку.
+    '5': Функция временно отключена сервером.
+    '6': Достигнут лимит статей.
+    '7': Канал не найден.
+    '8': Нет прав владельца канала.
+    '9': Создатель канала заблокирован.
+    '10': Канал заблокирован.
+    '11': Статья не найдена.
+    '12': Статья удалена.
+    '13': Для операции требуется созданный блог.
+ArticleDeleteResult:
+  type: integer
+  format: int32
+  description: Дополнительные result-коды ответа `ArticleDeleteResponse`. Общие значения вынесены в `CommonResult`.
+  enum:
+  - 2
+  - 3
+  - 4
+  x-enum-varnames:
+  - ArticleNotFound
+  - ArticleNotOwned
+  - ArticleDeleted
+  x-apk-constant-names:
+  - ARTICLE_NOT_FOUND
+  - ARTICLE_NOT_OWNED
+  - ARTICLE_DELETED
+  x-enum-descriptions:
+    '2': Статья не найдена.
+    '3': Статья не принадлежит текущему профилю.
+    '4': Статья удалена.
+ArticleEditPinnedResult:
+  type: integer
+  format: int32
+  description: Дополнительные result-коды ответа `ArticleEditPinnedResponse`. Общие значения вынесены в `CommonResult`.
+  enum:
+  - 2
+  - 3
+  - 4
+  - 5
+  x-enum-varnames:
+  - ChannelNotFound
+  - ChannelNotOwned
+  - ArticleNotFound
+  - ArticleDeleted
+  x-apk-constant-names:
+  - CHANNEL_NOT_FOUND
+  - CHANNEL_NOT_OWNED
+  - ARTICLE_NOT_FOUND
+  - ARTICLE_DELETED
+  x-enum-descriptions:
+    '2': Канал не найден.
+    '3': Нет прав владельца канала.
+    '4': Статья не найдена.
+    '5': Статья удалена.
+ArticleMuteResult:
+  type: integer
+  format: int32
+  description: Дополнительные result-коды ответа `ArticleMuteResponse`. Общие значения вынесены в `CommonResult`.
+  enum:
+  - 2
+  - 3
+  - 4
+  x-enum-varnames:
+  - ArticleNotFound
+  - ChannelNotFound
+  - ChannelOwned
+  x-apk-constant-names:
+  - ARTICLE_NOT_FOUND
+  - CHANNEL_NOT_FOUND
+  - CHANNEL_OWNED
+  x-enum-descriptions:
+    '2': Статья не найдена.
+    '3': Канал не найден.
+    '4': Операция недоступна владельцу собственного канала.
+ArticleResult:
+  type: integer
+  format: int32
+  description: Дополнительные result-коды ответа `ArticleResponse`. Общие значения вынесены в `CommonResult`.
+  enum:
+  - 2
+  x-enum-varnames:
+  - ArticleDeleted
+  x-apk-constant-names:
+  - ARTICLE_DELETED
+  x-enum-descriptions:
+    '2': Статья удалена.
+EditorAvailableResult:
+  type: integer
+  format: int32
+  description: Дополнительные result-коды ответа `EditorAvailableResponse`. Общие значения вынесены в `CommonResult`.
+  enum:
+  - 2
+  - 3
+  - 4
+  - 5
+  - 6
+  - 7
+  x-enum-varnames:
+  - TemporarilyDisabled
+  - ArticleLimitReached
+  - ChannelNotFound
+  - ChannelNotOwned
+  - ChannelCreatorBanned
+  - BlogNotCreated
+  x-apk-constant-names:
+  - TEMPORARILY_DISABLED
+  - ARTICLE_LIMIT_REACHED
+  - CHANNEL_NOT_FOUND
+  - CHANNEL_NOT_OWNED
+  - CHANNEL_CREATOR_BANNED
+  - BLOG_NOT_CREATED
+  x-enum-descriptions:
+    '2': Функция временно отключена сервером.
+    '3': Достигнут лимит статей.
+    '4': Канал не найден.
+    '5': Нет прав владельца канала.
+    '6': Создатель канала заблокирован.
+    '7': Для операции требуется созданный блог.
+ArticleSuggestionDeleteResult:
+  type: integer
+  format: int32
+  description: Дополнительные result-коды ответа `ArticleSuggestionDeleteResponse`. Общие значения вынесены в `CommonResult`.
+  enum:
+  - 2
+  - 3
+  x-enum-varnames:
+  - ArticleSuggestionNotFound
+  - ArticleSuggestionNotOwned
+  x-apk-constant-names:
+  - ARTICLE_SUGGESTION_NOT_FOUND
+  - ARTICLE_SUGGESTION_NOT_OWNED
+  x-enum-descriptions:
+    '2': Предложение статьи не найдено.
+    '3': Предложение статьи не принадлежит текущему профилю.
+CheckLoginResult:
+  type: integer
+  format: int32
+  description: Дополнительные result-коды ответа `CheckLoginResponse`. Общие значения вынесены в `CommonResult`.
+  enum:
+  - 2
+  x-enum-varnames:
+  - InvalidLogin
+  x-apk-constant-names:
+  - INVALID_LOGIN
+  x-enum-descriptions:
+    '2': Логин не прошёл проверку.
+GoogleResult:
+  type: integer
+  format: int32
+  description: Дополнительные result-коды ответа `GoogleResponse`. Общие значения вынесены в `CommonResult`.
+  enum:
+  - 2
+  - 3
+  - 4
+  - 5
+  - 6
+  - 7
+  - 8
+  - 9
+  - 10
+  - 11
+  x-enum-varnames:
+  - InvalidRequest
+  - NotRegistered
+  - InvalidLogin
+  - InvalidEmail
+  - LoginAlreadyTaken
+  - EmailAlreadyTaken
+  - EmailChanged
+  - EmailChangedAndCodeAlreadySend
+  - EmailServiceDisallowed
+  - TooManyRegistrations
+  x-apk-constant-names:
+  - INVALID_REQUEST
+  - NOT_REGISTERED
+  - INVALID_LOGIN
+  - INVALID_EMAIL
+  - LOGIN_ALREADY_TAKEN
+  - EMAIL_ALREADY_TAKEN
+  - EMAIL_CHANGED
+  - EMAIL_CHANGED_AND_CODE_ALREADY_SEND
+  - EMAIL_SERVICE_DISALLOWED
+  - TOO_MANY_REGISTRATIONS
+  x-enum-descriptions:
+    '2': Запрос не прошёл серверную проверку.
+    '3': Связанный аккаунт ещё не зарегистрирован в Anixart.
+    '4': Логин не прошёл проверку.
+    '5': Email не прошёл проверку.
+    '6': Логин уже занят.
+    '7': Email уже используется другим профилем.
+    '8': Email учётной записи был изменён.
+    '9': Email изменён; код подтверждения уже отправлен.
+    '10': Этот почтовый сервис не разрешён для операции.
+    '11': Достигнуто ограничение на количество регистраций.
+ResendResult:
+  type: integer
+  format: int32
+  description: Дополнительные result-коды ответа `ResendResponse`. Общие значения вынесены в `CommonResult`.
+  enum:
+  - 2
+  - 3
+  - 4
+  - 5
+  - 6
+  x-enum-varnames:
+  - InvalidLogin
+  - InvalidEmail
+  - InvalidPassword
+  - InvalidHash
+  - CodeCannotSend
+  x-apk-constant-names:
+  - INVALID_LOGIN
+  - INVALID_EMAIL
+  - INVALID_PASSWORD
+  - INVALID_HASH
+  - CODE_CANNOT_SEND
+  x-enum-descriptions:
+    '2': Логин не прошёл проверку.
+    '3': Email не прошёл проверку.
+    '4': Пароль не прошёл проверку.
+    '5': Хеш текущей операции неверен или устарел.
+    '6': Сервер не смог отправить код подтверждения.
+RestoreResendResult:
+  type: integer
+  format: int32
+  description: Дополнительные result-коды ответа `RestoreResendResponse`. Общие значения вынесены в `CommonResult`.
+  enum:
+  - 2
+  - 3
+  - 4
+  x-enum-varnames:
+  - ProfileNotFound
+  - InvalidHash
+  - CodeCannotSend
+  x-apk-constant-names:
+  - PROFILE_NOT_FOUND
+  - INVALID_HASH
+  - CODE_CANNOT_SEND
+  x-enum-descriptions:
+    '2': Профиль не найден.
+    '3': Хеш текущей операции неверен или устарел.
+    '4': Сервер не смог отправить код подтверждения.
+RestoreResult:
+  type: integer
+  format: int32
+  description: Дополнительные result-коды ответа `RestoreResponse`. Общие значения вынесены в `CommonResult`.
+  enum:
+  - 2
+  - 3
+  - 4
+  x-enum-varnames:
+  - ProfileNotFound
+  - CodeAlreadySend
+  - CodeCannotSend
+  x-apk-constant-names:
+  - PROFILE_NOT_FOUND
+  - CODE_ALREADY_SEND
+  - CODE_CANNOT_SEND
+  x-enum-descriptions:
+    '2': Профиль не найден.
+    '3': Код подтверждения уже отправлен и повторная отправка сейчас не требуется.
+    '4': Сервер не смог отправить код подтверждения.
+RestoreVerifyResult:
+  type: integer
+  format: int32
+  description: Дополнительные result-коды ответа `RestoreVerifyResponse`. Общие значения вынесены в `CommonResult`.
+  enum:
+  - 2
+  - 3
+  - 4
+  - 5
+  - 6
+  x-enum-varnames:
+  - ProfileNotFound
+  - InvalidPassword
+  - CodeInvalid
+  - CodeExpired
+  - InvalidHash
+  x-apk-constant-names:
+  - PROFILE_NOT_FOUND
+  - INVALID_PASSWORD
+  - CODE_INVALID
+  - CODE_EXPIRED
+  - INVALID_HASH
+  x-enum-descriptions:
+    '2': Профиль не найден.
+    '3': Пароль не прошёл проверку.
+    '4': Код подтверждения неверен.
+    '5': Срок действия кода подтверждения истёк.
+    '6': Хеш текущей операции неверен или устарел.
+SignInResult:
+  type: integer
+  format: int32
+  description: Дополнительные result-коды ответа `SignInResponse`. Общие значения вынесены в `CommonResult`.
+  enum:
+  - 2
+  - 3
+  x-enum-varnames:
+  - InvalidLogin
+  - InvalidPassword
+  x-apk-constant-names:
+  - INVALID_LOGIN
+  - INVALID_PASSWORD
+  x-enum-descriptions:
+    '2': Логин не прошёл проверку.
+    '3': Пароль не прошёл проверку.
+SignUpResult:
+  type: integer
+  format: int32
+  description: Дополнительные result-коды ответа `SignUpResponse`. Общие значения вынесены в `CommonResult`.
+  enum:
+  - 2
+  - 3
+  - 4
+  - 5
+  - 6
+  - 7
+  - 8
+  - 9
+  - 10
+  x-enum-varnames:
+  - InvalidLogin
+  - InvalidEmail
+  - InvalidPassword
+  - LoginAlreadyTaken
+  - EmailAlreadyTaken
+  - CodeAlreadySend
+  - CodeCannotSend
+  - EmailServiceDisallowed
+  - TooManyRegistrations
+  x-apk-constant-names:
+  - INVALID_LOGIN
+  - INVALID_EMAIL
+  - INVALID_PASSWORD
+  - LOGIN_ALREADY_TAKEN
+  - EMAIL_ALREADY_TAKEN
+  - CODE_ALREADY_SEND
+  - CODE_CANNOT_SEND
+  - EMAIL_SERVICE_DISALLOWED
+  - TOO_MANY_REGISTRATIONS
+  x-enum-descriptions:
+    '2': Логин не прошёл проверку.
+    '3': Email не прошёл проверку.
+    '4': Пароль не прошёл проверку.
+    '5': Логин уже занят.
+    '6': Email уже используется другим профилем.
+    '7': Код подтверждения уже отправлен и повторная отправка сейчас не требуется.
+    '8': Сервер не смог отправить код подтверждения.
+    '9': Этот почтовый сервис не разрешён для операции.
+    '10': Достигнуто ограничение на количество регистраций.
+TelegramResult:
+  type: integer
+  format: int32
+  description: Дополнительные result-коды ответа `TelegramResponse`. Общие значения вынесены в `CommonResult`.
+  enum:
+  - 2
+  - 3
+  - 4
+  - 5
+  - 6
+  - 7
+  - 8
+  - 9
+  - 10
+  x-enum-varnames:
+  - InvalidRequest
+  - NotRegistered
+  - InvalidLogin
+  - InvalidEmail
+  - LoginAlreadyTaken
+  - EmailAlreadyTaken
+  - CodeAlreadySend
+  - EmailServiceDisallowed
+  - TooManyRegistrations
+  x-apk-constant-names:
+  - INVALID_REQUEST
+  - NOT_REGISTERED
+  - INVALID_LOGIN
+  - INVALID_EMAIL
+  - LOGIN_ALREADY_TAKEN
+  - EMAIL_ALREADY_TAKEN
+  - CODE_ALREADY_SEND
+  - EMAIL_SERVICE_DISALLOWED
+  - TOO_MANY_REGISTRATIONS
+  x-enum-descriptions:
+    '2': Запрос не прошёл серверную проверку.
+    '3': Связанный аккаунт ещё не зарегистрирован в Anixart.
+    '4': Логин не прошёл проверку.
+    '5': Email не прошёл проверку.
+    '6': Логин уже занят.
+    '7': Email уже используется другим профилем.
+    '8': Код подтверждения уже отправлен и повторная отправка сейчас не требуется.
+    '9': Этот почтовый сервис не разрешён для операции.
+    '10': Достигнуто ограничение на количество регистраций.
+VerifyResult:
+  type: integer
+  format: int32
+  description: Дополнительные result-коды ответа `VerifyResponse`. Общие значения вынесены в `CommonResult`.
+  enum:
+  - 2
+  - 3
+  - 4
+  - 5
+  - 6
+  - 7
+  - 8
+  - 9
+  - 10
+  - 11
+  x-enum-varnames:
+  - InvalidLogin
+  - InvalidEmail
+  - InvalidPassword
+  - LoginAlreadyTaken
+  - EmailAlreadyTaken
+  - CodeInvalid
+  - CodeExpired
+  - InvalidHash
+  - EmailServiceDisallowed
+  - TooManyRegistrations
+  x-apk-constant-names:
+  - INVALID_LOGIN
+  - INVALID_EMAIL
+  - INVALID_PASSWORD
+  - LOGIN_ALREADY_TAKEN
+  - EMAIL_ALREADY_TAKEN
+  - CODE_INVALID
+  - CODE_EXPIRED
+  - INVALID_HASH
+  - EMAIL_SERVICE_DISALLOWED
+  - TOO_MANY_REGISTRATIONS
+  x-enum-descriptions:
+    '2': Логин не прошёл проверку.
+    '3': Email не прошёл проверку.
+    '4': Пароль не прошёл проверку.
+    '5': Логин уже занят.
+    '6': Email уже используется другим профилем.
+    '7': Код подтверждения неверен.
+    '8': Срок действия кода подтверждения истёк.
+    '9': Хеш текущей операции неверен или устарел.
+    '10': Этот почтовый сервис не разрешён для операции.
+    '11': Достигнуто ограничение на количество регистраций.
+VkResult:
+  type: integer
+  format: int32
+  description: Дополнительные result-коды ответа `VkResponse`. Общие значения вынесены в `CommonResult`.
+  enum:
+  - 2
+  - 3
+  - 4
+  - 5
+  - 6
+  - 7
+  - 8
+  - 9
+  - 10
+  x-enum-varnames:
+  - InvalidRequest
+  - NotRegistered
+  - InvalidLogin
+  - InvalidEmail
+  - LoginAlreadyTaken
+  - EmailAlreadyTaken
+  - CodeAlreadySend
+  - EmailServiceDisallowed
+  - TooManyRegistrations
+  x-apk-constant-names:
+  - INVALID_REQUEST
+  - NOT_REGISTERED
+  - INVALID_LOGIN
+  - INVALID_EMAIL
+  - LOGIN_ALREADY_TAKEN
+  - EMAIL_ALREADY_TAKEN
+  - CODE_ALREADY_SEND
+  - EMAIL_SERVICE_DISALLOWED
+  - TOO_MANY_REGISTRATIONS
+  x-enum-descriptions:
+    '2': Запрос не прошёл серверную проверку.
+    '3': Связанный аккаунт ещё не зарегистрирован в Anixart.
+    '4': Логин не прошёл проверку.
+    '5': Email не прошёл проверку.
+    '6': Логин уже занят.
+    '7': Email уже используется другим профилем.
+    '8': Код подтверждения уже отправлен и повторная отправка сейчас не требуется.
+    '9': Этот почтовый сервис не разрешён для операции.
+    '10': Достигнуто ограничение на количество регистраций.
+YandexResult:
+  type: integer
+  format: int32
+  description: Дополнительные result-коды ответа `YandexResponse`. Общие значения вынесены в `CommonResult`.
+  enum:
+  - 2
+  - 3
+  - 4
+  - 5
+  - 6
+  - 7
+  - 8
+  - 9
+  - 10
+  x-enum-varnames:
+  - InvalidRequest
+  - NotRegistered
+  - InvalidLogin
+  - InvalidEmail
+  - LoginAlreadyTaken
+  - EmailAlreadyTaken
+  - CodeAlreadySend
+  - EmailServiceDisallowed
+  - TooManyRegistrations
+  x-apk-constant-names:
+  - INVALID_REQUEST
+  - NOT_REGISTERED
+  - INVALID_LOGIN
+  - INVALID_EMAIL
+  - LOGIN_ALREADY_TAKEN
+  - EMAIL_ALREADY_TAKEN
+  - CODE_ALREADY_SEND
+  - EMAIL_SERVICE_DISALLOWED
+  - TOO_MANY_REGISTRATIONS
+  x-enum-descriptions:
+    '2': Запрос не прошёл серверную проверку.
+    '3': Связанный аккаунт ещё не зарегистрирован в Anixart.
+    '4': Логин не прошёл проверку.
+    '5': Email не прошёл проверку.
+    '6': Логин уже занят.
+    '7': Email уже используется другим профилем.
+    '8': Код подтверждения уже отправлен и повторная отправка сейчас не требуется.
+    '9': Этот почтовый сервис не разрешён для операции.
+    '10': Достигнуто ограничение на количество регистраций.
+BookmarksExportResult:
+  type: integer
+  format: int32
+  description: Дополнительные result-коды ответа `BookmarksExportResponse`. Общие значения вынесены в `CommonResult`.
+  enum:
+  - 2
+  - 3
+  x-enum-varnames:
+  - InvalidProfileLists
+  - InvalidExtraFields
+  x-apk-constant-names:
+  - INVALID_PROFILE_LISTS
+  - INVALID_EXTRA_FIELDS
+  x-enum-descriptions:
+    '2': Списки профиля не прошли проверку.
+    '3': Дополнительные поля запроса не прошли проверку.
+BookmarksImportResult:
+  type: integer
+  format: int32
+  description: Дополнительные result-коды ответа `BookmarksImportResponse`. Общие значения вынесены в `CommonResult`.
+  enum:
+  - 2
+  x-enum-varnames:
+  - ImportLimitReached
+  x-apk-constant-names:
+  - IMPORT_LIMIT_REACHED
+  x-enum-descriptions:
+    '2': Достигнут лимит операций импорта.
+BookmarksImportStatusResult:
+  type: integer
+  format: int32
+  description: Дополнительные result-коды ответа `BookmarksImportStatusResponse`. Общие значения вынесены в `CommonResult`.
+  enum:
+  - 2
+  x-enum-varnames:
+  - ImportLimitReached
+  x-apk-constant-names:
+  - IMPORT_LIMIT_REACHED
+  x-enum-descriptions:
+    '2': Достигнут лимит операций импорта.
+BlogCreateResult:
+  type: integer
+  format: int32
+  description: Дополнительные result-коды ответа `BlogCreateResponse`. Общие значения вынесены в `CommonResult`.
+  enum:
+  - 2
+  x-enum-varnames:
+  - ReputationLevelTooLow
+  x-apk-constant-names:
+  - REPUTATION_LEVEL_TOO_LOW
+  x-enum-descriptions:
+    '2': Недостаточный уровень репутации.
+ChannelBlockResult:
+  type: integer
+  format: int32
+  description: Дополнительные result-коды ответа `ChannelBlockResponse`. Общие значения вынесены в `CommonResult`.
+  enum:
+  - 2
+  - 3
+  - 4
+  x-enum-varnames:
+  - ChannelNotFound
+  - ChannelNotOwned
+  - BlockNotFound
+  x-apk-constant-names:
+  - CHANNEL_NOT_FOUND
+  - CHANNEL_NOT_OWNED
+  - BLOCK_NOT_FOUND
+  x-enum-descriptions:
+    '2': Канал не найден.
+    '3': Нет прав владельца канала.
+    '4': Запись блокировки не найдена.
+ChannelCreateEditResult:
+  type: integer
+  format: int32
+  description: Дополнительные result-коды ответа `ChannelCreateEditResponse`. Общие значения вынесены в `CommonResult`.
+  enum:
+  - 2
+  - 3
+  - 4
+  - 5
+  - 6
+  - 7
+  x-enum-varnames:
+  - InvalidTitle
+  - InvalidDescription
+  - ChannelLimitReached
+  - ChannelNotFound
+  - ChannelNotOwned
+  - ChannelCreatorBanned
+  x-apk-constant-names:
+  - INVALID_TITLE
+  - INVALID_DESCRIPTION
+  - CHANNEL_LIMIT_REACHED
+  - CHANNEL_NOT_FOUND
+  - CHANNEL_NOT_OWNED
+  - CHANNEL_CREATOR_BANNED
+  x-enum-descriptions:
+    '2': Заголовок не прошёл проверку.
+    '3': Описание не прошло проверку.
+    '4': Достигнут лимит каналов.
+    '5': Канал не найден.
+    '6': Нет прав владельца канала.
+    '7': Создатель канала заблокирован.
+ChannelPermissionManageResult:
+  type: integer
+  format: int32
+  description: Дополнительные result-коды ответа `ChannelPermissionManageResponse`. Общие значения вынесены в `CommonResult`.
+  enum:
+  - 2
+  - 3
+  - 4
+  - 5
+  x-enum-varnames:
+  - PermissionInvalid
+  - TargetProfileNotFound
+  - ChannelNotFound
+  - ChannelNotOwned
+  x-apk-constant-names:
+  - PERMISSION_INVALID
+  - TARGET_PROFILE_NOT_FOUND
+  - CHANNEL_NOT_FOUND
+  - CHANNEL_NOT_OWNED
+  x-enum-descriptions:
+    '2': Указано недопустимое разрешение.
+    '3': Целевой профиль не найден.
+    '4': Канал не найден.
+    '5': Нет прав владельца канала.
+ChannelResult:
+  type: integer
+  format: int32
+  description: Дополнительные result-коды ответа `ChannelResponse`. Общие значения вынесены в `CommonResult`.
+  enum:
+  - 2
+  x-enum-varnames:
+  - ChannelNotFound
+  x-apk-constant-names:
+  - CHANNEL_NOT_FOUND
+  x-enum-descriptions:
+    '2': Канал не найден.
+ChannelSubscribeResult:
+  type: integer
+  format: int32
+  description: Дополнительные result-коды ответа `ChannelSubscribeResponse`. Общие значения вынесены в `CommonResult`.
+  enum:
+  - 2
+  - 3
+  x-enum-varnames:
+  - SubscriptionExists
+  - SubscriptionLimitReached
+  x-apk-constant-names:
+  - SUBSCRIPTION_EXISTS
+  - SUBSCRIPTION_LIMIT_REACHED
+  x-enum-descriptions:
+    '2': Подписка уже существует.
+    '3': Достигнут лимит подписок.
+ChannelUnsubscribeResult:
+  type: integer
+  format: int32
+  description: Дополнительные result-коды ответа `ChannelUnsubscribeResponse`. Общие значения вынесены в `CommonResult`.
+  enum:
+  - 2
+  x-enum-varnames:
+  - SubscriptionNotExists
+  x-apk-constant-names:
+  - SUBSCRIPTION_NOT_EXISTS
+  x-enum-descriptions:
+    '2': Подписка не существует.
+ChannelUploadCoverAvatarResult:
+  type: integer
+  format: int32
+  description: Дополнительные result-коды ответа `ChannelUploadCoverAvatarResponse`. Общие значения вынесены в `CommonResult`.
+  enum:
+  - 2
+  - 3
+  x-enum-varnames:
+  - ChannelNotFound
+  - ChannelNotOwned
+  x-apk-constant-names:
+  - CHANNEL_NOT_FOUND
+  - CHANNEL_NOT_OWNED
+  x-enum-descriptions:
+    '2': Канал не найден.
+    '3': Нет прав владельца канала.
+CollectionCreateEditResult:
+  type: integer
+  format: int32
+  description: Дополнительные result-коды ответа `CollectionCreateEditResponse`. Общие значения вынесены в `CommonResult`.
+  enum:
+  - 2
+  - 3
+  - 4
+  - 5
+  - 6
+  - 7
+  - 8
+  - 9
+  x-enum-varnames:
+  - InvalidTitle
+  - InvalidDescription
+  - InvalidReleases
+  - CollectionLimitReached
+  - CollectionNotFound
+  - CollectionNotOwned
+  - CollectionDeleted
+  - ReleaseLimitReached
+  x-apk-constant-names:
+  - INVALID_TITLE
+  - INVALID_DESCRIPTION
+  - INVALID_RELEASES
+  - COLLECTION_LIMIT_REACHED
+  - COLLECTION_NOT_FOUND
+  - COLLECTION_NOT_OWNED
+  - COLLECTION_DELETED
+  - RELEASE_LIMIT_REACHED
+  x-enum-descriptions:
+    '2': Заголовок не прошёл проверку.
+    '3': Описание не прошло проверку.
+    '4': Список релизов не прошёл проверку.
+    '5': Достигнут лимит коллекций.
+    '6': Коллекция не найдена.
+    '7': Коллекция не принадлежит текущему профилю.
+    '8': Коллекция удалена.
+    '9': Достигнут лимит релизов в коллекции.
+CollectionDeleteResult:
+  type: integer
+  format: int32
+  description: Дополнительные result-коды ответа `CollectionDeleteResponse`. Общие значения вынесены в `CommonResult`.
+  enum:
+  - 2
+  - 3
+  - 4
+  x-enum-varnames:
+  - CollectionNotFound
+  - CollectionNotOwned
+  - CollectionDeleted
+  x-apk-constant-names:
+  - COLLECTION_NOT_FOUND
+  - COLLECTION_NOT_OWNED
+  - COLLECTION_DELETED
+  x-enum-descriptions:
+    '2': Коллекция не найдена.
+    '3': Коллекция не принадлежит текущему профилю.
+    '4': Коллекция удалена.
+CollectionEditImageResult:
+  type: integer
+  format: int32
+  description: Дополнительные result-коды ответа `CollectionEditImageResponse`. Общие значения вынесены в `CommonResult`.
+  enum:
+  - 2
+  x-enum-varnames:
+  - CollectionNotFound
+  x-apk-constant-names:
+  - COLLECTION_NOT_FOUND
+  x-enum-descriptions:
+    '2': Коллекция не найдена.
+CollectionResult:
+  type: integer
+  format: int32
+  description: Дополнительные result-коды ответа `CollectionResponse`. Общие значения вынесены в `CommonResult`.
+  enum:
+  - 2
+  - 3
+  - 4
+  x-enum-varnames:
+  - InvalidId
+  - IsPrivate
+  - IsDeleted
+  x-apk-constant-names:
+  - INVALID_ID
+  - IS_PRIVATE
+  - IS_DELETED
+  x-enum-descriptions:
+    '2': Передан недопустимый идентификатор.
+    '3': Коллекция закрыта настройками приватности.
+    '4': Объект удалён.
+FavoriteCollectionAddResult:
+  type: integer
+  format: int32
+  description: Дополнительные result-коды ответа `FavoriteCollectionAddResponse`. Общие значения вынесены в `CommonResult`.
+  enum:
+  - 2
+  - 3
+  x-enum-varnames:
+  - CollectionNotFound
+  - CollectionAlreadyInFavorite
+  x-apk-constant-names:
+  - COLLECTION_NOT_FOUND
+  - COLLECTION_ALREADY_IN_FAVORITE
+  x-enum-descriptions:
+    '2': Коллекция не найдена.
+    '3': Коллекция уже находится в избранном.
+FavoriteCollectionDeleteResult:
+  type: integer
+  format: int32
+  description: Дополнительные result-коды ответа `FavoriteCollectionDeleteResponse`. Общие значения вынесены в `CommonResult`.
+  enum:
+  - 2
+  x-enum-varnames:
+  - CollectionNotFound
+  x-apk-constant-names:
+  - COLLECTION_NOT_FOUND
+  x-enum-descriptions:
+    '2': Коллекция не найдена.
+ReleaseAddCollectionResult:
+  type: integer
+  format: int32
+  description: Дополнительные result-коды ответа `ReleaseAddCollectionResponse`. Общие значения вынесены в `CommonResult`.
+  enum:
+  - 2
+  - 3
+  - 4
+  - 5
+  - 6
+  - 7
+  x-enum-varnames:
+  - CollectionNotFound
+  - CollectionNotOwned
+  - InvalidRelease
+  - ReleaseAlreadyInCollection
+  - CollectionDeleted
+  - ReleaseLimitReached
+  x-apk-constant-names:
+  - COLLECTION_NOT_FOUND
+  - COLLECTION_NOT_OWNED
+  - INVALID_RELEASE
+  - RELEASE_ALREADY_IN_COLLECTION
+  - COLLECTION_DELETED
+  - RELEASE_LIMIT_REACHED
+  x-enum-descriptions:
+    '2': Коллекция не найдена.
+    '3': Коллекция не принадлежит текущему профилю.
+    '4': Релиз не подходит для операции.
+    '5': Релиз уже добавлен в коллекцию.
+    '6': Коллекция удалена.
+    '7': Достигнут лимит релизов в коллекции.
+CommentAddResult:
+  type: integer
+  format: int32
+  description: Дополнительные result-коды ответа `CommentAddResponse`. Общие значения вынесены в `CommonResult`.
+  enum:
+  - 2
+  - 3
+  - 4
+  - 5
+  - 6
+  - 7
+  - 8
+  x-enum-varnames:
+  - EmbeddableNotFound
+  - CommentNotFound
+  - ProfileNotFound
+  - CommentIsTooShort
+  - CommentIsTooLong
+  - CommentLimitReached
+  - InBlocklist
+  x-apk-constant-names:
+  - EMBEDDABLE_NOT_FOUND
+  - COMMENT_NOT_FOUND
+  - PROFILE_NOT_FOUND
+  - COMMENT_IS_TOO_SHORT
+  - COMMENT_IS_TOO_LONG
+  - COMMENT_LIMIT_REACHED
+  - IN_BLOCKLIST
+  x-enum-descriptions:
+    '2': Объект, к которому относится комментарий, не найден.
+    '3': Комментарий не найден.
+    '4': Профиль не найден.
+    '5': Текст комментария короче допустимого.
+    '6': Текст комментария длиннее допустимого.
+    '7': Достигнут лимит комментариев.
+    '8': Операция недоступна из-за блок-листа.
+CommentDeleteResult:
+  type: integer
+  format: int32
+  description: Дополнительные result-коды ответа `CommentDeleteResponse`. Общие значения вынесены в `CommonResult`.
+  enum:
+  - 2
+  - 3
+  x-enum-varnames:
+  - CommentNotFound
+  - CommentNotOwned
+  x-apk-constant-names:
+  - COMMENT_NOT_FOUND
+  - COMMENT_NOT_OWNED
+  x-enum-descriptions:
+    '2': Комментарий не найден.
+    '3': Комментарий не принадлежит текущему профилю.
+CommentEditResult:
+  type: integer
+  format: int32
+  description: Дополнительные result-коды ответа `CommentEditResponse`. Общие значения вынесены в `CommonResult`.
+  enum:
+  - 2
+  - 3
+  - 4
+  - 5
+  - 6
+  - 7
+  x-enum-varnames:
+  - CommentNotFound
+  - CommentIsTooShort
+  - CommentIsTooLong
+  - CommentNotOwned
+  - CommentWasDeleted
+  - EmbeddableNotFound
+  x-apk-constant-names:
+  - COMMENT_NOT_FOUND
+  - COMMENT_IS_TOO_SHORT
+  - COMMENT_IS_TOO_LONG
+  - COMMENT_NOT_OWNED
+  - COMMENT_WAS_DELETED
+  - EMBEDDABLE_NOT_FOUND
+  x-enum-descriptions:
+    '2': Комментарий не найден.
+    '3': Текст комментария короче допустимого.
+    '4': Текст комментария длиннее допустимого.
+    '5': Комментарий не принадлежит текущему профилю.
+    '6': Комментарий уже удалён.
+    '7': Объект, к которому относится комментарий, не найден.
+ProfileSelectThemeResult:
+  type: integer
+  format: int32
+  description: Дополнительные result-коды ответа `ProfileSelectThemeResponse`. Общие значения вынесены в `CommonResult`.
+  enum:
+  - 2
+  - 3
+  x-enum-varnames:
+  - ThemeNotFound
+  - ThemeNotAvailable
+  x-apk-constant-names:
+  - THEME_NOT_FOUND
+  - THEME_NOT_AVAILABLE
+  x-enum-descriptions:
+    '2': Тема оформления не найдена.
+    '3': Тема оформления недоступна текущему профилю.
+ChangeEmailResendResult:
+  type: integer
+  format: int32
+  description: Дополнительные result-коды ответа `ChangeEmailResendResponse`. Общие значения вынесены в `CommonResult`.
+  enum:
+  - 2
+  - 3
+  - 4
+  - 5
+  x-enum-varnames:
+  - InvalidPassword
+  - InvalidOldEmail
+  - InvalidHash
+  - CodeCannotSend
+  x-apk-constant-names:
+  - INVALID_PASSWORD
+  - INVALID_OLD_EMAIL
+  - INVALID_HASH
+  - CODE_CANNOT_SEND
+  x-enum-descriptions:
+    '2': Пароль не прошёл проверку.
+    '3': Текущий email не совпадает с ожидаемым сервером.
+    '4': Хеш текущей операции неверен или устарел.
+    '5': Сервер не смог отправить код подтверждения.
+ChangeEmailResult:
+  type: integer
+  format: int32
+  description: Дополнительные result-коды ответа `ChangeEmailResponse`. Общие значения вынесены в `CommonResult`.
+  enum:
+  - 2
+  - 3
+  - 4
+  - 5
+  - 6
+  - 7
+  x-enum-varnames:
+  - InvalidPassword
+  - InvalidOldEmail
+  - InvalidEmail
+  - EmailAlreadyTaken
+  - CodeAlreadySend
+  - CodeCannotSend
+  x-apk-constant-names:
+  - INVALID_PASSWORD
+  - INVALID_OLD_EMAIL
+  - INVALID_EMAIL
+  - EMAIL_ALREADY_TAKEN
+  - CODE_ALREADY_SEND
+  - CODE_CANNOT_SEND
+  x-enum-descriptions:
+    '2': Пароль не прошёл проверку.
+    '3': Текущий email не совпадает с ожидаемым сервером.
+    '4': Email не прошёл проверку.
+    '5': Email уже используется другим профилем.
+    '6': Код подтверждения уже отправлен и повторная отправка сейчас не требуется.
+    '7': Сервер не смог отправить код подтверждения.
+ChangeEmailVerifyResult:
+  type: integer
+  format: int32
+  description: Дополнительные result-коды ответа `ChangeEmailVerifyResponse`. Общие значения вынесены в `CommonResult`.
+  enum:
+  - 2
+  - 3
+  - 4
+  - 5
+  - 6
+  x-enum-varnames:
+  - InvalidEmail
+  - CodeInvalid
+  - CodeExpired
+  - InvalidHash
+  - EmailAlreadyTaken
+  x-apk-constant-names:
+  - INVALID_EMAIL
+  - CODE_INVALID
+  - CODE_EXPIRED
+  - INVALID_HASH
+  - EMAIL_ALREADY_TAKEN
+  x-enum-descriptions:
+    '2': Email не прошёл проверку.
+    '3': Код подтверждения неверен.
+    '4': Срок действия кода подтверждения истёк.
+    '5': Хеш текущей операции неверен или устарел.
+    '6': Email уже используется другим профилем.
+ChangeLoginResult:
+  type: integer
+  format: int32
+  description: Дополнительные result-коды ответа `ChangeLoginResponse`. Общие значения вынесены в `CommonResult`.
+  enum:
+  - 2
+  - 3
+  - 4
+  x-enum-varnames:
+  - InvalidLogin
+  - LoginAlreadyTaken
+  - TimeLimit
+  x-apk-constant-names:
+  - INVALID_LOGIN
+  - LOGIN_ALREADY_TAKEN
+  - TIME_LIMIT
+  x-enum-descriptions:
+    '2': Логин не прошёл проверку.
+    '3': Логин уже занят.
+    '4': Повторить операцию можно только после истечения временного ограничения.
+ChangePasswordResult:
+  type: integer
+  format: int32
+  description: Дополнительные result-коды ответа `ChangePasswordResponse`. Общие значения вынесены в `CommonResult`.
+  enum:
+  - 2
+  - 3
+  x-enum-varnames:
+  - InvalidPassword
+  - InvalidCurrentPassword
+  x-apk-constant-names:
+  - INVALID_PASSWORD
+  - INVALID_CURRENT_PASSWORD
+  x-enum-descriptions:
+    '2': Пароль не прошёл проверку.
+    '3': Текущий пароль указан неверно.
+GoogleBindResult:
+  type: integer
+  format: int32
+  description: Дополнительные result-коды ответа `GoogleBindResponse`. Общие значения вынесены в `CommonResult`.
+  enum:
+  - 2
+  - 3
+  x-enum-varnames:
+  - InvalidRequest
+  - GoogleAlreadyBound
+  x-apk-constant-names:
+  - INVALID_REQUEST
+  - GOOGLE_ALREADY_BOUND
+  x-enum-descriptions:
+    '2': Запрос не прошёл серверную проверку.
+    '3': Google-аккаунт уже привязан.
+GoogleUnbindResult:
+  type: integer
+  format: int32
+  description: Дополнительные result-коды ответа `GoogleUnbindResponse`. Общие значения вынесены в `CommonResult`.
+  enum:
+  - 2
+  x-enum-varnames:
+  - GoogleNotBound
+  x-apk-constant-names:
+  - GOOGLE_NOT_BOUND
+  x-enum-descriptions:
+    '2': Google-аккаунт не привязан.
+ProfileDeletionResult:
+  type: integer
+  format: int32
+  description: Дополнительные result-коды ответа `ProfileDeletionResponse`. Общие значения вынесены в `CommonResult`.
+  enum:
+  - 2
+  - 3
+  - 4
+  - 5
+  - 6
+  - 7
+  x-enum-varnames:
+  - AlreadyRequested
+  - NotFound
+  - AlreadyProcessed
+  - InProgress
+  - InvalidPassword
+  - UnknownError
+  x-apk-constant-names:
+  - ALREADY_REQUESTED
+  - NOT_FOUND
+  - ALREADY_PROCESSED
+  - IN_PROGRESS
+  - INVALID_PASSWORD
+  - UNKNOWN_ERROR
+  x-enum-descriptions:
+    '2': Запрос уже был создан.
+    '3': Запрос или связанный объект не найден.
+    '4': Запрос уже обработан.
+    '5': Операция уже выполняется.
+    '6': Пароль не прошёл проверку.
+    '7': Сервер вернул неизвестную ошибку.
+RemoveFriendRequestResult:
+  type: integer
+  format: int32
+  description: Дополнительные result-коды ответа `RemoveFriendRequestResponse`. Общие значения вынесены в `CommonResult`.
+  enum:
+  - 2
+  - 3
+  x-enum-varnames:
+  - RequestRemoved
+  - FriendshipRemoved
+  x-apk-constant-names:
+  - REQUEST_REMOVED
+  - FRIENDSHIP_REMOVED
+  x-enum-descriptions:
+    '2': Заявка в друзья удалена.
+    '3': Дружба удалена.
+SendFriendRequestResult:
+  type: integer
+  format: int32
+  description: Дополнительные result-коды ответа `SendFriendRequestResponse`. Общие значения вынесены в `CommonResult`.
+  enum:
+  - 2
+  - 3
+  - 4
+  - 5
+  - 6
+  - 7
+  - 8
+  - 9
+  x-enum-varnames:
+  - RequestConfirmed
+  - RequestSent
+  - ProfileWasBlocked
+  - MyProfileWasBlocked
+  - FriendLimitReached
+  - TargetFriendLimitReached
+  - TargetFriendRequestsDisallowed
+  - FriendRequestLimitReached
+  x-apk-constant-names:
+  - REQUEST_CONFIRMED
+  - REQUEST_SENT
+  - PROFILE_WAS_BLOCKED
+  - MY_PROFILE_WAS_BLOCKED
+  - FRIEND_LIMIT_REACHED
+  - TARGET_FRIEND_LIMIT_REACHED
+  - TARGET_FRIEND_REQUESTS_DISALLOWED
+  - FRIEND_REQUEST_LIMIT_REACHED
+  x-enum-descriptions:
+    '2': Входящая заявка в друзья подтверждена.
+    '3': Заявка в друзья отправлена.
+    '4': Целевой профиль находится в вашем блок-листе.
+    '5': Ваш профиль заблокирован целевым пользователем.
+    '6': Достигнут лимит друзей.
+    '7': У целевого профиля достигнут лимит друзей.
+    '8': Целевой профиль запретил заявки в друзья.
+    '9': Достигнут лимит заявок в друзья.
+SocialEditResult:
+  type: integer
+  format: int32
+  description: Дополнительные result-коды ответа `SocialEditResponse`. Общие значения вынесены в `CommonResult`.
+  enum:
+  - 2
+  - 3
+  - 4
+  - 5
+  - 6
+  x-enum-varnames:
+  - InvalidVk
+  - InvalidTg
+  - InvalidInst
+  - InvalidTt
+  - InvalidDiscord
+  x-apk-constant-names:
+  - INVALID_VK
+  - INVALID_TG
+  - INVALID_INST
+  - INVALID_TT
+  - INVALID_DISCORD
+  x-enum-descriptions:
+    '2': Ссылка или идентификатор VK не прошли проверку.
+    '3': Ссылка или идентификатор Telegram не прошли проверку.
+    '4': Ссылка или идентификатор Instagram не прошли проверку.
+    '5': Ссылка или идентификатор TikTok не прошли проверку.
+    '6': Ссылка или идентификатор Discord не прошли проверку.
+TelegramBindResult:
+  type: integer
+  format: int32
+  description: Дополнительные result-коды ответа `TelegramBindResponse`. Общие значения вынесены в `CommonResult`.
+  enum:
+  - 2
+  - 3
+  x-enum-varnames:
+  - InvalidRequest
+  - TelegramAlreadyBound
+  x-apk-constant-names:
+  - INVALID_REQUEST
+  - TELEGRAM_ALREADY_BOUND
+  x-enum-descriptions:
+    '2': Запрос не прошёл серверную проверку.
+    '3': Telegram-аккаунт уже привязан.
+TelegramUnbindResult:
+  type: integer
+  format: int32
+  description: Дополнительные result-коды ответа `TelegramUnbindResponse`. Общие значения вынесены в `CommonResult`.
+  enum:
+  - 2
+  x-enum-varnames:
+  - TelegramNotBound
+  x-apk-constant-names:
+  - TELEGRAM_NOT_BOUND
+  x-enum-descriptions:
+    '2': Telegram-аккаунт не привязан.
+VkBindResult:
+  type: integer
+  format: int32
+  description: Дополнительные result-коды ответа `VkBindResponse`. Общие значения вынесены в `CommonResult`.
+  enum:
+  - 2
+  - 3
+  x-enum-varnames:
+  - InvalidRequest
+  - VkAlreadyBound
+  x-apk-constant-names:
+  - INVALID_REQUEST
+  - VK_ALREADY_BOUND
+  x-enum-descriptions:
+    '2': Запрос не прошёл серверную проверку.
+    '3': VK-аккаунт уже привязан.
+VkUnbindResult:
+  type: integer
+  format: int32
+  description: Дополнительные result-коды ответа `VkUnbindResponse`. Общие значения вынесены в `CommonResult`.
+  enum:
+  - 2
+  x-enum-varnames:
+  - VkNotBound
+  x-apk-constant-names:
+  - VK_NOT_BOUND
+  x-enum-descriptions:
+    '2': VK-аккаунт не привязан.
+YandexBindResult:
+  type: integer
+  format: int32
+  description: Дополнительные result-коды ответа `YandexBindResponse`. Общие значения вынесены в `CommonResult`.
+  enum:
+  - 2
+  - 3
+  x-enum-varnames:
+  - InvalidRequest
+  - YandexAlreadyBound
+  x-apk-constant-names:
+  - INVALID_REQUEST
+  - YANDEX_ALREADY_BOUND
+  x-enum-descriptions:
+    '2': Запрос не прошёл серверную проверку.
+    '3': Yandex-аккаунт уже привязан.
+YandexUnbindResult:
+  type: integer
+  format: int32
+  description: Дополнительные result-коды ответа `YandexUnbindResponse`. Общие значения вынесены в `CommonResult`.
+  enum:
+  - 2
+  x-enum-varnames:
+  - YandexNotBound
+  x-apk-constant-names:
+  - YANDEX_NOT_BOUND
+  x-enum-descriptions:
+    '2': Yandex-аккаунт не привязан.
+ReleaseVideoResult:
+  type: integer
+  format: int32
+  description: Дополнительные result-коды ответа `ReleaseVideosResponse`. Общие значения вынесены в `CommonResult`.
+  enum:
+  - 2
+  x-enum-varnames:
+  - InvalidReleaseId
+  x-apk-constant-names:
+  - INVALID_RELEASE_ID
+  x-enum-descriptions:
+    '2': Идентификатор релиза не прошёл проверку.
+ReleaseVideoAppealResult:
+  type: integer
+  format: int32
+  description: Дополнительные result-коды ответа `ReleaseVideoAppealResponse`. Общие значения вынесены в `CommonResult`.
+  enum:
+  - 2
+  - 3
+  - 4
+  - 5
+  - 6
+  - 7
+  - 8
+  - 9
+  - 10
+  x-enum-varnames:
+  - InvalidReleaseId
+  - InvalidTitle
+  - InvalidCategory
+  - InvalidUrl
+  - AppealAlreadySent
+  - TooManyAppeals
+  - AppealNotOwned
+  - AppealNotFound
+  - AppealDisabled
+  x-apk-constant-names:
+  - INVALID_RELEASE_ID
+  - INVALID_TITLE
+  - INVALID_CATEGORY
+  - INVALID_URL
+  - APPEAL_ALREADY_SENT
+  - TOO_MANY_APPEALS
+  - APPEAL_NOT_OWNED
+  - APPEAL_NOT_FOUND
+  - APPEAL_DISABLED
+  x-enum-descriptions:
+    '2': Идентификатор релиза не прошёл проверку.
+    '3': Заголовок не прошёл проверку.
+    '4': Категория не прошла проверку.
+    '5': URL не прошёл проверку.
+    '6': Апелляция уже отправлена.
+    '7': Достигнут лимит апелляций.
+    '8': Апелляция не принадлежит текущему профилю.
+    '9': Апелляция не найдена.
+    '10': Отправка апелляций отключена.
+ReportResult:
+  type: integer
+  format: int32
+  description: Дополнительные result-коды ответа `ReportResponse`. Общие значения вынесены в `CommonResult`.
+  enum:
+  - 2
+  - 3
+  - 4
+  x-enum-varnames:
+  - EntityNotFound
+  - InvalidMessage
+  - ReasonNotFound
+  x-apk-constant-names:
+  - ENTITY_NOT_FOUND
+  - INVALID_MESSAGE
+  - REASON_NOT_FOUND
+  x-enum-descriptions:
+    '2': Объект жалобы не найден.
+    '3': Текст жалобы не прошёл проверку.
+    '4': Причина жалобы не найдена.

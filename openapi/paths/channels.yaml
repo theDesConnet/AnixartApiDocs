@@ -1,0 +1,866 @@
+/channel/all/{page}:
+  post:
+    tags:
+    - Каналы
+    operationId: Channel_channels
+    summary: Получить список каналов
+    description: 'Получить список каналов. Выдача постраничная; `page` начинается с `0`. Тело запроса: `ChannelsFilterRequest`
+      (`application/json`). При заданном токене запрос выполняется в контексте текущего профиля.'
+    x-client-methods:
+    - ChannelApi.channels
+    parameters:
+    - name: page
+      in: path
+      required: true
+      description: Номер страницы, начиная с `0`.
+      schema:
+        type: integer
+        format: int32
+        minimum: 0
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/pagination.yaml#/PageOfChannel
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: ../components/channels.yaml#/ChannelsFilterRequest
+    security:
+    - AnixartToken: []
+    - {}
+/channel/avatar/upload/{c_id}:
+  post:
+    tags:
+    - Каналы
+    operationId: Channel_avatarUpload
+    summary: Загрузить аватар канала
+    description: Загрузить аватар канала. Тело запроса передаётся как `multipart/form-data`. При заданном токене запрос выполняется
+      в контексте текущего профиля.
+    x-client-methods:
+    - ChannelApi.avatarUpload
+    parameters:
+    - name: c_id
+      in: path
+      required: true
+      description: Идентификатор канала.
+      schema:
+        type: integer
+        format: int64
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/channels.yaml#/ChannelUploadCoverAvatarResponse
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    requestBody:
+      required: true
+      content:
+        multipart/form-data:
+          schema:
+            type: object
+            properties:
+              file:
+                type: string
+                format: binary
+    security:
+    - AnixartToken: []
+    - {}
+/channel/blog/create:
+  post:
+    tags:
+    - Каналы
+    operationId: Channel_createBlog
+    summary: Создать персональный блог
+    description: Создать персональный блог. При заданном токене запрос выполняется в контексте текущего профиля.
+    x-client-methods:
+    - ChannelApi.createBlog
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/channels.yaml#/BlogCreateResponse
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    security:
+    - AnixartToken: []
+    - {}
+/channel/blog/{p_id}:
+  get:
+    tags:
+    - Каналы
+    operationId: Channel_blog
+    summary: Получить блог профиля
+    description: Получить блог профиля. При заданном токене запрос выполняется в контексте текущего профиля.
+    x-client-methods:
+    - ChannelApi.blog
+    parameters:
+    - name: p_id
+      in: path
+      required: true
+      description: Идентификатор профиля.
+      schema:
+        type: integer
+        format: int64
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/channels.yaml#/ChannelResponse
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    security:
+    - AnixartToken: []
+    - {}
+/channel/cover/delete/{c_id}:
+  post:
+    tags:
+    - Каналы
+    operationId: Channel_coverDelete
+    summary: Удалить обложку канала
+    description: Удалить обложку канала. При заданном токене запрос выполняется в контексте текущего профиля.
+    x-client-methods:
+    - ChannelApi.coverDelete
+    parameters:
+    - name: c_id
+      in: path
+      required: true
+      description: Идентификатор канала.
+      schema:
+        type: integer
+        format: int64
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/channels.yaml#/ChannelUploadCoverAvatarResponse
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    security:
+    - AnixartToken: []
+    - {}
+/channel/cover/upload/{c_id}:
+  post:
+    tags:
+    - Каналы
+    operationId: Channel_coverUpload
+    summary: Загрузить обложку канала
+    description: Загрузить обложку канала. Тело запроса передаётся как `multipart/form-data`. При заданном токене запрос выполняется
+      в контексте текущего профиля.
+    x-client-methods:
+    - ChannelApi.coverUpload
+    parameters:
+    - name: c_id
+      in: path
+      required: true
+      description: Идентификатор канала.
+      schema:
+        type: integer
+        format: int64
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/channels.yaml#/ChannelUploadCoverAvatarResponse
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    requestBody:
+      required: true
+      content:
+        multipart/form-data:
+          schema:
+            type: object
+            properties:
+              file:
+                type: string
+                format: binary
+    security:
+    - AnixartToken: []
+    - {}
+/channel/create:
+  post:
+    tags:
+    - Каналы
+    operationId: Channel_create
+    summary: Создать канал
+    description: 'Создать канал. Тело запроса: `ChannelCreateEditRequest` (`application/json`). При заданном токене запрос
+      выполняется в контексте текущего профиля.'
+    x-client-methods:
+    - ChannelApi.create
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/channels.yaml#/ChannelCreateEditResponse
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: ../components/channels.yaml#/ChannelCreateEditRequest
+    security:
+    - AnixartToken: []
+    - {}
+/channel/edit/{c_id}:
+  post:
+    tags:
+    - Каналы
+    operationId: Channel_edit
+    summary: Изменить канал
+    description: 'Изменить канал. Тело запроса: `ChannelCreateEditRequest` (`application/json`). При заданном токене запрос
+      выполняется в контексте текущего профиля.'
+    x-client-methods:
+    - ChannelApi.edit
+    parameters:
+    - name: c_id
+      in: path
+      required: true
+      description: Идентификатор канала.
+      schema:
+        type: integer
+        format: int64
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/channels.yaml#/ChannelCreateEditResponse
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: ../components/channels.yaml#/ChannelCreateEditRequest
+    security:
+    - AnixartToken: []
+    - {}
+/channel/editor/available/all:
+  get:
+    tags:
+    - Каналы
+    operationId: Channel_editorAvailableChannels
+    summary: Получить каналы, доступные в редакторе
+    description: Получить каналы, доступные в редакторе. При заданном токене запрос выполняется в контексте текущего профиля.
+    x-client-methods:
+    - ChannelApi.editorAvailableChannels
+    parameters:
+    - name: only_subscribed
+      in: query
+      required: false
+      description: Ограничить выдачу каналами, на которые подписан текущий профиль.
+      schema:
+        type:
+        - boolean
+        - 'null'
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/articles.yaml#/EditorChannelsResponse
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    security:
+    - AnixartToken: []
+    - {}
+/channel/mute/all/{page}:
+  get:
+    tags:
+    - Каналы
+    operationId: Channel_mutes
+    summary: Получить заглушенные каналы
+    description: Получить заглушенные каналы. Выдача постраничная; `page` начинается с `0`. При заданном токене запрос выполняется
+      в контексте текущего профиля.
+    x-client-methods:
+    - ChannelApi.mutes
+    parameters:
+    - name: page
+      in: path
+      required: true
+      description: Номер страницы, начиная с `0`.
+      schema:
+        type: integer
+        format: int32
+        minimum: 0
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/pagination.yaml#/PageOfChannel
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    security:
+    - AnixartToken: []
+    - {}
+/channel/mute/{c_id}:
+  post:
+    tags:
+    - Каналы
+    operationId: Channel_mute
+    summary: Заглушить канал
+    description: Заглушить канал. При заданном токене запрос выполняется в контексте текущего профиля.
+    x-client-methods:
+    - ChannelApi.mute
+    parameters:
+    - name: c_id
+      in: path
+      required: true
+      description: Идентификатор канала.
+      schema:
+        type: integer
+        format: int64
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/articles.yaml#/ArticleMuteResponse
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    security:
+    - AnixartToken: []
+    - {}
+/channel/recommendations/{page}:
+  get:
+    tags:
+    - Каналы
+    operationId: Channel_recommendations
+    summary: Получить рекомендованные каналы
+    description: Получить рекомендованные каналы. Выдача постраничная; `page` начинается с `0`. При заданном токене запрос
+      выполняется в контексте текущего профиля.
+    x-client-methods:
+    - ChannelApi.recommendations
+    parameters:
+    - name: page
+      in: path
+      required: true
+      description: Номер страницы, начиная с `0`.
+      schema:
+        type: integer
+        format: int32
+        minimum: 0
+    - name: is_blog
+      in: query
+      required: false
+      description: Фильтр каналов по признаку персонального блога.
+      schema:
+        type:
+        - boolean
+        - 'null'
+    - name: exclude_subscribed
+      in: query
+      required: false
+      description: Исключить из рекомендаций каналы, на которые профиль уже подписан.
+      schema:
+        type:
+        - boolean
+        - 'null'
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/pagination.yaml#/PageOfChannel
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    security:
+    - AnixartToken: []
+    - {}
+/channel/subscribe/{c_id}:
+  post:
+    tags:
+    - Каналы
+    operationId: Channel_subscribe
+    summary: Подписаться на канал
+    description: Подписаться на канал. При заданном токене запрос выполняется в контексте текущего профиля.
+    x-client-methods:
+    - ChannelApi.subscribe
+    parameters:
+    - name: c_id
+      in: path
+      required: true
+      description: Идентификатор канала.
+      schema:
+        type: integer
+        format: int64
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/channels.yaml#/ChannelSubscribeResponse
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    security:
+    - AnixartToken: []
+    - {}
+/channel/subscription/all/{page}:
+  get:
+    tags:
+    - Каналы
+    operationId: Channel_subscriptions
+    summary: Получить подписки на каналы
+    description: Получить подписки на каналы. Выдача постраничная; `page` начинается с `0`. При заданном токене запрос выполняется
+      в контексте текущего профиля.
+    x-client-methods:
+    - ChannelApi.subscriptions
+    parameters:
+    - name: page
+      in: path
+      required: true
+      description: Номер страницы, начиная с `0`.
+      schema:
+        type: integer
+        format: int32
+        minimum: 0
+    - name: sort
+      in: query
+      required: false
+      description: Код или направление сортировки.
+      schema:
+        type: integer
+        format: int32
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/pagination.yaml#/PageOfChannel
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    security:
+    - AnixartToken: []
+    - {}
+/channel/subscription/count:
+  get:
+    tags:
+    - Каналы
+    operationId: Channel_subscriptionCount
+    summary: Получить количество подписок
+    description: Получить количество подписок. При заданном токене запрос выполняется в контексте текущего профиля.
+    x-client-methods:
+    - ChannelApi.subscriptionCount
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/channels.yaml#/SubscriptionCountResponse
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    security:
+    - AnixartToken: []
+    - {}
+/channel/unmute/{c_id}:
+  post:
+    tags:
+    - Каналы
+    operationId: Channel_unmute
+    summary: Убрать канал из заглушенных
+    description: Убрать канал из заглушенных. При заданном токене запрос выполняется в контексте текущего профиля.
+    x-client-methods:
+    - ChannelApi.unmute
+    parameters:
+    - name: c_id
+      in: path
+      required: true
+      description: Идентификатор канала.
+      schema:
+        type: integer
+        format: int64
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/articles.yaml#/ArticleMuteResponse
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    security:
+    - AnixartToken: []
+    - {}
+/channel/unsubscribe/{c_id}:
+  post:
+    tags:
+    - Каналы
+    operationId: Channel_unsubscribe
+    summary: Отписаться от канала
+    description: Отписаться от канала. При заданном токене запрос выполняется в контексте текущего профиля.
+    x-client-methods:
+    - ChannelApi.unsubscribe
+    parameters:
+    - name: c_id
+      in: path
+      required: true
+      description: Идентификатор канала.
+      schema:
+        type: integer
+        format: int64
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/channels.yaml#/ChannelUnsubscribeResponse
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    security:
+    - AnixartToken: []
+    - {}
+/channel/{c_id}:
+  get:
+    tags:
+    - Каналы
+    operationId: Channel_channel
+    summary: Получить канал
+    description: Получить канал. При заданном токене запрос выполняется в контексте текущего профиля.
+    x-client-methods:
+    - ChannelApi.channel
+    parameters:
+    - name: c_id
+      in: path
+      required: true
+      description: Идентификатор канала.
+      schema:
+        type: integer
+        format: int64
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/channels.yaml#/ChannelResponse
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    security:
+    - AnixartToken: []
+    - {}
+/channel/{c_id}/article/all/{page}:
+  post:
+    tags:
+    - Каналы
+    operationId: Channel_articles
+    summary: Получить статьи канала
+    description: Получить статьи канала. Выдача постраничная; `page` начинается с `0`. При заданном токене запрос выполняется
+      в контексте текущего профиля.
+    x-client-methods:
+    - ChannelApi.articles
+    parameters:
+    - name: c_id
+      in: path
+      required: true
+      description: Идентификатор канала.
+      schema:
+        type: integer
+        format: int64
+    - name: page
+      in: path
+      required: true
+      description: Номер страницы, начиная с `0`.
+      schema:
+        type: integer
+        format: int32
+        minimum: 0
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/pagination.yaml#/PageOfArticle
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    security:
+    - AnixartToken: []
+    - {}
+/channel/{c_id}/block/all/{page}:
+  get:
+    tags:
+    - Каналы
+    operationId: Channel_blocks
+    summary: Получить заблокированных участников канала
+    description: Получить заблокированных участников канала. Выдача постраничная; `page` начинается с `0`. При заданном токене
+      запрос выполняется в контексте текущего профиля.
+    x-client-methods:
+    - ChannelApi.blocks
+    parameters:
+    - name: c_id
+      in: path
+      required: true
+      description: Идентификатор канала.
+      schema:
+        type: integer
+        format: int64
+    - name: page
+      in: path
+      required: true
+      description: Номер страницы, начиная с `0`.
+      schema:
+        type: integer
+        format: int32
+        minimum: 0
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/pagination.yaml#/PageOfChannelProfile
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    security:
+    - AnixartToken: []
+    - {}
+/channel/{c_id}/block/manage:
+  post:
+    tags:
+    - Каналы
+    operationId: Channel_blockManage
+    summary: Изменить блокировку участника канала
+    description: 'Изменить блокировку участника канала. Тело запроса: `ChannelBlockManageRequest` (`application/json`). При
+      заданном токене запрос выполняется в контексте текущего профиля.'
+    x-client-methods:
+    - ChannelApi.blockManage
+    parameters:
+    - name: c_id
+      in: path
+      required: true
+      description: Идентификатор канала.
+      schema:
+        type: integer
+        format: int64
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/channels.yaml#/ChannelBlockResponse
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: ../components/channels.yaml#/ChannelBlockManageRequest
+    security:
+    - AnixartToken: []
+    - {}
+/channel/{c_id}/block/{p_id}:
+  get:
+    tags:
+    - Каналы
+    operationId: Channel_block
+    summary: Получить блокировку участника канала
+    description: Получить блокировку участника канала. При заданном токене запрос выполняется в контексте текущего профиля.
+    x-client-methods:
+    - ChannelApi.block
+    parameters:
+    - name: c_id
+      in: path
+      required: true
+      description: Идентификатор канала.
+      schema:
+        type: integer
+        format: int64
+    - name: p_id
+      in: path
+      required: true
+      description: Идентификатор профиля.
+      schema:
+        type: integer
+        format: int64
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/channels.yaml#/ChannelBlockResponse
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    security:
+    - AnixartToken: []
+    - {}
+/channel/{c_id}/editor/available:
+  get:
+    tags:
+    - Каналы
+    operationId: Channel_editorAvailable
+    summary: Проверить доступность редактора канала
+    description: Проверить доступность редактора канала. При заданном токене запрос выполняется в контексте текущего профиля.
+    x-client-methods:
+    - ChannelApi.editorAvailable
+    parameters:
+    - name: c_id
+      in: path
+      required: true
+      description: Идентификатор канала.
+      schema:
+        type: integer
+        format: int64
+    - name: is_suggestion
+      in: query
+      required: false
+      description: Проверять редактор в контексте предложения статьи.
+      schema:
+        type: boolean
+    - name: is_edit_mode
+      in: query
+      required: false
+      description: Проверять доступность редактора для редактирования существующей статьи.
+      schema:
+        type: boolean
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/articles.yaml#/EditorAvailableResponse
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    security:
+    - AnixartToken: []
+    - {}
+/channel/{c_id}/permission/all/{page}:
+  post:
+    tags:
+    - Каналы
+    operationId: Channel_permissions
+    summary: Получить участников и права канала
+    description: 'Получить участников и права канала. Выдача постраничная; `page` начинается с `0`. Тело запроса: `ChannelPermissionsFilterRequest`
+      (`application/json`). При заданном токене запрос выполняется в контексте текущего профиля.'
+    x-client-methods:
+    - ChannelApi.permissions
+    parameters:
+    - name: c_id
+      in: path
+      required: true
+      description: Идентификатор канала.
+      schema:
+        type: integer
+        format: int64
+    - name: page
+      in: path
+      required: true
+      description: Номер страницы, начиная с `0`.
+      schema:
+        type: integer
+        format: int32
+        minimum: 0
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/pagination.yaml#/PageOfChannelProfile
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: ../components/channels.yaml#/ChannelPermissionsFilterRequest
+    security:
+    - AnixartToken: []
+    - {}
+/channel/{c_id}/permission/manage:
+  post:
+    tags:
+    - Каналы
+    operationId: Channel_permissionManage
+    summary: Изменить права участника канала
+    description: 'Изменить права участника канала. Тело запроса: `ChannelPermissionManageRequest` (`application/json`). При
+      заданном токене запрос выполняется в контексте текущего профиля.'
+    x-client-methods:
+    - ChannelApi.permissionManage
+    parameters:
+    - name: c_id
+      in: path
+      required: true
+      description: Идентификатор канала.
+      schema:
+        type: integer
+        format: int64
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/channels.yaml#/ChannelPermissionManageResponse
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: ../components/channels.yaml#/ChannelPermissionManageRequest
+    security:
+    - AnixartToken: []
+    - {}

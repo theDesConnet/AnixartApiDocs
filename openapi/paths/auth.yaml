@@ -1,0 +1,424 @@
+/auth/checkLogin:
+  post:
+    tags:
+    - Авторизация
+    operationId: Auth_checkLogin
+    summary: Проверить доступность логина
+    description: Проверить доступность логина. Тело запроса передаётся как `application/x-www-form-urlencoded`.
+    x-client-methods:
+    - AuthApi.checkLogin
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/auth.yaml#/CheckLoginResponse
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    requestBody:
+      required: true
+      content:
+        application/x-www-form-urlencoded:
+          schema:
+            type: object
+            properties:
+              login:
+                type: string
+/auth/firebase:
+  post:
+    tags:
+    - Авторизация
+    operationId: Auth_firebase
+    summary: Получить Firebase topic для уведомлений
+    description: Получить Firebase topic для уведомлений. При заданном токене запрос выполняется в контексте текущего профиля.
+    x-client-methods:
+    - AuthApi.firebase
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/notifications.yaml#/FirebaseResponse
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    security:
+    - AnixartToken: []
+    - {}
+/auth/google:
+  post:
+    tags:
+    - Авторизация
+    operationId: Auth_signInWithGoogle
+    summary: Войти через Google
+    description: Войти через Google. Тело запроса передаётся как `application/x-www-form-urlencoded`.
+    x-client-methods:
+    - AuthApi.signInWithGoogle
+    - AuthApi.signUpWithGoogle
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/account.yaml#/GoogleResponse
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    requestBody:
+      required: true
+      content:
+        application/x-www-form-urlencoded:
+          schema:
+            type: object
+            properties:
+              googleIdToken:
+                type: string
+              login:
+                type: string
+              email:
+                type: string
+/auth/resend:
+  post:
+    tags:
+    - Авторизация
+    operationId: Auth_resend
+    summary: Повторно отправить код регистрации
+    description: Повторно отправить код регистрации. Тело запроса передаётся как `application/x-www-form-urlencoded`.
+    x-client-methods:
+    - AuthApi.resend
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/auth.yaml#/ResendResponse
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    requestBody:
+      required: true
+      content:
+        application/x-www-form-urlencoded:
+          schema:
+            type: object
+            properties:
+              login:
+                type: string
+              email:
+                type: string
+              password:
+                type: string
+              vkAccessToken:
+                type: string
+              googleIdToken:
+                type: string
+              telegramIdToken:
+                type: string
+              yandexAccessToken:
+                type: string
+              hash:
+                type: string
+/auth/restore:
+  post:
+    tags:
+    - Авторизация
+    operationId: Auth_restore
+    summary: Начать восстановление аккаунта
+    description: Начать восстановление аккаунта. Тело запроса передаётся как `application/x-www-form-urlencoded`.
+    x-client-methods:
+    - AuthApi.restore
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/auth.yaml#/RestoreResponse
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    requestBody:
+      required: true
+      content:
+        application/x-www-form-urlencoded:
+          schema:
+            type: object
+            properties:
+              data:
+                type: string
+/auth/restore/resend:
+  post:
+    tags:
+    - Авторизация
+    operationId: Auth_restoreResend
+    summary: Повторно отправить код восстановления
+    description: Повторно отправить код восстановления. Тело запроса передаётся как `application/x-www-form-urlencoded`.
+    x-client-methods:
+    - AuthApi.restoreResend
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/auth.yaml#/RestoreResendResponse
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    requestBody:
+      required: true
+      content:
+        application/x-www-form-urlencoded:
+          schema:
+            type: object
+            properties:
+              data:
+                type: string
+              password:
+                type: string
+              hash:
+                type: string
+/auth/restore/verify:
+  post:
+    tags:
+    - Авторизация
+    operationId: Auth_restoreVerify
+    summary: Подтвердить восстановление аккаунта
+    description: Подтвердить восстановление аккаунта. Тело запроса передаётся как `application/x-www-form-urlencoded`.
+    x-client-methods:
+    - AuthApi.restoreVerify
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/auth.yaml#/RestoreVerifyResponse
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    requestBody:
+      required: true
+      content:
+        application/x-www-form-urlencoded:
+          schema:
+            type: object
+            properties:
+              data:
+                type: string
+              password:
+                type: string
+              hash:
+                type: string
+              code:
+                type: string
+/auth/signIn:
+  post:
+    tags:
+    - Авторизация
+    operationId: Auth_signIn
+    summary: Войти по логину и паролю
+    description: Войти по логину и паролю. Тело запроса передаётся как `application/x-www-form-urlencoded`.
+    x-client-methods:
+    - AuthApi.signIn
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/auth.yaml#/SignInResponse
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    requestBody:
+      required: true
+      content:
+        application/x-www-form-urlencoded:
+          schema:
+            type: object
+            properties:
+              login:
+                type: string
+              password:
+                type: string
+/auth/signUp:
+  post:
+    tags:
+    - Авторизация
+    operationId: Auth_signUp
+    summary: Зарегистрировать аккаунт
+    description: Зарегистрировать аккаунт. Тело запроса передаётся как `application/x-www-form-urlencoded`.
+    x-client-methods:
+    - AuthApi.signUp
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/auth.yaml#/SignUpResponse
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    requestBody:
+      required: true
+      content:
+        application/x-www-form-urlencoded:
+          schema:
+            type: object
+            properties:
+              login:
+                type: string
+              email:
+                type: string
+              password:
+                type: string
+/auth/telegram:
+  post:
+    tags:
+    - Авторизация
+    operationId: Auth_signInWithTelegram
+    summary: Войти через Telegram
+    description: Войти через Telegram. Тело запроса передаётся как `application/x-www-form-urlencoded`.
+    x-client-methods:
+    - AuthApi.signInWithTelegram
+    - AuthApi.signUpWithTelegram
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/account.yaml#/TelegramResponse
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    requestBody:
+      required: true
+      content:
+        application/x-www-form-urlencoded:
+          schema:
+            type: object
+            properties:
+              telegramIdToken:
+                type: string
+              login:
+                type: string
+              email:
+                type: string
+/auth/verify:
+  post:
+    tags:
+    - Авторизация
+    operationId: Auth_verify
+    summary: Подтвердить регистрацию
+    description: Подтвердить регистрацию. Тело запроса передаётся как `application/x-www-form-urlencoded`.
+    x-client-methods:
+    - AuthApi.verify
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/auth.yaml#/VerifyResponse
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    requestBody:
+      required: true
+      content:
+        application/x-www-form-urlencoded:
+          schema:
+            type: object
+            properties:
+              login:
+                type: string
+              email:
+                type: string
+              password:
+                type: string
+              vkAccessToken:
+                type: string
+              googleIdToken:
+                type: string
+              telegramIdToken:
+                type: string
+              yandexAccessToken:
+                type: string
+              hash:
+                type: string
+              code:
+                type: string
+/auth/vk:
+  post:
+    tags:
+    - Авторизация
+    operationId: Auth_signInWithVk
+    summary: Войти через VK
+    description: Войти через VK. Тело запроса передаётся как `application/x-www-form-urlencoded`.
+    x-client-methods:
+    - AuthApi.signInWithVk
+    - AuthApi.signUpWithVk
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/account.yaml#/VkResponse
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    requestBody:
+      required: true
+      content:
+        application/x-www-form-urlencoded:
+          schema:
+            type: object
+            properties:
+              vkAccessToken:
+                type: string
+              login:
+                type: string
+              email:
+                type: string
+/auth/yandex:
+  post:
+    tags:
+    - Авторизация
+    operationId: Auth_signInWithYandex
+    summary: Войти через Yandex
+    description: Войти через Yandex. Тело запроса передаётся как `application/x-www-form-urlencoded`.
+    x-client-methods:
+    - AuthApi.signInWithYandex
+    - AuthApi.signUpWithYandex
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/account.yaml#/YandexResponse
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    requestBody:
+      required: true
+      content:
+        application/x-www-form-urlencoded:
+          schema:
+            type: object
+            properties:
+              yandexAccessToken:
+                type: string
+              login:
+                type: string
+              email:
+                type: string

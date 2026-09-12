@@ -1,0 +1,244 @@
+Episode:
+  type: object
+  description: Эпизод релиза в конкретном источнике.
+  properties:
+    addedDate:
+      type: integer
+      format: int64
+      description: Время добавления в формате API.
+    id:
+      type: integer
+      format: int64
+      description: Уникальный идентификатор.
+    iframe:
+      type: boolean
+      description: Видео открывается через iframe-плеер.
+    isFiller:
+      type: boolean
+      description: Эпизод помечен как филлер.
+    isWatched:
+      type: boolean
+      description: Эпизод отмечен просмотренным.
+    name:
+      type: string
+      description: Отображаемое название.
+    playbackPosition:
+      type: integer
+      format: int64
+      description: Сохранённая позиция воспроизведения эпизода в формате API.
+    position:
+      type: integer
+      format: int32
+      description: Номер серии.
+    quality:
+      type: integer
+      format: int32
+      description: Числовой показатель качества, используемый клиентом для источника/озвучки.
+    release:
+      $ref: ./releases.yaml#/Release
+      description: Связанный релиз.
+    releaseId:
+      type: integer
+      format: int64
+      description: Идентификатор релиза.
+    source:
+      $ref: '#/Source'
+      description: Источник данных или источник эпизодов - в зависимости от модели.
+    sourceId:
+      type: integer
+      format: int64
+      description: Идентификатор источника.
+    url:
+      type: string
+      description: URL ресурса.
+EpisodeCompact:
+  type: object
+  description: Компактная информация об эпизоде.
+  properties:
+    name:
+      type: string
+      description: Отображаемое название.
+    release:
+      $ref: ./releases.yaml#/ReleaseCompact
+      description: Связанный релиз.
+    source:
+      $ref: '#/SourceCompact'
+      description: Источник данных или источник эпизодов - в зависимости от модели.
+EpisodeResponse:
+  allOf:
+  - $ref: ./common.yaml#/Response
+  - type: object
+    properties:
+      episodes:
+        type: array
+        items:
+          $ref: '#/Episode'
+        description: Список эпизодов.
+EpisodeTargetResponse:
+  allOf:
+  - $ref: ./common.yaml#/Response
+  - type: object
+    properties:
+      episode:
+        $ref: '#/Episode'
+        description: Связанный эпизод.
+EpisodeUnwatchResponse:
+  allOf:
+  - $ref: ./common.yaml#/Response
+  - type: object
+    properties: {}
+EpisodeUpdate:
+  type: object
+  properties:
+    lastEpisodeSourceUpdateId:
+      type: integer
+      format: int64
+      description: Идентификатор связанного объекта «last episode source update».
+    lastEpisodeTypeUpdateId:
+      type: integer
+      format: int64
+      description: Идентификатор связанного объекта «last episode type update».
+    lastEpisodeUpdateDate:
+      type: integer
+      format: int64
+      description: Временная метка «last episode update date» в формате API.
+    lastEpisodeUpdateName:
+      type: string
+      description: Название последнего обновлённого эпизода.
+    lastEpisodeSourceUpdateName:
+      type: string
+      description: Название источника последнего обновления эпизода.
+    lastEpisodeTypeUpdateName:
+      type: string
+      description: Название озвучки/даббера последнего обновления.
+EpisodeWatchResponse:
+  allOf:
+  - $ref: ./common.yaml#/Response
+  - type: object
+    properties: {}
+Source:
+  type: object
+  description: Источник эпизодов с привязанной озвучкой/даббером.
+  properties:
+    episodesCount:
+      type: integer
+      format: int64
+      description: Количество эпизодов.
+    id:
+      type: integer
+      format: int64
+      description: Уникальный идентификатор.
+    name:
+      type: string
+      description: Отображаемое название.
+    quality:
+      type: integer
+      format: int32
+      description: Числовой показатель качества, используемый клиентом для источника/озвучки.
+    type:
+      $ref: '#/Type'
+      description: Озвучка/даббер, к которому относится источник.
+SourceCompact:
+  type: object
+  description: Краткое описание источника эпизодов.
+  properties:
+    name:
+      type: string
+      description: Отображаемое название.
+    type:
+      $ref: '#/TypeCompact'
+      description: Краткая информация об озвучке/даббере.
+SourcesResponse:
+  allOf:
+  - $ref: ./common.yaml#/Response
+  - type: object
+    properties:
+      sources:
+        type: array
+        items:
+          $ref: '#/Source'
+        description: Источники эпизодов для выбранной озвучки.
+Type:
+  type: object
+  description: Озвучка/даббер, доступный для релиза.
+  properties:
+    episodesCount:
+      type: integer
+      format: int64
+      description: Количество эпизодов.
+    id:
+      type: integer
+      format: int64
+      description: Уникальный идентификатор.
+    isSub:
+      type: boolean
+      description: Озвучка является субтитрами, а не дубляжом.
+    pinned:
+      type: boolean
+      description: Озвучка закреплена для релиза.
+    quality:
+      type: integer
+      format: int32
+      description: Числовой показатель качества озвучки/источника.
+    viewCount:
+      type: integer
+      format: int64
+      description: Количество просмотров.
+    name:
+      type: string
+      description: Отображаемое название.
+    icon:
+      type: string
+      description: URL иконки озвучки/даббера.
+    workers:
+      type: string
+      description: Участники команды озвучки/даббера.
+TypeChannelResponse:
+  allOf:
+  - $ref: ./common.yaml#/Response
+  - type: object
+    properties:
+      areWidgetsHiddenGlobally:
+        type: boolean
+        description: Виджеты озвучек глобально скрыты настройкой сервера.
+      articles:
+        type: array
+        items:
+          $ref: ./articles.yaml#/Article
+        description: Статьи в результате запроса.
+      channel:
+        $ref: ./channels.yaml#/Channel
+        description: Связанный канал.
+      isHiddenByUser:
+        type: boolean
+        description: Текущий профиль вручную скрыл этот виджет.
+      isWidgetEligible:
+        type: boolean
+        description: Для этой озвучки можно показывать виджет.
+TypeCompact:
+  type: object
+  description: Краткое название озвучки/даббера.
+  properties:
+    name:
+      type: string
+      description: Отображаемое название.
+TypeResponse:
+  allOf:
+  - $ref: ./common.yaml#/Response
+  - type: object
+    properties:
+      types:
+        type: array
+        items:
+          $ref: '#/Type'
+        description: Озвучки/дабберы, доступные клиенту.
+TypesResponse:
+  allOf:
+  - $ref: ./common.yaml#/Response
+  - type: object
+    properties:
+      types:
+        type: array
+        items:
+          $ref: '#/Type'
+        description: Озвучки/дабберы, доступные клиенту.

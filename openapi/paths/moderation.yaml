@@ -1,0 +1,698 @@
+/profile/health/enforcement/account/all/{page}:
+  get:
+    tags:
+    - Модерация
+    operationId: ProfileHealth_account
+    summary: Получить события безопасности аккаунта
+    description: Получить события безопасности аккаунта. Выдача постраничная; `page` начинается с `0`. При заданном токене
+      запрос выполняется в контексте текущего профиля.
+    x-client-methods:
+    - ProfileHealthApi.account
+    parameters:
+    - name: page
+      in: path
+      required: true
+      description: Номер страницы, начиная с `0`.
+      schema:
+        type: integer
+        format: int32
+        minimum: 0
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: ../components/moderation.yaml#/ProfileEnforcement
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    security:
+    - AnixartToken: []
+    - {}
+    x-original-tags:
+    - Состояние аккаунта
+/profile/health/enforcement/content/all/{page}:
+  get:
+    tags:
+    - Модерация
+    operationId: ProfileHealth_content
+    summary: Получить модерацию контента профиля
+    description: Получить модерацию контента профиля. Выдача постраничная; `page` начинается с `0`. При заданном токене запрос
+      выполняется в контексте текущего профиля.
+    x-client-methods:
+    - ProfileHealthApi.content
+    parameters:
+    - name: page
+      in: path
+      required: true
+      description: Номер страницы, начиная с `0`.
+      schema:
+        type: integer
+        format: int32
+        minimum: 0
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: ../components/moderation.yaml#/ProfileEnforcement
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    security:
+    - AnixartToken: []
+    - {}
+    x-original-tags:
+    - Состояние аккаунта
+/profile/health/enforcement/{id}:
+  get:
+    tags:
+    - Модерация
+    operationId: ProfileHealth_enforcement
+    summary: Получить ограничение по идентификатору
+    description: Получить ограничение по идентификатору. При заданном токене запрос выполняется в контексте текущего профиля.
+    x-client-methods:
+    - ProfileHealthApi.enforcement
+    parameters:
+    - name: id
+      in: path
+      required: true
+      description: Идентификатор целевого объекта.
+      schema:
+        type: integer
+        format: int64
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/moderation.yaml#/ProfileEnforcementResponse
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    security:
+    - AnixartToken: []
+    - {}
+    x-original-tags:
+    - Состояние аккаунта
+/profile/health/enforcement/{id}/appeal:
+  post:
+    tags:
+    - Модерация
+    operationId: ProfileHealth_appeal
+    summary: Отправить апелляцию
+    description: 'Отправить апелляцию. Тело запроса: `ProfileEnforcementAppealRequest` (`application/json`). При заданном
+      токене запрос выполняется в контексте текущего профиля.'
+    x-client-methods:
+    - ProfileHealthApi.appeal
+    parameters:
+    - name: id
+      in: path
+      required: true
+      description: Идентификатор целевого объекта.
+      schema:
+        type: integer
+        format: int64
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/moderation.yaml#/ProfileEnforcementAppealResponse
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: ../components/moderation.yaml#/ProfileEnforcementAppealRequest
+    security:
+    - AnixartToken: []
+    - {}
+    x-original-tags:
+    - Состояние аккаунта
+/profile/health/status:
+  get:
+    tags:
+    - Модерация
+    operationId: ProfileHealth_status
+    summary: Получить состояние аккаунта
+    description: Получить состояние аккаунта. При заданном токене запрос выполняется в контексте текущего профиля.
+    x-client-methods:
+    - ProfileHealthApi.status
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/profiles.yaml#/ProfileHealthStatusResponse
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    security:
+    - AnixartToken: []
+    - {}
+    x-original-tags:
+    - Состояние аккаунта
+/report/article:
+  post:
+    tags:
+    - Модерация
+    operationId: Report_article
+    summary: Отправить жалобу на статью
+    description: 'Отправить жалобу на статью. Тело запроса: `ReportRequest` (`application/json`). При заданном токене запрос
+      выполняется в контексте текущего профиля.'
+    x-client-methods:
+    - ReportApi.article
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/moderation.yaml#/ReportResponse
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: ../components/moderation.yaml#/ReportRequest
+            x-generic-arguments:
+            - Long
+    security:
+    - AnixartToken: []
+    - {}
+    x-original-tags:
+    - Жалобы
+/report/article/reasons:
+  get:
+    tags:
+    - Модерация
+    operationId: Report_articleReasons
+    summary: Получить причины жалобы на статью
+    description: Получить причины жалобы на статью. При заданном токене запрос выполняется в контексте текущего профиля.
+    x-client-methods:
+    - ReportApi.articleReasons
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: ../components/moderation.yaml#/ReportReason
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    security:
+    - AnixartToken: []
+    - {}
+    x-original-tags:
+    - Жалобы
+/report/channel:
+  post:
+    tags:
+    - Модерация
+    operationId: Report_channel
+    summary: Отправить жалобу на канал
+    description: 'Отправить жалобу на канал. Тело запроса: `ReportRequest` (`application/json`). При заданном токене запрос
+      выполняется в контексте текущего профиля.'
+    x-client-methods:
+    - ReportApi.channel
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/moderation.yaml#/ReportResponse
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: ../components/moderation.yaml#/ReportRequest
+            x-generic-arguments:
+            - Long
+    security:
+    - AnixartToken: []
+    - {}
+    x-original-tags:
+    - Жалобы
+/report/channel/reasons:
+  get:
+    tags:
+    - Модерация
+    operationId: Report_channelReasons
+    summary: Получить причины жалобы на канал
+    description: Получить причины жалобы на канал. При заданном токене запрос выполняется в контексте текущего профиля.
+    x-client-methods:
+    - ReportApi.channelReasons
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: ../components/moderation.yaml#/ReportReason
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    security:
+    - AnixartToken: []
+    - {}
+    x-original-tags:
+    - Жалобы
+/report/collection:
+  post:
+    tags:
+    - Модерация
+    operationId: Report_collection
+    summary: Отправить жалобу на коллекцию
+    description: 'Отправить жалобу на коллекцию. Тело запроса: `ReportRequest` (`application/json`). При заданном токене запрос
+      выполняется в контексте текущего профиля.'
+    x-client-methods:
+    - ReportApi.collection
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/moderation.yaml#/ReportResponse
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: ../components/moderation.yaml#/ReportRequest
+            x-generic-arguments:
+            - Long
+    security:
+    - AnixartToken: []
+    - {}
+    x-original-tags:
+    - Жалобы
+/report/collection/reasons:
+  get:
+    tags:
+    - Модерация
+    operationId: Report_collectionReasons
+    summary: Получить причины жалобы на коллекцию
+    description: Получить причины жалобы на коллекцию. При заданном токене запрос выполняется в контексте текущего профиля.
+    x-client-methods:
+    - ReportApi.collectionReasons
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: ../components/moderation.yaml#/ReportReason
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    security:
+    - AnixartToken: []
+    - {}
+    x-original-tags:
+    - Жалобы
+/report/comment/article:
+  post:
+    tags:
+    - Модерация
+    operationId: Report_articleComment
+    summary: Отправить жалобу на комментарий к статье
+    description: 'Отправить жалобу на комментарий к статье. Тело запроса: `ReportRequest` (`application/json`). При заданном
+      токене запрос выполняется в контексте текущего профиля.'
+    x-client-methods:
+    - ReportApi.articleComment
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/moderation.yaml#/ReportResponse
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: ../components/moderation.yaml#/ReportRequest
+            x-generic-arguments:
+            - Long
+    security:
+    - AnixartToken: []
+    - {}
+    x-original-tags:
+    - Жалобы
+/report/comment/article/reasons:
+  get:
+    tags:
+    - Модерация
+    operationId: Report_articleCommentsReasons
+    summary: Получить причины жалобы на комментарий к статье
+    description: Получить причины жалобы на комментарий к статье. При заданном токене запрос выполняется в контексте текущего профиля.
+    x-client-methods:
+    - ReportApi.articleCommentsReasons
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: ../components/moderation.yaml#/ReportReason
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    security:
+    - AnixartToken: []
+    - {}
+    x-original-tags:
+    - Жалобы
+/report/comment/collection:
+  post:
+    tags:
+    - Модерация
+    operationId: Report_collectionComment
+    summary: Отправить жалобу на комментарий к коллекции
+    description: 'Отправить жалобу на комментарий к коллекции. Тело запроса: `ReportRequest` (`application/json`). При заданном
+      токене запрос выполняется в контексте текущего профиля.'
+    x-client-methods:
+    - ReportApi.collectionComment
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/moderation.yaml#/ReportResponse
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: ../components/moderation.yaml#/ReportRequest
+            x-generic-arguments:
+            - Long
+    security:
+    - AnixartToken: []
+    - {}
+    x-original-tags:
+    - Жалобы
+/report/comment/collection/reasons:
+  get:
+    tags:
+    - Модерация
+    operationId: Report_collectionCommentsReasons
+    summary: Получить причины жалобы на комментарий к коллекции
+    description: Получить причины жалобы на комментарий к коллекции. При заданном токене запрос выполняется в контексте текущего профиля.
+    x-client-methods:
+    - ReportApi.collectionCommentsReasons
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: ../components/moderation.yaml#/ReportReason
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    security:
+    - AnixartToken: []
+    - {}
+    x-original-tags:
+    - Жалобы
+/report/comment/release:
+  post:
+    tags:
+    - Модерация
+    operationId: Report_releaseComment
+    summary: Отправить жалобу на комментарий к релизу
+    description: 'Отправить жалобу на комментарий к релизу. Тело запроса: `ReportRequest` (`application/json`). При заданном
+      токене запрос выполняется в контексте текущего профиля.'
+    x-client-methods:
+    - ReportApi.releaseComment
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/moderation.yaml#/ReportResponse
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: ../components/moderation.yaml#/ReportRequest
+            x-generic-arguments:
+            - Long
+    security:
+    - AnixartToken: []
+    - {}
+    x-original-tags:
+    - Жалобы
+/report/comment/release/reasons:
+  get:
+    tags:
+    - Модерация
+    operationId: Report_releaseCommentsReasons
+    summary: Получить причины жалобы на комментарий к релизу
+    description: Получить причины жалобы на комментарий к релизу. При заданном токене запрос выполняется в контексте текущего профиля.
+    x-client-methods:
+    - ReportApi.releaseCommentsReasons
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: ../components/moderation.yaml#/ReportReason
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    security:
+    - AnixartToken: []
+    - {}
+    x-original-tags:
+    - Жалобы
+/report/episode:
+  post:
+    tags:
+    - Модерация
+    operationId: Report_episode
+    summary: Отправить жалобу на эпизод
+    description: 'Отправить жалобу на эпизод. Тело запроса: `ReportRequest` (`application/json`). При заданном токене запрос
+      выполняется в контексте текущего профиля.'
+    x-client-methods:
+    - ReportApi.episode
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/moderation.yaml#/ReportResponse
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: ../components/moderation.yaml#/ReportRequest
+            x-generic-arguments:
+            - Episode
+    security:
+    - AnixartToken: []
+    - {}
+    x-original-tags:
+    - Жалобы
+/report/episode/reasons:
+  get:
+    tags:
+    - Модерация
+    operationId: Report_episodeReasons
+    summary: Получить причины жалобы на эпизод
+    description: Получить причины жалобы на эпизод. При заданном токене запрос выполняется в контексте текущего профиля.
+    x-client-methods:
+    - ReportApi.episodeReasons
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: ../components/moderation.yaml#/ReportReason
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    security:
+    - AnixartToken: []
+    - {}
+    x-original-tags:
+    - Жалобы
+/report/profile:
+  post:
+    tags:
+    - Модерация
+    operationId: Report_profile
+    summary: Отправить жалобу на профиль
+    description: 'Отправить жалобу на профиль. Тело запроса: `ReportRequest` (`application/json`). При заданном токене запрос
+      выполняется в контексте текущего профиля.'
+    x-client-methods:
+    - ReportApi.profile
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/moderation.yaml#/ReportResponse
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: ../components/moderation.yaml#/ReportRequest
+            x-generic-arguments:
+            - Long
+    security:
+    - AnixartToken: []
+    - {}
+    x-original-tags:
+    - Жалобы
+/report/profile/reasons:
+  get:
+    tags:
+    - Модерация
+    operationId: Report_profileReasons
+    summary: Получить причины жалобы на профиль
+    description: Получить причины жалобы на профиль. При заданном токене запрос выполняется в контексте текущего профиля.
+    x-client-methods:
+    - ReportApi.profileReasons
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: ../components/moderation.yaml#/ReportReason
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    security:
+    - AnixartToken: []
+    - {}
+    x-original-tags:
+    - Жалобы
+/report/release:
+  post:
+    tags:
+    - Модерация
+    operationId: Report_release
+    summary: Отправить жалобу на релиз
+    description: 'Отправить жалобу на релиз. Тело запроса: `ReportRequest` (`application/json`). При заданном токене запрос
+      выполняется в контексте текущего профиля.'
+    x-client-methods:
+    - ReportApi.release
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/moderation.yaml#/ReportResponse
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: ../components/moderation.yaml#/ReportRequest
+            x-generic-arguments:
+            - Long
+    security:
+    - AnixartToken: []
+    - {}
+    x-original-tags:
+    - Жалобы
+/report/release/reasons:
+  get:
+    tags:
+    - Модерация
+    operationId: Report_releaseReasons
+    summary: Получить причины жалобы на релиз
+    description: Получить причины жалобы на релиз. При заданном токене запрос выполняется в контексте текущего профиля.
+    x-client-methods:
+    - ReportApi.releaseReasons
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: ../components/moderation.yaml#/ReportReason
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    security:
+    - AnixartToken: []
+    - {}
+    x-original-tags:
+    - Жалобы

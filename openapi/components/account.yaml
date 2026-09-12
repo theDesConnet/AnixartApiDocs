@@ -1,0 +1,766 @@
+AvailableTheme:
+  type: object
+  properties:
+    id:
+      type: integer
+      format: int64
+      description: Уникальный идентификатор.
+    name:
+      type: string
+      description: Отображаемое название.
+ChangeEmailResendResponse:
+  allOf:
+  - $ref: ./common.yaml#/Response
+  - type: object
+    properties:
+      timestampExpires:
+        type: integer
+        format: int64
+        description: Временная метка «timestamp expires» в формате API.
+      code:
+        anyOf:
+        - $ref: ./result-codes.yaml#/CommonResult
+        - $ref: ./result-codes.yaml#/ChangeEmailResendResult
+        description: 'Код результата: общий `CommonResult` либо `ChangeEmailResendResult` для ошибок этой операции.'
+        example: 0
+  x-result-enum: '#/components/schemas/ChangeEmailResendResult'
+ChangeEmailResponse:
+  allOf:
+  - $ref: ./common.yaml#/Response
+  - type: object
+    properties:
+      hash:
+        type: string
+        description: Серверный идентификатор текущего шага подтверждения; используется в следующем запросе.
+      timestampExpires:
+        type: integer
+        format: int64
+        description: Временная метка «timestamp expires» в формате API.
+      code:
+        anyOf:
+        - $ref: ./result-codes.yaml#/CommonResult
+        - $ref: ./result-codes.yaml#/ChangeEmailResult
+        description: 'Код результата: общий `CommonResult` либо `ChangeEmailResult` для ошибок этой операции.'
+        example: 0
+  x-result-enum: '#/components/schemas/ChangeEmailResult'
+ChangeEmailVerifyResponse:
+  allOf:
+  - $ref: ./common.yaml#/Response
+  - type: object
+    properties:
+      code:
+        anyOf:
+        - $ref: ./result-codes.yaml#/CommonResult
+        - $ref: ./result-codes.yaml#/ChangeEmailVerifyResult
+        description: 'Код результата: общий `CommonResult` либо `ChangeEmailVerifyResult` для ошибок этой операции.'
+        example: 0
+  x-result-enum: '#/components/schemas/ChangeEmailVerifyResult'
+ChangeLogin:
+  type: object
+  properties:
+    id:
+      type: integer
+      format: int64
+      description: Уникальный идентификатор.
+    newLogin:
+      type: string
+      description: Новый логин профиля.
+    timestamp:
+      type: integer
+      format: int64
+      description: Временная метка.
+ChangeLoginInfoResponse:
+  allOf:
+  - $ref: ./common.yaml#/Response
+  - type: object
+    properties:
+      isChangeAvailable:
+        type: boolean
+        description: Смена значения сейчас доступна.
+      lastChangeAt:
+        type: integer
+        format: int64
+        description: Время последней смены логина в формате API.
+      nextChangeAvailableAt:
+        type: integer
+        format: int64
+        description: Время, после которого логин снова можно изменить.
+      login:
+        type: string
+        description: Логин профиля.
+      avatar:
+        type: string
+        description: URL или идентификатор изображения профиля.
+ChangeLoginResponse:
+  allOf:
+  - $ref: ./common.yaml#/Response
+  - type: object
+    properties:
+      suggestedLogins:
+        type: array
+        items:
+          type: string
+        description: Свободные варианты логина, предложенные сервером.
+      code:
+        anyOf:
+        - $ref: ./result-codes.yaml#/CommonResult
+        - $ref: ./result-codes.yaml#/ChangeLoginResult
+        description: 'Код результата: общий `CommonResult` либо `ChangeLoginResult` для ошибок этой операции.'
+        example: 0
+  x-result-enum: '#/components/schemas/ChangeLoginResult'
+ChangePasswordResponse:
+  allOf:
+  - $ref: ./common.yaml#/Response
+  - type: object
+    properties:
+      token:
+        type: string
+        description: Токен пользовательской сессии.
+      code:
+        anyOf:
+        - $ref: ./result-codes.yaml#/CommonResult
+        - $ref: ./result-codes.yaml#/ChangePasswordResult
+        description: 'Код результата: общий `CommonResult` либо `ChangePasswordResult` для ошибок этой операции.'
+        example: 0
+  x-result-enum: '#/components/schemas/ChangePasswordResult'
+GoogleBindResponse:
+  allOf:
+  - $ref: ./common.yaml#/Response
+  - type: object
+    properties:
+      code:
+        anyOf:
+        - $ref: ./result-codes.yaml#/CommonResult
+        - $ref: ./result-codes.yaml#/GoogleBindResult
+        description: 'Код результата: общий `CommonResult` либо `GoogleBindResult` для ошибок этой операции.'
+        example: 0
+  x-result-enum: '#/components/schemas/GoogleBindResult'
+GoogleResponse:
+  allOf:
+  - $ref: ./common.yaml#/Response
+  - type: object
+    properties:
+      codeTimestampExpires:
+        type: integer
+        format: int64
+        description: Временная метка «code timestamp expires» в формате API.
+      hash:
+        type: string
+        description: Серверный идентификатор текущего шага подтверждения; используется в следующем запросе.
+      profile:
+        $ref: ./profiles.yaml#/Profile
+        description: Связанный профиль пользователя.
+      profileToken:
+        $ref: ./auth.yaml#/ProfileToken
+        description: Сессионный токен профиля.
+      suggestedLogins:
+        type: array
+        items:
+          type: string
+        description: Свободные варианты логина, предложенные сервером.
+      code:
+        anyOf:
+        - $ref: ./result-codes.yaml#/CommonResult
+        - $ref: ./result-codes.yaml#/GoogleResult
+        description: 'Код результата: общий `CommonResult` либо `GoogleResult` для ошибок этой операции.'
+        example: 0
+  x-result-enum: '#/components/schemas/GoogleResult'
+GoogleUnbindResponse:
+  allOf:
+  - $ref: ./common.yaml#/Response
+  - type: object
+    properties:
+      code:
+        anyOf:
+        - $ref: ./result-codes.yaml#/CommonResult
+        - $ref: ./result-codes.yaml#/GoogleUnbindResult
+        description: 'Код результата: общий `CommonResult` либо `GoogleUnbindResult` для ошибок этой операции.'
+        example: 0
+  x-result-enum: '#/components/schemas/GoogleUnbindResult'
+PrivacyEditRequest:
+  type: object
+  properties:
+    permission:
+      type: integer
+      format: int32
+      description: Уровень прав пользователя в канале.
+ProfileDeletionResponse:
+  allOf:
+  - $ref: ./common.yaml#/Response
+  - type: object
+    properties:
+      deleteAt:
+        type: integer
+        format: int64
+        description: Планируемое время окончательного удаления аккаунта.
+      requestedAt:
+        type: integer
+        format: int64
+        description: Время создания запроса на удаление аккаунта.
+      code:
+        anyOf:
+        - $ref: ./result-codes.yaml#/CommonResult
+        - $ref: ./result-codes.yaml#/ProfileDeletionResult
+        description: 'Код результата: общий `CommonResult` либо `ProfileDeletionResult` для ошибок этой операции.'
+        example: 0
+  x-result-enum: '#/components/schemas/ProfileDeletionResult'
+ProfilePreferenceResponse:
+  allOf:
+  - $ref: ./common.yaml#/Response
+  - type: object
+    properties:
+      badge:
+        $ref: ./profiles.yaml#/Badge
+        description: Значок, выбранный для профиля.
+      banChangeAvatarExpires:
+        type: integer
+        format: int64
+        description: Временная метка «ban change avatar expires» в формате API.
+      banChangeLoginExpires:
+        type: integer
+        format: int64
+        description: Временная метка «ban change login expires» в формате API.
+      channelId:
+        type:
+        - integer
+        - 'null'
+        format: int64
+        description: Идентификатор канала.
+      emailHint:
+        type: string
+        description: Маскированная подсказка текущего адреса электронной почты.
+      episodeChannelWidgetsHidden:
+        type: boolean
+        description: Виджеты эпизодов скрыты в настройках профиля.
+      isChangeAvatarBanned:
+        type: boolean
+        description: Смена аватара временно запрещена.
+      isChangeLoginBanned:
+        type: boolean
+        description: Смена логина временно запрещена.
+      isGoogleBound:
+        type: boolean
+        description: К профилю привязан Google-аккаунт.
+      isIncognito:
+        type: boolean
+        description: Для профиля включён режим инкогнито.
+      isLoginChanged:
+        type: boolean
+        description: Логин профиля уже менялся.
+      isTelegramBound:
+        type: boolean
+        description: К профилю привязан Telegram.
+      isVkBound:
+        type: boolean
+        description: К профилю привязан VK.
+      isYandexBound:
+        type: boolean
+        description: К профилю привязан Yandex.
+      pinnedSectionId:
+        type:
+        - integer
+        - 'null'
+        format: int32
+        description: Идентификатор закреплённого раздела.
+      privacyCounts:
+        type: integer
+        format: int32
+        description: Уровень видимости счётчиков профиля.
+      privacyFriendRequests:
+        type: integer
+        format: int32
+        description: Настройка того, кто может отправлять заявки в друзья.
+      privacySocial:
+        type: integer
+        format: int32
+        description: Уровень видимости социальных ссылок.
+      privacyStats:
+        type: integer
+        format: int32
+        description: Уровень видимости статистики профиля.
+      selectedThemeId:
+        type: integer
+        format: int64
+        description: Идентификатор выбранной темы.
+      avatar:
+        type: string
+        description: URL или идентификатор изображения профиля.
+      status:
+        type: string
+        description: Текущий текстовый статус профиля.
+      vkPage:
+        type: string
+        description: Ссылка или идентификатор страницы VK.
+      tgPage:
+        type: string
+        description: Ссылка или имя пользователя Telegram.
+      availableThemes:
+        type: array
+        items:
+          $ref: '#/AvailableTheme'
+        description: Темы, доступные текущему профилю.
+ProfileSelectThemeResponse:
+  allOf:
+  - $ref: ./common.yaml#/Response
+  - type: object
+    properties:
+      theme:
+        $ref: '#/Theme'
+        description: Выбранная тема профиля.
+      code:
+        anyOf:
+        - $ref: ./result-codes.yaml#/CommonResult
+        - $ref: ./result-codes.yaml#/ProfileSelectThemeResult
+        description: 'Код результата: общий `CommonResult` либо `ProfileSelectThemeResult` для ошибок этой операции.'
+        example: 0
+  x-result-enum: '#/components/schemas/ProfileSelectThemeResult'
+ProfileSocialResponse:
+  allOf:
+  - $ref: ./common.yaml#/Response
+  - type: object
+    properties:
+      vkPage:
+        type: string
+        description: Ссылка или идентификатор страницы VK.
+      tgPage:
+        type: string
+        description: Ссылка или имя пользователя Telegram.
+      instPage:
+        type: string
+        description: Ссылка или имя профиля Instagram.
+      ttPage:
+        type: string
+        description: Ссылка или имя профиля TikTok.
+      discordPage:
+        type: string
+        description: Ссылка или имя пользователя Discord.
+SelectThemeRequest:
+  type: object
+  properties:
+    id:
+      type: integer
+      format: int64
+      description: Уникальный идентификатор.
+SocialEditResponse:
+  allOf:
+  - $ref: ./common.yaml#/Response
+  - type: object
+    properties:
+      code:
+        anyOf:
+        - $ref: ./result-codes.yaml#/CommonResult
+        - $ref: ./result-codes.yaml#/SocialEditResult
+        description: 'Код результата: общий `CommonResult` либо `SocialEditResult` для ошибок этой операции.'
+        example: 0
+  x-result-enum: '#/components/schemas/SocialEditResult'
+SocialPagesEditRequest:
+  type: object
+  properties:
+    discordPage:
+      type: string
+      description: Ссылка или имя пользователя Discord.
+    instPage:
+      type: string
+      description: Ссылка или имя профиля Instagram.
+    tgPage:
+      type: string
+      description: Ссылка или имя пользователя Telegram.
+    ttPage:
+      type: string
+      description: Ссылка или имя профиля TikTok.
+    vkPage:
+      type: string
+      description: Ссылка или идентификатор страницы VK.
+TelegramBindResponse:
+  allOf:
+  - $ref: ./common.yaml#/Response
+  - type: object
+    properties:
+      code:
+        anyOf:
+        - $ref: ./result-codes.yaml#/CommonResult
+        - $ref: ./result-codes.yaml#/TelegramBindResult
+        description: 'Код результата: общий `CommonResult` либо `TelegramBindResult` для ошибок этой операции.'
+        example: 0
+  x-result-enum: '#/components/schemas/TelegramBindResult'
+TelegramResponse:
+  allOf:
+  - $ref: ./common.yaml#/Response
+  - type: object
+    properties:
+      codeTimestampExpires:
+        type: integer
+        format: int64
+        description: Временная метка «code timestamp expires» в формате API.
+      hash:
+        type: string
+        description: Серверный идентификатор текущего шага подтверждения; используется в следующем запросе.
+      profile:
+        $ref: ./profiles.yaml#/Profile
+        description: Связанный профиль пользователя.
+      profileToken:
+        $ref: ./auth.yaml#/ProfileToken
+        description: Сессионный токен профиля.
+      suggestedLogins:
+        type: array
+        items:
+          type: string
+        description: Свободные варианты логина, предложенные сервером.
+      code:
+        anyOf:
+        - $ref: ./result-codes.yaml#/CommonResult
+        - $ref: ./result-codes.yaml#/TelegramResult
+        description: 'Код результата: общий `CommonResult` либо `TelegramResult` для ошибок этой операции.'
+        example: 0
+  x-result-enum: '#/components/schemas/TelegramResult'
+TelegramUnbindResponse:
+  allOf:
+  - $ref: ./common.yaml#/Response
+  - type: object
+    properties:
+      code:
+        anyOf:
+        - $ref: ./result-codes.yaml#/CommonResult
+        - $ref: ./result-codes.yaml#/TelegramUnbindResult
+        description: 'Код результата: общий `CommonResult` либо `TelegramUnbindResult` для ошибок этой операции.'
+        example: 0
+  x-result-enum: '#/components/schemas/TelegramUnbindResult'
+Theme:
+  type: object
+  description: Оформление профиля и его декоративные параметры.
+  properties:
+    themeAnimationEnabled:
+      type: boolean
+      description: Анимации темы включены.
+    themeAnimationSpeed:
+      $ref: ./enums.yaml#/ThemedContainerLayout_AnimationSpeed
+      description: Скорость анимации элементов темы.
+    themeBackgroundAlpha:
+      type:
+      - number
+      - 'null'
+      format: float
+      description: Прозрачность фонового изображения темы.
+    themeBackgroundMode:
+      $ref: ./enums.yaml#/ThemedContainerLayout_BackgroundMode
+      description: Способ масштабирования или повторения фонового изображения.
+    themeBackgroundUrl:
+      type: string
+      description: URL фонового изображения темы.
+    themeGradientAngle:
+      $ref: ./enums.yaml#/ThemedContainerLayout_GradientAngle
+      description: Направление или тип фонового градиента.
+    themeGradientEndColor:
+      type: string
+      description: Конечный цвет градиента.
+    themeGradientStartColor:
+      type: string
+      description: Начальный цвет градиента.
+    themeIconAlpha:
+      type:
+      - number
+      - 'null'
+      format: float
+      description: Прозрачность декоративных иконок темы.
+    themeIconColor:
+      type: string
+      description: Цвет декоративных иконок темы.
+    themeIconDensity:
+      $ref: ./enums.yaml#/ThemedContainerLayout_IconDensity
+      description: Плотность декоративных иконок.
+    themeIconResName:
+      type: string
+      description: Имя встроенного Android-ресурса декоративной иконки.
+    themeIconSize:
+      $ref: ./enums.yaml#/ThemedContainerLayout_IconSize
+      description: Размер декоративных иконок.
+    themeIconUrl:
+      type: string
+      description: URL внешнего набора/изображения иконок темы.
+    id:
+      type: integer
+      format: int64
+      description: Уникальный идентификатор.
+    name:
+      type: string
+      description: Отображаемое название.
+    themeEnabled:
+      type: boolean
+      description: Тема доступна для выбора.
+  x-response-constants:
+  - name: AUTO_THEME
+    type: long
+    value: 1
+  - name: NO_THEME_ID
+    type: long
+    value: 2
+TogglesResponse:
+  allOf:
+  - $ref: ./common.yaml#/Response
+  - type: object
+    properties:
+      adBannerDelay:
+        type: integer
+        format: int64
+        description: Задержка показа баннерной рекламы.
+      adBannerSizeType:
+        type: integer
+        format: int64
+        description: Код размера рекламного баннера.
+      adInterstitialDelay:
+        type: integer
+        format: int64
+        description: Задержка между полноэкранными рекламными показами.
+      codecProfile:
+        type: string
+        description: Профиль видеокодека, рекомендуемый клиенту.
+      impMessageEnabled:
+        type: boolean
+        description: Показ важного системного сообщения включён.
+      inAppUpdates:
+        type: boolean
+        description: Встроенные обновления приложения включены.
+      inAppUpdatesFlexibleDelay:
+        type: integer
+        format: int64
+        description: Задержка для гибкого сценария встроенного обновления.
+      inAppUpdatesImmediate:
+        type: boolean
+        description: Для обновления используется немедленный сценарий установки.
+      kodikIframeAd:
+        type: boolean
+        description: В Kodik iframe разрешён рекламный блок.
+      lastGPVersionCode:
+        type: integer
+        format: int32
+        description: Код последней версии в Google Play.
+      lastVersionCode:
+        type: integer
+        format: int32
+        description: Код последней доступной версии.
+      minBlogCreateRatingScore:
+        type: integer
+        format: int32
+        description: Минимальный рейтинговый балл профиля для создания блога.
+      minGPVersionCode:
+        type: integer
+        format: int32
+        description: Минимальная поддерживаемая версия клиента из Google Play.
+      minVersionCode:
+        type: integer
+        format: int32
+        description: Минимальная версия клиента, которой разрешена работа с API.
+      overrideGPVersion:
+        type: boolean
+        description: Серверное значение версии имеет приоритет над версией Google Play.
+      sibnetRandUserAgent:
+        type: boolean
+        description: Для Sibnet клиент случайно выбирает User-Agent.
+      snowfall:
+        type: boolean
+        description: Сезонный эффект «снег» включён.
+      sponsorshipAvailable:
+        type: boolean
+        description: Раздел поддержки/спонсорства доступен.
+      sponsorshipPromotion:
+        type: boolean
+        description: Промо-блок спонсорства включён.
+      whatsNew:
+        type: string
+        description: Текст с изменениями последней версии.
+      downloadLink:
+        type: string
+        description: Ссылка для загрузки актуальной версии приложения.
+      gpWhatsNew:
+        type: string
+        description: Текст изменений версии из Google Play.
+      gpDownloadLink:
+        type: string
+        description: Ссылка на актуальную версию в Google Play.
+      impMessageText:
+        type: string
+        description: Текст важного сообщения, показываемого клиентом.
+      impMessageBackgroundColor:
+        type: string
+        description: Цвет фона важного сообщения.
+      impMessageTextColor:
+        type: string
+        description: Цвет текста важного сообщения.
+      impMessageLink:
+        type: string
+        description: Ссылка из важного сообщения.
+      adBannerBlockId:
+        type: string
+        description: Идентификатор связанного объекта «ad banner block».
+      adInterstitialBlockId:
+        type: string
+        description: Идентификатор связанного объекта «ad interstitial block».
+      kodikVideoLinksUrl:
+        type: string
+        description: Адрес сервиса/шаблона для получения ссылок Kodik.
+      sibnetUserAgent:
+        type: string
+        description: User-Agent для запросов к Sibnet.
+      torlookUrl:
+        type: string
+        description: Адрес TorLook, используемый клиентом.
+      baseUrl:
+        type: string
+        description: Базовый URL связанного сервиса.
+      iframeEmbedUrl:
+        type: string
+        description: Шаблон/адрес встраиваемого iframe-плеера.
+      kodikAdIframeUrl:
+        type: string
+        description: Адрес рекламного iframe Kodik.
+      editorUrl:
+        type: string
+        description: Адрес веб-редактора или сервиса редактора.
+      staticDomain:
+        type: string
+        description: Домен статических ресурсов.
+      sponsorshipText:
+        type: string
+        description: Текст блока поддержки/спонсорства.
+      pageNoConnectionUrl:
+        type: string
+        description: Страница, открываемая клиентом при отсутствии соединения.
+      searchBarIconUrl:
+        type: string
+        description: URL дополнительной иконки в строке поиска.
+      searchBarIconTint:
+        type: boolean
+        description: К дополнительной иконке поиска применяется цветовая тонировка.
+      searchBarIconAction:
+        type: string
+        description: Действие по нажатию на дополнительную иконку поиска.
+      searchBarIconValue:
+        type: string
+        description: Параметр действия дополнительной иконки поиска.
+      googleAuthAvailable:
+        type: boolean
+        description: Авторизация через Google доступна.
+      telegramAuthAvailable:
+        type: boolean
+        description: Авторизация через Telegram доступна.
+      vkAuthAvailable:
+        type: boolean
+        description: Авторизация через VK доступна.
+      yandexAuthAvailable:
+        type: boolean
+        description: Авторизация через Yandex доступна.
+      consentRequired:
+        type: boolean
+        description: Перед продолжением клиент должен получить согласие пользователя.
+  description: Feature flags и удалённая конфигурация мобильного клиента.
+VkBindResponse:
+  allOf:
+  - $ref: ./common.yaml#/Response
+  - type: object
+    properties:
+      code:
+        anyOf:
+        - $ref: ./result-codes.yaml#/CommonResult
+        - $ref: ./result-codes.yaml#/VkBindResult
+        description: 'Код результата: общий `CommonResult` либо `VkBindResult` для ошибок этой операции.'
+        example: 0
+  x-result-enum: '#/components/schemas/VkBindResult'
+VkResponse:
+  allOf:
+  - $ref: ./common.yaml#/Response
+  - type: object
+    properties:
+      codeTimestampExpires:
+        type: integer
+        format: int64
+        description: Временная метка «code timestamp expires» в формате API.
+      hash:
+        type: string
+        description: Серверный идентификатор текущего шага подтверждения; используется в следующем запросе.
+      profile:
+        $ref: ./profiles.yaml#/Profile
+        description: Связанный профиль пользователя.
+      profileToken:
+        $ref: ./auth.yaml#/ProfileToken
+        description: Сессионный токен профиля.
+      suggestedLogins:
+        type: array
+        items:
+          type: string
+        description: Свободные варианты логина, предложенные сервером.
+      code:
+        anyOf:
+        - $ref: ./result-codes.yaml#/CommonResult
+        - $ref: ./result-codes.yaml#/VkResult
+        description: 'Код результата: общий `CommonResult` либо `VkResult` для ошибок этой операции.'
+        example: 0
+  x-result-enum: '#/components/schemas/VkResult'
+VkUnbindResponse:
+  allOf:
+  - $ref: ./common.yaml#/Response
+  - type: object
+    properties:
+      code:
+        anyOf:
+        - $ref: ./result-codes.yaml#/CommonResult
+        - $ref: ./result-codes.yaml#/VkUnbindResult
+        description: 'Код результата: общий `CommonResult` либо `VkUnbindResult` для ошибок этой операции.'
+        example: 0
+  x-result-enum: '#/components/schemas/VkUnbindResult'
+YandexBindResponse:
+  allOf:
+  - $ref: ./common.yaml#/Response
+  - type: object
+    properties:
+      code:
+        anyOf:
+        - $ref: ./result-codes.yaml#/CommonResult
+        - $ref: ./result-codes.yaml#/YandexBindResult
+        description: 'Код результата: общий `CommonResult` либо `YandexBindResult` для ошибок этой операции.'
+        example: 0
+  x-result-enum: '#/components/schemas/YandexBindResult'
+YandexResponse:
+  allOf:
+  - $ref: ./common.yaml#/Response
+  - type: object
+    properties:
+      codeTimestampExpires:
+        type: integer
+        format: int64
+        description: Временная метка «code timestamp expires» в формате API.
+      email:
+        type: string
+        description: Адрес электронной почты.
+      hash:
+        type: string
+        description: Серверный идентификатор текущего шага подтверждения; используется в следующем запросе.
+      profile:
+        $ref: ./profiles.yaml#/Profile
+        description: Связанный профиль пользователя.
+      profileToken:
+        $ref: ./auth.yaml#/ProfileToken
+        description: Сессионный токен профиля.
+      suggestedLogins:
+        type: array
+        items:
+          type: string
+        description: Свободные варианты логина, предложенные сервером.
+      code:
+        anyOf:
+        - $ref: ./result-codes.yaml#/CommonResult
+        - $ref: ./result-codes.yaml#/YandexResult
+        description: 'Код результата: общий `CommonResult` либо `YandexResult` для ошибок этой операции.'
+        example: 0
+  x-result-enum: '#/components/schemas/YandexResult'
+YandexUnbindResponse:
+  allOf:
+  - $ref: ./common.yaml#/Response
+  - type: object
+    properties:
+      code:
+        anyOf:
+        - $ref: ./result-codes.yaml#/CommonResult
+        - $ref: ./result-codes.yaml#/YandexUnbindResult
+        description: 'Код результата: общий `CommonResult` либо `YandexUnbindResult` для ошибок этой операции.'
+        example: 0
+  x-result-enum: '#/components/schemas/YandexUnbindResult'

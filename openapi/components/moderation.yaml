@@ -1,0 +1,139 @@
+ProfileEnforcement:
+  type: object
+  description: Ограничение или модерационное действие в отношении профиля/контента.
+  properties:
+    appealExpiresTimestamp:
+      type:
+      - integer
+      - 'null'
+      format: int64
+      description: Время, до которого доступна апелляция, в формате API.
+    appealProcessMessage:
+      type: string
+      description: Комментарий по результату рассмотрения апелляции.
+    appealProcessTimestamp:
+      type:
+      - integer
+      - 'null'
+      format: int64
+      description: Время обработки апелляции в формате API.
+    appealStatus:
+      $ref: ./enums.yaml#/ProfileEnforcement_AppealStatus
+      description: Текущий статус апелляции.
+    appealSubmitTimestamp:
+      type:
+      - integer
+      - 'null'
+      format: int64
+      description: Время отправки апелляции в формате API.
+    appealType:
+      $ref: ./enums.yaml#/ProfileEnforcement_AppealType
+      description: Доступный тип апелляции.
+    creationTimestamp:
+      type: integer
+      format: int64
+      description: Время создания ограничения в формате API.
+    entityType:
+      $ref: ./enums.yaml#/ProfileEnforcement_EntityType
+      description: Тип объекта, к которому применено ограничение.
+    id:
+      type: integer
+      format: int64
+      description: Уникальный идентификатор.
+    isRevoked:
+      type: boolean
+      description: Ограничение отменено.
+    reason:
+      type: string
+      description: Причина действия или ограничения.
+    revocationTimestamp:
+      type:
+      - integer
+      - 'null'
+      format: int64
+      description: Время отмены ограничения в формате API.
+    targetEntityType:
+      $ref: ./enums.yaml#/ProfileEnforcement_TargetEntityType
+      description: Тип целевого объекта, связанного с ограничением.
+ProfileEnforcementAppealRequest:
+  type: object
+  properties:
+    message:
+      type: string
+      description: Текст апелляции пользователя.
+ProfileEnforcementAppealResponse:
+  allOf:
+  - $ref: ./common.yaml#/Response
+  - type: object
+    properties: {}
+ProfileEnforcementResponse:
+  allOf:
+  - $ref: ./common.yaml#/Response
+  - type: object
+    properties:
+      enforcement:
+        $ref: '#/ProfileEnforcement'
+        description: Информация о конкретном ограничении аккаунта/контента.
+ReleaseVideoAppealRequest:
+  type: object
+  properties:
+    categoryId:
+      type: integer
+      format: int64
+      description: Идентификатор категории.
+    releaseId:
+      type: integer
+      format: int64
+      description: Идентификатор релиза.
+    title:
+      type: string
+      description: Заголовок.
+    url:
+      type: string
+      description: URL ресурса.
+ReleaseVideoAppealResponse:
+  allOf:
+  - $ref: ./common.yaml#/Response
+  - type: object
+    properties:
+      code:
+        anyOf:
+        - $ref: ./result-codes.yaml#/CommonResult
+        - $ref: ./result-codes.yaml#/ReleaseVideoAppealResult
+        description: 'Код результата: общий `CommonResult` либо `ReleaseVideoAppealResult` для ошибок этой операции.'
+        example: 0
+  x-result-enum: '#/components/schemas/ReleaseVideoAppealResult'
+ReportReason:
+  type: object
+  properties:
+    id:
+      type: integer
+      format: int64
+      description: Уникальный идентификатор.
+    name:
+      type: string
+      description: Отображаемое название.
+ReportRequest:
+  type: object
+  properties:
+    entityId:
+      description: Идентификатор связанного объекта «entity».
+    message:
+      type: string
+      description: Дополнительное пояснение к жалобе.
+    reasonId:
+      type: integer
+      format: int64
+      description: Идентификатор связанного объекта «reason».
+ReportResponse:
+  allOf:
+  - $ref: ./common.yaml#/Response
+  - type: object
+    properties:
+      code:
+        anyOf:
+        - $ref: ./result-codes.yaml#/CommonResult
+        - $ref: ./result-codes.yaml#/ReportResult
+        description: 'Код результата: общий `CommonResult` либо `ReportResult` для ошибок этой операции.'
+        example: 0
+  x-result-enum: '#/components/schemas/ReportResult'

@@ -1,0 +1,165 @@
+CheckLoginResponse:
+  allOf:
+  - $ref: ./common.yaml#/Response
+  - type: object
+    properties:
+      available:
+        type: boolean
+        description: Запрошенное значение свободно и доступно.
+      suggestedLogins:
+        type: array
+        items:
+          type: string
+        description: Свободные варианты логина, предложенные сервером.
+      code:
+        anyOf:
+        - $ref: ./result-codes.yaml#/CommonResult
+        - $ref: ./result-codes.yaml#/CheckLoginResult
+        description: 'Код результата: общий `CommonResult` либо `CheckLoginResult` для ошибок этой операции.'
+        example: 0
+  x-result-enum: '#/components/schemas/CheckLoginResult'
+ProfileToken:
+  type: object
+  description: Сессионный токен, связанный с профилем.
+  properties:
+    id:
+      type: integer
+      format: int64
+      description: Уникальный идентификатор.
+    token:
+      type: string
+      description: Токен пользовательской сессии.
+ResendResponse:
+  allOf:
+  - $ref: ./common.yaml#/Response
+  - type: object
+    properties:
+      timestampExpires:
+        type: integer
+        format: int64
+        description: Временная метка «timestamp expires» в формате API.
+      code:
+        anyOf:
+        - $ref: ./result-codes.yaml#/CommonResult
+        - $ref: ./result-codes.yaml#/ResendResult
+        description: 'Код результата: общий `CommonResult` либо `ResendResult` для ошибок этой операции.'
+        example: 0
+  x-result-enum: '#/components/schemas/ResendResult'
+RestoreResendResponse:
+  allOf:
+  - $ref: ./common.yaml#/Response
+  - type: object
+    properties:
+      timestampExpires:
+        type: integer
+        format: int64
+        description: Временная метка «timestamp expires» в формате API.
+      code:
+        anyOf:
+        - $ref: ./result-codes.yaml#/CommonResult
+        - $ref: ./result-codes.yaml#/RestoreResendResult
+        description: 'Код результата: общий `CommonResult` либо `RestoreResendResult` для ошибок этой операции.'
+        example: 0
+  x-result-enum: '#/components/schemas/RestoreResendResult'
+RestoreResponse:
+  allOf:
+  - $ref: ./common.yaml#/Response
+  - type: object
+    properties:
+      codeTimestampExpires:
+        type: integer
+        format: int64
+        description: Временная метка «code timestamp expires» в формате API.
+      hash:
+        type: string
+        description: Серверный идентификатор текущего шага подтверждения; используется в следующем запросе.
+      code:
+        anyOf:
+        - $ref: ./result-codes.yaml#/CommonResult
+        - $ref: ./result-codes.yaml#/RestoreResult
+        description: 'Код результата: общий `CommonResult` либо `RestoreResult` для ошибок этой операции.'
+        example: 0
+  x-result-enum: '#/components/schemas/RestoreResult'
+RestoreVerifyResponse:
+  allOf:
+  - $ref: ./common.yaml#/Response
+  - type: object
+    properties:
+      profile:
+        $ref: ./profiles.yaml#/Profile
+        description: Связанный профиль пользователя.
+      profileToken:
+        $ref: '#/ProfileToken'
+        description: Сессионный токен профиля.
+      code:
+        anyOf:
+        - $ref: ./result-codes.yaml#/CommonResult
+        - $ref: ./result-codes.yaml#/RestoreVerifyResult
+        description: 'Код результата: общий `CommonResult` либо `RestoreVerifyResult` для ошибок этой операции.'
+        example: 0
+  x-result-enum: '#/components/schemas/RestoreVerifyResult'
+SignInResponse:
+  allOf:
+  - $ref: ./common.yaml#/Response
+  - type: object
+    properties:
+      profile:
+        $ref: ./profiles.yaml#/Profile
+        description: Связанный профиль пользователя.
+      profileToken:
+        $ref: '#/ProfileToken'
+        description: Сессионный токен профиля.
+      code:
+        anyOf:
+        - $ref: ./result-codes.yaml#/CommonResult
+        - $ref: ./result-codes.yaml#/SignInResult
+        description: 'Код результата: общий `CommonResult` либо `SignInResult` для ошибок этой операции.'
+        example: 0
+  x-result-enum: '#/components/schemas/SignInResult'
+SignUpResponse:
+  allOf:
+  - $ref: ./common.yaml#/Response
+  - type: object
+    properties:
+      codeTimestampExpires:
+        type: integer
+        format: int64
+        description: Временная метка «code timestamp expires» в формате API.
+      hash:
+        type: string
+        description: Серверный идентификатор текущего шага подтверждения; используется в следующем запросе.
+      suggestedLogins:
+        type: array
+        items:
+          type: string
+        description: Свободные варианты логина, предложенные сервером.
+      code:
+        anyOf:
+        - $ref: ./result-codes.yaml#/CommonResult
+        - $ref: ./result-codes.yaml#/SignUpResult
+        description: 'Код результата: общий `CommonResult` либо `SignUpResult` для ошибок этой операции.'
+        example: 0
+  x-result-enum: '#/components/schemas/SignUpResult'
+VerifyResponse:
+  allOf:
+  - $ref: ./common.yaml#/Response
+  - type: object
+    properties:
+      profile:
+        $ref: ./profiles.yaml#/Profile
+        description: Связанный профиль пользователя.
+      profileToken:
+        $ref: '#/ProfileToken'
+        description: Сессионный токен профиля.
+      suggestedLogins:
+        type: array
+        items:
+          type: string
+        description: Свободные варианты логина, предложенные сервером.
+      code:
+        anyOf:
+        - $ref: ./result-codes.yaml#/CommonResult
+        - $ref: ./result-codes.yaml#/VerifyResult
+        description: 'Код результата: общий `CommonResult` либо `VerifyResult` для ошибок этой операции.'
+        example: 0
+  x-result-enum: '#/components/schemas/VerifyResult'

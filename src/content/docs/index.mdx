@@ -1,0 +1,92 @@
+---
+title: Anixart API
+description: Неофициальная документация Anixart API актуальная под Anixart v10.0 (BUILD 26090418).
+template: splash
+hero:
+  title: Anixart API
+  tagline: Неофициальная документация API с гайдами, примерами запросов и полным API Reference.
+  actions:
+    - text: Быстрый старт
+      link: /guide/getting-started/
+      icon: right-arrow
+    - text: API Reference
+      link: /api/
+      icon: open-book
+      variant: minimal
+---
+
+import { CardGrid, LinkCard } from '@astrojs/starlight/components';
+
+<p class="project-credit">
+  by <strong>DesConnet</strong> · <a href="https://github.com/theDesConnet/AnixartApiDocs">GitHub</a>
+</p>
+
+## С чего начать
+
+<CardGrid>
+  <LinkCard
+    title="Быстрый старт"
+    href="/guide/getting-started/"
+    description="Base URL, формат запросов и первый вызов API."
+  />
+  <LinkCard
+    title="Авторизация"
+    href="/guide/authentication/"
+    description="Получение token и его использование в запросах."
+  />
+  <LinkCard
+    title="Коды результатов"
+    href="/guide/result-codes/"
+    description="Общие и endpoint-specific коды ответов."
+  />
+  <LinkCard
+    title="SDK и библиотеки"
+    href="/guide/sdk/"
+    description="AnixartJS и другие библиотеки для работы с API."
+  />
+</CardGrid>
+
+## Примеры использования
+
+<CardGrid>
+  <LinkCard
+    title="Поиск и получение релиза"
+    href="/recipes/find-release/"
+    description="Поиск релиза, получение ID и загрузка полной информации."
+  />
+  <LinkCard
+    title="Получение эпизода"
+    href="/recipes/watch-release/"
+    description="Озвучка, источник и получение URL эпизода."
+  />
+  <LinkCard
+    title="Списки профиля"
+    href="/recipes/profile-lists/"
+    description="Получение списков релизов из профиля пользователя."
+  />
+  <LinkCard
+    title="Статья и комментарии"
+    href="/recipes/article-thread/"
+    description="Работа со статьёй и веткой комментариев."
+  />
+  <LinkCard
+    title="Лента и рекомендации"
+    href="/recipes/home-screen/"
+    description="Discover, рекомендации и лента статей."
+  />
+  <LinkCard
+    title="API Reference"
+    href="/api/"
+    description="Все маршруты, параметры, модели и схемы ответов."
+  />
+</CardGrid>
+
+## API Reference
+
+Полная спецификация доступна в [API Reference](/api/). Там находятся все маршруты, параметры запросов, response DTO и коды результатов.
+
+Исходная OpenAPI 3.1 спецификация также доступна по адресу [`/openapi.yaml`](/openapi.yaml).
+
+:::note
+Документация неофициальная. Поведение API может меняться со временем.
+:::

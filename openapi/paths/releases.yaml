@@ -1,0 +1,393 @@
+/filter/{page}:
+  post:
+    tags:
+    - Релизы
+    operationId: Filter_filter
+    summary: Отфильтровать релизы
+    description: 'Отфильтровать релизы. Выдача постраничная; `page` начинается с `0`. Тело запроса: `FilterRequest` (`application/json`).
+      При заданном токене запрос выполняется в контексте текущего профиля.'
+    x-client-methods:
+    - FilterApi.filter
+    parameters:
+    - name: page
+      in: path
+      required: true
+      description: Номер страницы, начиная с `0`.
+      schema:
+        type: integer
+        format: int32
+        minimum: 0
+    - name: extended_mode
+      in: query
+      required: false
+      description: Включает расширенный режим ответа или фильтрации.
+      schema:
+        type:
+        - boolean
+        - 'null'
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/pagination.yaml#/PageOfRelease
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: ../components/releases.yaml#/FilterRequest
+    security:
+    - AnixartToken: []
+    - {}
+    x-original-tags:
+    - Фильтр релизов
+/related/{relatedId}/{page}:
+  get:
+    tags:
+    - Релизы
+    operationId: Related_related
+    summary: Получить связанные релизы
+    description: Получить связанные релизы. Выдача постраничная; `page` начинается с `0`. При заданном токене запрос выполняется
+      в контексте текущего профиля.
+    x-client-methods:
+    - RelatedApi.related
+    parameters:
+    - name: relatedId
+      in: path
+      required: true
+      description: Идентификатор связанного релиза.
+      schema:
+        type: integer
+        format: int64
+    - name: page
+      in: path
+      required: true
+      description: Номер страницы, начиная с `0`.
+      schema:
+        type: integer
+        format: int32
+        minimum: 0
+    - name: API-Version
+      in: header
+      required: false
+      description: Версия протокола API, которую ожидает клиент.
+      schema:
+        type: string
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/pagination.yaml#/PageOfRelease
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    security:
+    - AnixartToken: []
+    - {}
+    x-original-tags:
+    - Связанные релизы
+/release/collection/{id}/random:
+  get:
+    tags:
+    - Релизы
+    operationId: Release_randomCollection
+    summary: Получить случайный релиз из коллекции
+    description: Получить случайный релиз из коллекции. При заданном токене запрос выполняется в контексте текущего профиля.
+    x-client-methods:
+    - ReleaseApi.randomCollection
+    parameters:
+    - name: id
+      in: path
+      required: true
+      description: Идентификатор целевого объекта.
+      schema:
+        type: integer
+        format: int64
+    - name: extended_mode
+      in: query
+      required: false
+      description: Включает расширенный режим ответа или фильтрации.
+      schema:
+        type: boolean
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/releases.yaml#/ReleaseResponse
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    security:
+    - AnixartToken: []
+    - {}
+/release/random:
+  get:
+    tags:
+    - Релизы
+    operationId: Release_random
+    summary: Получить случайный релиз
+    description: Получить случайный релиз. При заданном токене запрос выполняется в контексте текущего профиля.
+    x-client-methods:
+    - ReleaseApi.random
+    parameters:
+    - name: extended_mode
+      in: query
+      required: false
+      description: Включает расширенный режим ответа или фильтрации.
+      schema:
+        type: boolean
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/releases.yaml#/ReleaseResponse
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    security:
+    - AnixartToken: []
+    - {}
+/release/random/favorite:
+  get:
+    tags:
+    - Релизы
+    operationId: Release_randomFavorite
+    summary: Получить случайный релиз из избранного
+    description: Получить случайный релиз из избранного. При заданном токене запрос выполняется в контексте текущего профиля.
+    x-client-methods:
+    - ReleaseApi.randomFavorite
+    parameters:
+    - name: extended_mode
+      in: query
+      required: false
+      description: Включает расширенный режим ответа или фильтрации.
+      schema:
+        type: boolean
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/releases.yaml#/ReleaseResponse
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    security:
+    - AnixartToken: []
+    - {}
+/release/random/profile/list/{p_id}/{status}:
+  get:
+    tags:
+    - Релизы
+    operationId: Release_randomProfileList
+    summary: Получить случайный релиз из списка профиля
+    description: Получить случайный релиз из списка профиля. При заданном токене запрос выполняется в контексте текущего профиля.
+    x-client-methods:
+    - ReleaseApi.randomProfileList
+    parameters:
+    - name: p_id
+      in: path
+      required: true
+      description: Идентификатор профиля.
+      schema:
+        type: integer
+        format: int64
+    - name: status
+      in: path
+      required: true
+      description: Код статуса или раздела списка.
+      schema:
+        type: integer
+        format: int32
+    - name: extended_mode
+      in: query
+      required: false
+      description: Включает расширенный режим ответа или фильтрации.
+      schema:
+        type: boolean
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/releases.yaml#/ReleaseResponse
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    security:
+    - AnixartToken: []
+    - {}
+/release/streaming/platform/{releaseId}:
+  get:
+    tags:
+    - Релизы
+    operationId: ReleaseStreamingPlatform_releaseStreamingPlatform
+    summary: Получить стриминговые платформы релиза
+    description: Получить стриминговые платформы релиза.
+    x-client-methods:
+    - ReleaseStreamingPlatformApi.releaseStreamingPlatform
+    parameters:
+    - name: releaseId
+      in: path
+      required: true
+      description: Идентификатор релиза.
+      schema:
+        type: integer
+        format: int64
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/pagination.yaml#/PageOfReleaseStreamingPlatform
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    x-original-tags:
+    - Стриминговые платформы
+/release/vote/add/{r_id}/{vote}:
+  get:
+    tags:
+    - Релизы
+    operationId: Release_vote
+    summary: Поставить оценку релизу
+    description: Поставить оценку релизу. При заданном токене запрос выполняется в контексте текущего профиля.
+    x-client-methods:
+    - ReleaseApi.vote
+    parameters:
+    - name: r_id
+      in: path
+      required: true
+      description: Идентификатор релиза.
+      schema:
+        type: integer
+        format: int64
+    - name: vote
+      in: path
+      required: true
+      description: Код голоса, который клиент передаёт для этого объекта.
+      schema:
+        type: integer
+        format: int32
+        minimum: 1
+        maximum: 5
+        enum:
+        - 1
+        - 2
+        - 3
+        - 4
+        - 5
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/releases.yaml#/VoteReleaseResponse
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    security:
+    - AnixartToken: []
+    - {}
+/release/vote/delete/{r_id}:
+  get:
+    tags:
+    - Релизы
+    operationId: Release_deleteVote
+    summary: Удалить оценку релиза
+    description: Удалить оценку релиза. При заданном токене запрос выполняется в контексте текущего профиля.
+    x-client-methods:
+    - ReleaseApi.deleteVote
+    parameters:
+    - name: r_id
+      in: path
+      required: true
+      description: Идентификатор релиза.
+      schema:
+        type: integer
+        format: int64
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/releases.yaml#/DeleteVoteReleaseResponse
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    security:
+    - AnixartToken: []
+    - {}
+/release/{r_id}:
+  get:
+    tags:
+    - Релизы
+    operationId: Release_release
+    summary: Получить релиз
+    description: Получить релиз. При заданном токене запрос выполняется в контексте текущего профиля.
+    x-client-methods:
+    - ReleaseApi.release
+    parameters:
+    - name: r_id
+      in: path
+      required: true
+      description: Идентификатор релиза.
+      schema:
+        type: integer
+        format: int64
+    - name: extended_mode
+      in: query
+      required: false
+      description: Включает расширенный режим ответа или фильтрации.
+      schema:
+        type: boolean
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/releases.yaml#/ReleaseResponse
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    security:
+    - AnixartToken: []
+    - {}
+/schedule:
+  get:
+    tags:
+    - Релизы
+    operationId: Schedule_schedule
+    summary: Получить расписание релизов
+    description: Получить расписание релизов.
+    x-client-methods:
+    - ScheduleApi.schedule
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/releases.yaml#/ScheduleResponse
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    x-original-tags:
+    - Расписание

@@ -1,0 +1,379 @@
+ListType:
+  type: string
+  enum:
+  - unordered
+  - ordered
+  x-enum-varnames:
+  - UNORDERED
+  - ORDERED
+  description: 'Тип списка в статье: маркированный или нумерованный.'
+QuoteAlignment:
+  type: string
+  enum:
+  - left
+  - center
+  x-enum-varnames:
+  - LEFT
+  - CENTER
+  description: Выравнивание блока цитаты.
+ProfileFriendNotification_Status:
+  type: integer
+  enum:
+  - 0
+  - 1
+  x-enum-varnames:
+  - REQUEST
+  - ACCEPT
+  description: 'Тип уведомления о дружбе: заявка или принятие.'
+ProfileStatusNotificationPreference_Status:
+  type: integer
+  enum:
+  - 0
+  - 1
+  - 2
+  - 3
+  - 4
+  - 5
+  x-enum-varnames:
+  - FAVORITE_STATUS
+  - STATUS_WATCHING
+  - STATUS_PLAN
+  - STATUS_COMPLETED
+  - STATUS_HOLD_ON
+  - STATUS_DROPPED
+  description: Статус списка/профиля, для которого настраиваются уведомления.
+ProfileEnforcement_AppealStatus:
+  type: string
+  enum:
+  - UNKNOWN
+  - NOT_SUBMITTED
+  - SUBMITTED
+  - ACCEPTED
+  - REJECTED
+  x-enum-varnames:
+  - UNKNOWN
+  - NOT_SUBMITTED
+  - SUBMITTED
+  - ACCEPTED
+  - REJECTED
+  description: Состояние апелляции по модерационному ограничению.
+ProfileEnforcement_AppealType:
+  type: string
+  enum:
+  - UNKNOWN
+  - NOT_AVAILABLE
+  - MESSAGE
+  - ADJUSTMENT
+  x-enum-varnames:
+  - UNKNOWN
+  - NOT_AVAILABLE
+  - MESSAGE
+  - ADJUSTMENT
+  description: Тип доступной апелляции.
+ProfileEnforcement_EntityType:
+  type: string
+  enum:
+  - UNKNOWN
+  - PROFILE
+  - COLLECTION
+  - CHANNEL
+  - ARTICLE
+  - ARTICLE_COMMENT
+  - RELEASE_COMMENT
+  - COLLECTION_COMMENT
+  x-enum-varnames:
+  - UNKNOWN
+  - PROFILE
+  - COLLECTION
+  - CHANNEL
+  - ARTICLE
+  - ARTICLE_COMMENT
+  - RELEASE_COMMENT
+  - COLLECTION_COMMENT
+  description: Тип объекта, к которому применено ограничение.
+ProfileEnforcement_TargetEntityType:
+  type: string
+  enum:
+  - UNKNOWN
+  - PROFILE
+  - CHANNEL
+  x-enum-varnames:
+  - UNKNOWN
+  - PROFILE
+  - CHANNEL
+  description: Тип целевого объекта ограничения.
+Profile_FriendStatus:
+  type: integer
+  enum:
+  - 0
+  - 1
+  - 2
+  x-enum-varnames:
+  - PENDING_FIRST_SECOND
+  - PENDING_SECOND_FIRST
+  - FRIEND
+  description: Состояние дружбы между двумя профилями.
+ArticleEventRequest_EntryPoint:
+  type: string
+  enum:
+  - unknown
+  - article
+  - channel
+  - feed
+  - latest
+  - search
+  x-enum-varnames:
+  - UNKNOWN
+  - ARTICLE
+  - CHANNEL
+  - FEED
+  - LATEST
+  - SEARCH
+  description: Раздел приложения, из которого было отправлено событие статьи.
+ArticleEventRequest_Type:
+  type: string
+  enum:
+  - view
+  - open
+  - read
+  x-enum-varnames:
+  - VIEW
+  - OPEN
+  - READ
+  description: Тип пользовательского события над статьёй.
+ArticleEditorView_ChannelSelectError:
+  type: string
+  enum:
+  - SUSPENDED
+  - TEMPORARILY_DISABLED
+  - ARTICLE_LIMIT_REACHED
+  - INVALID_CHANNEL
+  - CHANNEL_CREATOR_BANNED
+  - BLOG_NOT_CREATED
+  - UNKNOWN
+  x-enum-varnames:
+  - SUSPENDED
+  - TEMPORARILY_DISABLED
+  - ARTICLE_LIMIT_REACHED
+  - INVALID_CHANNEL
+  - CHANNEL_CREATOR_BANNED
+  - BLOG_NOT_CREATED
+  - UNKNOWN
+  description: Перечисление `ArticleEditorView.ChannelSelectError`.
+EpisodesPresenter_WidgetMenuState:
+  type: string
+  enum:
+  - NONE
+  - CAN_HIDE
+  - CAN_SHOW
+  - SHOW_GLOBAL
+  x-enum-varnames:
+  - NONE
+  - CAN_HIDE
+  - CAN_SHOW
+  - SHOW_GLOBAL
+  description: Перечисление `EpisodesPresenter.WidgetMenuState`.
+ProfileHealthUiController_EditAction:
+  type: string
+  enum:
+  - EDITED
+  - DELETED
+  - RESTORED
+  - SPOILER_ADDED
+  - SPOILER_REMOVED
+  x-enum-varnames:
+  - EDITED
+  - DELETED
+  - RESTORED
+  - SPOILER_ADDED
+  - SPOILER_REMOVED
+  description: Перечисление `ProfileHealthUiController.EditAction`.
+ChoosePlayerDialogFragment_AnixDownloadState:
+  type: string
+  enum:
+  - IDLE
+  - DOWNLOADING
+  - INSTALLING
+  x-enum-varnames:
+  - IDLE
+  - DOWNLOADING
+  - INSTALLING
+  description: Перечисление `ChoosePlayerDialogFragment.AnixDownloadState`.
+ArticleEditorState_MediaSelectionPhase:
+  type: string
+  enum:
+  - IDLE
+  - PICKING
+  - CROPPING
+  - COMPRESSING
+  x-enum-varnames:
+  - IDLE
+  - PICKING
+  - CROPPING
+  - COMPRESSING
+  description: Перечисление `ArticleEditorState.MediaSelectionPhase`.
+ArticlePreviewState_PreviewMode:
+  type: string
+  enum:
+  - ARTICLE
+  - ARTICLE_SUGGESTION
+  - ARTICLE_SUGGESTION_PUBLISH
+  x-enum-varnames:
+  - ARTICLE
+  - ARTICLE_SUGGESTION
+  - ARTICLE_SUGGESTION_PUBLISH
+  description: Перечисление `ArticlePreviewState.PreviewMode`.
+ChangeLoginPreferenceState_LoginCheckStatus:
+  type: string
+  enum:
+  - IDLE
+  - CHECKING
+  - AVAILABLE
+  - TAKEN
+  - TOO_SHORT
+  - TOO_LONG
+  - INVALID
+  x-enum-varnames:
+  - IDLE
+  - CHECKING
+  - AVAILABLE
+  - TAKEN
+  - TOO_SHORT
+  - TOO_LONG
+  - INVALID
+  description: Перечисление `ChangeLoginPreferenceState.LoginCheckStatus`.
+ProfileFriendsState_FriendStatusLogic:
+  type: string
+  enum:
+  - IS_NOT_FRIEND
+  - IS_FRIEND
+  - IN_FRIEND_REQUEST_SENT
+  - OUT_FRIEND_REQUEST_SENT
+  x-enum-varnames:
+  - IS_NOT_FRIEND
+  - IS_FRIEND
+  - IN_FRIEND_REQUEST_SENT
+  - OUT_FRIEND_REQUEST_SENT
+  description: Перечисление `ProfileFriendsState.FriendStatusLogic`.
+ProfileHealthState_ScreenState:
+  type: string
+  enum:
+  - INITIAL
+  - LOADING
+  - REFRESHING
+  - CONTENT
+  x-enum-varnames:
+  - INITIAL
+  - LOADING
+  - REFRESHING
+  - CONTENT
+  description: Перечисление `ProfileHealthState.ScreenState`.
+ProfileHealthState_Tab:
+  type: string
+  enum:
+  - ACCOUNT
+  - CONTENT
+  x-enum-varnames:
+  - ACCOUNT
+  - CONTENT
+  description: Перечисление `ProfileHealthState.Tab`.
+UpdateBannerView_Action:
+  type: string
+  enum:
+  - DOWNLOAD
+  - CANCEL
+  - INSTALL
+  x-enum-varnames:
+  - DOWNLOAD
+  - CANCEL
+  - INSTALL
+  description: Перечисление `UpdateBannerView.Action`.
+AppIcon:
+  type: string
+  enum:
+  - AppIconDefault
+  - AppIconClassic
+  - AppIconDream
+  - AppIconRime
+  x-enum-varnames:
+  - DEFAULT
+  - CLASSIC
+  - DREAM
+  - RIME
+  description: Перечисление `AppIcon`.
+ScreenSide:
+  type: string
+  enum:
+  - LEFT
+  - RIGHT
+  - CENTER
+  x-enum-varnames:
+  - LEFT
+  - RIGHT
+  - CENTER
+  description: Перечисление `ScreenSide`.
+ThemedContainerLayout_AnimationSpeed:
+  type: string
+  enum:
+  - LOW
+  - MEDIUM
+  - HIGH
+  - ULTRA
+  x-enum-varnames:
+  - LOW
+  - MEDIUM
+  - HIGH
+  - ULTRA
+  description: Скорость анимации темы.
+ThemedContainerLayout_BackgroundMode:
+  type: string
+  enum:
+  - CENTER_CROP
+  - FIT_XY
+  - TILE
+  x-enum-varnames:
+  - CENTER_CROP
+  - FIT_XY
+  - TILE
+  description: Режим отображения фонового изображения.
+ThemedContainerLayout_GradientAngle:
+  type: string
+  enum:
+  - LEFT_TO_RIGHT
+  - TOP_TO_BOTTOM
+  - BOTTOM_TO_TOP
+  - DIAGONAL_TL_BR
+  - DIAGONAL_TR_BL
+  - RADIAL_FROM_CENTER
+  x-enum-varnames:
+  - LEFT_TO_RIGHT
+  - TOP_TO_BOTTOM
+  - BOTTOM_TO_TOP
+  - DIAGONAL_TL_BR
+  - DIAGONAL_TR_BL
+  - RADIAL_FROM_CENTER
+  description: Направление или форма градиента.
+ThemedContainerLayout_IconDensity:
+  type: string
+  enum:
+  - LOW
+  - MEDIUM
+  - HIGH
+  x-enum-varnames:
+  - LOW
+  - MEDIUM
+  - HIGH
+  description: Плотность декоративных иконок.
+ThemedContainerLayout_IconSize:
+  type: string
+  enum:
+  - SMALL
+  - MEDIUM
+  - LARGE
+  - ULTRA
+  x-enum-varnames:
+  - SMALL
+  - MEDIUM
+  - LARGE
+  - ULTRA
+  description: Размер декоративных иконок.

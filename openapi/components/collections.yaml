@@ -1,0 +1,196 @@
+Collection:
+  type: object
+  description: Пользовательская коллекция релизов.
+  properties:
+    commentCount:
+      type: integer
+      format: int64
+      description: Количество комментариев.
+    creationDate:
+      type: integer
+      format: int64
+      description: Время создания объекта в формате API.
+    creator:
+      $ref: ./profiles.yaml#/Profile
+      description: Профиль автора коллекции.
+    delete:
+      type: boolean
+      description: Объект помечен как удалённый/подлежащий удалению.
+    favoriteCount:
+      type: integer
+      format: int32
+      description: Количество добавлений в избранное.
+    id:
+      type: integer
+      format: int64
+      description: Уникальный идентификатор.
+    isFavorite:
+      type: boolean
+      description: Объект находится в избранном текущего профиля.
+    isPrivate:
+      type: boolean
+      description: Коллекция доступна только в приватном режиме.
+    lastUpdateDate:
+      type: integer
+      format: int64
+      description: Время последнего обновления объекта в формате API.
+    title:
+      type: string
+      description: Заголовок.
+    description:
+      type: string
+      description: Текстовое описание.
+    image:
+      type: string
+      description: URL или идентификатор изображения.
+    releases:
+      type: array
+      items:
+        $ref: ./releases.yaml#/Release
+      description: Релизы в коллекции или ответе.
+CollectionCompact:
+  type: object
+  properties:
+    id:
+      type: integer
+      format: int64
+      description: Уникальный идентификатор.
+    image:
+      type: string
+      description: URL или идентификатор изображения.
+    title:
+      type: string
+      description: Заголовок.
+CollectionCreateEditRequest:
+  type: object
+  properties:
+    description:
+      type: string
+      description: Текстовое описание.
+    isPrivate:
+      type: boolean
+      description: Коллекция доступна только в приватном режиме.
+    releases:
+      type: array
+      items:
+        type:
+        - integer
+        - 'null'
+        format: int64
+      description: Релизы в коллекции или ответе.
+    title:
+      type: string
+      description: Заголовок.
+CollectionCreateEditResponse:
+  allOf:
+  - $ref: ./common.yaml#/Response
+  - type: object
+    properties:
+      collection:
+        $ref: '#/Collection'
+        description: Связанная коллекция.
+      code:
+        anyOf:
+        - $ref: ./result-codes.yaml#/CommonResult
+        - $ref: ./result-codes.yaml#/CollectionCreateEditResult
+        description: 'Код результата: общий `CommonResult` либо `CollectionCreateEditResult` для ошибок этой операции.'
+        example: 0
+  x-result-enum: '#/components/schemas/CollectionCreateEditResult'
+CollectionDeleteResponse:
+  allOf:
+  - $ref: ./common.yaml#/Response
+  - type: object
+    properties:
+      code:
+        anyOf:
+        - $ref: ./result-codes.yaml#/CommonResult
+        - $ref: ./result-codes.yaml#/CollectionDeleteResult
+        description: 'Код результата: общий `CommonResult` либо `CollectionDeleteResult` для ошибок этой операции.'
+        example: 0
+  x-result-enum: '#/components/schemas/CollectionDeleteResult'
+CollectionEditImageResponse:
+  allOf:
+  - $ref: ./common.yaml#/Response
+  - type: object
+    properties:
+      url:
+        type: string
+        description: URL ресурса.
+      code:
+        anyOf:
+        - $ref: ./result-codes.yaml#/CommonResult
+        - $ref: ./result-codes.yaml#/CollectionEditImageResult
+        description: 'Код результата: общий `CommonResult` либо `CollectionEditImageResult` для ошибок этой операции.'
+        example: 0
+  x-result-enum: '#/components/schemas/CollectionEditImageResult'
+CollectionResponse:
+  allOf:
+  - $ref: ./common.yaml#/Response
+  - type: object
+    properties:
+      collection:
+        $ref: '#/Collection'
+        description: Связанная коллекция.
+      completedCount:
+        type: integer
+        format: int64
+        description: Количество профилей со статусом «Просмотрено».
+      droppedCount:
+        type: integer
+        format: int64
+        description: Количество профилей со статусом «Брошено».
+      holdOnCount:
+        type: integer
+        format: int64
+        description: Количество профилей со статусом «Отложено».
+      planCount:
+        type: integer
+        format: int64
+        description: Количество профилей со статусом «В планах».
+      watchingCount:
+        type: integer
+        format: int64
+        description: Количество профилей со статусом «Смотрю».
+      code:
+        anyOf:
+        - $ref: ./result-codes.yaml#/CommonResult
+        - $ref: ./result-codes.yaml#/CollectionResult
+        description: 'Код результата: общий `CommonResult` либо `CollectionResult` для ошибок этой операции.'
+        example: 0
+  x-result-enum: '#/components/schemas/CollectionResult'
+FavoriteCollectionAddResponse:
+  allOf:
+  - $ref: ./common.yaml#/Response
+  - type: object
+    properties:
+      code:
+        anyOf:
+        - $ref: ./result-codes.yaml#/CommonResult
+        - $ref: ./result-codes.yaml#/FavoriteCollectionAddResult
+        description: 'Код результата: общий `CommonResult` либо `FavoriteCollectionAddResult` для ошибок этой операции.'
+        example: 0
+  x-result-enum: '#/components/schemas/FavoriteCollectionAddResult'
+FavoriteCollectionDeleteResponse:
+  allOf:
+  - $ref: ./common.yaml#/Response
+  - type: object
+    properties:
+      code:
+        anyOf:
+        - $ref: ./result-codes.yaml#/CommonResult
+        - $ref: ./result-codes.yaml#/FavoriteCollectionDeleteResult
+        description: 'Код результата: общий `CommonResult` либо `FavoriteCollectionDeleteResult` для ошибок этой операции.'
+        example: 0
+  x-result-enum: '#/components/schemas/FavoriteCollectionDeleteResult'
+ReleaseAddCollectionResponse:
+  allOf:
+  - $ref: ./common.yaml#/Response
+  - type: object
+    properties:
+      code:
+        anyOf:
+        - $ref: ./result-codes.yaml#/CommonResult
+        - $ref: ./result-codes.yaml#/ReleaseAddCollectionResult
+        description: 'Код результата: общий `CommonResult` либо `ReleaseAddCollectionResult` для ошибок этой операции.'
+        example: 0
+  x-result-enum: '#/components/schemas/ReleaseAddCollectionResult'

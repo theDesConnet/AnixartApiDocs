@@ -1,0 +1,311 @@
+Article:
+  type: object
+  description: Статья или публикация канала.
+  properties:
+    author:
+      $ref: ./profiles.yaml#/ProfileSlim
+      description: Автор статьи.
+    channel:
+      $ref: ./channels.yaml#/Channel
+      description: Канал или блог, в котором опубликована статья.
+    commentCount:
+      type: integer
+      format: int64
+      description: Количество комментариев.
+    containsRepostArticle:
+      type: boolean
+      description: Статья содержит вложенный репост другой статьи.
+    creationDate:
+      type: integer
+      format: int64
+      description: Время создания объекта в формате API.
+    hasDeleteEnforcement:
+      type: boolean
+      description: Для статьи есть модерационное решение об удалении.
+    id:
+      type: integer
+      format: int64
+      description: Уникальный идентификатор.
+    isDeleted:
+      type: boolean
+      description: Объект помечен удалённым.
+    isMuted:
+      type: boolean
+      description: Для объекта включён режим mute.
+    isPinned:
+      type: boolean
+      description: Объект закреплён.
+    isSigned:
+      type: boolean
+      description: Публикация отображается с подписью автора.
+    lastUpdateDate:
+      type: integer
+      format: int64
+      description: Время последнего обновления объекта в формате API.
+    payload:
+      $ref: '#/ArticlePayload'
+      description: Структурированное содержимое статьи.
+    popularComment:
+      $ref: ./comments.yaml#/PopularComment
+      description: Комментарий, который сервер выбрал для превью публикации.
+    repostArticle:
+      $ref: '#/Article'
+      description: Исходная статья, если публикация является репостом.
+    repostCount:
+      type: integer
+      format: int64
+      description: Количество репостов.
+    vote:
+      type: integer
+      format: int32
+      description: Голос текущего профиля за статью.
+    voteCount:
+      type: integer
+      format: int32
+      description: Количество голосов.
+ArticleBlock:
+  type: object
+  description: Блок содержимого статьи.
+  properties:
+    data:
+      $ref: '#/ArticleData'
+      description: Данные конкретного блока статьи; структура зависит от типа блока.
+    id:
+      type: string
+      description: Строковый идентификатор блока внутри статьи.
+    name:
+      type: string
+      description: Тип/название блока, используемое клиентом при отображении статьи.
+ArticleCompact:
+  type: object
+  properties:
+    channel:
+      $ref: ./channels.yaml#/ChannelCompact
+      description: Связанный канал.
+    creationDate:
+      type: integer
+      format: int64
+      description: Время создания объекта в формате API.
+    id:
+      type: integer
+      format: int64
+      description: Уникальный идентификатор.
+    lastUpdateDate:
+      type: integer
+      format: int64
+      description: Время последнего обновления объекта в формате API.
+    payload:
+      $ref: '#/ArticlePayload'
+      description: Структурированное содержимое статьи.
+ArticleCreateEditRequest:
+  type: object
+  properties:
+    isSigned:
+      type: boolean
+      description: Публикация отображается с подписью автора.
+    payload:
+      type: string
+      description: Структурированное содержимое статьи.
+    repostArticleId:
+      type:
+      - integer
+      - 'null'
+      format: int64
+      description: Идентификатор связанного объекта «repost article».
+ArticleCreateEditResponse:
+  allOf:
+  - $ref: ./common.yaml#/Response
+  - type: object
+    properties:
+      article:
+        $ref: '#/Article'
+        description: Связанная статья.
+      code:
+        anyOf:
+        - $ref: ./result-codes.yaml#/CommonResult
+        - $ref: ./result-codes.yaml#/ArticleCreateEditResult
+        description: 'Код результата: общий `CommonResult` либо `ArticleCreateEditResult` для ошибок этой операции.'
+        example: 0
+  x-result-enum: '#/components/schemas/ArticleCreateEditResult'
+ArticleData:
+  type: object
+  properties:
+    isExpandAvailable:
+      type: boolean
+      description: Элемент можно развернуть в интерфейсе.
+ArticleDeleteResponse:
+  allOf:
+  - $ref: ./common.yaml#/Response
+  - type: object
+    properties:
+      code:
+        anyOf:
+        - $ref: ./result-codes.yaml#/CommonResult
+        - $ref: ./result-codes.yaml#/ArticleDeleteResult
+        description: 'Код результата: общий `CommonResult` либо `ArticleDeleteResult` для ошибок этой операции.'
+        example: 0
+  x-result-enum: '#/components/schemas/ArticleDeleteResult'
+ArticleEditPinnedResponse:
+  allOf:
+  - $ref: ./common.yaml#/Response
+  - type: object
+    properties:
+      code:
+        anyOf:
+        - $ref: ./result-codes.yaml#/CommonResult
+        - $ref: ./result-codes.yaml#/ArticleEditPinnedResult
+        description: 'Код результата: общий `CommonResult` либо `ArticleEditPinnedResult` для ошибок этой операции.'
+        example: 0
+  x-result-enum: '#/components/schemas/ArticleEditPinnedResult'
+ArticleEventRequest:
+  type: object
+  properties:
+    articles:
+      type: array
+      items:
+        type:
+        - integer
+        - 'null'
+        format: int64
+      description: Статьи в результате запроса.
+    entry_point:
+      $ref: ./enums.yaml#/ArticleEventRequest_EntryPoint
+      description: Раздел приложения, из которого произошло событие.
+    type:
+      $ref: ./enums.yaml#/ArticleEventRequest_Type
+      description: 'Тип события над статьёй: просмотр, открытие или прочтение.'
+ArticleMuteResponse:
+  allOf:
+  - $ref: ./common.yaml#/Response
+  - type: object
+    properties:
+      code:
+        anyOf:
+        - $ref: ./result-codes.yaml#/CommonResult
+        - $ref: ./result-codes.yaml#/ArticleMuteResult
+        description: 'Код результата: общий `CommonResult` либо `ArticleMuteResult` для ошибок этой операции.'
+        example: 0
+  x-result-enum: '#/components/schemas/ArticleMuteResult'
+ArticlePayload:
+  type: object
+  description: Структурированное содержимое статьи.
+  properties:
+    blockCount:
+      type: integer
+      format: int32
+      description: Количество элементов категории «block».
+    blocks:
+      type: array
+      items:
+        $ref: '#/ArticleBlock'
+        x-generic-arguments:
+        - '?'
+      description: Блоки, из которых состоит статья.
+    isCollapseAvailable:
+      type: boolean
+      description: Элемент можно свернуть в интерфейсе.
+    isExpandAvailable:
+      type: boolean
+      description: Элемент можно развернуть в интерфейсе.
+    time:
+      type: integer
+      format: int64
+      description: Временная метка/служебное время содержимого статьи в формате API.
+    version:
+      type: string
+      description: Версия формата содержимого статьи.
+ArticleResponse:
+  allOf:
+  - $ref: ./common.yaml#/Response
+  - type: object
+    properties:
+      article:
+        $ref: '#/Article'
+        description: Связанная статья.
+      code:
+        anyOf:
+        - $ref: ./result-codes.yaml#/CommonResult
+        - $ref: ./result-codes.yaml#/ArticleResult
+        description: 'Код результата: общий `CommonResult` либо `ArticleResult` для ошибок этой операции.'
+        example: 0
+  x-result-enum: '#/components/schemas/ArticleResult'
+ArticleSuggestionCreateEditRequest:
+  type: object
+  properties:
+    payload:
+      type: string
+      description: Структурированное содержимое статьи.
+ArticleSuggestionDeleteResponse:
+  allOf:
+  - $ref: ./common.yaml#/Response
+  - type: object
+    properties:
+      code:
+        anyOf:
+        - $ref: ./result-codes.yaml#/CommonResult
+        - $ref: ./result-codes.yaml#/ArticleSuggestionDeleteResult
+        description: 'Код результата: общий `CommonResult` либо `ArticleSuggestionDeleteResult` для ошибок этой операции.'
+        example: 0
+  x-result-enum: '#/components/schemas/ArticleSuggestionDeleteResult'
+ArticleSuggestionsFilterRequest:
+  type: object
+  properties:
+    channelId:
+      type: integer
+      format: int64
+      description: Идентификатор канала.
+ArticlesSearchRequest:
+  type: object
+  properties:
+    channelId:
+      type: integer
+      format: int64
+      description: Идентификатор канала.
+    query:
+      type: string
+      description: Поисковая строка.
+EditorAvailableResponse:
+  allOf:
+  - $ref: ./common.yaml#/Response
+  - type: object
+    properties:
+      mediaUploadToken:
+        type: string
+        description: Временный токен для загрузки медиа из редактора.
+      code:
+        anyOf:
+        - $ref: ./result-codes.yaml#/CommonResult
+        - $ref: ./result-codes.yaml#/EditorAvailableResult
+        description: 'Код результата: общий `CommonResult` либо `EditorAvailableResult` для ошибок этой операции.'
+        example: 0
+  x-result-enum: '#/components/schemas/EditorAvailableResult'
+EditorChannel:
+  type: object
+  properties:
+    avatar:
+      type: string
+      description: URL или идентификатор изображения профиля.
+    id:
+      type: integer
+      format: int64
+      description: Уникальный идентификатор.
+    isBlog:
+      type: boolean
+      description: Канал является персональным блогом.
+    subscriberCount:
+      type: integer
+      format: int32
+      description: Количество подписчиков.
+    title:
+      type: string
+      description: Заголовок.
+EditorChannelsResponse:
+  allOf:
+  - $ref: ./common.yaml#/Response
+  - type: object
+    properties:
+      channels:
+        type: array
+        items:
+          $ref: '#/EditorChannel'
+        description: Каналы в результате запроса.

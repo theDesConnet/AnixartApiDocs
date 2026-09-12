@@ -1,0 +1,42 @@
+BlockProfileListAddResponse:
+  allOf:
+  - $ref: ./common.yaml#/Response
+  - type: object
+    properties:
+      code:
+        anyOf:
+        - $ref: ./result-codes.yaml#/CommonResult
+        - $ref: ./result-codes.yaml#/BlockListAddResult
+        description: 'Код результата: общий `CommonResult` либо `BlockListAddResult` для ошибок этой операции.'
+        example: 0
+  x-result-enum: '#/components/schemas/BlockListAddResult'
+RemoveFriendRequestResponse:
+  allOf:
+  - $ref: ./common.yaml#/Response
+  - type: object
+    properties:
+      friendStatus:
+        $ref: ./enums.yaml#/Profile_FriendStatus
+        description: Текущее состояние дружбы или заявки между профилями.
+      code:
+        anyOf:
+        - $ref: ./result-codes.yaml#/CommonResult
+        - $ref: ./result-codes.yaml#/RemoveFriendRequestResult
+        description: 'Код результата: общий `CommonResult` либо `RemoveFriendRequestResult` для ошибок этой операции.'
+        example: 0
+  x-result-enum: '#/components/schemas/RemoveFriendRequestResult'
+SendFriendRequestResponse:
+  allOf:
+  - $ref: ./common.yaml#/Response
+  - type: object
+    properties:
+      friendStatus:
+        $ref: ./enums.yaml#/Profile_FriendStatus
+        description: Текущее состояние дружбы или заявки между профилями.
+      code:
+        anyOf:
+        - $ref: ./result-codes.yaml#/CommonResult
+        - $ref: ./result-codes.yaml#/SendFriendRequestResult
+        description: 'Код результата: общий `CommonResult` либо `SendFriendRequestResult` для ошибок этой операции.'
+        example: 0
+  x-result-enum: '#/components/schemas/SendFriendRequestResult'

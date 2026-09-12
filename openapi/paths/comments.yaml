@@ -1,0 +1,1323 @@
+/article/comment/add/{articleId}:
+  post:
+    tags:
+    - Комментарии
+    operationId: ArticleComment_add
+    summary: Добавить комментарий к статье
+    description: 'Добавить комментарий к статье. Тело запроса: `CommentAddRequest` (`application/json`). При заданном токене
+      запрос выполняется в контексте текущего профиля.'
+    x-requires-anixart-user-agent: true
+    x-client-methods:
+    - ArticleCommentApi.add
+    parameters:
+    - name: articleId
+      in: path
+      required: true
+      description: Идентификатор статьи.
+      schema:
+        type: integer
+        format: int64
+    - name: User-Agent
+      in: header
+      required: true
+      description: Для этой операции нужен `User-Agent` мобильного клиента Anixart. Обычный User-Agent браузера, curl или
+        HTTP-библиотеки может быть отклонён сервером.
+      schema:
+        type: string
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/comments.yaml#/ArticleCommentAddResponse
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: ../components/comments.yaml#/CommentAddRequest
+    security:
+    - AnixartToken: []
+    - {}
+    x-original-tags:
+    - Комментарии к статьям
+/article/comment/all/profile/{p_id}/{page}:
+  get:
+    tags:
+    - Комментарии
+    operationId: ArticleComment_profileComments
+    summary: Получить комментарии профиля к статьям
+    description: Получить комментарии профиля к статьям. Выдача постраничная; `page` начинается с `0`. При заданном токене
+      запрос выполняется в контексте текущего профиля.
+    x-client-methods:
+    - ArticleCommentApi.profileComments
+    parameters:
+    - name: p_id
+      in: path
+      required: true
+      description: Идентификатор профиля.
+      schema:
+        type: integer
+        format: int64
+    - name: page
+      in: path
+      required: true
+      description: Номер страницы, начиная с `0`.
+      schema:
+        type: integer
+        format: int32
+        minimum: 0
+    - name: sort
+      in: query
+      required: false
+      description: Код или направление сортировки.
+      schema:
+        type: integer
+        format: int32
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/pagination.yaml#/PageOfArticleComment
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    security:
+    - AnixartToken: []
+    - {}
+    x-original-tags:
+    - Комментарии к статьям
+/article/comment/all/{a_id}/popular:
+  get:
+    tags:
+    - Комментарии
+    operationId: ArticleComment_commentsPopular
+    summary: Получить популярные комментарии статьи
+    description: Получить популярные комментарии статьи. При заданном токене запрос выполняется в контексте текущего профиля.
+    x-client-methods:
+    - ArticleCommentApi.commentsPopular
+    parameters:
+    - name: a_id
+      in: path
+      required: true
+      description: Идентификатор статьи.
+      schema:
+        type: integer
+        format: int64
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/pagination.yaml#/PageOfArticleComment
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    security:
+    - AnixartToken: []
+    - {}
+    x-original-tags:
+    - Комментарии к статьям
+/article/comment/all/{a_id}/{page}:
+  get:
+    tags:
+    - Комментарии
+    operationId: ArticleComment_comments
+    summary: Получить комментарии статьи
+    description: Получить комментарии статьи. Выдача постраничная; `page` начинается с `0`. При заданном токене запрос выполняется
+      в контексте текущего профиля.
+    x-client-methods:
+    - ArticleCommentApi.comments
+    parameters:
+    - name: a_id
+      in: path
+      required: true
+      description: Идентификатор статьи.
+      schema:
+        type: integer
+        format: int64
+    - name: page
+      in: path
+      required: true
+      description: Номер страницы, начиная с `0`.
+      schema:
+        type: integer
+        format: int32
+        minimum: 0
+    - name: sort
+      in: query
+      required: false
+      description: Код или направление сортировки.
+      schema:
+        type: integer
+        format: int32
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/pagination.yaml#/PageOfArticleComment
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    security:
+    - AnixartToken: []
+    - {}
+    x-original-tags:
+    - Комментарии к статьям
+/article/comment/delete/{commentId}:
+  get:
+    tags:
+    - Комментарии
+    operationId: ArticleComment_delete
+    summary: Удалить комментарий к статье
+    description: Удалить комментарий к статье. При заданном токене запрос выполняется в контексте текущего профиля.
+    x-client-methods:
+    - ArticleCommentApi.delete
+    parameters:
+    - name: commentId
+      in: path
+      required: true
+      description: Идентификатор комментария.
+      schema:
+        type: integer
+        format: int64
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/comments.yaml#/CommentDeleteResponse
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    security:
+    - AnixartToken: []
+    - {}
+    x-original-tags:
+    - Комментарии к статьям
+/article/comment/edit/{commentId}:
+  post:
+    tags:
+    - Комментарии
+    operationId: ArticleComment_edit
+    summary: Изменить комментарий к статье
+    description: 'Изменить комментарий к статье. Тело запроса: `CommentEditRequest` (`application/json`). При заданном токене
+      запрос выполняется в контексте текущего профиля.'
+    x-client-methods:
+    - ArticleCommentApi.edit
+    parameters:
+    - name: commentId
+      in: path
+      required: true
+      description: Идентификатор комментария.
+      schema:
+        type: integer
+        format: int64
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/comments.yaml#/CommentEditResponse
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: ../components/comments.yaml#/CommentEditRequest
+    security:
+    - AnixartToken: []
+    - {}
+    x-original-tags:
+    - Комментарии к статьям
+/article/comment/process/{commentId}:
+  post:
+    tags:
+    - Комментарии
+    operationId: ArticleComment_process
+    summary: Изменить модерационный статус комментария к статье
+    description: 'Изменить модерационный статус комментария к статье. Тело запроса: `CommentProcessRequest` (`application/json`). При
+      заданном токене запрос выполняется в контексте текущего профиля.'
+    x-client-methods:
+    - ArticleCommentApi.process
+    parameters:
+    - name: commentId
+      in: path
+      required: true
+      description: Идентификатор комментария.
+      schema:
+        type: integer
+        format: int64
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/common.yaml#/CommonResponse
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: ../components/comments.yaml#/CommentProcessRequest
+    security:
+    - AnixartToken: []
+    - {}
+    x-original-tags:
+    - Комментарии к статьям
+/article/comment/replies/{commentId}/{page}:
+  post:
+    tags:
+    - Комментарии
+    operationId: ArticleComment_replies
+    summary: Получить ответы на комментарий к статье
+    description: Получить ответы на комментарий к статье. Выдача постраничная; `page` начинается с `0`. При заданном токене запрос
+      выполняется в контексте текущего профиля.
+    x-client-methods:
+    - ArticleCommentApi.replies
+    parameters:
+    - name: commentId
+      in: path
+      required: true
+      description: Идентификатор комментария.
+      schema:
+        type: integer
+        format: int64
+    - name: page
+      in: path
+      required: true
+      description: Номер страницы, начиная с `0`.
+      schema:
+        type: integer
+        format: int32
+        minimum: 0
+    - name: sort
+      in: query
+      required: false
+      description: Код или направление сортировки.
+      schema:
+        type: integer
+        format: int32
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/pagination.yaml#/PageOfArticleComment
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    security:
+    - AnixartToken: []
+    - {}
+    x-original-tags:
+    - Комментарии к статьям
+/article/comment/vote/{commentId}/{vote}:
+  get:
+    tags:
+    - Комментарии
+    operationId: ArticleComment_vote
+    summary: Проголосовать за комментарий к статье
+    description: Проголосовать за комментарий к статье. При заданном токене запрос выполняется в контексте текущего профиля.
+    x-requires-anixart-user-agent: true
+    x-client-methods:
+    - ArticleCommentApi.vote
+    parameters:
+    - name: commentId
+      in: path
+      required: true
+      description: Идентификатор комментария.
+      schema:
+        type: integer
+        format: int64
+    - name: vote
+      in: path
+      required: true
+      description: Код реакции/голоса, передаваемый мобильным клиентом. Набор допустимых значений для этого типа объекта в
+        APK отдельным enum не объявлен.
+      schema:
+        type: integer
+        format: int32
+    - name: User-Agent
+      in: header
+      required: true
+      description: Для этой операции нужен `User-Agent` мобильного клиента Anixart. Обычный User-Agent браузера, curl или
+        HTTP-библиотеки может быть отклонён сервером.
+      schema:
+        type: string
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/common.yaml#/CommonResponse
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    security:
+    - AnixartToken: []
+    - {}
+    x-original-tags:
+    - Комментарии к статьям
+/article/comment/votes/{commentId}/{page}:
+  post:
+    tags:
+    - Комментарии
+    operationId: ArticleComment_votes
+    summary: Получить голоса за комментарий к статье
+    description: Получить голоса за комментарий к статье. Выдача постраничная; `page` начинается с `0`. При заданном токене запрос
+      выполняется в контексте текущего профиля.
+    x-client-methods:
+    - ArticleCommentApi.votes
+    parameters:
+    - name: commentId
+      in: path
+      required: true
+      description: Идентификатор комментария.
+      schema:
+        type: integer
+        format: int64
+    - name: page
+      in: path
+      required: true
+      description: Номер страницы, начиная с `0`.
+      schema:
+        type: integer
+        format: int32
+        minimum: 0
+    - name: sort
+      in: query
+      required: false
+      description: Код или направление сортировки.
+      schema:
+        type: integer
+        format: int32
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/pagination.yaml#/PageOfProfile
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    security:
+    - AnixartToken: []
+    - {}
+    x-original-tags:
+    - Комментарии к статьям
+/article/comment/{articleId}:
+  get:
+    tags:
+    - Комментарии
+    operationId: ArticleComment_comment
+    summary: Получить комментарий к статье
+    description: Получить комментарий к статье. При заданном токене запрос выполняется в контексте текущего профиля.
+    x-client-methods:
+    - ArticleCommentApi.comment
+    parameters:
+    - name: articleId
+      in: path
+      required: true
+      description: Идентификатор статьи.
+      schema:
+        type: integer
+        format: int64
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/comments.yaml#/ArticleComment
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    security:
+    - AnixartToken: []
+    - {}
+    x-original-tags:
+    - Комментарии к статьям
+/collection/comment/add/{collectionId}:
+  post:
+    tags:
+    - Комментарии
+    operationId: CollectionComment_add
+    summary: Добавить комментарий к коллекции
+    description: 'Добавить комментарий к коллекции. Тело запроса: `CommentAddRequest` (`application/json`). При заданном токене запрос
+      выполняется в контексте текущего профиля.'
+    x-requires-anixart-user-agent: true
+    x-client-methods:
+    - CollectionCommentApi.add
+    parameters:
+    - name: collectionId
+      in: path
+      required: true
+      description: Идентификатор коллекции.
+      schema:
+        type: integer
+        format: int64
+    - name: User-Agent
+      in: header
+      required: true
+      description: Для этой операции нужен `User-Agent` мобильного клиента Anixart. Обычный User-Agent браузера, curl или
+        HTTP-библиотеки может быть отклонён сервером.
+      schema:
+        type: string
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/comments.yaml#/CollectionCommentAddResponse
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: ../components/comments.yaml#/CommentAddRequest
+    security:
+    - AnixartToken: []
+    - {}
+    x-original-tags:
+    - Комментарии к коллекциям
+/collection/comment/all/profile/{p_id}/{page}:
+  get:
+    tags:
+    - Комментарии
+    operationId: CollectionComment_profileComments
+    summary: Получить комментарии профиля к коллекциям
+    description: Получить комментарии профиля к коллекциям. Выдача постраничная; `page` начинается с `0`. При заданном токене
+      запрос выполняется в контексте текущего профиля.
+    x-client-methods:
+    - CollectionCommentApi.profileComments
+    parameters:
+    - name: p_id
+      in: path
+      required: true
+      description: Идентификатор профиля.
+      schema:
+        type: integer
+        format: int64
+    - name: page
+      in: path
+      required: true
+      description: Номер страницы, начиная с `0`.
+      schema:
+        type: integer
+        format: int32
+        minimum: 0
+    - name: sort
+      in: query
+      required: false
+      description: Код или направление сортировки.
+      schema:
+        type: integer
+        format: int32
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/pagination.yaml#/PageOfCollectionComment
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    security:
+    - AnixartToken: []
+    - {}
+    x-original-tags:
+    - Комментарии к коллекциям
+/collection/comment/all/{collectionId}/{page}:
+  get:
+    tags:
+    - Комментарии
+    operationId: CollectionComment_comments
+    summary: Получить комментарии коллекции
+    description: Получить комментарии коллекции. Выдача постраничная; `page` начинается с `0`. При заданном токене запрос
+      выполняется в контексте текущего профиля.
+    x-client-methods:
+    - CollectionCommentApi.comments
+    parameters:
+    - name: collectionId
+      in: path
+      required: true
+      description: Идентификатор коллекции.
+      schema:
+        type: integer
+        format: int64
+    - name: page
+      in: path
+      required: true
+      description: Номер страницы, начиная с `0`.
+      schema:
+        type: integer
+        format: int32
+        minimum: 0
+    - name: sort
+      in: query
+      required: false
+      description: Код или направление сортировки.
+      schema:
+        type: integer
+        format: int32
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/pagination.yaml#/PageOfCollectionComment
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    security:
+    - AnixartToken: []
+    - {}
+    x-original-tags:
+    - Комментарии к коллекциям
+/collection/comment/delete/{commentId}:
+  get:
+    tags:
+    - Комментарии
+    operationId: CollectionComment_delete
+    summary: Удалить комментарий к коллекции
+    description: Удалить комментарий к коллекции. При заданном токене запрос выполняется в контексте текущего профиля.
+    x-client-methods:
+    - CollectionCommentApi.delete
+    parameters:
+    - name: commentId
+      in: path
+      required: true
+      description: Идентификатор комментария.
+      schema:
+        type: integer
+        format: int64
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/comments.yaml#/CommentDeleteResponse
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    security:
+    - AnixartToken: []
+    - {}
+    x-original-tags:
+    - Комментарии к коллекциям
+/collection/comment/edit/{commentId}:
+  post:
+    tags:
+    - Комментарии
+    operationId: CollectionComment_edit
+    summary: Изменить комментарий к коллекции
+    description: 'Изменить комментарий к коллекции. Тело запроса: `CommentEditRequest` (`application/json`). При заданном
+      токене запрос выполняется в контексте текущего профиля.'
+    x-client-methods:
+    - CollectionCommentApi.edit
+    parameters:
+    - name: commentId
+      in: path
+      required: true
+      description: Идентификатор комментария.
+      schema:
+        type: integer
+        format: int64
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/comments.yaml#/CommentEditResponse
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: ../components/comments.yaml#/CommentEditRequest
+    security:
+    - AnixartToken: []
+    - {}
+    x-original-tags:
+    - Комментарии к коллекциям
+/collection/comment/process/{commentId}:
+  post:
+    tags:
+    - Комментарии
+    operationId: CollectionComment_process
+    summary: Изменить модерационный статус комментария к коллекции
+    description: 'Изменить модерационный статус комментария к коллекции. Тело запроса: `CommentProcessRequest` (`application/json`). При
+      заданном токене запрос выполняется в контексте текущего профиля.'
+    x-client-methods:
+    - CollectionCommentApi.process
+    parameters:
+    - name: commentId
+      in: path
+      required: true
+      description: Идентификатор комментария.
+      schema:
+        type: integer
+        format: int64
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/common.yaml#/CommonResponse
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: ../components/comments.yaml#/CommentProcessRequest
+    security:
+    - AnixartToken: []
+    - {}
+    x-original-tags:
+    - Комментарии к коллекциям
+/collection/comment/replies/{commentId}/{page}:
+  post:
+    tags:
+    - Комментарии
+    operationId: CollectionComment_replies
+    summary: Получить ответы на комментарий коллекции
+    description: Получить ответы на комментарий коллекции. Выдача постраничная; `page` начинается с `0`. При заданном токене
+      запрос выполняется в контексте текущего профиля.
+    x-client-methods:
+    - CollectionCommentApi.replies
+    parameters:
+    - name: commentId
+      in: path
+      required: true
+      description: Идентификатор комментария.
+      schema:
+        type: integer
+        format: int64
+    - name: page
+      in: path
+      required: true
+      description: Номер страницы, начиная с `0`.
+      schema:
+        type: integer
+        format: int32
+        minimum: 0
+    - name: sort
+      in: query
+      required: false
+      description: Код или направление сортировки.
+      schema:
+        type: integer
+        format: int32
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/pagination.yaml#/PageOfCollectionComment
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    security:
+    - AnixartToken: []
+    - {}
+    x-original-tags:
+    - Комментарии к коллекциям
+/collection/comment/vote/{commentId}/{vote}:
+  get:
+    tags:
+    - Комментарии
+    operationId: CollectionComment_vote
+    summary: Проголосовать за комментарий коллекции
+    description: Проголосовать за комментарий коллекции. При заданном токене запрос выполняется в контексте текущего профиля.
+    x-requires-anixart-user-agent: true
+    x-client-methods:
+    - CollectionCommentApi.vote
+    parameters:
+    - name: commentId
+      in: path
+      required: true
+      description: Идентификатор комментария.
+      schema:
+        type: integer
+        format: int64
+    - name: vote
+      in: path
+      required: true
+      description: Код реакции/голоса, передаваемый мобильным клиентом. Набор допустимых значений для этого типа объекта в
+        APK отдельным enum не объявлен.
+      schema:
+        type: integer
+        format: int32
+    - name: User-Agent
+      in: header
+      required: true
+      description: Для этой операции нужен `User-Agent` мобильного клиента Anixart. Обычный User-Agent браузера, curl или
+        HTTP-библиотеки может быть отклонён сервером.
+      schema:
+        type: string
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/common.yaml#/CommonResponse
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    security:
+    - AnixartToken: []
+    - {}
+    x-original-tags:
+    - Комментарии к коллекциям
+/collection/comment/votes/{commentId}/{page}:
+  get:
+    tags:
+    - Комментарии
+    operationId: CollectionComment_votes
+    summary: Получить голоса за комментарий коллекции
+    description: Получить голоса за комментарий коллекции. Выдача постраничная; `page` начинается с `0`. При заданном токене
+      запрос выполняется в контексте текущего профиля.
+    x-client-methods:
+    - CollectionCommentApi.votes
+    parameters:
+    - name: commentId
+      in: path
+      required: true
+      description: Идентификатор комментария.
+      schema:
+        type: integer
+        format: int64
+    - name: page
+      in: path
+      required: true
+      description: Номер страницы, начиная с `0`.
+      schema:
+        type: integer
+        format: int32
+        minimum: 0
+    - name: sort
+      in: query
+      required: false
+      description: Код или направление сортировки.
+      schema:
+        type:
+        - integer
+        - 'null'
+        format: int32
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/pagination.yaml#/PageOfProfile
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    security:
+    - AnixartToken: []
+    - {}
+    x-original-tags:
+    - Комментарии к коллекциям
+/collection/comment/{collectionId}:
+  get:
+    tags:
+    - Комментарии
+    operationId: CollectionComment_comment
+    summary: Получить комментарий коллекции
+    description: Получить комментарий коллекции. При заданном токене запрос выполняется в контексте текущего профиля.
+    x-client-methods:
+    - CollectionCommentApi.comment
+    parameters:
+    - name: collectionId
+      in: path
+      required: true
+      description: Идентификатор коллекции.
+      schema:
+        type: integer
+        format: int64
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/comments.yaml#/CollectionComment
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    security:
+    - AnixartToken: []
+    - {}
+    x-original-tags:
+    - Комментарии к коллекциям
+/release/comment/add/{releaseId}:
+  post:
+    tags:
+    - Комментарии
+    operationId: ReleaseComment_add
+    summary: Добавить комментарий к релизу
+    description: 'Добавить комментарий к релизу. Тело запроса: `CommentAddRequest` (`application/json`). При заданном токене
+      запрос выполняется в контексте текущего профиля.'
+    x-requires-anixart-user-agent: true
+    x-client-methods:
+    - ReleaseCommentApi.add
+    parameters:
+    - name: releaseId
+      in: path
+      required: true
+      description: Идентификатор релиза.
+      schema:
+        type: integer
+        format: int64
+    - name: User-Agent
+      in: header
+      required: true
+      description: Для этой операции нужен `User-Agent` мобильного клиента Anixart. Обычный User-Agent браузера, curl или
+        HTTP-библиотеки может быть отклонён сервером.
+      schema:
+        type: string
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/comments.yaml#/ReleaseCommentAddResponse
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: ../components/comments.yaml#/CommentAddRequest
+    security:
+    - AnixartToken: []
+    - {}
+    x-original-tags:
+    - Комментарии к релизам
+/release/comment/all/profile/{p_id}/{page}:
+  get:
+    tags:
+    - Комментарии
+    operationId: ReleaseComment_profileComments
+    summary: Получить комментарии профиля к релизам
+    description: Получить комментарии профиля к релизам. Выдача постраничная; `page` начинается с `0`. При заданном токене
+      запрос выполняется в контексте текущего профиля.
+    x-client-methods:
+    - ReleaseCommentApi.profileComments
+    parameters:
+    - name: p_id
+      in: path
+      required: true
+      description: Идентификатор профиля.
+      schema:
+        type: integer
+        format: int64
+    - name: page
+      in: path
+      required: true
+      description: Номер страницы, начиная с `0`.
+      schema:
+        type: integer
+        format: int32
+        minimum: 0
+    - name: sort
+      in: query
+      required: false
+      description: Код или направление сортировки.
+      schema:
+        type: integer
+        format: int32
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/pagination.yaml#/PageOfReleaseComment
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    security:
+    - AnixartToken: []
+    - {}
+    x-original-tags:
+    - Комментарии к релизам
+/release/comment/all/{releaseId}/{page}:
+  get:
+    tags:
+    - Комментарии
+    operationId: ReleaseComment_comments
+    summary: Получить комментарии релиза
+    description: Получить комментарии релиза. Выдача постраничная; `page` начинается с `0`. При заданном токене запрос выполняется
+      в контексте текущего профиля.
+    x-client-methods:
+    - ReleaseCommentApi.comments
+    parameters:
+    - name: releaseId
+      in: path
+      required: true
+      description: Идентификатор релиза.
+      schema:
+        type: integer
+        format: int64
+    - name: page
+      in: path
+      required: true
+      description: Номер страницы, начиная с `0`.
+      schema:
+        type: integer
+        format: int32
+        minimum: 0
+    - name: sort
+      in: query
+      required: false
+      description: Код или направление сортировки.
+      schema:
+        type: integer
+        format: int32
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/pagination.yaml#/PageOfReleaseComment
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    security:
+    - AnixartToken: []
+    - {}
+    x-original-tags:
+    - Комментарии к релизам
+/release/comment/delete/{commentId}:
+  get:
+    tags:
+    - Комментарии
+    operationId: ReleaseComment_delete
+    summary: Удалить комментарий к релизу
+    description: Удалить комментарий к релизу. При заданном токене запрос выполняется в контексте текущего профиля.
+    x-client-methods:
+    - ReleaseCommentApi.delete
+    parameters:
+    - name: commentId
+      in: path
+      required: true
+      description: Идентификатор комментария.
+      schema:
+        type: integer
+        format: int64
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/comments.yaml#/CommentDeleteResponse
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    security:
+    - AnixartToken: []
+    - {}
+    x-original-tags:
+    - Комментарии к релизам
+/release/comment/edit/{commentId}:
+  post:
+    tags:
+    - Комментарии
+    operationId: ReleaseComment_edit
+    summary: Изменить комментарий к релизу
+    description: 'Изменить комментарий к релизу. Тело запроса: `CommentEditRequest` (`application/json`). При заданном токене
+      запрос выполняется в контексте текущего профиля.'
+    x-client-methods:
+    - ReleaseCommentApi.edit
+    parameters:
+    - name: commentId
+      in: path
+      required: true
+      description: Идентификатор комментария.
+      schema:
+        type: integer
+        format: int64
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/comments.yaml#/CommentEditResponse
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: ../components/comments.yaml#/CommentEditRequest
+    security:
+    - AnixartToken: []
+    - {}
+    x-original-tags:
+    - Комментарии к релизам
+/release/comment/process/{commentId}:
+  post:
+    tags:
+    - Комментарии
+    operationId: ReleaseComment_process
+    summary: Изменить модерационный статус комментария к релизу
+    description: 'Изменить модерационный статус комментария к релизу. Тело запроса: `CommentProcessRequest` (`application/json`). При
+      заданном токене запрос выполняется в контексте текущего профиля.'
+    x-client-methods:
+    - ReleaseCommentApi.process
+    parameters:
+    - name: commentId
+      in: path
+      required: true
+      description: Идентификатор комментария.
+      schema:
+        type: integer
+        format: int64
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/common.yaml#/CommonResponse
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: ../components/comments.yaml#/CommentProcessRequest
+    security:
+    - AnixartToken: []
+    - {}
+    x-original-tags:
+    - Комментарии к релизам
+/release/comment/replies/{commentId}/{page}:
+  post:
+    tags:
+    - Комментарии
+    operationId: ReleaseComment_replies
+    summary: Получить ответы на комментарий к релизу
+    description: Получить ответы на комментарий к релизу. Выдача постраничная; `page` начинается с `0`. При заданном токене запрос
+      выполняется в контексте текущего профиля.
+    x-client-methods:
+    - ReleaseCommentApi.replies
+    parameters:
+    - name: commentId
+      in: path
+      required: true
+      description: Идентификатор комментария.
+      schema:
+        type: integer
+        format: int64
+    - name: page
+      in: path
+      required: true
+      description: Номер страницы, начиная с `0`.
+      schema:
+        type: integer
+        format: int32
+        minimum: 0
+    - name: sort
+      in: query
+      required: false
+      description: Код или направление сортировки.
+      schema:
+        type: integer
+        format: int32
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/pagination.yaml#/PageOfReleaseComment
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    security:
+    - AnixartToken: []
+    - {}
+    x-original-tags:
+    - Комментарии к релизам
+/release/comment/vote/{commentId}/{vote}:
+  get:
+    tags:
+    - Комментарии
+    operationId: ReleaseComment_vote
+    summary: Проголосовать за комментарий к релизу
+    description: Проголосовать за комментарий к релизу. При заданном токене запрос выполняется в контексте текущего профиля.
+    x-requires-anixart-user-agent: true
+    x-client-methods:
+    - ReleaseCommentApi.vote
+    parameters:
+    - name: commentId
+      in: path
+      required: true
+      description: Идентификатор комментария.
+      schema:
+        type: integer
+        format: int64
+    - name: vote
+      in: path
+      required: true
+      description: Код реакции/голоса, передаваемый мобильным клиентом. Набор допустимых значений для этого типа объекта в
+        APK отдельным enum не объявлен.
+      schema:
+        type: integer
+        format: int32
+    - name: User-Agent
+      in: header
+      required: true
+      description: Для этой операции нужен `User-Agent` мобильного клиента Anixart. Обычный User-Agent браузера, curl или
+        HTTP-библиотеки может быть отклонён сервером.
+      schema:
+        type: string
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/common.yaml#/CommonResponse
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    security:
+    - AnixartToken: []
+    - {}
+    x-original-tags:
+    - Комментарии к релизам
+/release/comment/votes/{commentId}/{page}:
+  get:
+    tags:
+    - Комментарии
+    operationId: ReleaseComment_votes
+    summary: Получить голоса за комментарий к релизу
+    description: Получить голоса за комментарий к релизу. Выдача постраничная; `page` начинается с `0`. При заданном токене запрос
+      выполняется в контексте текущего профиля.
+    x-client-methods:
+    - ReleaseCommentApi.votes
+    parameters:
+    - name: commentId
+      in: path
+      required: true
+      description: Идентификатор комментария.
+      schema:
+        type: integer
+        format: int64
+    - name: page
+      in: path
+      required: true
+      description: Номер страницы, начиная с `0`.
+      schema:
+        type: integer
+        format: int32
+        minimum: 0
+    - name: sort
+      in: query
+      required: false
+      description: Код или направление сортировки.
+      schema:
+        type:
+        - integer
+        - 'null'
+        format: int32
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/pagination.yaml#/PageOfProfile
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    security:
+    - AnixartToken: []
+    - {}
+    x-original-tags:
+    - Комментарии к релизам
+/release/comment/{releaseId}:
+  get:
+    tags:
+    - Комментарии
+    operationId: ReleaseComment_comment
+    summary: Получить комментарий к релизу
+    description: Получить комментарий к релизу. При заданном токене запрос выполняется в контексте текущего профиля.
+    x-client-methods:
+    - ReleaseCommentApi.comment
+    parameters:
+    - name: releaseId
+      in: path
+      required: true
+      description: Идентификатор релиза.
+      schema:
+        type: integer
+        format: int64
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/comments.yaml#/ReleaseComment
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    security:
+    - AnixartToken: []
+    - {}
+    x-original-tags:
+    - Комментарии к релизам

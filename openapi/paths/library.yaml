@@ -1,0 +1,539 @@
+/favorite/add/{r_id}:
+  get:
+    tags:
+    - Библиотека
+    operationId: Favorite_add
+    summary: Добавить релиз в избранное
+    description: Добавить релиз в избранное. При заданном токене запрос выполняется в контексте текущего профиля.
+    x-client-methods:
+    - FavoriteApi.add
+    parameters:
+    - name: r_id
+      in: path
+      required: true
+      description: Идентификатор релиза.
+      schema:
+        type: integer
+        format: int64
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/library.yaml#/FavoritesResponse
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    security:
+    - AnixartToken: []
+    - {}
+    x-original-tags:
+    - Избранное
+/favorite/all/{page}:
+  get:
+    tags:
+    - Библиотека
+    operationId: Favorite_favorites
+    summary: Получить избранные релизы
+    description: Получить избранные релизы. Выдача постраничная; `page` начинается с `0`. При заданном токене запрос выполняется
+      в контексте текущего профиля.
+    x-client-methods:
+    - FavoriteApi.favorites
+    parameters:
+    - name: page
+      in: path
+      required: true
+      description: Номер страницы, начиная с `0`.
+      schema:
+        type: integer
+        format: int32
+        minimum: 0
+    - name: sort
+      in: query
+      required: false
+      description: Код или направление сортировки.
+      schema:
+        type:
+        - integer
+        - 'null'
+        format: int32
+    - name: filter_announce
+      in: query
+      required: false
+      description: Числовой режим фильтрации анонсов в списке релизов.
+      schema:
+        type:
+        - integer
+        - 'null'
+        format: int32
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/pagination.yaml#/PageOfRelease
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    security:
+    - AnixartToken: []
+    - {}
+    x-original-tags:
+    - Избранное
+/favorite/delete/{r_id}:
+  get:
+    tags:
+    - Библиотека
+    operationId: Favorite_delete
+    summary: Удалить релиз из избранного
+    description: Удалить релиз из избранного. При заданном токене запрос выполняется в контексте текущего профиля.
+    x-client-methods:
+    - FavoriteApi.delete
+    parameters:
+    - name: r_id
+      in: path
+      required: true
+      description: Идентификатор релиза.
+      schema:
+        type: integer
+        format: int64
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/library.yaml#/FavoritesResponse
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    security:
+    - AnixartToken: []
+    - {}
+    x-original-tags:
+    - Избранное
+/history/add/{r_id}/{s_id}/{position}:
+  get:
+    tags:
+    - Библиотека
+    operationId: History_add
+    summary: Добавить просмотр в историю
+    description: Добавить просмотр в историю. При заданном токене запрос выполняется в контексте текущего профиля.
+    x-client-methods:
+    - HistoryApi.add
+    parameters:
+    - name: r_id
+      in: path
+      required: true
+      description: Идентификатор релиза.
+      schema:
+        type: integer
+        format: int64
+    - name: s_id
+      in: path
+      required: true
+      description: Идентификатор целевого объекта.
+      schema:
+        type: integer
+        format: int64
+    - name: position
+      in: path
+      required: true
+      description: Номер серии.
+      schema:
+        type: integer
+        format: int32
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/library.yaml#/HistoryResponse
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    security:
+    - AnixartToken: []
+    - {}
+    x-original-tags:
+    - История просмотров
+/history/delete/{r_id}:
+  get:
+    tags:
+    - Библиотека
+    operationId: History_delete
+    summary: Удалить запись из истории
+    description: Удалить запись из истории. При заданном токене запрос выполняется в контексте текущего профиля.
+    x-client-methods:
+    - HistoryApi.delete
+    parameters:
+    - name: r_id
+      in: path
+      required: true
+      description: Идентификатор релиза.
+      schema:
+        type: integer
+        format: int64
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/library.yaml#/HistoryResponse
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    security:
+    - AnixartToken: []
+    - {}
+    x-original-tags:
+    - История просмотров
+/history/{page}:
+  get:
+    tags:
+    - Библиотека
+    operationId: History_history
+    summary: Получить историю просмотров
+    description: Получить историю просмотров. Выдача постраничная; `page` начинается с `0`. При заданном токене запрос выполняется
+      в контексте текущего профиля.
+    x-client-methods:
+    - HistoryApi.history
+    parameters:
+    - name: page
+      in: path
+      required: true
+      description: Номер страницы, начиная с `0`.
+      schema:
+        type: integer
+        format: int32
+        minimum: 0
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/pagination.yaml#/PageOfRelease
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    security:
+    - AnixartToken: []
+    - {}
+    x-original-tags:
+    - История просмотров
+/profile/list/add/{status}/{r_id}:
+  get:
+    tags:
+    - Библиотека
+    operationId: ProfileList_add
+    summary: Добавить релиз в список профиля
+    description: Добавить релиз в список профиля. При заданном токене запрос выполняется в контексте текущего профиля.
+    x-client-methods:
+    - ProfileListApi.add
+    parameters:
+    - name: status
+      in: path
+      required: true
+      description: Код статуса или раздела списка.
+      schema:
+        type: integer
+        format: int32
+    - name: r_id
+      in: path
+      required: true
+      description: Идентификатор релиза.
+      schema:
+        type: integer
+        format: int64
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/library.yaml#/ProfileListResponse
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    security:
+    - AnixartToken: []
+    - {}
+    x-original-tags:
+    - Списки профиля
+/profile/list/all/{p_id}/{status}/{page}:
+  get:
+    tags:
+    - Библиотека
+    operationId: ProfileList_profileListByProfile
+    summary: Получить список релизов профиля
+    description: Получить список релизов профиля. Выдача постраничная; `page` начинается с `0`. При заданном токене запрос
+      выполняется в контексте текущего профиля.
+    x-client-methods:
+    - ProfileListApi.profileListByProfile
+    parameters:
+    - name: p_id
+      in: path
+      required: true
+      description: Идентификатор профиля.
+      schema:
+        type: integer
+        format: int64
+    - name: status
+      in: path
+      required: true
+      description: Код статуса или раздела списка.
+      schema:
+        type: integer
+        format: int32
+    - name: page
+      in: path
+      required: true
+      description: Номер страницы, начиная с `0`.
+      schema:
+        type: integer
+        format: int32
+        minimum: 0
+    - name: sort
+      in: query
+      required: false
+      description: Код или направление сортировки.
+      schema:
+        type:
+        - integer
+        - 'null'
+        format: int32
+    - name: filter_announce
+      in: query
+      required: false
+      description: Числовой режим фильтрации анонсов в списке релизов.
+      schema:
+        type:
+        - integer
+        - 'null'
+        format: int32
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/pagination.yaml#/PageOfRelease
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    security:
+    - AnixartToken: []
+    - {}
+    x-original-tags:
+    - Списки профиля
+/profile/list/all/{status}/{page}:
+  get:
+    tags:
+    - Библиотека
+    operationId: ProfileList_profileList
+    summary: Получить собственный список релизов
+    description: Получить собственный список релизов. Выдача постраничная; `page` начинается с `0`. При заданном токене запрос
+      выполняется в контексте текущего профиля.
+    x-client-methods:
+    - ProfileListApi.profileList
+    parameters:
+    - name: status
+      in: path
+      required: true
+      description: Код статуса или раздела списка.
+      schema:
+        type: integer
+        format: int32
+    - name: page
+      in: path
+      required: true
+      description: Номер страницы, начиная с `0`.
+      schema:
+        type: integer
+        format: int32
+        minimum: 0
+    - name: sort
+      in: query
+      required: false
+      description: Код или направление сортировки.
+      schema:
+        type:
+        - integer
+        - 'null'
+        format: int32
+    - name: filter_announce
+      in: query
+      required: false
+      description: Числовой режим фильтрации анонсов в списке релизов.
+      schema:
+        type:
+        - integer
+        - 'null'
+        format: int32
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/pagination.yaml#/PageOfRelease
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    security:
+    - AnixartToken: []
+    - {}
+    x-original-tags:
+    - Списки профиля
+/profile/list/delete/{status}/{r_id}:
+  get:
+    tags:
+    - Библиотека
+    operationId: ProfileList_delete
+    summary: Удалить релиз из списка профиля
+    description: Удалить релиз из списка профиля. При заданном токене запрос выполняется в контексте текущего профиля.
+    x-client-methods:
+    - ProfileListApi.delete
+    parameters:
+    - name: status
+      in: path
+      required: true
+      description: Код статуса или раздела списка.
+      schema:
+        type: integer
+        format: int32
+    - name: r_id
+      in: path
+      required: true
+      description: Идентификатор релиза.
+      schema:
+        type: integer
+        format: int64
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/library.yaml#/ProfileListResponse
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    security:
+    - AnixartToken: []
+    - {}
+    x-original-tags:
+    - Списки профиля
+/profile/vote/release/unvoted/last:
+  get:
+    tags:
+    - Библиотека
+    operationId: ProfileReleaseVote_lastReleaseUnvoted
+    summary: Получить последний неоценённый релиз
+    description: Получить последний неоценённый релиз. При заданном токене запрос выполняется в контексте текущего профиля.
+    x-client-methods:
+    - ProfileReleaseVoteApi.lastReleaseUnvoted
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/pagination.yaml#/PageOfRelease
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    security:
+    - AnixartToken: []
+    - {}
+    x-original-tags:
+    - Оценки релизов
+/profile/vote/release/unvoted/{page}:
+  get:
+    tags:
+    - Библиотека
+    operationId: ProfileReleaseVote_allReleaseUnvoted
+    summary: Получить неоценённые релизы
+    description: Получить неоценённые релизы. Выдача постраничная; `page` начинается с `0`. При заданном токене запрос выполняется
+      в контексте текущего профиля.
+    x-client-methods:
+    - ProfileReleaseVoteApi.allReleaseUnvoted
+    parameters:
+    - name: page
+      in: path
+      required: true
+      description: Номер страницы, начиная с `0`.
+      schema:
+        type: integer
+        format: int32
+        minimum: 0
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/pagination.yaml#/PageOfRelease
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    security:
+    - AnixartToken: []
+    - {}
+    x-original-tags:
+    - Оценки релизов
+/profile/vote/release/voted/{p_id}/{page}:
+  get:
+    tags:
+    - Библиотека
+    operationId: ProfileReleaseVote_allReleaseVoted
+    summary: Получить оценённые релизы профиля
+    description: Получить оценённые релизы профиля. Выдача постраничная; `page` начинается с `0`. При заданном токене запрос
+      выполняется в контексте текущего профиля.
+    x-client-methods:
+    - ProfileReleaseVoteApi.allReleaseVoted
+    parameters:
+    - name: p_id
+      in: path
+      required: true
+      description: Идентификатор профиля.
+      schema:
+        type: integer
+        format: int64
+    - name: page
+      in: path
+      required: true
+      description: Номер страницы, начиная с `0`.
+      schema:
+        type: integer
+        format: int32
+        minimum: 0
+    - name: sort
+      in: query
+      required: false
+      description: Код или направление сортировки.
+      schema:
+        type:
+        - integer
+        - 'null'
+        format: int32
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/pagination.yaml#/PageOfRelease
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    security:
+    - AnixartToken: []
+    - {}
+    x-original-tags:
+    - Оценки релизов

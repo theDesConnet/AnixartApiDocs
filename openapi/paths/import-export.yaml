@@ -1,0 +1,96 @@
+/export/bookmarks:
+  post:
+    tags:
+    - Импорт и экспорт
+    operationId: Export_bookmarks
+    summary: Экспортировать закладки
+    description: 'Экспортировать закладки. Тело запроса: `BookmarksExportRequest` (`application/json`). При заданном токене
+      запрос выполняется в контексте текущего профиля.'
+    x-client-methods:
+    - ExportApi.bookmarks
+    parameters:
+    - name: sort
+      in: query
+      required: false
+      description: Код или направление сортировки.
+      schema:
+        type:
+        - integer
+        - 'null'
+        format: int32
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/library.yaml#/BookmarksExportResponse
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: ../components/library.yaml#/BookmarksExportRequest
+    security:
+    - AnixartToken: []
+    - {}
+    x-original-tags:
+    - Экспорт
+/import/bookmarks:
+  post:
+    tags:
+    - Импорт и экспорт
+    operationId: Import_bookmarks
+    summary: Импортировать закладки
+    description: 'Импортировать закладки. Тело запроса: `BookmarksImportRequest` (`application/json`). При заданном токене
+      запрос выполняется в контексте текущего профиля.'
+    x-client-methods:
+    - ImportApi.bookmarks
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/library.yaml#/BookmarksImportResponse
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: ../components/library.yaml#/BookmarksImportRequest
+    security:
+    - AnixartToken: []
+    - {}
+    x-original-tags:
+    - Импорт
+/import/status:
+  post:
+    tags:
+    - Импорт и экспорт
+    operationId: Import_status
+    summary: Получить статус импорта
+    description: Получить статус импорта. При заданном токене запрос выполняется в контексте текущего профиля.
+    x-client-methods:
+    - ImportApi.status
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/library.yaml#/BookmarksImportStatusResponse
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    security:
+    - AnixartToken: []
+    - {}
+    x-original-tags:
+    - Импорт

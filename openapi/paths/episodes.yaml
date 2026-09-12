@@ -1,0 +1,557 @@
+/episode/target/{releaseId}/{sourceId}/{position}:
+  get:
+    tags:
+    - Эпизоды
+    operationId: Episode_episodeTarget
+    summary: Получить конкретный эпизод
+    description: Получить конкретный эпизод.
+    x-client-methods:
+    - EpisodeApi.episodeTarget
+    parameters:
+    - name: releaseId
+      in: path
+      required: true
+      description: Идентификатор релиза.
+      schema:
+        type: integer
+        format: int64
+    - name: sourceId
+      in: path
+      required: true
+      description: Идентификатор источника эпизодов.
+      schema:
+        type: integer
+        format: int64
+    - name: position
+      in: path
+      required: true
+      description: Номер серии.
+      schema:
+        type: integer
+        format: int32
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/episodes.yaml#/EpisodeTargetResponse
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+/episode/unwatch/{releaseId}/{sourceId}:
+  post:
+    tags:
+    - Эпизоды
+    operationId: Episode_unwatch
+    summary: Снять отметку просмотра эпизодов
+    description: Снять отметку просмотра эпизодов. При заданном токене запрос выполняется в контексте текущего профиля.
+    x-client-methods:
+    - EpisodeApi.unwatch
+    parameters:
+    - name: releaseId
+      in: path
+      required: true
+      description: Идентификатор релиза.
+      schema:
+        type: integer
+        format: int64
+    - name: sourceId
+      in: path
+      required: true
+      description: Идентификатор источника эпизодов.
+      schema:
+        type: integer
+        format: int64
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/episodes.yaml#/EpisodeUnwatchResponse
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    security:
+    - AnixartToken: []
+    - {}
+/episode/unwatch/{releaseId}/{sourceId}/{position}:
+  post:
+    tags:
+    - Эпизоды
+    operationId: Episode_unwatch_2
+    summary: Снять отметку просмотра до серии
+    description: Снять отметку просмотра до указанной серии. При заданном токене запрос выполняется в контексте текущего профиля.
+    x-client-methods:
+    - EpisodeApi.unwatch
+    parameters:
+    - name: releaseId
+      in: path
+      required: true
+      description: Идентификатор релиза.
+      schema:
+        type: integer
+        format: int64
+    - name: sourceId
+      in: path
+      required: true
+      description: Идентификатор источника эпизодов.
+      schema:
+        type: integer
+        format: int64
+    - name: position
+      in: path
+      required: true
+      description: Номер серии.
+      schema:
+        type: integer
+        format: int32
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/episodes.yaml#/EpisodeUnwatchResponse
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    security:
+    - AnixartToken: []
+    - {}
+/episode/updates/{releaseId}/{page}:
+  get:
+    tags:
+    - Эпизоды
+    operationId: Episode_updates
+    summary: Получить последние обновления эпизодов
+    description: Получить последние обновления эпизодов. Выдача постраничная; `page` начинается с `0`.
+    x-client-methods:
+    - EpisodeApi.updates
+    parameters:
+    - name: releaseId
+      in: path
+      required: true
+      description: Идентификатор релиза.
+      schema:
+        type: integer
+        format: int64
+    - name: page
+      in: path
+      required: true
+      description: Номер страницы, начиная с `0`.
+      schema:
+        type: integer
+        format: int32
+        minimum: 0
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/pagination.yaml#/PageOfEpisodeUpdate
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+/episode/watch/{releaseId}/{sourceId}:
+  post:
+    tags:
+    - Эпизоды
+    operationId: Episode_watch
+    summary: Отметить эпизоды просмотренными
+    description: Отметить эпизоды просмотренными. При заданном токене запрос выполняется в контексте текущего профиля.
+    x-client-methods:
+    - EpisodeApi.watch
+    parameters:
+    - name: releaseId
+      in: path
+      required: true
+      description: Идентификатор релиза.
+      schema:
+        type: integer
+        format: int64
+    - name: sourceId
+      in: path
+      required: true
+      description: Идентификатор источника эпизодов.
+      schema:
+        type: integer
+        format: int64
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/episodes.yaml#/EpisodeWatchResponse
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    security:
+    - AnixartToken: []
+    - {}
+/episode/watch/{releaseId}/{sourceId}/{position}:
+  post:
+    tags:
+    - Эпизоды
+    operationId: Episode_watch_2
+    summary: Отметить просмотр до серии
+    description: Отметить просмотр до указанной серии. При заданном токене запрос выполняется в контексте текущего профиля.
+    x-client-methods:
+    - EpisodeApi.watch
+    parameters:
+    - name: releaseId
+      in: path
+      required: true
+      description: Идентификатор релиза.
+      schema:
+        type: integer
+        format: int64
+    - name: sourceId
+      in: path
+      required: true
+      description: Идентификатор источника эпизодов.
+      schema:
+        type: integer
+        format: int64
+    - name: position
+      in: path
+      required: true
+      description: Номер серии.
+      schema:
+        type: integer
+        format: int32
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/episodes.yaml#/EpisodeWatchResponse
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    security:
+    - AnixartToken: []
+    - {}
+/episode/{releaseId}:
+  get:
+    tags:
+    - Эпизоды
+    operationId: Episode_types
+    summary: Получить озвучки релиза
+    description: Получить озвучки релиза. При заданном токене запрос выполняется в контексте текущего профиля.
+    x-client-methods:
+    - EpisodeApi.types
+    parameters:
+    - name: releaseId
+      in: path
+      required: true
+      description: Идентификатор релиза.
+      schema:
+        type: integer
+        format: int64
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/episodes.yaml#/TypesResponse
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    security:
+    - AnixartToken: []
+    - {}
+/episode/{releaseId}/{typeId}:
+  get:
+    tags:
+    - Эпизоды
+    operationId: Episode_sources
+    summary: Получить источники выбранной озвучки
+    description: Получить источники выбранной озвучки.
+    x-client-methods:
+    - EpisodeApi.sources
+    parameters:
+    - name: releaseId
+      in: path
+      required: true
+      description: Идентификатор релиза.
+      schema:
+        type: integer
+        format: int64
+    - name: typeId
+      in: path
+      required: true
+      description: Идентификатор озвучки/даббера.
+      schema:
+        type: integer
+        format: int64
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/episodes.yaml#/SourcesResponse
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+/episode/{releaseId}/{typeId}/{sourceId}:
+  get:
+    tags:
+    - Эпизоды
+    operationId: Episode_episodes
+    summary: Получить эпизоды источника
+    description: Получить эпизоды источника. При заданном токене запрос выполняется в контексте текущего профиля.
+    x-client-methods:
+    - EpisodeApi.episodes
+    parameters:
+    - name: releaseId
+      in: path
+      required: true
+      description: Идентификатор релиза.
+      schema:
+        type: integer
+        format: int64
+    - name: typeId
+      in: path
+      required: true
+      description: Идентификатор озвучки/даббера.
+      schema:
+        type: integer
+        format: int64
+    - name: sourceId
+      in: path
+      required: true
+      description: Идентификатор источника эпизодов.
+      schema:
+        type: integer
+        format: int64
+    - name: sort
+      in: query
+      required: false
+      description: Код или направление сортировки.
+      schema:
+        type: integer
+        format: int32
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/episodes.yaml#/EpisodeResponse
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    security:
+    - AnixartToken: []
+    - {}
+/type/all:
+  get:
+    tags:
+    - Эпизоды
+    operationId: Type_types
+    summary: Получить список озвучек
+    description: Получить список озвучек. При заданном токене запрос выполняется в контексте текущего профиля.
+    x-client-methods:
+    - TypeApi.types
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/episodes.yaml#/TypeResponse
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    security:
+    - AnixartToken: []
+    - {}
+    x-original-tags:
+    - Озвучки
+/type/pin/{releaseId}/{typeId}:
+  get:
+    tags:
+    - Эпизоды
+    operationId: Type_pin
+    summary: Закрепить озвучку для релиза
+    description: Закрепить озвучку для релиза. При заданном токене запрос выполняется в контексте текущего профиля.
+    x-client-methods:
+    - TypeApi.pin
+    parameters:
+    - name: releaseId
+      in: path
+      required: true
+      description: Идентификатор релиза.
+      schema:
+        type: integer
+        format: int64
+    - name: typeId
+      in: path
+      required: true
+      description: Идентификатор озвучки/даббера.
+      schema:
+        type: integer
+        format: int64
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/common.yaml#/CommonResponse
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    security:
+    - AnixartToken: []
+    - {}
+    x-original-tags:
+    - Озвучки
+/type/unpin/{releaseId}/{typeId}:
+  get:
+    tags:
+    - Эпизоды
+    operationId: Type_unpin
+    summary: Открепить озвучку
+    description: Открепить озвучку. При заданном токене запрос выполняется в контексте текущего профиля.
+    x-client-methods:
+    - TypeApi.unpin
+    parameters:
+    - name: releaseId
+      in: path
+      required: true
+      description: Идентификатор релиза.
+      schema:
+        type: integer
+        format: int64
+    - name: typeId
+      in: path
+      required: true
+      description: Идентификатор озвучки/даббера.
+      schema:
+        type: integer
+        format: int64
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/common.yaml#/CommonResponse
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    security:
+    - AnixartToken: []
+    - {}
+    x-original-tags:
+    - Озвучки
+/type/widget/hide/{typeId}:
+  get:
+    tags:
+    - Эпизоды
+    operationId: Type_hideWidget
+    summary: Скрыть виджет озвучки
+    description: Скрыть виджет озвучки. При заданном токене запрос выполняется в контексте текущего профиля.
+    x-client-methods:
+    - TypeApi.hideWidget
+    parameters:
+    - name: typeId
+      in: path
+      required: true
+      description: Идентификатор озвучки/даббера.
+      schema:
+        type: integer
+        format: int64
+    - name: permanent
+      in: query
+      required: false
+      description: Скрыть озвучку постоянно (`true`) или временно (`false`).
+      schema:
+        type: boolean
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/common.yaml#/CommonResponse
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    security:
+    - AnixartToken: []
+    - {}
+    x-original-tags:
+    - Озвучки
+/type/widget/unhide/{typeId}:
+  get:
+    tags:
+    - Эпизоды
+    operationId: Type_unhideWidget
+    summary: Показать виджет озвучки
+    description: Показать виджет озвучки. При заданном токене запрос выполняется в контексте текущего профиля.
+    x-client-methods:
+    - TypeApi.unhideWidget
+    parameters:
+    - name: typeId
+      in: path
+      required: true
+      description: Идентификатор озвучки/даббера.
+      schema:
+        type: integer
+        format: int64
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/common.yaml#/CommonResponse
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    security:
+    - AnixartToken: []
+    - {}
+    x-original-tags:
+    - Озвучки
+/type/{typeId}/channel:
+  get:
+    tags:
+    - Эпизоды
+    operationId: Type_channel
+    summary: Получить канал озвучки
+    description: Получить канал озвучки. При заданном токене запрос выполняется в контексте текущего профиля.
+    x-client-methods:
+    - TypeApi.channel
+    parameters:
+    - name: typeId
+      in: path
+      required: true
+      description: Идентификатор озвучки/даббера.
+      schema:
+        type: integer
+        format: int64
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/episodes.yaml#/TypeChannelResponse
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    security:
+    - AnixartToken: []
+    - {}
+    x-original-tags:
+    - Озвучки

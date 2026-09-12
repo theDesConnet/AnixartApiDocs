@@ -1,0 +1,103 @@
+BookmarksExportRequest:
+  type: object
+  properties:
+    bookmarksExportProfileLists:
+      type: array
+      items:
+        type:
+        - integer
+        - 'null'
+        format: int32
+      description: Статусы пользовательских списков, которые нужно включить в экспорт.
+BookmarksExportResponse:
+  allOf:
+  - $ref: ./common.yaml#/Response
+  - type: object
+    properties:
+      releases:
+        type: array
+        items:
+          $ref: ./releases.yaml#/Release
+        description: Релизы в коллекции или ответе.
+      code:
+        anyOf:
+        - $ref: ./result-codes.yaml#/CommonResult
+        - $ref: ./result-codes.yaml#/BookmarksExportResult
+        description: 'Код результата: общий `CommonResult` либо `BookmarksExportResult` для ошибок этой операции.'
+        example: 0
+  x-result-enum: '#/components/schemas/BookmarksExportResult'
+BookmarksImportRequest:
+  type: object
+  properties:
+    completed:
+      type: array
+      items:
+        type: integer
+        format: int64
+      description: Идентификаторы релизов, которые нужно поместить в список «Просмотрено».
+    dropped:
+      type: array
+      items:
+        type: integer
+        format: int64
+      description: Идентификаторы релизов, которые нужно поместить в список «Брошено».
+    holdOn:
+      type: array
+      items:
+        type: integer
+        format: int64
+      description: Идентификаторы релизов, которые нужно поместить в список «Отложено».
+    plans:
+      type: array
+      items:
+        type: integer
+        format: int64
+      description: Идентификаторы релизов, которые нужно поместить в список «В планах».
+    selectedImporterName:
+      type: string
+      description: Имя выбранного импортёра/источника списка.
+    watching:
+      type: array
+      items:
+        type: integer
+        format: int64
+      description: Идентификаторы релизов, которые нужно поместить в список «Смотрю».
+BookmarksImportResponse:
+  allOf:
+  - $ref: ./common.yaml#/Response
+  - type: object
+    properties:
+      code:
+        anyOf:
+        - $ref: ./result-codes.yaml#/CommonResult
+        - $ref: ./result-codes.yaml#/BookmarksImportResult
+        description: 'Код результата: общий `CommonResult` либо `BookmarksImportResult` для ошибок этой операции.'
+        example: 0
+  x-result-enum: '#/components/schemas/BookmarksImportResult'
+BookmarksImportStatusResponse:
+  allOf:
+  - $ref: ./common.yaml#/Response
+  - type: object
+    properties:
+      code:
+        anyOf:
+        - $ref: ./result-codes.yaml#/CommonResult
+        - $ref: ./result-codes.yaml#/BookmarksImportStatusResult
+        description: 'Код результата: общий `CommonResult` либо `BookmarksImportStatusResult` для ошибок этой операции.'
+        example: 0
+  x-result-enum: '#/components/schemas/BookmarksImportStatusResult'
+FavoritesResponse:
+  allOf:
+  - $ref: ./common.yaml#/Response
+  - type: object
+    properties: {}
+HistoryResponse:
+  allOf:
+  - $ref: ./common.yaml#/Response
+  - type: object
+    properties: {}
+ProfileListResponse:
+  allOf:
+  - $ref: ./common.yaml#/Response
+  - type: object
+    properties: {}

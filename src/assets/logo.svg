@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title desc">
+  <title id="title">API application icon with code badge</title>
+  <desc id="desc">The original coral gradient application mark with a large &lt;/&gt; code badge at the lower right and an open center.</desc>
+  <defs>
+    <linearGradient id="brand" x1="105.993" x2="357.113" y1="69.7" y2="504.651" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#FDAA77"/>
+      <stop offset=".5" stop-color="#FF5A67"/>
+      <stop offset="1" stop-color="#FA2961"/>
+    </linearGradient>
+    <linearGradient id="earLeft" x1="40.851" x2="95.777" y1="12.813" y2="107.947" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#646469"/>
+      <stop offset="1" stop-color="#26262B"/>
+    </linearGradient>
+    <linearGradient id="earRight" x1="471.889" x2="416.963" y1="12.813" y2="107.947" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#646469"/>
+      <stop offset="1" stop-color="#26262B"/>
+    </linearGradient>
+    <linearGradient id="badge" x1="215" x2="297" y1="247" y2="353" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#48484F"/>
+      <stop offset="1" stop-color="#202025"/>
+    </linearGradient>
+    <linearGradient id="signal" x1="205" x2="305" y1="265" y2="336" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#FDAA77"/>
+      <stop offset=".55" stop-color="#FF5A67"/>
+      <stop offset="1" stop-color="#FA2961"/>
+    </linearGradient>
+    <filter id="badgeShadow" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="7" stdDeviation="8" flood-color="#16161A" flood-opacity=".3"/>
+    </filter>
+  </defs>
+
+  <path fill="url(#brand)" d="M457.65 186.82c-27.28-48.22-71.39-85.67-124.36-104.36-24.07-8.49-49.96-13.11-76.92-13.11-27.42 0-53.72 4.78-78.12 13.53-52.43 18.84-96.09 56.08-123.15 103.93-18.98 33.56-29.82 72.33-29.82 113.63 0 6.1.23 12.15.71 18.12 2.37 30.67 10.73 59.64 23.9 85.78a231.7 231.7 0 0 0 81.95 90.78c4.32 2.76 9.49 3.87 14.56 3.14 5.08-.74 9.71-3.28 13.07-7.15 3.35-3.88 5.2-8.84 5.2-13.96v-17.69c0-2.85-.08-5.68-.25-8.47-.51-8.59 8.48-14.42 16.05-10.37 22.38 12.02 47.96 18.82 75.14 18.82s52.76-6.8 75.14-18.82c7.57-4.05 16.56 1.78 16.05 10.37-.17 2.79-.25 5.62-.25 8.47v18.66c0 5.11 1.83 10.04 5.16 13.91 3.33 3.88 7.94 6.42 12.99 7.19 5.04.76 10.2-.31 14.52-3.03a230.96 230.96 0 0 0 83.51-91.7c13.28-26.17 21.68-55.21 24.04-85.96.48-5.96.71-12 .71-18.09-.01-41.29-10.85-80.06-29.83-113.62M339.49 339.86c-14.82 31.42-46.82 53.17-83.89 53.17s-69.07-21.75-83.89-53.17c-5.69-12.01-8.86-25.42-8.86-39.58 0-5.15.42-10.21 1.24-15.15 5.38-32.76 27.92-59.72 58.08-71.39 10.37-4.02 21.64-6.2 33.44-6.2s23.06 2.2 33.44 6.2c30.36 11.74 52.99 38.98 58.18 72.01.74 4.73 1.13 9.57 1.13 14.53-.01 14.16-3.18 27.57-8.87 39.58"/>
+  <path fill="url(#earLeft)" d="M25.27 73.21c0 21.34 2.89 41.99 8.3 61.6 3.89 14.09 21.99 17.95 31.29 6.67a250.4 250.4 0 0 1 77.07-62.42c11.74-6.12 13.02-22.41 2.43-30.36-22.58-16.96-48.88-29.22-77.47-35.32-21.58-4.6-36.64 6.56-39.64 29.38-1.31 9.96-1.98 20.13-1.98 30.45"/>
+  <path fill="url(#earRight)" d="M487.47 73.21c0 21.34-2.89 41.99-8.3 61.6-3.89 14.09-21.99 17.95-31.29 6.67a250.4 250.4 0 0 0-77.07-62.42c-11.74-6.12-13.02-22.41-2.43-30.36 22.58-16.96 48.88-29.22 77.47-35.32 21.58-4.6 36.65 6.56 39.64 29.38 1.31 9.96 1.98 20.13 1.98 30.45"/>
+
+  <g transform="translate(412 412) scale(1.4) translate(-256 -300)">
+  <g filter="url(#badgeShadow)">
+    <circle cx="256" cy="300" r="59" fill="url(#badge)" stroke="#FFFFFF" stroke-opacity=".2" stroke-width="3"/>
+  </g>
+  <g fill="none" stroke="#FFFFFF" stroke-linecap="round" stroke-linejoin="round" stroke-width="9">
+    <path d="m234 282-19 18 19 18"/>
+    <path d="m278 282 19 18-19 18"/>
+    <path d="m264 274-16 52" stroke="url(#signal)"/>
+  </g>
+  </g>
+</svg>

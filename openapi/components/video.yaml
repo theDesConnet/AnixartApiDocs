@@ -1,0 +1,150 @@
+ReleaseVideo:
+  type: object
+  description: Пользовательское видео, привязанное к релизу.
+  properties:
+    category:
+      $ref: '#/ReleaseVideoCategory'
+      description: Категория пользовательского видео.
+    delete:
+      type: boolean
+      description: Объект помечен как удалённый/подлежащий удалению.
+    favoriteCount:
+      type: integer
+      format: int32
+      description: Количество добавлений в избранное.
+    hosting:
+      $ref: '#/ReleaseVideoHosting'
+      description: Видеохостинг, на котором размещено видео.
+    id:
+      type: integer
+      format: int64
+      description: Уникальный идентификатор.
+    isFavorite:
+      type: boolean
+      description: Объект находится в избранном текущего профиля.
+    profile:
+      $ref: ./profiles.yaml#/Profile
+      description: Профиль автора видео.
+    release:
+      $ref: ./releases.yaml#/Release
+      description: Релиз, к которому относится видео.
+    timestamp:
+      type: integer
+      format: int64
+      description: Временная метка.
+    title:
+      type: string
+      description: Заголовок.
+    image:
+      type: string
+      description: URL или идентификатор изображения.
+    url:
+      type: string
+      description: URL ресурса.
+    playerUrl:
+      type: string
+      description: Ссылка, которую клиент открывает во встроенном проигрывателе.
+ReleaseVideoBanner:
+  type: object
+  description: Баннер в разделе видео с действием по нажатию.
+  properties:
+    actionId:
+      type: integer
+      format: int64
+      description: Идентификатор действия баннера.
+    isNew:
+      type: boolean
+      description: Элемент ещё не был просмотрен пользователем.
+    name:
+      type: string
+      description: Отображаемое название.
+    image:
+      type: string
+      description: URL или идентификатор изображения.
+    value:
+      type: string
+      description: 'Значение действия баннера: URL или идентификатор категории - зависит от `actionId`.'
+  x-response-constants:
+  - name: ACTION_URL
+    type: long
+    value: 1
+  - name: ACTION_VIDEO_CATEGORY
+    type: long
+    value: 0
+ReleaseVideoBlock:
+  type: object
+  properties:
+    category:
+      $ref: '#/ReleaseVideoCategory'
+      description: Категория объекта.
+    videos:
+      type: array
+      items:
+        $ref: '#/ReleaseVideo'
+      description: Видео в этом блоке.
+ReleaseVideoCategoriesResponse:
+  allOf:
+  - $ref: ./common.yaml#/Response
+  - type: object
+    properties:
+      categories:
+        type: array
+        items:
+          $ref: '#/ReleaseVideoCategory'
+        description: Доступные категории видео.
+ReleaseVideoCategory:
+  type: object
+  properties:
+    id:
+      type: integer
+      format: int64
+      description: Уникальный идентификатор.
+    name:
+      type: string
+      description: Отображаемое название.
+ReleaseVideoHosting:
+  type: object
+  properties:
+    id:
+      type: integer
+      format: int64
+      description: Уникальный идентификатор.
+    name:
+      type: string
+      description: Отображаемое название.
+    icon:
+      type: string
+      description: URL или имя иконки.
+ReleaseVideosResponse:
+  allOf:
+  - $ref: ./common.yaml#/Response
+  - type: object
+    properties:
+      blocks:
+        type: array
+        items:
+          $ref: '#/ReleaseVideoBlock'
+        description: Блоки, из которых состоит статья.
+      canAppeal:
+        type: boolean
+        description: Текущий профиль может отправить апелляцию.
+      lastVideos:
+        type: array
+        items:
+          $ref: '#/ReleaseVideo'
+        description: Последние добавленные видео релиза.
+      release:
+        $ref: ./releases.yaml#/Release
+        description: Связанный релиз.
+      streamingPlatforms:
+        type: array
+        items:
+          $ref: ./releases.yaml#/ReleaseStreamingPlatform
+        description: Стриминговые платформы, доступные для релиза.
+      code:
+        anyOf:
+        - $ref: ./result-codes.yaml#/CommonResult
+        - $ref: ./result-codes.yaml#/ReleaseVideoResult
+        description: 'Код результата: общий `CommonResult` либо `ReleaseVideoResult` для ошибок этой операции.'
+        example: 0
+  x-result-enum: '#/components/schemas/ReleaseVideoResult'

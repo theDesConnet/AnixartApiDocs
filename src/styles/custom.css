@@ -1,0 +1,100 @@
+:root {
+  --sl-color-accent-low: #3a171d;
+  --sl-color-accent: #ff5a67;
+  --sl-color-accent-high: #ffd7cf;
+  --sl-color-white: #f7f7fb;
+  --sl-color-gray-1: #e8e8ef;
+  --sl-color-gray-2: #b9bac5;
+  --sl-color-gray-3: #7f818d;
+  --sl-color-gray-4: #51535e;
+  --sl-color-gray-5: #2a2a30;
+  --sl-color-gray-6: #202024;
+  --sl-color-black: #111114;
+  --sl-content-width: 52rem;
+  --sl-text-5xl: 3.35rem;
+}
+
+:root[data-theme='light'] {
+  --sl-color-accent-low: #fff0ec;
+  --sl-color-accent: #e23955;
+  --sl-color-accent-high: #7f1d31;
+  --sl-color-white: #15161b;
+  --sl-color-gray-1: #292a31;
+  --sl-color-gray-2: #4d4f59;
+  --sl-color-gray-3: #737580;
+  --sl-color-gray-4: #a6a8b0;
+  --sl-color-gray-5: #d4d5da;
+  --sl-color-gray-6: #ececf0;
+  --sl-color-gray-7: #f6f6f8;
+  --sl-color-black: #ffffff;
+}
+
+body {
+  letter-spacing: -0.006em;
+}
+
+.site-title {
+  font-weight: 720;
+  letter-spacing: -0.025em;
+}
+
+.hero h1 {
+  letter-spacing: -0.05em;
+}
+
+.hero .tagline {
+  max-width: 43rem;
+  line-height: 1.65;
+}
+
+.sl-markdown-content :is(h2, h3) {
+  letter-spacing: -0.025em;
+}
+
+.sl-markdown-content code:not(pre code) {
+  border: 1px solid color-mix(in srgb, var(--sl-color-gray-5), transparent 35%);
+  border-radius: 0.38rem;
+  padding: 0.12rem 0.36rem;
+}
+
+.card {
+  border-radius: 0.9rem;
+}
+
+header.header {
+  backdrop-filter: blur(18px);
+  background: color-mix(in srgb, var(--sl-color-black) 86%, transparent);
+}
+
+@media (prefers-reduced-transparency: no-preference) {
+  .sidebar-pane {
+    background: color-mix(in srgb, var(--sl-color-black) 94%, transparent);
+  }
+}
+
+
+.project-credit {
+  margin: -0.7rem 0 1.6rem;
+  color: var(--sl-color-gray-3);
+  font-size: 0.86rem;
+  letter-spacing: 0.01em;
+}
+
+.project-credit strong {
+  color: var(--sl-color-gray-2);
+  font-weight: 650;
+}
+
+
+::selection {
+  background: color-mix(in srgb, #ff5a67 28%, transparent);
+}
+
+.sl-markdown-content a:not([class]) {
+  text-decoration-color: color-mix(in srgb, #ff5a67 58%, transparent);
+  text-underline-offset: 0.18em;
+}
+
+.sl-markdown-content a:not([class]):hover {
+  text-decoration-color: #fa2961;
+}

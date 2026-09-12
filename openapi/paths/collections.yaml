@@ -1,0 +1,524 @@
+/collection/all/profile/{p_id}/{page}:
+  get:
+    tags:
+    - Коллекции
+    operationId: Collection_profileCollections
+    summary: Получить коллекции профиля
+    description: Получить коллекции профиля. Выдача постраничная; `page` начинается с `0`. При заданном токене запрос выполняется
+      в контексте текущего профиля.
+    x-client-methods:
+    - CollectionApi.profileCollections
+    parameters:
+    - name: p_id
+      in: path
+      required: true
+      description: Идентификатор профиля.
+      schema:
+        type: integer
+        format: int64
+    - name: page
+      in: path
+      required: true
+      description: Номер страницы, начиная с `0`.
+      schema:
+        type: integer
+        format: int32
+        minimum: 0
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/pagination.yaml#/PageOfCollection
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    security:
+    - AnixartToken: []
+    - {}
+/collection/all/release/{r_id}/{page}:
+  get:
+    tags:
+    - Коллекции
+    operationId: Collection_releaseCollections
+    summary: Получить коллекции с релизом
+    description: Получить коллекции с релизом. Выдача постраничная; `page` начинается с `0`. При заданном токене запрос выполняется
+      в контексте текущего профиля.
+    x-client-methods:
+    - CollectionApi.releaseCollections
+    parameters:
+    - name: r_id
+      in: path
+      required: true
+      description: Идентификатор релиза.
+      schema:
+        type: integer
+        format: int64
+    - name: page
+      in: path
+      required: true
+      description: Номер страницы, начиная с `0`.
+      schema:
+        type: integer
+        format: int32
+        minimum: 0
+    - name: sort
+      in: query
+      required: false
+      description: Код или направление сортировки.
+      schema:
+        type: integer
+        format: int32
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/pagination.yaml#/PageOfCollection
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    security:
+    - AnixartToken: []
+    - {}
+/collection/all/{page}:
+  get:
+    tags:
+    - Коллекции
+    operationId: Collection_collections
+    summary: Получить коллекции
+    description: Получить коллекции. Выдача постраничная; `page` начинается с `0`. При заданном токене запрос выполняется
+      в контексте текущего профиля.
+    x-client-methods:
+    - CollectionApi.collections
+    parameters:
+    - name: page
+      in: path
+      required: true
+      description: Номер страницы, начиная с `0`.
+      schema:
+        type: integer
+        format: int32
+        minimum: 0
+    - name: previous_page
+      in: query
+      required: false
+      description: Предыдущая страница выдачи; используется клиентом как часть пагинации/продолжения списка.
+      schema:
+        type: integer
+        format: int32
+    - name: where
+      in: query
+      required: false
+      description: Числовой код раздела, из которого запрашивается список коллекций.
+      schema:
+        type: integer
+        format: int32
+    - name: sort
+      in: query
+      required: false
+      description: Код или направление сортировки.
+      schema:
+        type: integer
+        format: int32
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/pagination.yaml#/PageOfCollection
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    security:
+    - AnixartToken: []
+    - {}
+/collection/{id}:
+  get:
+    tags:
+    - Коллекции
+    operationId: Collection_collection
+    summary: Получить коллекцию
+    description: Получить коллекцию. При заданном токене запрос выполняется в контексте текущего профиля.
+    x-client-methods:
+    - CollectionApi.collection
+    parameters:
+    - name: id
+      in: path
+      required: true
+      description: Идентификатор целевого объекта.
+      schema:
+        type: integer
+        format: int64
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/collections.yaml#/CollectionResponse
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    security:
+    - AnixartToken: []
+    - {}
+/collection/{id}/releases/{page}:
+  get:
+    tags:
+    - Коллекции
+    operationId: Collection_releases
+    summary: Получить релизы коллекции
+    description: Получить релизы коллекции. Выдача постраничная; `page` начинается с `0`. При заданном токене запрос выполняется
+      в контексте текущего профиля.
+    x-client-methods:
+    - CollectionApi.releases
+    parameters:
+    - name: id
+      in: path
+      required: true
+      description: Идентификатор целевого объекта.
+      schema:
+        type: integer
+        format: int64
+    - name: page
+      in: path
+      required: true
+      description: Номер страницы, начиная с `0`.
+      schema:
+        type: integer
+        format: int32
+        minimum: 0
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/pagination.yaml#/PageOfRelease
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    security:
+    - AnixartToken: []
+    - {}
+/collectionFavorite/add/{id}:
+  get:
+    tags:
+    - Коллекции
+    operationId: CollectionFavorite_add
+    summary: Добавить коллекцию в избранное
+    description: Добавить коллекцию в избранное. При заданном токене запрос выполняется в контексте текущего профиля.
+    x-client-methods:
+    - CollectionFavoriteApi.add
+    parameters:
+    - name: id
+      in: path
+      required: true
+      description: Идентификатор целевого объекта.
+      schema:
+        type: integer
+        format: int64
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/collections.yaml#/FavoriteCollectionAddResponse
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    security:
+    - AnixartToken: []
+    - {}
+    x-original-tags:
+    - Избранные коллекции
+/collectionFavorite/all/{page}:
+  get:
+    tags:
+    - Коллекции
+    operationId: CollectionFavorite_favorites
+    summary: Получить избранные коллекции
+    description: Получить избранные коллекции. Выдача постраничная; `page` начинается с `0`. При заданном токене запрос выполняется
+      в контексте текущего профиля.
+    x-client-methods:
+    - CollectionFavoriteApi.favorites
+    parameters:
+    - name: page
+      in: path
+      required: true
+      description: Номер страницы, начиная с `0`.
+      schema:
+        type: integer
+        format: int32
+        minimum: 0
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/pagination.yaml#/PageOfCollection
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    security:
+    - AnixartToken: []
+    - {}
+    x-original-tags:
+    - Избранные коллекции
+/collectionFavorite/delete/{id}:
+  get:
+    tags:
+    - Коллекции
+    operationId: CollectionFavorite_delete
+    summary: Удалить коллекцию из избранного
+    description: Удалить коллекцию из избранного. При заданном токене запрос выполняется в контексте текущего профиля.
+    x-client-methods:
+    - CollectionFavoriteApi.delete
+    parameters:
+    - name: id
+      in: path
+      required: true
+      description: Идентификатор целевого объекта.
+      schema:
+        type: integer
+        format: int64
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/collections.yaml#/FavoriteCollectionDeleteResponse
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    security:
+    - AnixartToken: []
+    - {}
+    x-original-tags:
+    - Избранные коллекции
+/collectionMy/create:
+  post:
+    tags:
+    - Коллекции
+    operationId: CollectionMy_create
+    summary: Создать коллекцию
+    description: 'Создать коллекцию. Тело запроса: `CollectionCreateEditRequest` (`application/json`). При заданном токене
+      запрос выполняется в контексте текущего профиля.'
+    x-client-methods:
+    - CollectionMyApi.create
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/collections.yaml#/CollectionCreateEditResponse
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: ../components/collections.yaml#/CollectionCreateEditRequest
+    security:
+    - AnixartToken: []
+    - {}
+    x-original-tags:
+    - Мои коллекции
+/collectionMy/delete/{collectionId}:
+  get:
+    tags:
+    - Коллекции
+    operationId: CollectionMy_delete
+    summary: Удалить коллекцию
+    description: Удалить коллекцию. При заданном токене запрос выполняется в контексте текущего профиля.
+    x-client-methods:
+    - CollectionMyApi.delete
+    parameters:
+    - name: collectionId
+      in: path
+      required: true
+      description: Идентификатор коллекции.
+      schema:
+        type: integer
+        format: int64
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/collections.yaml#/CollectionDeleteResponse
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    security:
+    - AnixartToken: []
+    - {}
+    x-original-tags:
+    - Мои коллекции
+/collectionMy/edit/{collectionId}:
+  post:
+    tags:
+    - Коллекции
+    operationId: CollectionMy_edit
+    summary: Изменить коллекцию
+    description: 'Изменить коллекцию. Тело запроса: `CollectionCreateEditRequest` (`application/json`). При заданном токене
+      запрос выполняется в контексте текущего профиля.'
+    x-client-methods:
+    - CollectionMyApi.edit
+    parameters:
+    - name: collectionId
+      in: path
+      required: true
+      description: Идентификатор коллекции.
+      schema:
+        type: integer
+        format: int64
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/collections.yaml#/CollectionCreateEditResponse
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: ../components/collections.yaml#/CollectionCreateEditRequest
+    security:
+    - AnixartToken: []
+    - {}
+    x-original-tags:
+    - Мои коллекции
+/collectionMy/editImage/{collectionId}:
+  post:
+    tags:
+    - Коллекции
+    operationId: CollectionMy_editImage
+    summary: Изменить изображение коллекции
+    description: Изменить изображение коллекции. Тело запроса передаётся как `multipart/form-data`. При заданном токене запрос
+      выполняется в контексте текущего профиля.
+    x-client-methods:
+    - CollectionMyApi.editImage
+    parameters:
+    - name: collectionId
+      in: path
+      required: true
+      description: Идентификатор коллекции.
+      schema:
+        type: integer
+        format: int64
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/collections.yaml#/CollectionEditImageResponse
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    requestBody:
+      required: true
+      content:
+        multipart/form-data:
+          schema:
+            type: object
+            properties:
+              file:
+                type: string
+                format: binary
+              name:
+                type: string
+                format: binary
+    security:
+    - AnixartToken: []
+    - {}
+    x-original-tags:
+    - Мои коллекции
+/collectionMy/release/add/{collectionId}:
+  get:
+    tags:
+    - Коллекции
+    operationId: CollectionMy_releaseAdd
+    summary: Добавить релиз в коллекцию
+    description: Добавить релиз в коллекцию. При заданном токене запрос выполняется в контексте текущего профиля.
+    x-client-methods:
+    - CollectionMyApi.releaseAdd
+    parameters:
+    - name: collectionId
+      in: path
+      required: true
+      description: Идентификатор коллекции.
+      schema:
+        type: integer
+        format: int64
+    - name: release_id
+      in: query
+      required: false
+      description: Идентификатор релиза.
+      schema:
+        type: integer
+        format: int64
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/collections.yaml#/ReleaseAddCollectionResponse
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    security:
+    - AnixartToken: []
+    - {}
+    x-original-tags:
+    - Мои коллекции
+/collectionMy/{id}/releases:
+  get:
+    tags:
+    - Коллекции
+    operationId: CollectionMy_releases
+    summary: Изменить состав коллекции
+    description: Изменить состав коллекции. При заданном токене запрос выполняется в контексте текущего профиля.
+    x-client-methods:
+    - CollectionMyApi.releases
+    parameters:
+    - name: id
+      in: path
+      required: true
+      description: Идентификатор целевого объекта.
+      schema:
+        type: integer
+        format: int64
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/pagination.yaml#/PageOfRelease
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    security:
+    - AnixartToken: []
+    - {}
+    x-original-tags:
+    - Мои коллекции

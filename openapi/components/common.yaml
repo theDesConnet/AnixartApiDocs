@@ -1,0 +1,46 @@
+Response:
+  type: object
+  description: Базовая оболочка ответа Anixart. Поле `code` определяет результат операции.
+  properties:
+    code:
+      type: integer
+      format: int32
+      description: Числовой код результата. Для базовых значений см. `CommonResult`; конкретные response DTO могут добавлять
+        собственные коды ошибок.
+      example: 0
+      x-common-result-ref: '#/components/schemas/CommonResult'
+  x-response-constants:
+  - name: BANNED
+    type: int
+    value: 402
+  - name: FAILED
+    type: int
+    value: 1
+  - name: PERM_BANNED
+    type: int
+    value: 403
+  - name: SUCCESSFUL
+    type: int
+    value: 0
+SelectPinnedSectionRequest:
+  type: object
+  properties:
+    id:
+      type: integer
+      format: int32
+      description: Уникальный идентификатор.
+StatusEditRequest:
+  type: object
+  properties:
+    status:
+      type: string
+      description: Текущий статус объекта.
+CommonResponse:
+  allOf:
+  - $ref: '#/Response'
+  - type: object
+    description: Базовый ответ без endpoint-specific result-кодов.
+    properties:
+      code:
+        $ref: ./result-codes.yaml#/CommonResult
+        description: Общий код результата операции.

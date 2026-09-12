@@ -1,0 +1,99 @@
+---
+import '@scalar/api-reference/style.css'
+
+const pageTitle = 'API Reference - Anixart API'
+---
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Интерактивный OpenAPI Reference для Anixart API 10.0." />
+    <link rel="icon" href="/favicon.svg" />
+    <title>{pageTitle}</title>
+    <style is:global>
+      html, body { margin: 0; min-height: 100%; background: #111114; }
+    </style>
+  </head>
+  <body>
+    <div id="scalar-app"></div>
+    <script>
+      import { createApiReference } from '@scalar/api-reference'
+
+      const tagSlugs = {
+        'Релизы': 'releases',
+        'Эпизоды': 'episodes',
+        'Видео': 'videos',
+        'Статьи': 'articles',
+        'Коллекции': 'collections',
+        'Комментарии': 'comments',
+        'Лента и рекомендации': 'feed',
+        'Поиск': 'search',
+        'Профили': 'profiles',
+        'Друзья': 'friends',
+        'Каналы': 'channels',
+        'Библиотека': 'library',
+        'Авторизация': 'auth',
+        'Настройки аккаунта': 'account',
+        'Уведомления': 'notifications',
+        'Модерация': 'moderation',
+        'Конфигурация': 'config',
+        'Импорт и экспорт': 'import-export',
+      }
+
+      createApiReference('#scalar-app', {
+        url: '/openapi.yaml',
+        generateTagSlug: (tag) =>
+          tagSlugs[tag.name] ?? tag.name.toLowerCase().replace(/\s+/g, '-'),
+        generateOperationSlug: (operation) =>
+          operation.operationId ?? `${operation.method}${operation.path}`,
+        theme: 'none',
+        layout: 'modern',
+        darkMode: true,
+        hideDarkModeToggle: false,
+        showSidebar: true,
+        hideSearch: false,
+        defaultOpenAllTags: false,
+        defaultOpenFirstTag: true,
+        showOperationId: false,
+        hideTestRequestButton: true,
+        modelsSectionLabel: 'Схемы',
+        defaultHttpClient: {
+          targetKey: 'shell',
+          clientKey: 'curl',
+        },
+        authentication: {
+          preferredSecurityScheme: 'AnixartToken',
+        },
+        customCss: `
+          .dark-mode {
+            --scalar-color-1: #f3f3f7;
+            --scalar-color-2: #b3b4bf;
+            --scalar-color-3: #777986;
+            --scalar-color-accent: #ff5a67;
+            --scalar-background-1: #111114;
+            --scalar-background-2: #18181c;
+            --scalar-background-3: #222228;
+            --scalar-background-accent: rgba(255, 90, 103, 0.11);
+            --scalar-border-color: rgba(255,255,255,0.08);
+          }
+          .light-mode {
+            --scalar-color-1: #18191f;
+            --scalar-color-2: #565863;
+            --scalar-color-3: #838590;
+            --scalar-color-accent: #e23955;
+            --scalar-background-1: #ffffff;
+            --scalar-background-2: #f7f7f9;
+            --scalar-background-3: #efeff3;
+            --scalar-background-accent: rgba(226, 57, 85, 0.08);
+            --scalar-border-color: rgba(20,20,25,0.08);
+          }
+          :root {
+            --scalar-font: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            --scalar-radius: 8px;
+          }
+        `,
+      })
+    </script>
+  </body>
+</html>

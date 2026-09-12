@@ -1,0 +1,373 @@
+/profile/blocklist/add/{id}:
+  get:
+    tags:
+    - Друзья
+    operationId: ProfileBlockList_addToBlockList
+    summary: Добавить профиль в чёрный список
+    description: Добавить профиль в чёрный список. При заданном токене запрос выполняется в контексте текущего профиля.
+    x-client-methods:
+    - ProfileBlockListApi.addToBlockList
+    parameters:
+    - name: id
+      in: path
+      required: true
+      description: Идентификатор целевого объекта.
+      schema:
+        type: integer
+        format: int64
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/friends.yaml#/BlockProfileListAddResponse
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    security:
+    - AnixartToken: []
+    - {}
+    x-original-tags:
+    - Чёрный список
+/profile/blocklist/all/{page}:
+  get:
+    tags:
+    - Друзья
+    operationId: ProfileBlockList_blockList
+    summary: Получить чёрный список
+    description: Получить чёрный список. Выдача постраничная; `page` начинается с `0`. При заданном токене запрос выполняется
+      в контексте текущего профиля.
+    x-client-methods:
+    - ProfileBlockListApi.blockList
+    parameters:
+    - name: page
+      in: path
+      required: true
+      description: Номер страницы, начиная с `0`.
+      schema:
+        type: integer
+        format: int32
+        minimum: 0
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/pagination.yaml#/PageOfProfile
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    security:
+    - AnixartToken: []
+    - {}
+    x-original-tags:
+    - Чёрный список
+/profile/blocklist/remove/{id}:
+  get:
+    tags:
+    - Друзья
+    operationId: ProfileBlockList_removeFromBlockList
+    summary: Удалить профиль из чёрного списка
+    description: Удалить профиль из чёрного списка. При заданном токене запрос выполняется в контексте текущего профиля.
+    x-client-methods:
+    - ProfileBlockListApi.removeFromBlockList
+    parameters:
+    - name: id
+      in: path
+      required: true
+      description: Идентификатор целевого объекта.
+      schema:
+        type: integer
+        format: int64
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/common.yaml#/CommonResponse
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    security:
+    - AnixartToken: []
+    - {}
+    x-original-tags:
+    - Чёрный список
+/profile/friend/all/{id}/{page}:
+  get:
+    tags:
+    - Друзья
+    operationId: ProfileFriend_friends
+    summary: Получить друзей
+    description: Получить друзей. Выдача постраничная; `page` начинается с `0`. При заданном токене запрос выполняется в контексте
+      текущего профиля.
+    x-client-methods:
+    - ProfileFriendApi.friends
+    parameters:
+    - name: id
+      in: path
+      required: true
+      description: Идентификатор целевого объекта.
+      schema:
+        type: integer
+        format: int64
+    - name: page
+      in: path
+      required: true
+      description: Номер страницы, начиная с `0`.
+      schema:
+        type: integer
+        format: int32
+        minimum: 0
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/pagination.yaml#/PageOfProfile
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    security:
+    - AnixartToken: []
+    - {}
+/profile/friend/recommendations:
+  get:
+    tags:
+    - Друзья
+    operationId: ProfileFriend_recommendations
+    summary: Получить рекомендации друзей
+    description: Получить рекомендации друзей. При заданном токене запрос выполняется в контексте текущего профиля.
+    x-client-methods:
+    - ProfileFriendApi.recommendations
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/pagination.yaml#/PageOfProfile
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    security:
+    - AnixartToken: []
+    - {}
+/profile/friend/request/hide/{id}:
+  get:
+    tags:
+    - Друзья
+    operationId: ProfileFriend_requestHide
+    summary: Скрыть рекомендацию дружбы
+    description: Скрыть рекомендацию дружбы. При заданном токене запрос выполняется в контексте текущего профиля.
+    x-client-methods:
+    - ProfileFriendApi.requestHide
+    parameters:
+    - name: id
+      in: path
+      required: true
+      description: Идентификатор целевого объекта.
+      schema:
+        type: integer
+        format: int64
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/common.yaml#/CommonResponse
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    security:
+    - AnixartToken: []
+    - {}
+/profile/friend/request/remove/{id}:
+  get:
+    tags:
+    - Друзья
+    operationId: ProfileFriend_requestRemove
+    summary: Удалить заявку в друзья
+    description: Удалить заявку в друзья. При заданном токене запрос выполняется в контексте текущего профиля.
+    x-client-methods:
+    - ProfileFriendApi.requestRemove
+    parameters:
+    - name: id
+      in: path
+      required: true
+      description: Идентификатор целевого объекта.
+      schema:
+        type: integer
+        format: int64
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/friends.yaml#/RemoveFriendRequestResponse
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    security:
+    - AnixartToken: []
+    - {}
+/profile/friend/request/send/{id}:
+  get:
+    tags:
+    - Друзья
+    operationId: ProfileFriend_requestSend
+    summary: Отправить заявку в друзья
+    description: Отправить заявку в друзья. При заданном токене запрос выполняется в контексте текущего профиля.
+    x-client-methods:
+    - ProfileFriendApi.requestSend
+    parameters:
+    - name: id
+      in: path
+      required: true
+      description: Идентификатор целевого объекта.
+      schema:
+        type: integer
+        format: int64
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/friends.yaml#/SendFriendRequestResponse
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    security:
+    - AnixartToken: []
+    - {}
+/profile/friend/requests/in/last:
+  get:
+    tags:
+    - Друзья
+    operationId: ProfileFriend_requestsInLast
+    summary: Получить последние входящие заявки
+    description: Получить последние входящие заявки. При заданном токене запрос выполняется в контексте текущего профиля.
+    x-client-methods:
+    - ProfileFriendApi.requestsInLast
+    parameters:
+    - name: count
+      in: query
+      required: false
+      description: Максимальное количество возвращаемых элементов.
+      schema:
+        type: integer
+        format: int32
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/pagination.yaml#/PageOfProfile
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    security:
+    - AnixartToken: []
+    - {}
+/profile/friend/requests/in/{page}:
+  get:
+    tags:
+    - Друзья
+    operationId: ProfileFriend_requestsIn
+    summary: Получить входящие заявки
+    description: Получить входящие заявки. Выдача постраничная; `page` начинается с `0`. При заданном токене запрос выполняется
+      в контексте текущего профиля.
+    x-client-methods:
+    - ProfileFriendApi.requestsIn
+    parameters:
+    - name: page
+      in: path
+      required: true
+      description: Номер страницы, начиная с `0`.
+      schema:
+        type: integer
+        format: int32
+        minimum: 0
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/pagination.yaml#/PageOfProfile
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    security:
+    - AnixartToken: []
+    - {}
+/profile/friend/requests/out/last:
+  get:
+    tags:
+    - Друзья
+    operationId: ProfileFriend_requestsOutLast
+    summary: Получить последние исходящие заявки
+    description: Получить последние исходящие заявки. При заданном токене запрос выполняется в контексте текущего профиля.
+    x-client-methods:
+    - ProfileFriendApi.requestsOutLast
+    parameters:
+    - name: count
+      in: query
+      required: false
+      description: Максимальное количество возвращаемых элементов.
+      schema:
+        type: integer
+        format: int32
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/pagination.yaml#/PageOfProfile
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    security:
+    - AnixartToken: []
+    - {}
+/profile/friend/requests/out/{page}:
+  get:
+    tags:
+    - Друзья
+    operationId: ProfileFriend_requestsOut
+    summary: Получить исходящие заявки
+    description: Получить исходящие заявки. Выдача постраничная; `page` начинается с `0`. При заданном токене запрос выполняется
+      в контексте текущего профиля.
+    x-client-methods:
+    - ProfileFriendApi.requestsOut
+    parameters:
+    - name: page
+      in: path
+      required: true
+      description: Номер страницы, начиная с `0`.
+      schema:
+        type: integer
+        format: int32
+        minimum: 0
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/pagination.yaml#/PageOfProfile
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    security:
+    - AnixartToken: []
+    - {}

@@ -1,0 +1,307 @@
+ArticleComment:
+  allOf:
+  - $ref: '#/Comment'
+  - type: object
+    properties:
+      article:
+        $ref: ./articles.yaml#/Article
+        description: Связанная статья.
+  description: Комментарий к статье.
+ArticleCommentCompact:
+  allOf:
+  - $ref: '#/CommentCompact'
+  - type: object
+    properties:
+      article:
+        $ref: ./articles.yaml#/ArticleCompact
+        description: Связанная статья.
+      embeddableDescription:
+        type: string
+        description: Краткое описание объекта, к которому относится комментарий.
+      embeddableId:
+        type: integer
+        format: int64
+        description: Идентификатор связанного объекта «embeddable».
+      embeddableTitle:
+        type: string
+        description: Заголовок объекта, к которому относится комментарий.
+CollectionComment:
+  allOf:
+  - $ref: '#/Comment'
+  - type: object
+    properties:
+      collection:
+        $ref: ./collections.yaml#/Collection
+        description: Связанная коллекция.
+  description: Комментарий к коллекции.
+CollectionCommentCompact:
+  allOf:
+  - $ref: '#/CommentCompact'
+  - type: object
+    properties:
+      collection:
+        $ref: ./collections.yaml#/CollectionCompact
+        description: Связанная коллекция.
+      embeddableId:
+        type: integer
+        format: int64
+        description: Идентификатор связанного объекта «embeddable».
+      embeddableTitle:
+        type: string
+        description: Заголовок объекта, к которому относится комментарий.
+Comment:
+  type: object
+  description: Общие поля комментария Anixart.
+  properties:
+    id:
+      type: integer
+      format: int64
+      description: Уникальный идентификатор.
+    isDeleted:
+      type: boolean
+      description: Объект помечен удалённым.
+    isEdited:
+      type: boolean
+      description: Комментарий был отредактирован.
+    isReply:
+      type: boolean
+      description: Комментарий является ответом.
+    isSpoiler:
+      type: boolean
+      description: Содержимое помечено как спойлер.
+    likesCount:
+      type: integer
+      format: int32
+      description: Количество лайков.
+    parentCommentId:
+      type:
+      - integer
+      - 'null'
+      format: int64
+      description: Идентификатор родительского комментария.
+    profile:
+      $ref: ./profiles.yaml#/ProfileCompact
+      description: Автор комментария.
+    replyCount:
+      type: integer
+      format: int64
+      description: Количество ответов.
+    timestamp:
+      type: integer
+      format: int64
+      description: Временная метка.
+    type:
+      type: integer
+      format: int32
+      description: Числовой тип комментария, используемый клиентом.
+    vote:
+      type: integer
+      format: int32
+      description: Голос текущего профиля за комментарий.
+    voteCount:
+      type: integer
+      format: int32
+      description: Количество голосов.
+    message:
+      type: string
+      description: Текст комментария.
+    canLike:
+      type: boolean
+      description: Текущий профиль может поставить реакцию этому комментарию.
+CommentAddRequest:
+  type: object
+  properties:
+    message:
+      type: string
+      description: Текст нового комментария.
+    parentCommentId:
+      type:
+      - integer
+      - 'null'
+      format: int64
+      description: Идентификатор родительского комментария.
+    replyToProfileId:
+      type:
+      - integer
+      - 'null'
+      format: int64
+      description: Идентификатор профиля, которому отвечают.
+    spoiler:
+      type: boolean
+      description: Комментарий нужно пометить как спойлер.
+CommentAddResponse:
+  allOf:
+  - $ref: ./common.yaml#/Response
+  - type: object
+    properties:
+      comment:
+        $ref: '#/Comment'
+        description: Созданный комментарий.
+      code:
+        anyOf:
+        - $ref: ./result-codes.yaml#/CommonResult
+        - $ref: ./result-codes.yaml#/CommentAddResult
+        description: 'Код результата: общий `CommonResult` либо `CommentAddResult` для ошибок этой операции.'
+        example: 0
+    description: Результат добавления комментария.
+  description: Базовая схема результата добавления комментария. Конкретный тип `comment` зависит от раздела API.
+  x-result-enum: '#/components/schemas/CommentAddResult'
+CommentCompact:
+  type: object
+  description: Компактное представление комментария.
+  properties:
+    embeddableDescription:
+      type: string
+      description: Краткое описание объекта, к которому относится комментарий.
+    id:
+      type: integer
+      format: int64
+      description: Уникальный идентификатор.
+    isSpoiler:
+      type: boolean
+      description: Содержимое помечено как спойлер.
+    message:
+      type: string
+      description: Текстовое сообщение сервера.
+    profile:
+      $ref: ./profiles.yaml#/ProfileSlim
+      description: Связанный профиль пользователя.
+CommentDeleteResponse:
+  allOf:
+  - $ref: ./common.yaml#/Response
+  - type: object
+    properties:
+      code:
+        anyOf:
+        - $ref: ./result-codes.yaml#/CommonResult
+        - $ref: ./result-codes.yaml#/CommentDeleteResult
+        description: 'Код результата: общий `CommonResult` либо `CommentDeleteResult` для ошибок этой операции.'
+        example: 0
+  x-result-enum: '#/components/schemas/CommentDeleteResult'
+CommentEditRequest:
+  type: object
+  properties:
+    message:
+      type: string
+      description: Новый текст комментария.
+    spoiler:
+      type: boolean
+      description: Комментарий нужно пометить как спойлер.
+CommentEditResponse:
+  allOf:
+  - $ref: ./common.yaml#/Response
+  - type: object
+    properties:
+      code:
+        anyOf:
+        - $ref: ./result-codes.yaml#/CommonResult
+        - $ref: ./result-codes.yaml#/CommentEditResult
+        description: 'Код результата: общий `CommonResult` либо `CommentEditResult` для ошибок этой операции.'
+        example: 0
+  x-result-enum: '#/components/schemas/CommentEditResult'
+CommentProcessRequest:
+  type: object
+  properties:
+    banExpires:
+      type:
+      - integer
+      - 'null'
+      format: int64
+      description: Срок блокировки автора комментария в формате API; `null` - без заданного срока.
+    banReason:
+      type: string
+      description: Причина блокировки автора комментария.
+    isBanned:
+      type: boolean
+      description: Нужно ли применить блокировку к автору комментария.
+    isDeleted:
+      type: boolean
+      description: Нужно ли пометить комментарий удалённым.
+    isSpoiler:
+      type: boolean
+      description: Нужно ли пометить комментарий как спойлер.
+    message:
+      type: string
+      description: Сообщение, связанное с модерационной обработкой комментария.
+    reason:
+      type: string
+      description: Причина модерационного действия.
+  description: 'Параметры модерационной обработки комментария: удаление, спойлер и ограничения автора.'
+PopularComment:
+  type: object
+  properties:
+    id:
+      type: integer
+      format: int64
+      description: Уникальный идентификатор.
+    message:
+      type: string
+      description: Текстовое сообщение сервера.
+    profile:
+      $ref: ./profiles.yaml#/ProfileSlim
+      description: Связанный профиль пользователя.
+    timestamp:
+      type: integer
+      format: int64
+      description: Временная метка.
+    voteCount:
+      type: integer
+      format: int32
+      description: Количество голосов.
+ReleaseComment:
+  allOf:
+  - $ref: '#/Comment'
+  - type: object
+    properties:
+      posted_at_episode:
+        type:
+        - integer
+        - 'null'
+        format: int32
+        description: Номер эпизода, к которому относится комментарий.
+      release:
+        $ref: ./releases.yaml#/Release
+        description: Связанный релиз.
+  description: Комментарий к релизу.
+ReleaseCommentCompact:
+  allOf:
+  - $ref: '#/CommentCompact'
+  - type: object
+    properties:
+      embeddableId:
+        type: integer
+        format: int64
+        description: Идентификатор связанного объекта «embeddable».
+      embeddableTitle:
+        type: string
+        description: Заголовок объекта, к которому относится комментарий.
+      release:
+        $ref: ./releases.yaml#/ReleaseCompact
+        description: Связанный релиз.
+ArticleCommentAddResponse:
+  allOf:
+  - $ref: '#/CommentAddResponse'
+  - type: object
+    properties:
+      comment:
+        $ref: '#/ArticleComment'
+        description: Созданный комментарий.
+  description: Результат добавления комментария к статье.
+CollectionCommentAddResponse:
+  allOf:
+  - $ref: '#/CommentAddResponse'
+  - type: object
+    properties:
+      comment:
+        $ref: '#/CollectionComment'
+        description: Созданный комментарий.
+  description: Результат добавления комментария к коллекции.
+ReleaseCommentAddResponse:
+  allOf:
+  - $ref: '#/CommentAddResponse'
+  - type: object
+    properties:
+      comment:
+        $ref: '#/ReleaseComment'
+        description: Созданный комментарий.
+  description: Результат добавления комментария к релизу.

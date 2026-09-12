@@ -1,0 +1,961 @@
+/notification/all/{page}:
+  get:
+    tags:
+    - Уведомления
+    operationId: Notification_all
+    summary: Получить все уведомления
+    description: Получить все уведомления. Выдача постраничная; `page` начинается с `0`. При заданном токене запрос выполняется
+      в контексте текущего профиля.
+    x-client-methods:
+    - NotificationApi.all
+    parameters:
+    - name: page
+      in: path
+      required: true
+      description: Номер страницы, начиная с `0`.
+      schema:
+        type: integer
+        format: int32
+        minimum: 0
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/pagination.yaml#/PageOfProfileNotification
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    security:
+    - AnixartToken: []
+    - {}
+/notification/article/comment/delete/{id}:
+  get:
+    tags:
+    - Уведомления
+    operationId: Notification_deleteArticleCommentNotification
+    summary: Удалить уведомление о комментарии к статье
+    description: Удалить уведомление о комментарии к статье. При заданном токене запрос выполняется в контексте текущего профиля.
+    x-client-methods:
+    - NotificationApi.deleteArticleCommentNotification
+    parameters:
+    - name: id
+      in: path
+      required: true
+      description: Идентификатор целевого объекта.
+      schema:
+        type: integer
+        format: int64
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/common.yaml#/CommonResponse
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    security:
+    - AnixartToken: []
+    - {}
+/notification/article/comments/{page}:
+  get:
+    tags:
+    - Уведомления
+    operationId: Notification_articleComments
+    summary: Получить уведомления о комментариях к статьям
+    description: Получить уведомления о комментариях к статьям. Выдача постраничная; `page` начинается с `0`. При заданном токене запрос выполняется
+      в контексте текущего профиля.
+    x-client-methods:
+    - NotificationApi.articleComments
+    parameters:
+    - name: page
+      in: path
+      required: true
+      description: Номер страницы, начиная с `0`.
+      schema:
+        type: integer
+        format: int32
+        minimum: 0
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/pagination.yaml#/PageOfProfileArticleCommentNotification
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    security:
+    - AnixartToken: []
+    - {}
+/notification/articles/{page}:
+  get:
+    tags:
+    - Уведомления
+    operationId: Notification_articles
+    summary: Получить уведомления о статьях
+    description: Получить уведомления о статьях. Выдача постраничная; `page` начинается с `0`. При заданном токене запрос выполняется
+      в контексте текущего профиля.
+    x-client-methods:
+    - NotificationApi.articles
+    parameters:
+    - name: page
+      in: path
+      required: true
+      description: Номер страницы, начиная с `0`.
+      schema:
+        type: integer
+        format: int32
+        minimum: 0
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/pagination.yaml#/PageOfProfileArticleNotification
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    security:
+    - AnixartToken: []
+    - {}
+/notification/collectionComment/delete/{id}:
+  get:
+    tags:
+    - Уведомления
+    operationId: Notification_deleteCollectionCommentNotification
+    summary: Удалить уведомление о комментарии к коллекции
+    description: Удалить уведомление о комментарии к коллекции. При заданном токене запрос выполняется в контексте текущего профиля.
+    x-client-methods:
+    - NotificationApi.deleteCollectionCommentNotification
+    parameters:
+    - name: id
+      in: path
+      required: true
+      description: Идентификатор целевого объекта.
+      schema:
+        type: integer
+        format: int64
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/common.yaml#/CommonResponse
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    security:
+    - AnixartToken: []
+    - {}
+/notification/collectionComments/{page}:
+  get:
+    tags:
+    - Уведомления
+    operationId: Notification_collectionComments
+    summary: Получить уведомления о комментариях к коллекциям
+    description: Получить уведомления о комментариях к коллекциям. Выдача постраничная; `page` начинается с `0`. При заданном токене запрос выполняется
+      в контексте текущего профиля.
+    x-client-methods:
+    - NotificationApi.collectionComments
+    parameters:
+    - name: page
+      in: path
+      required: true
+      description: Номер страницы, начиная с `0`.
+      schema:
+        type: integer
+        format: int32
+        minimum: 0
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/pagination.yaml#/PageOfProfileCollectionCommentNotification
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    security:
+    - AnixartToken: []
+    - {}
+/notification/count:
+  get:
+    tags:
+    - Уведомления
+    operationId: Notification_count
+    summary: Получить количество новых уведомлений
+    description: Получить количество новых уведомлений. При заданном токене запрос выполняется в контексте текущего профиля.
+    x-client-methods:
+    - NotificationApi.count
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/notifications.yaml#/NotificationCountResponse
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    security:
+    - AnixartToken: []
+    - {}
+/notification/delete/all:
+  get:
+    tags:
+    - Уведомления
+    operationId: Notification_deleteAll
+    summary: Удалить все уведомления
+    description: Удалить все уведомления. При заданном токене запрос выполняется в контексте текущего профиля.
+    x-client-methods:
+    - NotificationApi.deleteAll
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/common.yaml#/CommonResponse
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    security:
+    - AnixartToken: []
+    - {}
+/notification/episode/delete/{id}:
+  get:
+    tags:
+    - Уведомления
+    operationId: Notification_deleteEpisodeNotification
+    summary: Удалить уведомление об эпизоде
+    description: Удалить уведомление об эпизоде. При заданном токене запрос выполняется в контексте текущего профиля.
+    x-client-methods:
+    - NotificationApi.deleteEpisodeNotification
+    parameters:
+    - name: id
+      in: path
+      required: true
+      description: Идентификатор целевого объекта.
+      schema:
+        type: integer
+        format: int64
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/common.yaml#/CommonResponse
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    security:
+    - AnixartToken: []
+    - {}
+/notification/episodes/{page}:
+  get:
+    tags:
+    - Уведомления
+    operationId: Notification_episodes
+    summary: Получить уведомления об эпизодах
+    description: Получить уведомления об эпизодах. Выдача постраничная; `page` начинается с `0`. При заданном токене запрос выполняется
+      в контексте текущего профиля.
+    x-client-methods:
+    - NotificationApi.episodes
+    parameters:
+    - name: page
+      in: path
+      required: true
+      description: Номер страницы, начиная с `0`.
+      schema:
+        type: integer
+        format: int32
+        minimum: 0
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/pagination.yaml#/PageOfProfileEpisodeNotification
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    security:
+    - AnixartToken: []
+    - {}
+/notification/friend/delete/{id}:
+  get:
+    tags:
+    - Уведомления
+    operationId: Notification_deleteFriendNotification
+    summary: Удалить уведомление о друге
+    description: Удалить уведомление о друге. При заданном токене запрос выполняется в контексте текущего профиля.
+    x-client-methods:
+    - NotificationApi.deleteFriendNotification
+    parameters:
+    - name: id
+      in: path
+      required: true
+      description: Идентификатор целевого объекта.
+      schema:
+        type: integer
+        format: int64
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/common.yaml#/CommonResponse
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    security:
+    - AnixartToken: []
+    - {}
+/notification/friends/{page}:
+  get:
+    tags:
+    - Уведомления
+    operationId: Notification_friends
+    summary: Получить уведомления о друзьях
+    description: Получить уведомления о друзьях. Выдача постраничная; `page` начинается с `0`. При заданном токене запрос выполняется
+      в контексте текущего профиля.
+    x-client-methods:
+    - NotificationApi.friends
+    parameters:
+    - name: page
+      in: path
+      required: true
+      description: Номер страницы, начиная с `0`.
+      schema:
+        type: integer
+        format: int32
+        minimum: 0
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/pagination.yaml#/PageOfProfileFriendNotification
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    security:
+    - AnixartToken: []
+    - {}
+/notification/my/article/comment/delete/{id}:
+  get:
+    tags:
+    - Уведомления
+    operationId: Notification_deleteMyArticleCommentNotification
+    summary: Удалить уведомление о комментарии к своей статье
+    description: Удалить уведомление о комментарии к своей статье. При заданном токене запрос выполняется в контексте текущего профиля.
+    x-client-methods:
+    - NotificationApi.deleteMyArticleCommentNotification
+    parameters:
+    - name: id
+      in: path
+      required: true
+      description: Идентификатор целевого объекта.
+      schema:
+        type: integer
+        format: int64
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/common.yaml#/CommonResponse
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    security:
+    - AnixartToken: []
+    - {}
+/notification/my/collection/comment/delete/{id}:
+  get:
+    tags:
+    - Уведомления
+    operationId: Notification_deleteMyCollectionCommentNotification
+    summary: Удалить уведомление о комментарии к своей коллекции
+    description: Удалить уведомление о комментарии к своей коллекции. При заданном токене запрос выполняется в контексте текущего профиля.
+    x-client-methods:
+    - NotificationApi.deleteMyCollectionCommentNotification
+    parameters:
+    - name: id
+      in: path
+      required: true
+      description: Идентификатор целевого объекта.
+      schema:
+        type: integer
+        format: int64
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/common.yaml#/CommonResponse
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    security:
+    - AnixartToken: []
+    - {}
+/notification/read:
+  get:
+    tags:
+    - Уведомления
+    operationId: Notification_read
+    summary: Отметить уведомления прочитанными
+    description: Отметить уведомления прочитанными. При заданном токене запрос выполняется в контексте текущего профиля.
+    x-client-methods:
+    - NotificationApi.read
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/common.yaml#/CommonResponse
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    security:
+    - AnixartToken: []
+    - {}
+/notification/related/release/delete/{id}:
+  get:
+    tags:
+    - Уведомления
+    operationId: Notification_deleteRelatedReleaseNotification
+    summary: Удалить уведомление о связанном релизе
+    description: Удалить уведомление о связанном релизе. При заданном токене запрос выполняется в контексте текущего профиля.
+    x-client-methods:
+    - NotificationApi.deleteRelatedReleaseNotification
+    parameters:
+    - name: id
+      in: path
+      required: true
+      description: Идентификатор целевого объекта.
+      schema:
+        type: integer
+        format: int64
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/common.yaml#/CommonResponse
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    security:
+    - AnixartToken: []
+    - {}
+/notification/related/release/{page}:
+  get:
+    tags:
+    - Уведомления
+    operationId: Notification_relatedReleases
+    summary: Получить уведомления о связанных релизах
+    description: Получить уведомления о связанных релизах. Выдача постраничная; `page` начинается с `0`. При заданном токене запрос выполняется
+      в контексте текущего профиля.
+    x-client-methods:
+    - NotificationApi.relatedReleases
+    parameters:
+    - name: page
+      in: path
+      required: true
+      description: Номер страницы, начиная с `0`.
+      schema:
+        type: integer
+        format: int32
+        minimum: 0
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/pagination.yaml#/PageOfProfileRelatedReleaseNotification
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    security:
+    - AnixartToken: []
+    - {}
+/notification/releaseComment/delete/{id}:
+  get:
+    tags:
+    - Уведомления
+    operationId: Notification_deleteReleaseCommentNotification
+    summary: Удалить уведомление о комментарии к релизу
+    description: Удалить уведомление о комментарии к релизу. При заданном токене запрос выполняется в контексте текущего профиля.
+    x-client-methods:
+    - NotificationApi.deleteReleaseCommentNotification
+    parameters:
+    - name: id
+      in: path
+      required: true
+      description: Идентификатор целевого объекта.
+      schema:
+        type: integer
+        format: int64
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/common.yaml#/CommonResponse
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    security:
+    - AnixartToken: []
+    - {}
+/notification/releaseComments/{page}:
+  get:
+    tags:
+    - Уведомления
+    operationId: Notification_releaseComments
+    summary: Получить уведомления о комментариях к релизам
+    description: Получить уведомления о комментариях к релизам. Выдача постраничная; `page` начинается с `0`. При заданном токене запрос выполняется
+      в контексте текущего профиля.
+    x-client-methods:
+    - NotificationApi.releaseComments
+    parameters:
+    - name: page
+      in: path
+      required: true
+      description: Номер страницы, начиная с `0`.
+      schema:
+        type: integer
+        format: int32
+        minimum: 0
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/pagination.yaml#/PageOfProfileReleaseCommentNotification
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    security:
+    - AnixartToken: []
+    - {}
+/profile/preference/notification/article/edit:
+  get:
+    tags:
+    - Уведомления
+    operationId: NotificationPreference_articleNotificationsEdit
+    summary: Изменить уведомления о статьях
+    description: Изменить уведомления о статьях. При заданном токене запрос выполняется в контексте текущего профиля.
+    x-client-methods:
+    - NotificationPreferenceApi.articleNotificationsEdit
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/common.yaml#/CommonResponse
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    security:
+    - AnixartToken: []
+    - {}
+    x-original-tags:
+    - Настройки уведомлений
+/profile/preference/notification/comment/edit:
+  get:
+    tags:
+    - Уведомления
+    operationId: NotificationPreference_commentNotificationsEdit
+    summary: Изменить уведомления о комментариях
+    description: Изменить уведомления о комментариях. При заданном токене запрос выполняется в контексте текущего профиля.
+    x-client-methods:
+    - NotificationPreferenceApi.commentNotificationsEdit
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/common.yaml#/CommonResponse
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    security:
+    - AnixartToken: []
+    - {}
+    x-original-tags:
+    - Настройки уведомлений
+/profile/preference/notification/episode/edit:
+  get:
+    tags:
+    - Уведомления
+    operationId: NotificationPreference_episodeNotificationsEdit
+    summary: Изменить уведомления об эпизодах
+    description: Изменить уведомления об эпизодах. При заданном токене запрос выполняется в контексте текущего профиля.
+    x-client-methods:
+    - NotificationPreferenceApi.episodeNotificationsEdit
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/common.yaml#/CommonResponse
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    security:
+    - AnixartToken: []
+    - {}
+    x-original-tags:
+    - Настройки уведомлений
+/profile/preference/notification/episode/first/edit:
+  get:
+    tags:
+    - Уведомления
+    operationId: NotificationPreference_firstEpisodeNotificationsEdit
+    summary: Изменить уведомления о первом эпизоде
+    description: Изменить уведомления о первом эпизоде. При заданном токене запрос выполняется в контексте текущего профиля.
+    x-client-methods:
+    - NotificationPreferenceApi.firstEpisodeNotificationsEdit
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/common.yaml#/CommonResponse
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    security:
+    - AnixartToken: []
+    - {}
+    x-original-tags:
+    - Настройки уведомлений
+/profile/preference/notification/my:
+  get:
+    tags:
+    - Уведомления
+    operationId: NotificationPreference_my
+    summary: Получить настройки уведомлений
+    description: Получить настройки уведомлений. При заданном токене запрос выполняется в контексте текущего профиля.
+    x-client-methods:
+    - NotificationPreferenceApi.my
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/notifications.yaml#/NotificationPreferenceResponse
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    security:
+    - AnixartToken: []
+    - {}
+    x-original-tags:
+    - Настройки уведомлений
+/profile/preference/notification/my/article/comment/edit:
+  get:
+    tags:
+    - Уведомления
+    operationId: NotificationPreference_myArticleCommentNotificationsEdit
+    summary: Изменить уведомления о комментариях к своим статьям
+    description: Изменить уведомления о комментариях к своим статьям. При заданном токене запрос выполняется в контексте текущего профиля.
+    x-client-methods:
+    - NotificationPreferenceApi.myArticleCommentNotificationsEdit
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/common.yaml#/CommonResponse
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    security:
+    - AnixartToken: []
+    - {}
+    x-original-tags:
+    - Настройки уведомлений
+/profile/preference/notification/my/collection/comment/edit:
+  get:
+    tags:
+    - Уведомления
+    operationId: NotificationPreference_myCollectionCommentNotificationsEdit
+    summary: Изменить уведомления о комментариях к своим коллекциям
+    description: Изменить уведомления о комментариях к своим коллекциям. При заданном токене запрос выполняется в контексте текущего профиля.
+    x-client-methods:
+    - NotificationPreferenceApi.myCollectionCommentNotificationsEdit
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/common.yaml#/CommonResponse
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    security:
+    - AnixartToken: []
+    - {}
+    x-original-tags:
+    - Настройки уведомлений
+/profile/preference/notification/related/release/edit:
+  get:
+    tags:
+    - Уведомления
+    operationId: NotificationPreference_relatedReleaseNotificationsEdit
+    summary: Изменить уведомления о связанных релизах
+    description: Изменить уведомления о связанных релизах. При заданном токене запрос выполняется в контексте текущего профиля.
+    x-client-methods:
+    - NotificationPreferenceApi.relatedReleaseNotificationsEdit
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/common.yaml#/CommonResponse
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    security:
+    - AnixartToken: []
+    - {}
+    x-original-tags:
+    - Настройки уведомлений
+/profile/preference/notification/release/all/{page}:
+  get:
+    tags:
+    - Уведомления
+    operationId: NotificationPreference_profileReleaseNotificationPreferences
+    summary: Получить релизы из настроек уведомлений
+    description: Получить релизы из настроек уведомлений. Выдача постраничная; `page` начинается с `0`. При заданном токене запрос
+      выполняется в контексте текущего профиля.
+    x-client-methods:
+    - NotificationPreferenceApi.profileReleaseNotificationPreferences
+    parameters:
+    - name: page
+      in: path
+      required: true
+      description: Номер страницы, начиная с `0`.
+      schema:
+        type: integer
+        format: int32
+        minimum: 0
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/pagination.yaml#/PageOfRelease
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    security:
+    - AnixartToken: []
+    - {}
+    x-original-tags:
+    - Настройки уведомлений
+/profile/preference/notification/release/type/edit:
+  post:
+    tags:
+    - Уведомления
+    operationId: NotificationPreference_profileReleaseTypeNotificationPreferencesEdit
+    summary: Изменить тип уведомлений для релизов
+    description: 'Изменить тип уведомлений для релизов. Тело запроса: `ProfileReleaseTypeNotificationPreferencesEditRequest` (`application/json`).
+      При заданном токене запрос выполняется в контексте текущего профиля.'
+    x-client-methods:
+    - NotificationPreferenceApi.profileReleaseTypeNotificationPreferencesEdit
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/common.yaml#/CommonResponse
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: ../components/notifications.yaml#/ProfileReleaseTypeNotificationPreferencesEditRequest
+    security:
+    - AnixartToken: []
+    - {}
+    x-original-tags:
+    - Настройки уведомлений
+/profile/preference/notification/release/type/{releaseId}:
+  get:
+    tags:
+    - Уведомления
+    operationId: NotificationPreference_profileReleaseTypeNotificationPreferences
+    summary: Получить тип уведомлений для релиза
+    description: Получить тип уведомлений для релиза. При заданном токене запрос выполняется в контексте текущего профиля.
+    x-client-methods:
+    - NotificationPreferenceApi.profileReleaseTypeNotificationPreferences
+    parameters:
+    - name: releaseId
+      in: path
+      required: true
+      description: Идентификатор релиза.
+      schema:
+        type: integer
+        format: int64
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/notifications.yaml#/ProfileReleaseTypeNotificationPreferencesResponse
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    security:
+    - AnixartToken: []
+    - {}
+    x-original-tags:
+    - Настройки уведомлений
+/profile/preference/notification/report/process/edit:
+  get:
+    tags:
+    - Уведомления
+    operationId: NotificationPreference_reportProcessNotificationsEdit
+    summary: Изменить уведомления об обработке жалоб
+    description: Изменить уведомления об обработке жалоб. При заданном токене запрос выполняется в контексте текущего профиля.
+    x-client-methods:
+    - NotificationPreferenceApi.reportProcessNotificationsEdit
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/common.yaml#/CommonResponse
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    security:
+    - AnixartToken: []
+    - {}
+    x-original-tags:
+    - Настройки уведомлений
+/profile/preference/notification/selected/releases/edit:
+  get:
+    tags:
+    - Уведомления
+    operationId: NotificationPreference_selectedReleasesNotificationsEdit
+    summary: Изменить уведомления о выбранных релизах
+    description: Изменить уведомления о выбранных релизах. При заданном токене запрос выполняется в контексте текущего профиля.
+    x-client-methods:
+    - NotificationPreferenceApi.selectedReleasesNotificationsEdit
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/common.yaml#/CommonResponse
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    security:
+    - AnixartToken: []
+    - {}
+    x-original-tags:
+    - Настройки уведомлений
+/profile/preference/notification/status/edit:
+  post:
+    tags:
+    - Уведомления
+    operationId: NotificationPreference_profileStatusNotificationPreferencesEdit
+    summary: Изменить уведомления по статусам профиля
+    description: 'Изменить уведомления по статусам профиля. Тело запроса: `ProfileStatusNotificationPreferencesEditRequest` (`application/json`).
+      При заданном токене запрос выполняется в контексте текущего профиля.'
+    x-client-methods:
+    - NotificationPreferenceApi.profileStatusNotificationPreferencesEdit
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/common.yaml#/CommonResponse
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: ../components/notifications.yaml#/ProfileStatusNotificationPreferencesEditRequest
+    security:
+    - AnixartToken: []
+    - {}
+    x-original-tags:
+    - Настройки уведомлений
+/profile/preference/notification/type/edit:
+  post:
+    tags:
+    - Уведомления
+    operationId: NotificationPreference_profileTypeNotificationPreferencesEdit
+    summary: Изменить типы уведомлений профиля
+    description: 'Изменить типы уведомлений профиля. Тело запроса: `ProfileTypeNotificationPreferencesEditRequest` (`application/json`).
+      При заданном токене запрос выполняется в контексте текущего профиля.'
+    x-client-methods:
+    - NotificationPreferenceApi.profileTypeNotificationPreferencesEdit
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/common.yaml#/CommonResponse
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: ../components/notifications.yaml#/ProfileTypeNotificationPreferencesEditRequest
+    security:
+    - AnixartToken: []
+    - {}
+    x-original-tags:
+    - Настройки уведомлений

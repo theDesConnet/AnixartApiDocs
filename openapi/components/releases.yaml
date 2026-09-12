@@ -1,0 +1,649 @@
+Category:
+  type: object
+  properties:
+    id:
+      type: integer
+      format: int64
+      description: Уникальный идентификатор.
+    name:
+      type: string
+      description: Отображаемое название.
+DeleteVoteReleaseResponse:
+  allOf:
+  - $ref: ./common.yaml#/Response
+  - type: object
+    properties: {}
+FilterRequest:
+  type: object
+  description: Параметры расширенного фильтра релизов.
+  properties:
+    categoryId:
+      type:
+      - integer
+      - 'null'
+      format: int64
+      description: Идентификатор категории.
+    country:
+      type:
+      - string
+      - 'null'
+      description: Страна производства релиза.
+    endYear:
+      type:
+      - integer
+      - 'null'
+      format: int32
+      description: Верхняя граница года выпуска.
+    episodeDurationFrom:
+      type:
+      - integer
+      - 'null'
+      format: int32
+      description: Минимальная длительность эпизода для фильтра.
+    episodeDurationTo:
+      type:
+      - integer
+      - 'null'
+      format: int32
+      description: Максимальная длительность эпизода для фильтра.
+    episodesFrom:
+      type:
+      - integer
+      - 'null'
+      format: int32
+      description: Минимальное количество эпизодов.
+    episodesTo:
+      type:
+      - integer
+      - 'null'
+      format: int32
+      description: Максимальное количество эпизодов.
+    genresMode:
+      type:
+      - integer
+      - 'null'
+      format: int32
+      description: 'Логика применения выбранных жанров: все, любой или исключение.'
+      enum:
+      - 0
+      - 1
+      - 2
+      x-enum-varnames:
+      - ALL
+      - ANY
+      - EXCLUDE
+    isGenresExcludeModeEnabled:
+      type: boolean
+      description: Выбранные жанры используются как исключения.
+    season:
+      type:
+      - integer
+      - 'null'
+      format: int32
+      description: Сезон выхода релиза (числовой код клиента).
+    source:
+      type:
+      - string
+      - 'null'
+      description: Фильтр по строковому названию/источнику релиза.
+    startYear:
+      type:
+      - integer
+      - 'null'
+      format: int32
+      description: Нижняя граница года выпуска.
+    statusId:
+      type:
+      - integer
+      - 'null'
+      format: int64
+      description: Идентификатор статуса релиза.
+    studio:
+      type:
+      - string
+      - 'null'
+      description: Студия, выпустившая релиз.
+    sort:
+      type:
+      - integer
+      - 'null'
+      format: int32
+      description: 'Сортировка результатов: обновление, оценка, год или популярность.'
+      enum:
+      - 0
+      - 1
+      - 2
+      - 3
+      - 4
+      - 5
+      - 6
+      - 7
+      x-enum-varnames:
+      - DATE_UPDATE_DESC
+      - GRADE_DESC
+      - YEAR_DESC
+      - POPULAR_DESC
+      - DATE_UPDATE_ASC
+      - GRADE_ASC
+      - YEAR_ASC
+      - POPULAR_ASC
+    genres:
+      type: array
+      items:
+        type: string
+      description: Жанры релиза в строковом формате API.
+    profileListExclusions:
+      type: array
+      items:
+        type: integer
+        format: int32
+      description: Статусы пользовательских списков, которые нужно исключить.
+    types:
+      type: array
+      items:
+        type: integer
+        format: int64
+      description: Идентификаторы выбранных озвучек/дабберов.
+    ageRatings:
+      type: array
+      items:
+        type: integer
+        format: int32
+      description: Возрастные рейтинги для фильтра.
+  x-response-constants:
+  - name: GENRES_MODE_ALL
+    type: int
+    value: 0
+  - name: GENRES_MODE_ANY
+    type: int
+    value: 1
+  - name: GENRES_MODE_EXCLUDE
+    type: int
+    value: 2
+  - name: LESS_THAN_13
+    type: int
+    value: 1
+  - name: MORE_THAN_100
+    type: int
+    value: 4
+  - name: MORE_THAN_13
+    type: int
+    value: 2
+  - name: MORE_THAN_26
+    type: int
+    value: 3
+  - name: SORT_DATE_UPDATE_ASC
+    type: int
+    value: 4
+  - name: SORT_DATE_UPDATE_DESC
+    type: int
+    value: 0
+  - name: SORT_GRADE_ASC
+    type: int
+    value: 5
+  - name: SORT_GRADE_DESC
+    type: int
+    value: 1
+  - name: SORT_POPULAR_ASC
+    type: int
+    value: 7
+  - name: SORT_POPULAR_DESC
+    type: int
+    value: 3
+  - name: SORT_YEAR_ASC
+    type: int
+    value: 6
+  - name: SORT_YEAR_DESC
+    type: int
+    value: 2
+Related:
+  type: object
+  description: Группа связанных релизов/частей франшизы.
+  properties:
+    id:
+      type: integer
+      format: int64
+      description: Уникальный идентификатор.
+    images:
+      type: array
+      items:
+        type: string
+      description: Дополнительные изображения связанной группы релизов.
+    releaseCount:
+      type: integer
+      format: int64
+      description: Количество релизов.
+    nameRu:
+      type: string
+      description: Русское название группы связанных релизов.
+    description:
+      type: string
+      description: Текстовое описание.
+    image:
+      type: string
+      description: URL или идентификатор изображения.
+Release:
+  type: object
+  description: Полная карточка релиза с метаданными и состоянием текущего профиля.
+  properties:
+    ageRating:
+      type: integer
+      format: int32
+      description: Возрастное ограничение релиза.
+    airedOnDate:
+      type: integer
+      format: int64
+      description: Дата/время начала показа релиза в формате API.
+    author:
+      type: string
+      description: Автор или первоисточник релиза.
+    broadcast:
+      type: integer
+      format: int32
+      description: Числовые данные о трансляции релиза, как их передаёт клиент.
+    canTorlookSearch:
+      type: boolean
+      description: Для релиза доступен поиск через TorLook.
+    canVideoAppeal:
+      type: boolean
+      description: Для релиза разрешена отправка апелляции по видео.
+    category:
+      $ref: '#/Category'
+      description: Категория релиза (TV, фильм, OVA и т. п. - по справочнику API).
+    collectionCount:
+      type: integer
+      format: int64
+      description: Количество коллекций.
+    commentCount:
+      type: integer
+      format: int64
+      description: Количество комментариев.
+    commentPerDayCount:
+      type: integer
+      format: int32
+      description: Среднее/расчётное количество комментариев в день, которое возвращает сервер.
+    comments:
+      type: array
+      items:
+        $ref: ./comments.yaml#/ReleaseComment
+      description: Комментарии, включённые в карточку релиза.
+    completedCount:
+      type: integer
+      format: int32
+      description: Количество профилей со статусом «Просмотрено».
+    country:
+      type: string
+      description: Страна производства релиза.
+    description:
+      type: string
+      description: Текстовое описание.
+    director:
+      type: string
+      description: Режиссёр.
+    droppedCount:
+      type: integer
+      format: int32
+      description: Количество профилей со статусом «Брошено».
+    duration:
+      type: integer
+      format: int32
+      description: Продолжительность релиза/эпизода в единицах, используемых API.
+    episodeLastUpdate:
+      $ref: ./episodes.yaml#/EpisodeUpdate
+      description: Информация о последнем обновлении эпизодов.
+    episodesTotal:
+      type:
+      - integer
+      - 'null'
+      format: int32
+      description: Заявленное общее количество эпизодов.
+    favoriteCount:
+      type: integer
+      format: int32
+      description: Количество добавлений в избранное.
+    genres:
+      type: string
+      description: Жанры релиза в строковом формате API.
+    grade:
+      type: number
+      format: double
+      description: Средняя пользовательская оценка релиза.
+    holdOnCount:
+      type: integer
+      format: int32
+      description: Количество профилей со статусом «Отложено».
+    id:
+      type: integer
+      format: int64
+      description: Уникальный идентификатор.
+    image:
+      type: string
+      description: URL или идентификатор изображения.
+    isAdult:
+      type: boolean
+      description: Релиз относится к контенту для взрослых.
+    isDeleted:
+      type: boolean
+      description: Объект помечен удалённым.
+    isFavorite:
+      type: boolean
+      description: Объект находится в избранном текущего профиля.
+    isPlayDisabled:
+      type: boolean
+      description: Воспроизведение релиза отключено сервером.
+    isReleaseTypeNotificationsEnabled:
+      type: boolean
+      description: Уведомления по выбранным озвучкам релиза включены.
+    isRuBlocked:
+      type: boolean
+      description: Релиз ограничен для российского региона.
+    isThirdPartyPlatformsDisabled:
+      type: boolean
+      description: Переходы на сторонние стриминговые платформы отключены.
+    isViewBlocked:
+      type: boolean
+      description: Просмотр карточки/контента релиза ограничен.
+    isViewed:
+      type: boolean
+      description: Релиз отмечен просмотренным текущим профилем.
+    lastSetCompletedDate:
+      type: integer
+      format: int64
+      description: Время последнего добавления релиза в список «Просмотрено».
+    lastSetDroppedDate:
+      type: integer
+      format: int64
+      description: Время последнего добавления релиза в список «Брошено».
+    lastSetFavoriteDate:
+      type: integer
+      format: int64
+      description: Время последнего добавления релиза в избранное.
+    lastSetHoldOnDate:
+      type: integer
+      format: int64
+      description: Время последнего добавления релиза в список «Отложено».
+    lastSetPlanDate:
+      type: integer
+      format: int64
+      description: Время последнего добавления релиза в список «В планах».
+    lastSetViewedDate:
+      type: integer
+      format: int64
+      description: Время последней отметки релиза как просмотренного.
+    lastSetWatchingDate:
+      type: integer
+      format: int64
+      description: Время последнего добавления релиза в список «Смотрю».
+    lastViewEpisode:
+      $ref: ./episodes.yaml#/Episode
+      description: Последний эпизод, открытый текущим профилем.
+    lastViewEpisodeName:
+      type: string
+      description: Название последнего просмотренного эпизода.
+    lastViewEpisodeTypeName:
+      type: string
+      description: Название озвучки последнего просмотренного эпизода.
+    lastViewTimestamp:
+      type: integer
+      format: int64
+      description: Время последнего просмотра в формате API.
+    note:
+      type: string
+      description: Служебная заметка, которую сервер показывает для релиза.
+    noteBackgroundColorDark:
+      type: string
+      description: Цвет фона заметки в тёмной теме.
+    noteBackgroundColorLight:
+      type: string
+      description: Цвет фона заметки в светлой теме.
+    noteTextColorDark:
+      type: string
+      description: Цвет текста заметки в тёмной теме.
+    noteTextColorLight:
+      type: string
+      description: Цвет текста заметки в светлой теме.
+    planCount:
+      type: integer
+      format: int32
+      description: Количество профилей со статусом «В планах».
+    profileListStatus:
+      type: integer
+      format: int32
+      description: Статус релиза в списке текущего профиля.
+    profileReleaseTypeNotificationPreferenceCount:
+      type: integer
+      format: int32
+      description: Количество настроек уведомлений по озвучкам этого релиза.
+    profileReleaseTypeNotificationPreferences:
+      type: array
+      items:
+        $ref: ./notifications.yaml#/ProfileReleaseTypeNotificationPreference
+      description: Настройки уведомлений по озвучкам конкретного релиза.
+    rating:
+      type: integer
+      format: int32
+      description: Рейтинг релиза, рассчитанный сервером.
+    recommendedReleases:
+      type: array
+      items:
+        $ref: '#/Release'
+      description: Рекомендованные релизы.
+    related:
+      $ref: '#/Related'
+      description: Группа/франшиза связанных релизов.
+    relatedCount:
+      type: integer
+      format: int64
+      description: Количество элементов категории «related».
+    relatedReleases:
+      type: array
+      items:
+        $ref: '#/Release'
+      description: Другие релизы из той же связанной группы.
+    releaseDate:
+      type: string
+      description: Временная метка «release date» в формате API.
+    screenshotImages:
+      type: array
+      items:
+        type: string
+      description: Скриншоты релиза.
+    season:
+      type: integer
+      format: int32
+      description: Сезон выхода релиза (числовой код клиента).
+    source:
+      type: string
+      description: Текстовое обозначение источника информации о релизе.
+    status:
+      $ref: '#/ReleaseStatus'
+      description: Статус выхода релиза.
+    statusId:
+      type: integer
+      format: int64
+      description: Идентификатор статуса релиза.
+    studio:
+      type: string
+      description: Студия, выпустившая релиз.
+    titleOriginal:
+      type: string
+      description: Оригинальное название релиза.
+    titleRu:
+      type: string
+      description: Русское название релиза.
+    translators:
+      type: string
+      description: Переводчики или команды перевода.
+    videoBanners:
+      type: array
+      items:
+        $ref: ./video.yaml#/ReleaseVideoBanner
+      description: Баннеры раздела пользовательских видео.
+    vote1Count:
+      type: integer
+      format: int32
+      description: Количество элементов категории «vote1».
+    vote2Count:
+      type: integer
+      format: int32
+      description: Количество элементов категории «vote2».
+    vote3Count:
+      type: integer
+      format: int32
+      description: Количество элементов категории «vote3».
+    vote4Count:
+      type: integer
+      format: int32
+      description: Количество элементов категории «vote4».
+    vote5Count:
+      type: integer
+      format: int32
+      description: Количество элементов категории «vote5».
+    voteCount:
+      type: integer
+      format: int32
+      description: Количество голосов.
+    votedAt:
+      type: integer
+      format: int64
+      description: Время выставления оценки в формате API.
+    watchingCount:
+      type: integer
+      format: int32
+      description: Количество профилей со статусом «Смотрю».
+    year:
+      type: string
+      description: Год выпуска; API хранит значение строкой.
+    titleAlt:
+      type: string
+      description: Альтернативное название релиза.
+    episodesReleased:
+      type:
+      - integer
+      - 'null'
+      format: int32
+      description: Количество уже вышедших эпизодов.
+    creationDate:
+      type:
+      - integer
+      - 'null'
+      format: int32
+      description: Время создания объекта в формате API.
+    lastUpdateDate:
+      type:
+      - integer
+      - 'null'
+      format: int32
+      description: Время последнего обновления объекта в формате API.
+    yourVote:
+      type:
+      - integer
+      - 'null'
+      format: int32
+      description: Оценка текущего профиля от 1 до 5; значение без оценки определяется сервером.
+      minimum: 0
+      maximum: 5
+    myVote:
+      type:
+      - integer
+      - 'null'
+      format: int32
+      description: Оценка текущего профиля от 1 до 5; альтернативное поле клиента.
+      minimum: 0
+      maximum: 5
+ReleaseCompact:
+  type: object
+  description: Компактная карточка релиза.
+  properties:
+    id:
+      type: integer
+      format: int64
+      description: Уникальный идентификатор.
+    image:
+      type: string
+      description: URL или идентификатор изображения.
+    titleRu:
+      type: string
+      description: Русское название релиза.
+ReleaseResponse:
+  allOf:
+  - $ref: ./common.yaml#/Response
+  - type: object
+    properties:
+      release:
+        $ref: '#/Release'
+        description: Связанный релиз.
+ReleaseStatus:
+  type: object
+  properties:
+    id:
+      type: integer
+      format: int64
+      description: Уникальный идентификатор.
+    name:
+      type: string
+      description: Отображаемое название.
+ReleaseStreamingPlatform:
+  type: object
+  properties:
+    id:
+      type: integer
+      format: int64
+      description: Уникальный идентификатор.
+    release:
+      $ref: '#/Release'
+      description: Связанный релиз.
+    name:
+      type: string
+      description: Отображаемое название.
+    icon:
+      type: string
+      description: URL или имя иконки.
+    url:
+      type: string
+      description: URL ресурса.
+ScheduleResponse:
+  allOf:
+  - $ref: ./common.yaml#/Response
+  - type: object
+    properties:
+      friday:
+        type: array
+        items:
+          $ref: '#/Release'
+        description: Релизы, запланированные на пятницу.
+      monday:
+        type: array
+        items:
+          $ref: '#/Release'
+        description: Релизы, запланированные на понедельник.
+      saturday:
+        type: array
+        items:
+          $ref: '#/Release'
+        description: Релизы, запланированные на субботу.
+      sunday:
+        type: array
+        items:
+          $ref: '#/Release'
+        description: Релизы, запланированные на воскресенье.
+      thursday:
+        type: array
+        items:
+          $ref: '#/Release'
+        description: Релизы, запланированные на четверг.
+      tuesday:
+        type: array
+        items:
+          $ref: '#/Release'
+        description: Релизы, запланированные на вторник.
+      wednesday:
+        type: array
+        items:
+          $ref: '#/Release'
+        description: Релизы, запланированные на среду.
+VoteReleaseResponse:
+  allOf:
+  - $ref: ./common.yaml#/Response
+  - type: object
+    properties: {}

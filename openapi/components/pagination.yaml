@@ -1,0 +1,297 @@
+PageableResponse:
+  allOf:
+  - $ref: ./common.yaml#/Response
+  - type: object
+    properties:
+      content:
+        type: array
+        items: {}
+        description: Элементы текущей страницы. Конкретный тип задаётся схемой ответа метода.
+      currentPage:
+        type: integer
+        format: int32
+        description: Номер текущей страницы, начиная с `0`.
+      totalCount:
+        type: integer
+        format: int64
+        description: Общее количество элементов во всей выборке.
+      totalPageCount:
+        type: integer
+        format: int32
+        description: Общее количество страниц.
+      code:
+        type: integer
+        format: int32
+        description: Код результата постраничного запроса. `0` - успешно; остальные значения обозначают ошибку или ограничение.
+        example: 0
+  x-response-constants:
+  - name: INVALID_QUERY
+    type: int
+    value: 0
+  description: Базовая модель постраничного ответа.
+  x-note: Константа INVALID_QUERY=0 присутствует в клиентском классе, но совпадает с базовым SUCCESSFUL=0; её назначение как
+    кода ответа не подтверждено.
+PageOfArticleComment:
+  allOf:
+  - $ref: '#/PageableResponse'
+  - type: object
+    properties:
+      content:
+        type: array
+        items:
+          $ref: ./comments.yaml#/ArticleComment
+        description: Элементы текущей страницы (`ArticleComment`).
+  description: Страница результатов типа `ArticleComment`.
+PageOfProfile:
+  allOf:
+  - $ref: '#/PageableResponse'
+  - type: object
+    properties:
+      content:
+        type: array
+        items:
+          $ref: ./profiles.yaml#/Profile
+        description: Элементы текущей страницы (`Profile`).
+  description: Страница результатов типа `Profile`.
+PageOfArticle:
+  allOf:
+  - $ref: '#/PageableResponse'
+  - type: object
+    properties:
+      content:
+        type: array
+        items:
+          $ref: ./articles.yaml#/Article
+        description: Элементы текущей страницы (`Article`).
+  description: Страница результатов типа `Article`.
+PageOfChannel:
+  allOf:
+  - $ref: '#/PageableResponse'
+  - type: object
+    properties:
+      content:
+        type: array
+        items:
+          $ref: ./channels.yaml#/Channel
+        description: Элементы текущей страницы (`Channel`).
+  description: Страница результатов типа `Channel`.
+PageOfChannelProfile:
+  allOf:
+  - $ref: '#/PageableResponse'
+  - type: object
+    properties:
+      content:
+        type: array
+        items:
+          $ref: ./channels.yaml#/ChannelProfile
+        description: Элементы текущей страницы (`ChannelProfile`).
+  description: Страница результатов типа `ChannelProfile`.
+PageOfCollection:
+  allOf:
+  - $ref: '#/PageableResponse'
+  - type: object
+    properties:
+      content:
+        type: array
+        items:
+          $ref: ./collections.yaml#/Collection
+        description: Элементы текущей страницы (`Collection`).
+  description: Страница результатов типа `Collection`.
+PageOfCollectionComment:
+  allOf:
+  - $ref: '#/PageableResponse'
+  - type: object
+    properties:
+      content:
+        type: array
+        items:
+          $ref: ./comments.yaml#/CollectionComment
+        description: Элементы текущей страницы (`CollectionComment`).
+  description: Страница результатов типа `CollectionComment`.
+PageOfRelease:
+  allOf:
+  - $ref: '#/PageableResponse'
+  - type: object
+    properties:
+      content:
+        type: array
+        items:
+          $ref: ./releases.yaml#/Release
+        description: Элементы текущей страницы (`Release`).
+  description: Страница результатов типа `Release`.
+PageOfReleaseComment:
+  allOf:
+  - $ref: '#/PageableResponse'
+  - type: object
+    properties:
+      content:
+        type: array
+        items:
+          $ref: ./comments.yaml#/ReleaseComment
+        description: Элементы текущей страницы (`ReleaseComment`).
+  description: Страница результатов типа `ReleaseComment`.
+PageOfInteresting:
+  allOf:
+  - $ref: '#/PageableResponse'
+  - type: object
+    properties:
+      content:
+        type: array
+        items:
+          $ref: ./feed.yaml#/Interesting
+        description: Элементы текущей страницы (`Interesting`).
+  description: Страница результатов типа `Interesting`.
+PageOfEpisodeUpdate:
+  allOf:
+  - $ref: '#/PageableResponse'
+  - type: object
+    properties:
+      content:
+        type: array
+        items:
+          $ref: ./episodes.yaml#/EpisodeUpdate
+        description: Элементы текущей страницы (`EpisodeUpdate`).
+  description: Страница результатов типа `EpisodeUpdate`.
+PageOfProfileNotification:
+  allOf:
+  - $ref: '#/PageableResponse'
+  - type: object
+    properties:
+      content:
+        type: array
+        items:
+          $ref: ./notifications.yaml#/ProfileNotification
+        description: Элементы текущей страницы (`ProfileNotification`).
+  description: Страница результатов типа `ProfileNotification`.
+PageOfProfileArticleCommentNotification:
+  allOf:
+  - $ref: '#/PageableResponse'
+  - type: object
+    properties:
+      content:
+        type: array
+        items:
+          $ref: ./notifications.yaml#/ProfileArticleCommentNotification
+        description: Элементы текущей страницы (`ProfileArticleCommentNotification`).
+  description: Страница результатов типа `ProfileArticleCommentNotification`.
+PageOfProfileArticleNotification:
+  allOf:
+  - $ref: '#/PageableResponse'
+  - type: object
+    properties:
+      content:
+        type: array
+        items:
+          $ref: ./profiles.yaml#/ProfileArticleNotification
+        description: Элементы текущей страницы (`ProfileArticleNotification`).
+  description: Страница результатов типа `ProfileArticleNotification`.
+PageOfProfileCollectionCommentNotification:
+  allOf:
+  - $ref: '#/PageableResponse'
+  - type: object
+    properties:
+      content:
+        type: array
+        items:
+          $ref: ./notifications.yaml#/ProfileCollectionCommentNotification
+        description: Элементы текущей страницы (`ProfileCollectionCommentNotification`).
+  description: Страница результатов типа `ProfileCollectionCommentNotification`.
+PageOfProfileEpisodeNotification:
+  allOf:
+  - $ref: '#/PageableResponse'
+  - type: object
+    properties:
+      content:
+        type: array
+        items:
+          $ref: ./profiles.yaml#/ProfileEpisodeNotification
+        description: Элементы текущей страницы (`ProfileEpisodeNotification`).
+  description: Страница результатов типа `ProfileEpisodeNotification`.
+PageOfProfileFriendNotification:
+  allOf:
+  - $ref: '#/PageableResponse'
+  - type: object
+    properties:
+      content:
+        type: array
+        items:
+          $ref: ./profiles.yaml#/ProfileFriendNotification
+        description: Элементы текущей страницы (`ProfileFriendNotification`).
+  description: Страница результатов типа `ProfileFriendNotification`.
+PageOfProfileRelatedReleaseNotification:
+  allOf:
+  - $ref: '#/PageableResponse'
+  - type: object
+    properties:
+      content:
+        type: array
+        items:
+          $ref: ./profiles.yaml#/ProfileRelatedReleaseNotification
+        description: Элементы текущей страницы (`ProfileRelatedReleaseNotification`).
+  description: Страница результатов типа `ProfileRelatedReleaseNotification`.
+PageOfProfileReleaseCommentNotification:
+  allOf:
+  - $ref: '#/PageableResponse'
+  - type: object
+    properties:
+      content:
+        type: array
+        items:
+          $ref: ./notifications.yaml#/ProfileReleaseCommentNotification
+        description: Элементы текущей страницы (`ProfileReleaseCommentNotification`).
+  description: Страница результатов типа `ProfileReleaseCommentNotification`.
+PageOfChangeLogin:
+  allOf:
+  - $ref: '#/PageableResponse'
+  - type: object
+    properties:
+      content:
+        type: array
+        items:
+          $ref: ./account.yaml#/ChangeLogin
+        description: Элементы текущей страницы (`ChangeLogin`).
+  description: Страница результатов типа `ChangeLogin`.
+PageOfReleaseStreamingPlatform:
+  allOf:
+  - $ref: '#/PageableResponse'
+  - type: object
+    properties:
+      content:
+        type: array
+        items:
+          $ref: ./releases.yaml#/ReleaseStreamingPlatform
+        description: Элементы текущей страницы (`ReleaseStreamingPlatform`).
+  description: Страница результатов типа `ReleaseStreamingPlatform`.
+PageOfReleaseVideo:
+  allOf:
+  - $ref: '#/PageableResponse'
+  - type: object
+    properties:
+      content:
+        type: array
+        items:
+          $ref: ./video.yaml#/ReleaseVideo
+        description: Элементы текущей страницы (`ReleaseVideo`).
+  description: Страница результатов типа `ReleaseVideo`.
+PageOfProfileRole:
+  allOf:
+  - $ref: '#/PageableResponse'
+  - type: object
+    properties:
+      content:
+        type: array
+        items:
+          $ref: ./profiles.yaml#/ProfileRole
+        description: Элементы текущей страницы (`ProfileRole`).
+  description: Страница результатов типа `ProfileRole`.
+PageOfString:
+  allOf:
+  - $ref: '#/PageableResponse'
+  - type: object
+    properties:
+      content:
+        type: array
+        items:
+          type: string
+        description: Элементы текущей страницы (`String`).
+  description: Страница результатов типа `String`.

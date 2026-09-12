@@ -1,0 +1,38 @@
+Interesting:
+  type: object
+  description: Карточка из блока рекомендаций «Интересное».
+  properties:
+    id:
+      type: integer
+      format: int64
+      description: Уникальный идентификатор.
+    isHidden:
+      type: boolean
+      description: Карточка скрыта в интерфейсе.
+    type:
+      type: integer
+      format: int32
+      description: Числовой тип карточки блока «Интересное».
+    title:
+      type: string
+      description: Заголовок.
+    description:
+      type: string
+      description: Текстовое описание.
+    image:
+      type: string
+      description: URL или идентификатор изображения.
+    action:
+      type: string
+      description: Действие, которое клиент выполняет при выборе карточки.
+LatestArticleResponse:
+  allOf:
+  - $ref: ./common.yaml#/Response
+  - type: object
+    properties:
+      articleId:
+        type:
+        - integer
+        - 'null'
+        format: int64
+        description: Идентификатор статьи.

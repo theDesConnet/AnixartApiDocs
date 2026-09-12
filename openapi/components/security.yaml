@@ -1,0 +1,5 @@
+AnixartToken:
+  type: apiKey
+  in: query
+  name: token
+  description: Токен сессии из `profileToken.token`, получаемый после входа или подтверждения регистрации.

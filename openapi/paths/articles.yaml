@@ -1,0 +1,609 @@
+/article/create/{c_id}:
+  post:
+    tags:
+    - Статьи
+    operationId: Article_create
+    summary: Создать статью
+    description: 'Создать статью. Тело запроса: `ArticleCreateEditRequest` (`application/json`). При заданном токене запрос
+      выполняется в контексте текущего профиля.'
+    x-client-methods:
+    - ArticleApi.create
+    parameters:
+    - name: c_id
+      in: path
+      required: true
+      description: Идентификатор канала.
+      schema:
+        type: integer
+        format: int64
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/articles.yaml#/ArticleCreateEditResponse
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: ../components/articles.yaml#/ArticleCreateEditRequest
+    security:
+    - AnixartToken: []
+    - {}
+/article/delete/{a_id}:
+  post:
+    tags:
+    - Статьи
+    operationId: Article_delete
+    summary: Удалить статью
+    description: Удалить статью. При заданном токене запрос выполняется в контексте текущего профиля.
+    x-client-methods:
+    - ArticleApi.delete
+    parameters:
+    - name: a_id
+      in: path
+      required: true
+      description: Идентификатор статьи.
+      schema:
+        type: integer
+        format: int64
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/articles.yaml#/ArticleDeleteResponse
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    security:
+    - AnixartToken: []
+    - {}
+/article/edit/pinned/{a_id}:
+  get:
+    tags:
+    - Статьи
+    operationId: Article_editIsPinned
+    summary: Закрепить или открепить статью
+    description: Закрепить или открепить статью. При заданном токене запрос выполняется в контексте текущего профиля.
+    x-client-methods:
+    - ArticleApi.editIsPinned
+    parameters:
+    - name: a_id
+      in: path
+      required: true
+      description: Идентификатор статьи.
+      schema:
+        type: integer
+        format: int64
+    - name: is_pinned
+      in: query
+      required: false
+      description: Закрепить (`true`) или открепить (`false`) статью.
+      schema:
+        type: boolean
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/articles.yaml#/ArticleEditPinnedResponse
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    security:
+    - AnixartToken: []
+    - {}
+/article/edit/{a_id}:
+  post:
+    tags:
+    - Статьи
+    operationId: Article_edit
+    summary: Изменить статью
+    description: 'Изменить статью. Тело запроса: `ArticleCreateEditRequest` (`application/json`). При заданном токене запрос
+      выполняется в контексте текущего профиля.'
+    x-client-methods:
+    - ArticleApi.edit
+    parameters:
+    - name: a_id
+      in: path
+      required: true
+      description: Идентификатор статьи.
+      schema:
+        type: integer
+        format: int64
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/articles.yaml#/ArticleCreateEditResponse
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: ../components/articles.yaml#/ArticleCreateEditRequest
+    security:
+    - AnixartToken: []
+    - {}
+/article/event:
+  post:
+    tags:
+    - Статьи
+    operationId: Article_hits
+    summary: Отправить событие взаимодействия со статьёй
+    description: 'Отправить событие взаимодействия со статьёй. Тело запроса: `ArticleEventRequest` (`application/json`). При
+      заданном токене запрос выполняется в контексте текущего профиля.'
+    x-client-methods:
+    - ArticleApi.hits
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/common.yaml#/CommonResponse
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: ../components/articles.yaml#/ArticleEventRequest
+    security:
+    - AnixartToken: []
+    - {}
+/article/mute/{a_id}:
+  get:
+    tags:
+    - Статьи
+    operationId: Article_mute
+    summary: Скрыть статью из ленты
+    description: Скрыть статью из ленты. При заданном токене запрос выполняется в контексте текущего профиля.
+    x-client-methods:
+    - ArticleApi.mute
+    parameters:
+    - name: a_id
+      in: path
+      required: true
+      description: Идентификатор статьи.
+      schema:
+        type: integer
+        format: int64
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/articles.yaml#/ArticleMuteResponse
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    security:
+    - AnixartToken: []
+    - {}
+/article/reposts/{a_id}/{page}:
+  get:
+    tags:
+    - Статьи
+    operationId: Article_reposts
+    summary: Получить репосты статьи
+    description: Получить репосты статьи. Выдача постраничная; `page` начинается с `0`. При заданном токене запрос выполняется
+      в контексте текущего профиля.
+    x-client-methods:
+    - ArticleApi.reposts
+    parameters:
+    - name: a_id
+      in: path
+      required: true
+      description: Идентификатор статьи.
+      schema:
+        type: integer
+        format: int64
+    - name: page
+      in: path
+      required: true
+      description: Номер страницы, начиная с `0`.
+      schema:
+        type: integer
+        format: int32
+        minimum: 0
+    - name: sort
+      in: query
+      required: false
+      description: Код или направление сортировки.
+      schema:
+        type: integer
+        format: int32
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/pagination.yaml#/PageOfArticle
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    security:
+    - AnixartToken: []
+    - {}
+/article/suggestion/all/{page}:
+  post:
+    tags:
+    - Статьи
+    operationId: ArticleSuggestion_articleSuggestions
+    summary: Получить предложения статей
+    description: 'Получить предложения статей. Выдача постраничная; `page` начинается с `0`. Тело запроса: `ArticleSuggestionsFilterRequest`
+      (`application/json`). При заданном токене запрос выполняется в контексте текущего профиля.'
+    x-client-methods:
+    - ArticleSuggestionApi.articleSuggestions
+    parameters:
+    - name: page
+      in: path
+      required: true
+      description: Номер страницы, начиная с `0`.
+      schema:
+        type: integer
+        format: int32
+        minimum: 0
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/pagination.yaml#/PageOfArticle
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: ../components/articles.yaml#/ArticleSuggestionsFilterRequest
+    security:
+    - AnixartToken: []
+    - {}
+    x-original-tags:
+    - Предложения статей
+/article/suggestion/create/{b_id}:
+  post:
+    tags:
+    - Статьи
+    operationId: ArticleSuggestion_create
+    summary: Создать предложение статьи
+    description: 'Создать предложение статьи. Тело запроса: `ArticleSuggestionCreateEditRequest` (`application/json`). При
+      заданном токене запрос выполняется в контексте текущего профиля.'
+    x-client-methods:
+    - ArticleSuggestionApi.create
+    parameters:
+    - name: b_id
+      in: path
+      required: true
+      description: Идентификатор блога/канала.
+      schema:
+        type: integer
+        format: int64
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/articles.yaml#/ArticleCreateEditResponse
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: ../components/articles.yaml#/ArticleSuggestionCreateEditRequest
+    security:
+    - AnixartToken: []
+    - {}
+    x-original-tags:
+    - Предложения статей
+/article/suggestion/delete/{a_id}:
+  post:
+    tags:
+    - Статьи
+    operationId: ArticleSuggestion_delete
+    summary: Удалить предложение статьи
+    description: Удалить предложение статьи. При заданном токене запрос выполняется в контексте текущего профиля.
+    x-client-methods:
+    - ArticleSuggestionApi.delete
+    parameters:
+    - name: a_id
+      in: path
+      required: true
+      description: Идентификатор статьи.
+      schema:
+        type: integer
+        format: int64
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/articles.yaml#/ArticleSuggestionDeleteResponse
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    security:
+    - AnixartToken: []
+    - {}
+    x-original-tags:
+    - Предложения статей
+/article/suggestion/edit/{a_id}:
+  post:
+    tags:
+    - Статьи
+    operationId: ArticleSuggestion_edit
+    summary: Изменить предложение статьи
+    description: 'Изменить предложение статьи. Тело запроса: `ArticleSuggestionCreateEditRequest` (`application/json`). При
+      заданном токене запрос выполняется в контексте текущего профиля.'
+    x-client-methods:
+    - ArticleSuggestionApi.edit
+    parameters:
+    - name: a_id
+      in: path
+      required: true
+      description: Идентификатор статьи.
+      schema:
+        type: integer
+        format: int64
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/articles.yaml#/ArticleCreateEditResponse
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: ../components/articles.yaml#/ArticleSuggestionCreateEditRequest
+    security:
+    - AnixartToken: []
+    - {}
+    x-original-tags:
+    - Предложения статей
+/article/suggestion/publish/{a_id}:
+  post:
+    tags:
+    - Статьи
+    operationId: ArticleSuggestion_publish
+    summary: Опубликовать предложение статьи
+    description: Опубликовать предложение статьи. При заданном токене запрос выполняется в контексте текущего профиля.
+    x-client-methods:
+    - ArticleSuggestionApi.publish
+    parameters:
+    - name: a_id
+      in: path
+      required: true
+      description: Идентификатор статьи.
+      schema:
+        type: integer
+        format: int64
+    - name: is_signed
+      in: query
+      required: false
+      description: Признак публикации статьи с подписью автора.
+      schema:
+        type: boolean
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/articles.yaml#/ArticleCreateEditResponse
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    security:
+    - AnixartToken: []
+    - {}
+    x-original-tags:
+    - Предложения статей
+/article/suggestion/{a_id}:
+  get:
+    tags:
+    - Статьи
+    operationId: ArticleSuggestion_articleSuggestion
+    summary: Получить предложение статьи
+    description: Получить предложение статьи. При заданном токене запрос выполняется в контексте текущего профиля.
+    x-client-methods:
+    - ArticleSuggestionApi.articleSuggestion
+    parameters:
+    - name: a_id
+      in: path
+      required: true
+      description: Идентификатор статьи.
+      schema:
+        type: integer
+        format: int64
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/articles.yaml#/ArticleResponse
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    security:
+    - AnixartToken: []
+    - {}
+    x-original-tags:
+    - Предложения статей
+/article/unmute/{a_id}:
+  get:
+    tags:
+    - Статьи
+    operationId: Article_unmute
+    summary: Вернуть статью в ленту
+    description: Вернуть статью в ленту. При заданном токене запрос выполняется в контексте текущего профиля.
+    x-client-methods:
+    - ArticleApi.unmute
+    parameters:
+    - name: a_id
+      in: path
+      required: true
+      description: Идентификатор статьи.
+      schema:
+        type: integer
+        format: int64
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/articles.yaml#/ArticleMuteResponse
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    security:
+    - AnixartToken: []
+    - {}
+/article/vote/{a_id}/{vote}:
+  get:
+    tags:
+    - Статьи
+    operationId: Article_vote
+    summary: Проголосовать за статью
+    description: Проголосовать за статью. При заданном токене запрос выполняется в контексте текущего профиля.
+    x-client-methods:
+    - ArticleApi.vote
+    parameters:
+    - name: a_id
+      in: path
+      required: true
+      description: Идентификатор статьи.
+      schema:
+        type: integer
+        format: int64
+    - name: vote
+      in: path
+      required: true
+      description: Код реакции/голоса, передаваемый мобильным клиентом. Набор допустимых значений для этого типа объекта в
+        APK отдельным enum не объявлен.
+      schema:
+        type: integer
+        format: int32
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/common.yaml#/CommonResponse
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    security:
+    - AnixartToken: []
+    - {}
+/article/votes/{a_id}/{page}:
+  post:
+    tags:
+    - Статьи
+    operationId: Article_votes
+    summary: Получить голоса за статью
+    description: Получить голоса за статью. Выдача постраничная; `page` начинается с `0`. При заданном токене запрос выполняется
+      в контексте текущего профиля.
+    x-client-methods:
+    - ArticleApi.votes
+    parameters:
+    - name: a_id
+      in: path
+      required: true
+      description: Идентификатор статьи.
+      schema:
+        type: integer
+        format: int64
+    - name: page
+      in: path
+      required: true
+      description: Номер страницы, начиная с `0`.
+      schema:
+        type: integer
+        format: int32
+        minimum: 0
+    - name: sort
+      in: query
+      required: false
+      description: Код или направление сортировки.
+      schema:
+        type: integer
+        format: int32
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/pagination.yaml#/PageOfProfile
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    security:
+    - AnixartToken: []
+    - {}
+/article/{a_id}:
+  get:
+    tags:
+    - Статьи
+    operationId: Article_article
+    summary: Получить статью
+    description: Получить статью. При заданном токене запрос выполняется в контексте текущего профиля.
+    x-client-methods:
+    - ArticleApi.article
+    parameters:
+    - name: a_id
+      in: path
+      required: true
+      description: Идентификатор статьи.
+      schema:
+        type: integer
+        format: int64
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/articles.yaml#/ArticleResponse
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    security:
+    - AnixartToken: []
+    - {}

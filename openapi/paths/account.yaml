@@ -1,0 +1,947 @@
+/profile/deletion/cancel:
+  post:
+    tags:
+    - Настройки аккаунта
+    operationId: ProfileDeletion_cancel
+    summary: Отменить удаление аккаунта
+    description: Отменить удаление аккаунта. При заданном токене запрос выполняется в контексте текущего профиля.
+    x-client-methods:
+    - ProfileDeletionApi.cancel
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/account.yaml#/ProfileDeletionResponse
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    security:
+    - AnixartToken: []
+    - {}
+    x-original-tags:
+    - Удаление аккаунта
+/profile/deletion/request:
+  post:
+    tags:
+    - Настройки аккаунта
+    operationId: ProfileDeletion_request
+    summary: Запросить удаление аккаунта
+    description: Запросить удаление аккаунта. Тело запроса передаётся как `application/x-www-form-urlencoded`. При заданном
+      токене запрос выполняется в контексте текущего профиля.
+    x-client-methods:
+    - ProfileDeletionApi.request
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/account.yaml#/ProfileDeletionResponse
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    requestBody:
+      required: true
+      content:
+        application/x-www-form-urlencoded:
+          schema:
+            type: object
+            properties:
+              password:
+                type: string
+    security:
+    - AnixartToken: []
+    - {}
+    x-original-tags:
+    - Удаление аккаунта
+/profile/deletion/status:
+  get:
+    tags:
+    - Настройки аккаунта
+    operationId: ProfileDeletion_status
+    summary: Получить статус удаления аккаунта
+    description: Получить статус удаления аккаунта. При заданном токене запрос выполняется в контексте текущего профиля.
+    x-client-methods:
+    - ProfileDeletionApi.status
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/account.yaml#/ProfileDeletionResponse
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    security:
+    - AnixartToken: []
+    - {}
+    x-original-tags:
+    - Удаление аккаунта
+/profile/preference/avatar/delete:
+  get:
+    tags:
+    - Настройки аккаунта
+    operationId: ProfilePreference_avatarDelete
+    summary: Удалить аватар
+    description: Удалить аватар. При заданном токене запрос выполняется в контексте текущего профиля.
+    x-client-methods:
+    - ProfilePreferenceApi.avatarDelete
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/account.yaml#/ProfilePreferenceResponse
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    security:
+    - AnixartToken: []
+    - {}
+    x-original-tags:
+    - Настройки профиля
+/profile/preference/avatar/edit:
+  post:
+    tags:
+    - Настройки аккаунта
+    operationId: ProfilePreference_avatarEdit
+    summary: Изменить аватар
+    description: Изменить аватар. Тело запроса передаётся как `multipart/form-data`. При заданном токене запрос выполняется
+      в контексте текущего профиля.
+    x-client-methods:
+    - ProfilePreferenceApi.avatarEdit
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/account.yaml#/ProfilePreferenceResponse
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    requestBody:
+      required: true
+      content:
+        multipart/form-data:
+          schema:
+            type: object
+            properties:
+              file:
+                type: string
+                format: binary
+              name:
+                type: string
+                format: binary
+    security:
+    - AnixartToken: []
+    - {}
+    x-original-tags:
+    - Настройки профиля
+/profile/preference/email/change:
+  post:
+    tags:
+    - Настройки аккаунта
+    operationId: ProfilePreference_changeEmail
+    summary: Начать смену почты
+    description: Начать смену почты. Тело запроса передаётся как `application/x-www-form-urlencoded`. При заданном токене
+      запрос выполняется в контексте текущего профиля.
+    x-client-methods:
+    - ProfilePreferenceApi.changeEmail
+    parameters:
+    - name: API-Version
+      in: header
+      required: false
+      description: Версия протокола API, которую ожидает клиент.
+      schema:
+        type: string
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/account.yaml#/ChangeEmailResponse
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    requestBody:
+      required: true
+      content:
+        application/x-www-form-urlencoded:
+          schema:
+            type: object
+            properties:
+              current_email:
+                type: string
+              current_password:
+                type: string
+              new_email:
+                type: string
+    security:
+    - AnixartToken: []
+    - {}
+    x-original-tags:
+    - Настройки профиля
+/profile/preference/email/resend:
+  post:
+    tags:
+    - Настройки аккаунта
+    operationId: ProfilePreference_changeEmailResend
+    summary: Повторно отправить код смены почты
+    description: Повторно отправить код смены почты. Тело запроса передаётся как `application/x-www-form-urlencoded`. При
+      заданном токене запрос выполняется в контексте текущего профиля.
+    x-client-methods:
+    - ProfilePreferenceApi.changeEmailResend
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/account.yaml#/ChangeEmailResendResponse
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    requestBody:
+      required: true
+      content:
+        application/x-www-form-urlencoded:
+          schema:
+            type: object
+            properties:
+              new_email:
+                type: string
+              current_email:
+                type: string
+              current_password:
+                type: string
+              hash:
+                type: string
+    security:
+    - AnixartToken: []
+    - {}
+    x-original-tags:
+    - Настройки профиля
+/profile/preference/email/verify:
+  get:
+    tags:
+    - Настройки аккаунта
+    operationId: ProfilePreference_changeEmailVerify
+    summary: Подтвердить смену почты
+    description: Подтвердить смену почты. При заданном токене запрос выполняется в контексте текущего профиля.
+    x-client-methods:
+    - ProfilePreferenceApi.changeEmailVerify
+    parameters:
+    - name: new_email
+      in: query
+      required: false
+      description: Новый адрес электронной почты, который подтверждается кодом.
+      schema:
+        type: string
+    - name: code
+      in: query
+      required: false
+      description: Код подтверждения.
+      schema:
+        type: integer
+        format: int32
+    - name: hash
+      in: query
+      required: false
+      description: Серверный хеш текущей операции.
+      schema:
+        type: string
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/account.yaml#/ChangeEmailVerifyResponse
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    security:
+    - AnixartToken: []
+    - {}
+    x-original-tags:
+    - Настройки профиля
+/profile/preference/episode-widget/edit:
+  post:
+    tags:
+    - Настройки аккаунта
+    operationId: ProfilePreference_episodeWidgetEdit
+    summary: Изменить видимость виджета эпизодов
+    description: Изменить видимость виджета эпизодов. При заданном токене запрос выполняется в контексте текущего профиля.
+    x-client-methods:
+    - ProfilePreferenceApi.episodeWidgetEdit
+    parameters:
+    - name: hidden
+      in: query
+      required: false
+      description: Скрыть (`true`) или показывать (`false`) виджет эпизодов.
+      schema:
+        type: boolean
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/common.yaml#/CommonResponse
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    security:
+    - AnixartToken: []
+    - {}
+    x-original-tags:
+    - Настройки профиля
+/profile/preference/google/bind:
+  post:
+    tags:
+    - Настройки аккаунта
+    operationId: ProfilePreference_googleBind
+    summary: Привязать Google
+    description: Привязать Google. Тело запроса передаётся как `application/x-www-form-urlencoded`. При заданном токене запрос
+      выполняется в контексте текущего профиля.
+    x-client-methods:
+    - ProfilePreferenceApi.googleBind
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/account.yaml#/GoogleBindResponse
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    requestBody:
+      required: true
+      content:
+        application/x-www-form-urlencoded:
+          schema:
+            type: object
+            properties:
+              idToken:
+                type: string
+    security:
+    - AnixartToken: []
+    - {}
+    x-original-tags:
+    - Настройки профиля
+/profile/preference/google/unbind:
+  post:
+    tags:
+    - Настройки аккаунта
+    operationId: ProfilePreference_googleUnbind
+    summary: Отвязать Google
+    description: Отвязать Google. При заданном токене запрос выполняется в контексте текущего профиля.
+    x-client-methods:
+    - ProfilePreferenceApi.googleUnbind
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/account.yaml#/GoogleUnbindResponse
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    security:
+    - AnixartToken: []
+    - {}
+    x-original-tags:
+    - Настройки профиля
+/profile/preference/login/change:
+  post:
+    tags:
+    - Настройки аккаунта
+    operationId: ProfilePreference_changeLogin
+    summary: Изменить логин
+    description: Изменить логин. При заданном токене запрос выполняется в контексте текущего профиля.
+    x-client-methods:
+    - ProfilePreferenceApi.changeLogin
+    parameters:
+    - name: login
+      in: query
+      required: false
+      description: Логин пользователя.
+      schema:
+        type: string
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/account.yaml#/ChangeLoginResponse
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    security:
+    - AnixartToken: []
+    - {}
+    x-original-tags:
+    - Настройки профиля
+/profile/preference/login/info:
+  post:
+    tags:
+    - Настройки аккаунта
+    operationId: ProfilePreference_changeLoginInfo
+    summary: Получить условия смены логина
+    description: Получить условия смены логина. При заданном токене запрос выполняется в контексте текущего профиля.
+    x-client-methods:
+    - ProfilePreferenceApi.changeLoginInfo
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/account.yaml#/ChangeLoginInfoResponse
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    security:
+    - AnixartToken: []
+    - {}
+    x-original-tags:
+    - Настройки профиля
+/profile/preference/my:
+  get:
+    tags:
+    - Настройки аккаунта
+    operationId: ProfilePreference_my
+    summary: Получить настройки профиля
+    description: Получить настройки профиля. При заданном токене запрос выполняется в контексте текущего профиля.
+    x-client-methods:
+    - ProfilePreferenceApi.my
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/account.yaml#/ProfilePreferenceResponse
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    security:
+    - AnixartToken: []
+    - {}
+    x-original-tags:
+    - Настройки профиля
+/profile/preference/password/change:
+  post:
+    tags:
+    - Настройки аккаунта
+    operationId: ProfilePreference_changePassword
+    summary: Изменить пароль
+    description: Изменить пароль. Тело запроса передаётся как `application/x-www-form-urlencoded`. При заданном токене запрос
+      выполняется в контексте текущего профиля.
+    x-client-methods:
+    - ProfilePreferenceApi.changePassword
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/account.yaml#/ChangePasswordResponse
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    requestBody:
+      required: true
+      content:
+        application/x-www-form-urlencoded:
+          schema:
+            type: object
+            properties:
+              current:
+                type: string
+              new:
+                type: string
+    security:
+    - AnixartToken: []
+    - {}
+    x-original-tags:
+    - Настройки профиля
+/profile/preference/privacy/counts/edit:
+  post:
+    tags:
+    - Настройки аккаунта
+    operationId: ProfilePreference_privacyCountsEdit
+    summary: Изменить видимость счётчиков
+    description: 'Изменить видимость счётчиков. Тело запроса: `PrivacyEditRequest` (`application/json`). При заданном токене
+      запрос выполняется в контексте текущего профиля.'
+    x-client-methods:
+    - ProfilePreferenceApi.privacyCountsEdit
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/common.yaml#/CommonResponse
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: ../components/account.yaml#/PrivacyEditRequest
+    security:
+    - AnixartToken: []
+    - {}
+    x-original-tags:
+    - Настройки профиля
+/profile/preference/privacy/friendRequests/edit:
+  post:
+    tags:
+    - Настройки аккаунта
+    operationId: ProfilePreference_privacyFriendRequestsEdit
+    summary: Изменить приватность заявок в друзья
+    description: 'Изменить приватность заявок в друзья. Тело запроса: `PrivacyEditRequest` (`application/json`). При заданном
+      токене запрос выполняется в контексте текущего профиля.'
+    x-client-methods:
+    - ProfilePreferenceApi.privacyFriendRequestsEdit
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/common.yaml#/CommonResponse
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: ../components/account.yaml#/PrivacyEditRequest
+    security:
+    - AnixartToken: []
+    - {}
+    x-original-tags:
+    - Настройки профиля
+/profile/preference/privacy/incognito/edit:
+  get:
+    tags:
+    - Настройки аккаунта
+    operationId: ProfilePreference_privacyIncognitoEdit
+    summary: Изменить режим инкогнито
+    description: Изменить режим инкогнито. При заданном токене запрос выполняется в контексте текущего профиля.
+    x-client-methods:
+    - ProfilePreferenceApi.privacyIncognitoEdit
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/common.yaml#/CommonResponse
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    security:
+    - AnixartToken: []
+    - {}
+    x-original-tags:
+    - Настройки профиля
+/profile/preference/privacy/social/edit:
+  post:
+    tags:
+    - Настройки аккаунта
+    operationId: ProfilePreference_privacySocialEdit
+    summary: Изменить приватность социальных ссылок
+    description: 'Изменить приватность социальных ссылок. Тело запроса: `PrivacyEditRequest` (`application/json`). При заданном
+      токене запрос выполняется в контексте текущего профиля.'
+    x-client-methods:
+    - ProfilePreferenceApi.privacySocialEdit
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/common.yaml#/CommonResponse
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: ../components/account.yaml#/PrivacyEditRequest
+    security:
+    - AnixartToken: []
+    - {}
+    x-original-tags:
+    - Настройки профиля
+/profile/preference/privacy/stats/edit:
+  post:
+    tags:
+    - Настройки аккаунта
+    operationId: ProfilePreference_privacyStatsEdit
+    summary: Изменить приватность статистики
+    description: 'Изменить приватность статистики. Тело запроса: `PrivacyEditRequest` (`application/json`). При заданном токене
+      запрос выполняется в контексте текущего профиля.'
+    x-client-methods:
+    - ProfilePreferenceApi.privacyStatsEdit
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/common.yaml#/CommonResponse
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: ../components/account.yaml#/PrivacyEditRequest
+    security:
+    - AnixartToken: []
+    - {}
+    x-original-tags:
+    - Настройки профиля
+/profile/preference/section/edit:
+  post:
+    tags:
+    - Настройки аккаунта
+    operationId: ProfilePreference_pinSection
+    summary: Закрепить раздел профиля
+    description: 'Закрепить раздел профиля. Тело запроса: `SelectPinnedSectionRequest` (`application/json`). При заданном
+      токене запрос выполняется в контексте текущего профиля.'
+    x-client-methods:
+    - ProfilePreferenceApi.pinSection
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/common.yaml#/CommonResponse
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: ../components/common.yaml#/SelectPinnedSectionRequest
+    security:
+    - AnixartToken: []
+    - {}
+    x-original-tags:
+    - Настройки профиля
+/profile/preference/social:
+  get:
+    tags:
+    - Настройки аккаунта
+    operationId: ProfilePreference_social
+    summary: Получить настройки социальных ссылок
+    description: Получить настройки социальных ссылок. При заданном токене запрос выполняется в контексте текущего профиля.
+    x-client-methods:
+    - ProfilePreferenceApi.social
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/account.yaml#/ProfileSocialResponse
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    security:
+    - AnixartToken: []
+    - {}
+    x-original-tags:
+    - Настройки профиля
+/profile/preference/social/edit:
+  post:
+    tags:
+    - Настройки аккаунта
+    operationId: ProfilePreference_socialPagesEdit
+    summary: Изменить социальные ссылки
+    description: 'Изменить социальные ссылки. Тело запроса: `SocialPagesEditRequest` (`application/json`). При заданном токене
+      запрос выполняется в контексте текущего профиля.'
+    x-client-methods:
+    - ProfilePreferenceApi.socialPagesEdit
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/account.yaml#/SocialEditResponse
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: ../components/account.yaml#/SocialPagesEditRequest
+    security:
+    - AnixartToken: []
+    - {}
+    x-original-tags:
+    - Настройки профиля
+/profile/preference/status/edit:
+  post:
+    tags:
+    - Настройки аккаунта
+    operationId: ProfilePreference_statusEdit
+    summary: Изменить статус профиля
+    description: 'Изменить статус профиля. Тело запроса: `StatusEditRequest` (`application/json`). При заданном токене запрос
+      выполняется в контексте текущего профиля.'
+    x-client-methods:
+    - ProfilePreferenceApi.statusEdit
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/account.yaml#/ProfilePreferenceResponse
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: ../components/common.yaml#/StatusEditRequest
+    security:
+    - AnixartToken: []
+    - {}
+    x-original-tags:
+    - Настройки профиля
+/profile/preference/telegram/bind:
+  post:
+    tags:
+    - Настройки аккаунта
+    operationId: ProfilePreference_telegramBind
+    summary: Привязать Telegram
+    description: Привязать Telegram. Тело запроса передаётся как `application/x-www-form-urlencoded`. При заданном токене
+      запрос выполняется в контексте текущего профиля.
+    x-client-methods:
+    - ProfilePreferenceApi.telegramBind
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/account.yaml#/TelegramBindResponse
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    requestBody:
+      required: true
+      content:
+        application/x-www-form-urlencoded:
+          schema:
+            type: object
+            properties:
+              idToken:
+                type: string
+    security:
+    - AnixartToken: []
+    - {}
+    x-original-tags:
+    - Настройки профиля
+/profile/preference/telegram/unbind:
+  post:
+    tags:
+    - Настройки аккаунта
+    operationId: ProfilePreference_telegramUnbind
+    summary: Отвязать Telegram
+    description: Отвязать Telegram. При заданном токене запрос выполняется в контексте текущего профиля.
+    x-client-methods:
+    - ProfilePreferenceApi.telegramUnbind
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/account.yaml#/TelegramUnbindResponse
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    security:
+    - AnixartToken: []
+    - {}
+    x-original-tags:
+    - Настройки профиля
+/profile/preference/themes/edit:
+  post:
+    tags:
+    - Настройки аккаунта
+    operationId: ProfilePreference_selectTheme
+    summary: Выбрать тему профиля
+    description: 'Выбрать тему профиля. Тело запроса: `SelectThemeRequest` (`application/json`). При заданном токене запрос
+      выполняется в контексте текущего профиля.'
+    x-client-methods:
+    - ProfilePreferenceApi.selectTheme
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/account.yaml#/ProfileSelectThemeResponse
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: ../components/account.yaml#/SelectThemeRequest
+    security:
+    - AnixartToken: []
+    - {}
+    x-original-tags:
+    - Настройки профиля
+/profile/preference/vk/bind:
+  post:
+    tags:
+    - Настройки аккаунта
+    operationId: ProfilePreference_vkBind
+    summary: Привязать VK
+    description: Привязать VK. Тело запроса передаётся как `application/x-www-form-urlencoded`. При заданном токене запрос
+      выполняется в контексте текущего профиля.
+    x-client-methods:
+    - ProfilePreferenceApi.vkBind
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/account.yaml#/VkBindResponse
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    requestBody:
+      required: true
+      content:
+        application/x-www-form-urlencoded:
+          schema:
+            type: object
+            properties:
+              accessToken:
+                type: string
+    security:
+    - AnixartToken: []
+    - {}
+    x-original-tags:
+    - Настройки профиля
+/profile/preference/vk/unbind:
+  post:
+    tags:
+    - Настройки аккаунта
+    operationId: ProfilePreference_vkUnbind
+    summary: Отвязать VK
+    description: Отвязать VK. При заданном токене запрос выполняется в контексте текущего профиля.
+    x-client-methods:
+    - ProfilePreferenceApi.vkUnbind
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/account.yaml#/VkUnbindResponse
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    security:
+    - AnixartToken: []
+    - {}
+    x-original-tags:
+    - Настройки профиля
+/profile/preference/yandex/bind:
+  post:
+    tags:
+    - Настройки аккаунта
+    operationId: ProfilePreference_yandexBind
+    summary: Привязать Yandex
+    description: Привязать Yandex. Тело запроса передаётся как `application/x-www-form-urlencoded`. При заданном токене запрос
+      выполняется в контексте текущего профиля.
+    x-client-methods:
+    - ProfilePreferenceApi.yandexBind
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/account.yaml#/YandexBindResponse
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    requestBody:
+      required: true
+      content:
+        application/x-www-form-urlencoded:
+          schema:
+            type: object
+            properties:
+              accessToken:
+                type: string
+    security:
+    - AnixartToken: []
+    - {}
+    x-original-tags:
+    - Настройки профиля
+/profile/preference/yandex/unbind:
+  post:
+    tags:
+    - Настройки аккаунта
+    operationId: ProfilePreference_yandexUnbind
+    summary: Отвязать Yandex
+    description: Отвязать Yandex. При заданном токене запрос выполняется в контексте текущего профиля.
+    x-client-methods:
+    - ProfilePreferenceApi.yandexUnbind
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/account.yaml#/YandexUnbindResponse
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    security:
+    - AnixartToken: []
+    - {}
+    x-original-tags:
+    - Настройки профиля

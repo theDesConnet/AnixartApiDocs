@@ -1,0 +1,541 @@
+BlogCreateResponse:
+  allOf:
+  - $ref: ./common.yaml#/Response
+  - type: object
+    properties:
+      channel:
+        $ref: '#/Channel'
+        description: Связанный канал.
+      code:
+        anyOf:
+        - $ref: ./result-codes.yaml#/CommonResult
+        - $ref: ./result-codes.yaml#/BlogCreateResult
+        description: 'Код результата: общий `CommonResult` либо `BlogCreateResult` для ошибок этой операции.'
+        example: 0
+  x-result-enum: '#/components/schemas/BlogCreateResult'
+Channel:
+  type: object
+  description: Канал или персональный блог Anixart.
+  properties:
+    articleCount:
+      type: integer
+      format: int32
+      description: Количество статей.
+    avatar:
+      type: string
+      description: URL или идентификатор изображения профиля.
+    badgeId:
+      type:
+      - integer
+      - 'null'
+      format: int64
+      description: Идентификатор значка.
+    badgeName:
+      type: string
+      description: Отображаемое название значка.
+    badgeType:
+      type:
+      - integer
+      - 'null'
+      format: int32
+      description: Тип значка (статический или анимированный).
+    badgeUrl:
+      type: string
+      description: URL изображения или анимации значка.
+    blockExpireDate:
+      type:
+      - integer
+      - 'null'
+      format: int64
+      description: Временная метка «block expire date» в формате API.
+    blockReason:
+      type: string
+      description: Причина блокировки в канале.
+    blogProfileId:
+      type:
+      - integer
+      - 'null'
+      format: int64
+      description: Идентификатор профиля-владельца блога.
+    cover:
+      type: string
+      description: URL обложки канала.
+    creationDate:
+      type: integer
+      format: int64
+      description: Время создания объекта в формате API.
+    episodeChannelWidgetSort:
+      type: integer
+      format: int32
+      description: Способ сортировки статей в виджете эпизодов.
+      enum:
+      - 0
+      - 1
+      x-enum-varnames:
+      - CHRONOLOGY
+      - POPULARITY
+    id:
+      type: integer
+      format: int64
+      description: Уникальный идентификатор.
+    isArticleSuggestionEnabled:
+      type: boolean
+      description: В канале разрешено отправлять предложения статей.
+    isBlocked:
+      type: boolean
+      description: Объект заблокирован для текущего профиля.
+    isBlog:
+      type: boolean
+      description: Канал является персональным блогом.
+    isCommentingEnabled:
+      type: boolean
+      description: Комментарии для объекта включены.
+    isDeleted:
+      type: boolean
+      description: Объект помечен удалённым.
+    isLinkedToType:
+      type: boolean
+      description: Канал связан с конкретной озвучкой/даббером.
+    isMuted:
+      type: boolean
+      description: Для объекта включён режим mute.
+    isPermBlocked:
+      type: boolean
+      description: Блокировка является постоянной.
+    isSubscribed:
+      type: boolean
+      description: Текущий профиль подписан на канал.
+    isVerified:
+      type: boolean
+      description: Профиль/канал подтверждён.
+    lastArticleDate:
+      type: integer
+      format: int64
+      description: Временная метка «last article date» в формате API.
+    lastUpdateDate:
+      type: integer
+      format: int64
+      description: Время последнего обновления объекта в формате API.
+    permission:
+      type: integer
+      format: int32
+      description: Уровень прав пользователя в канале.
+    recentArticleCount:
+      type: integer
+      format: int32
+      description: Количество недавних статей.
+    subscriberCount:
+      type: integer
+      format: int32
+      description: Количество подписчиков.
+    title:
+      type: string
+      description: Заголовок.
+    description:
+      type: string
+      description: Текстовое описание.
+    isEpisodeChannelWidgetEnabled:
+      type: boolean
+      description: В канале включён виджет последних эпизодов.
+    episodeChannelWidgetPopularityPeriod:
+      type: integer
+      format: int32
+      description: Период, по которому виджет рассчитывает популярность статей.
+      enum:
+      - 0
+      - 1
+      - 2
+      x-enum-varnames:
+      - 24_HOURS
+      - 3_DAYS
+      - 7_DAYS
+    episodeChannelWidgetArticleCount:
+      type: integer
+      format: int32
+      description: Количество статей в виджете эпизодов.
+  x-response-constants:
+  - name: AUTO_HIDE_THRESHOLD
+    type: int
+    value: 3
+  - name: MAX_ARTICLE_COUNT
+    type: int
+    value: 4
+  - name: MIN_ARTICLE_COUNT
+    type: int
+    value: 2
+  - name: PERIOD_24H
+    type: int
+    value: 0
+  - name: PERIOD_3DAYS
+    type: int
+    value: 1
+  - name: PERIOD_7DAYS
+    type: int
+    value: 2
+  - name: SORT_CHRONOLOGY
+    type: int
+    value: 0
+  - name: SORT_POPULARITY
+    type: int
+    value: 1
+ChannelBlock:
+  type: object
+  properties:
+    addedDate:
+      type: integer
+      format: int64
+      description: Время добавления в формате API.
+    expireDate:
+      type: integer
+      format: int64
+      description: Временная метка «expire date» в формате API.
+    isPermBlocked:
+      type: boolean
+      description: Блокировка является постоянной.
+    isReasonShowingEnabled:
+      type: boolean
+      description: Причина блокировки показывается заблокированному пользователю.
+    reason:
+      type: string
+      description: Причина действия или ограничения.
+ChannelBlockManageRequest:
+  type: object
+  properties:
+    expireDate:
+      type:
+      - integer
+      - 'null'
+      format: int64
+      description: Временная метка «expire date» в формате API.
+    isBlocked:
+      type: boolean
+      description: Объект заблокирован для текущего профиля.
+    isPermBlocked:
+      type: boolean
+      description: Блокировка является постоянной.
+    isReasonShowingEnabled:
+      type: boolean
+      description: Причина блокировки показывается заблокированному пользователю.
+    reason:
+      type: string
+      description: Причина действия или ограничения.
+    targetProfileId:
+      type: integer
+      format: int64
+      description: Идентификатор связанного объекта «target profile».
+ChannelBlockResponse:
+  allOf:
+  - $ref: ./common.yaml#/Response
+  - type: object
+    properties:
+      channelBlock:
+        $ref: '#/ChannelBlock'
+        description: Информация о блокировке пользователя в канале.
+      code:
+        anyOf:
+        - $ref: ./result-codes.yaml#/CommonResult
+        - $ref: ./result-codes.yaml#/ChannelBlockResult
+        description: 'Код результата: общий `CommonResult` либо `ChannelBlockResult` для ошибок этой операции.'
+        example: 0
+  x-result-enum: '#/components/schemas/ChannelBlockResult'
+ChannelCompact:
+  type: object
+  properties:
+    avatar:
+      type: string
+      description: URL или идентификатор изображения профиля.
+    blogProfileId:
+      type:
+      - integer
+      - 'null'
+      format: int64
+      description: Идентификатор профиля-владельца блога.
+    cover:
+      type: string
+      description: URL обложки канала.
+    description:
+      type: string
+      description: Текстовое описание.
+    id:
+      type: integer
+      format: int64
+      description: Уникальный идентификатор.
+    isBlog:
+      type: boolean
+      description: Канал является персональным блогом.
+    isCommentingEnabled:
+      type: boolean
+      description: Комментарии для объекта включены.
+    isDeleted:
+      type: boolean
+      description: Объект помечен удалённым.
+    permission:
+      type: integer
+      format: int32
+      description: Уровень прав пользователя в канале.
+    title:
+      type: string
+      description: Заголовок.
+ChannelCreateEditRequest:
+  type: object
+  properties:
+    description:
+      type: string
+      description: Текстовое описание.
+    episodeChannelWidgetArticleCount:
+      type:
+      - integer
+      - 'null'
+      format: int32
+      description: Количество статей в виджете эпизодов.
+    episodeChannelWidgetPopularityPeriod:
+      type:
+      - integer
+      - 'null'
+      format: int32
+      description: 'Период популярности: 24 часа (`0`), 3 дня (`1`) или 7 дней (`2`).'
+      enum:
+      - 0
+      - 1
+      - 2
+      x-enum-varnames:
+      - 24_HOURS
+      - 3_DAYS
+      - 7_DAYS
+    episodeChannelWidgetSort:
+      type:
+      - integer
+      - 'null'
+      format: int32
+      description: 'Сортировка виджета эпизодов: хронология (`0`) или популярность (`1`).'
+      enum:
+      - 0
+      - 1
+      x-enum-varnames:
+      - CHRONOLOGY
+      - POPULARITY
+    isArticleSuggestionEnabled:
+      type: boolean
+      description: В канале разрешено отправлять предложения статей.
+    isCommentingEnabled:
+      type: boolean
+      description: Комментарии для объекта включены.
+    isEpisodeChannelWidgetEnabled:
+      type:
+      - boolean
+      - 'null'
+      description: В канале включён виджет последних эпизодов.
+    title:
+      type: string
+      description: Заголовок.
+ChannelCreateEditResponse:
+  allOf:
+  - $ref: ./common.yaml#/Response
+  - type: object
+    properties:
+      channel:
+        $ref: '#/Channel'
+        description: Связанный канал.
+      code:
+        anyOf:
+        - $ref: ./result-codes.yaml#/CommonResult
+        - $ref: ./result-codes.yaml#/ChannelCreateEditResult
+        description: 'Код результата: общий `CommonResult` либо `ChannelCreateEditResult` для ошибок этой операции.'
+        example: 0
+  x-result-enum: '#/components/schemas/ChannelCreateEditResult'
+ChannelPermissionManageRequest:
+  type: object
+  properties:
+    permission:
+      type:
+      - integer
+      - 'null'
+      format: int32
+      description: Уровень прав пользователя в канале.
+    targetProfileId:
+      type: integer
+      format: int64
+      description: Идентификатор связанного объекта «target profile».
+ChannelPermissionManageResponse:
+  allOf:
+  - $ref: ./common.yaml#/Response
+  - type: object
+    properties:
+      code:
+        anyOf:
+        - $ref: ./result-codes.yaml#/CommonResult
+        - $ref: ./result-codes.yaml#/ChannelPermissionManageResult
+        description: 'Код результата: общий `CommonResult` либо `ChannelPermissionManageResult` для ошибок этой операции.'
+        example: 0
+  x-result-enum: '#/components/schemas/ChannelPermissionManageResult'
+ChannelPermissionsFilterRequest:
+  type: object
+  properties:
+    permission:
+      type: integer
+      format: int32
+      description: Уровень прав пользователя в канале.
+ChannelProfile:
+  allOf:
+  - $ref: ./profiles.yaml#/ProfileCompact
+  - type: object
+    properties:
+      blockExpireDate:
+        type:
+        - integer
+        - 'null'
+        format: int64
+        description: Временная метка «block expire date» в формате API.
+      blockReason:
+        type: string
+        description: Причина блокировки в канале.
+      channelId:
+        type: integer
+        format: int64
+        description: Идентификатор канала.
+      isBlocked:
+        type: boolean
+        description: Объект заблокирован для текущего профиля.
+      isPermBlocked:
+        type: boolean
+        description: Блокировка является постоянной.
+      permission:
+        type: integer
+        format: int32
+        description: Уровень прав пользователя в канале.
+      permissionCreationDate:
+        type: integer
+        format: int64
+        description: Временная метка «permission creation date» в формате API.
+  x-response-constants:
+  - name: PERMISSION_ADMINISTRATOR
+    type: int
+    value: 1
+  - name: PERMISSION_CREATOR
+    type: int
+    value: 2
+  - name: PERMISSION_MEMBER
+    type: int
+    value: 0
+  description: Профиль участника канала с его правами.
+ChannelResponse:
+  allOf:
+  - $ref: ./common.yaml#/Response
+  - type: object
+    properties:
+      channel:
+        $ref: '#/Channel'
+        description: Связанный канал.
+      suggestionCount:
+        type: integer
+        format: int64
+        description: Количество элементов категории «suggestion».
+      code:
+        anyOf:
+        - $ref: ./result-codes.yaml#/CommonResult
+        - $ref: ./result-codes.yaml#/ChannelResult
+        description: 'Код результата: общий `CommonResult` либо `ChannelResult` для ошибок этой операции.'
+        example: 0
+  x-result-enum: '#/components/schemas/ChannelResult'
+ChannelSubscribeResponse:
+  allOf:
+  - $ref: ./common.yaml#/Response
+  - type: object
+    properties:
+      code:
+        anyOf:
+        - $ref: ./result-codes.yaml#/CommonResult
+        - $ref: ./result-codes.yaml#/ChannelSubscribeResult
+        description: 'Код результата: общий `CommonResult` либо `ChannelSubscribeResult` для ошибок этой операции.'
+        example: 0
+  x-result-enum: '#/components/schemas/ChannelSubscribeResult'
+ChannelUnsubscribeResponse:
+  allOf:
+  - $ref: ./common.yaml#/Response
+  - type: object
+    properties:
+      code:
+        anyOf:
+        - $ref: ./result-codes.yaml#/CommonResult
+        - $ref: ./result-codes.yaml#/ChannelUnsubscribeResult
+        description: 'Код результата: общий `CommonResult` либо `ChannelUnsubscribeResult` для ошибок этой операции.'
+        example: 0
+  x-result-enum: '#/components/schemas/ChannelUnsubscribeResult'
+ChannelUploadCoverAvatarResponse:
+  allOf:
+  - $ref: ./common.yaml#/Response
+  - type: object
+    properties:
+      url:
+        type: string
+        description: URL ресурса.
+      code:
+        anyOf:
+        - $ref: ./result-codes.yaml#/CommonResult
+        - $ref: ./result-codes.yaml#/ChannelUploadCoverAvatarResult
+        description: 'Код результата: общий `CommonResult` либо `ChannelUploadCoverAvatarResult` для ошибок этой операции.'
+        example: 0
+  x-result-enum: '#/components/schemas/ChannelUploadCoverAvatarResult'
+ChannelsFilterRequest:
+  type: object
+  properties:
+    isBlog:
+      type:
+      - boolean
+      - 'null'
+      description: Канал является персональным блогом.
+    isSubscribed:
+      type:
+      - boolean
+      - 'null'
+      description: Текущий профиль подписан на канал.
+    permission:
+      type:
+      - integer
+      - 'null'
+      format: int32
+      description: Уровень прав пользователя в канале.
+    sort:
+      type:
+      - integer
+      - 'null'
+      format: int32
+      description: Режим сортировки.
+  x-response-constants:
+  - name: SORT_NONE
+    type: int
+    value: 0
+  - name: SORT_SUBSCRIBER_COUNT
+    type: int
+    value: 1
+ChannelsSearchRequest:
+  type: object
+  properties:
+    isBlog:
+      type:
+      - boolean
+      - 'null'
+      description: Канал является персональным блогом.
+    isSubscribed:
+      type:
+      - boolean
+      - 'null'
+      description: Текущий профиль подписан на канал.
+    permission:
+      type:
+      - integer
+      - 'null'
+      format: int32
+      description: Уровень прав пользователя в канале.
+    query:
+      type: string
+      description: Поисковая строка.
+SubscriptionCountResponse:
+  allOf:
+  - $ref: ./common.yaml#/Response
+  - type: object
+    properties:
+      subscriptionCount:
+        type: integer
+        format: int32
+        description: Количество элементов категории «subscription».

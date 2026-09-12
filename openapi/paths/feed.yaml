@@ -1,0 +1,249 @@
+/discover/comments:
+  post:
+    tags:
+    - Лента и рекомендации
+    operationId: Discover_commentsWeek
+    summary: Получить популярные комментарии недели
+    description: Получить популярные комментарии недели.
+    x-client-methods:
+    - DiscoverApi.commentsWeek
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/pagination.yaml#/PageOfReleaseComment
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    x-original-tags:
+    - Рекомендации
+/discover/discussing:
+  post:
+    tags:
+    - Лента и рекомендации
+    operationId: Discover_discussing
+    summary: Получить обсуждаемые релизы
+    description: Получить обсуждаемые релизы. При заданном токене запрос выполняется в контексте текущего профиля.
+    x-client-methods:
+    - DiscoverApi.discussing
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/pagination.yaml#/PageOfRelease
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    security:
+    - AnixartToken: []
+    - {}
+    x-original-tags:
+    - Рекомендации
+/discover/interesting:
+  post:
+    tags:
+    - Лента и рекомендации
+    operationId: Discover_interesting
+    summary: Получить блок «Интересное»
+    description: Получить блок «Интересное».
+    x-client-methods:
+    - DiscoverApi.interesting
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/pagination.yaml#/PageOfInteresting
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    x-original-tags:
+    - Рекомендации
+/discover/recommendations/{page}:
+  post:
+    tags:
+    - Лента и рекомендации
+    operationId: Discover_recommendations
+    summary: Получить персональные рекомендации
+    description: Получить персональные рекомендации. Выдача постраничная; `page` начинается с `0`. При заданном токене запрос
+      выполняется в контексте текущего профиля.
+    x-client-methods:
+    - DiscoverApi.recommendations
+    parameters:
+    - name: page
+      in: path
+      required: true
+      description: Номер страницы, начиная с `0`.
+      schema:
+        type: integer
+        format: int32
+        minimum: 0
+    - name: previous_page
+      in: query
+      required: false
+      description: Предыдущая страница выдачи; используется клиентом как часть пагинации/продолжения списка.
+      schema:
+        type: integer
+        format: int32
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/pagination.yaml#/PageOfRelease
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    security:
+    - AnixartToken: []
+    - {}
+    x-original-tags:
+    - Рекомендации
+/discover/watching/{page}:
+  post:
+    tags:
+    - Лента и рекомендации
+    operationId: Discover_watching
+    summary: Получить релизы, которые сейчас смотрят
+    description: Получить релизы, которые сейчас смотрят. Выдача постраничная; `page` начинается с `0`. При заданном токене
+      запрос выполняется в контексте текущего профиля.
+    x-client-methods:
+    - DiscoverApi.watching
+    parameters:
+    - name: page
+      in: path
+      required: true
+      description: Номер страницы, начиная с `0`.
+      schema:
+        type: integer
+        format: int32
+        minimum: 0
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/pagination.yaml#/PageOfRelease
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    security:
+    - AnixartToken: []
+    - {}
+    x-original-tags:
+    - Рекомендации
+/feed/all/{page}:
+  get:
+    tags:
+    - Лента и рекомендации
+    operationId: Feed_feed
+    summary: Получить ленту
+    description: Получить ленту. Выдача постраничная; `page` начинается с `0`. При заданном токене запрос выполняется в контексте
+      текущего профиля.
+    x-client-methods:
+    - FeedApi.feed
+    parameters:
+    - name: page
+      in: path
+      required: true
+      description: Номер страницы, начиная с `0`.
+      schema:
+        type: integer
+        format: int32
+        minimum: 0
+    - name: channel_id
+      in: query
+      required: false
+      description: Идентификатор целевого объекта.
+      schema:
+        type:
+        - integer
+        - 'null'
+        format: int64
+    - name: date
+      in: query
+      required: false
+      description: Опорная дата/курсор ленты в числовом формате API.
+      schema:
+        type: integer
+        format: int32
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/pagination.yaml#/PageOfArticle
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    security:
+    - AnixartToken: []
+    - {}
+    x-original-tags:
+    - Лента
+/feed/latest:
+  get:
+    tags:
+    - Лента и рекомендации
+    operationId: Feed_latestArticle
+    summary: Получить последнюю статью
+    description: Получить последнюю статью. При заданном токене запрос выполняется в контексте текущего профиля.
+    x-client-methods:
+    - FeedApi.latestArticle
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/feed.yaml#/LatestArticleResponse
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    security:
+    - AnixartToken: []
+    - {}
+    x-original-tags:
+    - Лента
+/feed/latest/all/{page}:
+  get:
+    tags:
+    - Лента и рекомендации
+    operationId: Feed_latestArticles
+    summary: Получить последние статьи
+    description: Получить последние статьи. Выдача постраничная; `page` начинается с `0`. При заданном токене запрос выполняется
+      в контексте текущего профиля.
+    x-client-methods:
+    - FeedApi.latestArticles
+    parameters:
+    - name: page
+      in: path
+      required: true
+      description: Номер страницы, начиная с `0`.
+      schema:
+        type: integer
+        format: int32
+        minimum: 0
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/pagination.yaml#/PageOfArticle
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    security:
+    - AnixartToken: []
+    - {}
+    x-original-tags:
+    - Лента

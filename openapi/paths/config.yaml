@@ -1,0 +1,97 @@
+/config/anixplayer:
+  get:
+    tags:
+    - Конфигурация
+    operationId: Config_anixPlayer
+    summary: Получить конфигурацию AnixPlayer
+    description: Получить конфигурацию AnixPlayer.
+    x-client-methods:
+    - ConfigApi.anixPlayer
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/config.yaml#/AnixPlayerConfigResponse
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+/config/toggles:
+  get:
+    tags:
+    - Конфигурация
+    operationId: Config_toggles
+    summary: Получить серверные переключатели функций
+    description: Получить серверные переключатели функций. При заданном токене запрос выполняется в контексте текущего профиля.
+    x-client-methods:
+    - ConfigApi.toggles
+    parameters:
+    - name: version_code
+      in: query
+      required: false
+      description: Числовой код версии приложения.
+      schema:
+        type: integer
+        format: int32
+    - name: is_beta
+      in: query
+      required: false
+      description: Признак beta-сборки.
+      schema:
+        type: boolean
+    - name: is_api_alt
+      in: query
+      required: false
+      description: Признак использования альтернативного API или зеркала.
+      schema:
+        type: boolean
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/account.yaml#/TogglesResponse
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    security:
+    - AnixartToken: []
+    - {}
+/config/urls:
+  get:
+    tags:
+    - Конфигурация
+    operationId: Config_urls
+    summary: Получить актуальные адреса API и зеркала
+    description: Получить актуальные адреса API и зеркала. При заданном токене запрос выполняется в контексте текущего профиля.
+    x-client-methods:
+    - ConfigApi.urls
+    parameters:
+    - name: version_code
+      in: query
+      required: false
+      description: Числовой код версии приложения.
+      schema:
+        type: integer
+        format: int32
+    - name: is_beta
+      in: query
+      required: false
+      description: Признак beta-сборки.
+      schema:
+        type: boolean
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/config.yaml#/ConfigUrlsResponse
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    security:
+    - AnixartToken: []
+    - {}

@@ -1,0 +1,41 @@
+FeedSearchResponse:
+  allOf:
+  - $ref: ./common.yaml#/Response
+  - type: object
+    properties:
+      articles:
+        $ref: ./pagination.yaml#/PageOfArticle
+        description: Статьи в результате запроса.
+      blogs:
+        $ref: ./pagination.yaml#/PageOfChannel
+        description: Блоги в результате запроса.
+      channels:
+        $ref: ./pagination.yaml#/PageOfChannel
+        description: Каналы в результате запроса.
+      tags:
+        $ref: ./pagination.yaml#/PageOfString
+        description: Теги в результате запроса.
+ReleaseSearchResponse:
+  allOf:
+  - $ref: ./common.yaml#/Response
+  - type: object
+    properties:
+      related:
+        $ref: ./releases.yaml#/Related
+        description: Группа/франшиза связанных релизов.
+      releases:
+        type: array
+        items:
+          $ref: ./releases.yaml#/Release
+        description: Релизы в коллекции или ответе.
+SearchRequest:
+  type: object
+  description: Параметры текстового поиска.
+  properties:
+    query:
+      type: string
+      description: Поисковая строка.
+    searchBy:
+      type: integer
+      format: int32
+      description: Поле/режим, по которому выполняется поиск.

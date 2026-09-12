@@ -1,0 +1,490 @@
+/search/articles/{page}:
+  post:
+    tags:
+    - Поиск
+    operationId: Search_articleSearch
+    summary: Найти статьи
+    description: 'Найти статьи. Выдача постраничная; `page` начинается с `0`. Тело запроса: `ArticlesSearchRequest` (`application/json`).
+      При заданном токене запрос выполняется в контексте текущего профиля.'
+    x-client-methods:
+    - SearchApi.articleSearch
+    parameters:
+    - name: page
+      in: path
+      required: true
+      description: Номер страницы, начиная с `0`.
+      schema:
+        type: integer
+        format: int32
+        minimum: 0
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/pagination.yaml#/PageOfArticle
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: ../components/articles.yaml#/ArticlesSearchRequest
+    security:
+    - AnixartToken: []
+    - {}
+/search/channel/{c_id}/subscribers/{page}:
+  post:
+    tags:
+    - Поиск
+    operationId: Search_channelSubscribersSearch
+    summary: Найти подписчиков канала
+    description: 'Найти подписчиков канала. Выдача постраничная; `page` начинается с `0`. Тело запроса: `SearchRequest` (`application/json`).
+      При заданном токене запрос выполняется в контексте текущего профиля.'
+    x-client-methods:
+    - SearchApi.channelSubscribersSearch
+    parameters:
+    - name: c_id
+      in: path
+      required: true
+      description: Идентификатор канала.
+      schema:
+        type: integer
+        format: int64
+    - name: page
+      in: path
+      required: true
+      description: Номер страницы, начиная с `0`.
+      schema:
+        type: integer
+        format: int32
+        minimum: 0
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/pagination.yaml#/PageOfChannelProfile
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: ../components/search.yaml#/SearchRequest
+    security:
+    - AnixartToken: []
+    - {}
+/search/channels/{page}:
+  post:
+    tags:
+    - Поиск
+    operationId: Search_channelSearch
+    summary: Найти каналы
+    description: 'Найти каналы. Выдача постраничная; `page` начинается с `0`. Тело запроса: `ChannelsSearchRequest` (`application/json`).
+      При заданном токене запрос выполняется в контексте текущего профиля.'
+    x-client-methods:
+    - SearchApi.channelSearch
+    parameters:
+    - name: page
+      in: path
+      required: true
+      description: Номер страницы, начиная с `0`.
+      schema:
+        type: integer
+        format: int32
+        minimum: 0
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/pagination.yaml#/PageOfChannel
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: ../components/channels.yaml#/ChannelsSearchRequest
+    security:
+    - AnixartToken: []
+    - {}
+/search/collections/{page}:
+  post:
+    tags:
+    - Поиск
+    operationId: Search_collectionSearch
+    summary: Найти коллекции
+    description: 'Найти коллекции. Выдача постраничная; `page` начинается с `0`. Тело запроса: `SearchRequest` (`application/json`).
+      При заданном токене запрос выполняется в контексте текущего профиля.'
+    x-client-methods:
+    - SearchApi.collectionSearch
+    parameters:
+    - name: page
+      in: path
+      required: true
+      description: Номер страницы, начиная с `0`.
+      schema:
+        type: integer
+        format: int32
+        minimum: 0
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/pagination.yaml#/PageOfCollection
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: ../components/search.yaml#/SearchRequest
+    security:
+    - AnixartToken: []
+    - {}
+/search/favoriteCollections/{page}:
+  post:
+    tags:
+    - Поиск
+    operationId: Search_favoriteCollectionsSearch
+    summary: Найти избранные коллекции
+    description: 'Найти избранные коллекции. Выдача постраничная; `page` начинается с `0`. Тело запроса: `SearchRequest` (`application/json`).
+      При заданном токене запрос выполняется в контексте текущего профиля.'
+    x-client-methods:
+    - SearchApi.favoriteCollectionsSearch
+    parameters:
+    - name: page
+      in: path
+      required: true
+      description: Номер страницы, начиная с `0`.
+      schema:
+        type: integer
+        format: int32
+        minimum: 0
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/pagination.yaml#/PageOfCollection
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: ../components/search.yaml#/SearchRequest
+    security:
+    - AnixartToken: []
+    - {}
+/search/favorites/{page}:
+  post:
+    tags:
+    - Поиск
+    operationId: Search_favoritesSearch
+    summary: Найти избранные релизы
+    description: 'Найти избранные релизы. Выдача постраничная; `page` начинается с `0`. Тело запроса: `SearchRequest` (`application/json`).
+      При заданном токене запрос выполняется в контексте текущего профиля.'
+    x-client-methods:
+    - SearchApi.favoritesSearch
+    parameters:
+    - name: page
+      in: path
+      required: true
+      description: Номер страницы, начиная с `0`.
+      schema:
+        type: integer
+        format: int32
+        minimum: 0
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/pagination.yaml#/PageOfRelease
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: ../components/search.yaml#/SearchRequest
+    security:
+    - AnixartToken: []
+    - {}
+/search/feed/{page}:
+  post:
+    tags:
+    - Поиск
+    operationId: Search_feedSearch
+    summary: Найти ленту
+    description: 'Найти ленту. Выдача постраничная; `page` начинается с `0`. Тело запроса: `SearchRequest` (`application/json`).
+      При заданном токене запрос выполняется в контексте текущего профиля.'
+    x-client-methods:
+    - SearchApi.feedSearch
+    parameters:
+    - name: page
+      in: path
+      required: true
+      description: Номер страницы, начиная с `0`.
+      schema:
+        type: integer
+        format: int32
+        minimum: 0
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/search.yaml#/FeedSearchResponse
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: ../components/search.yaml#/SearchRequest
+    security:
+    - AnixartToken: []
+    - {}
+/search/history/{page}:
+  post:
+    tags:
+    - Поиск
+    operationId: Search_historySearch
+    summary: Найти историю просмотров
+    description: 'Найти историю просмотров. Выдача постраничная; `page` начинается с `0`. Тело запроса: `SearchRequest` (`application/json`).
+      При заданном токене запрос выполняется в контексте текущего профиля.'
+    x-client-methods:
+    - SearchApi.historySearch
+    parameters:
+    - name: page
+      in: path
+      required: true
+      description: Номер страницы, начиная с `0`.
+      schema:
+        type: integer
+        format: int32
+        minimum: 0
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/pagination.yaml#/PageOfRelease
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: ../components/search.yaml#/SearchRequest
+    security:
+    - AnixartToken: []
+    - {}
+/search/profile/list/{status}/{page}:
+  post:
+    tags:
+    - Поиск
+    operationId: Search_profileListSearch
+    summary: Найти список релизов профиля
+    description: 'Найти список релизов профиля. Выдача постраничная; `page` начинается с `0`. Тело запроса: `SearchRequest`
+      (`application/json`). При заданном токене запрос выполняется в контексте текущего профиля.'
+    x-client-methods:
+    - SearchApi.profileListSearch
+    parameters:
+    - name: status
+      in: path
+      required: true
+      description: Код статуса или раздела списка.
+      schema:
+        type: integer
+        format: int32
+    - name: page
+      in: path
+      required: true
+      description: Номер страницы, начиная с `0`.
+      schema:
+        type: integer
+        format: int32
+        minimum: 0
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/pagination.yaml#/PageOfRelease
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: ../components/search.yaml#/SearchRequest
+    security:
+    - AnixartToken: []
+    - {}
+/search/profileCollections/{p_id}/{page}:
+  post:
+    tags:
+    - Поиск
+    operationId: Search_profileCollectionSearch
+    summary: Найти коллекции профиля
+    description: 'Найти коллекции профиля. Выдача постраничная; `page` начинается с `0`. Тело запроса: `SearchRequest` (`application/json`).
+      При заданном токене запрос выполняется в контексте текущего профиля.'
+    x-client-methods:
+    - SearchApi.profileCollectionSearch
+    parameters:
+    - name: p_id
+      in: path
+      required: true
+      description: Идентификатор профиля.
+      schema:
+        type: integer
+        format: int64
+    - name: page
+      in: path
+      required: true
+      description: Номер страницы, начиная с `0`.
+      schema:
+        type: integer
+        format: int32
+        minimum: 0
+    - name: release_id
+      in: query
+      required: false
+      description: Идентификатор релиза.
+      schema:
+        type: integer
+        format: int64
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/pagination.yaml#/PageOfCollection
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: ../components/search.yaml#/SearchRequest
+    security:
+    - AnixartToken: []
+    - {}
+/search/profiles/{page}:
+  post:
+    tags:
+    - Поиск
+    operationId: Search_profileSearch
+    summary: Найти профили
+    description: 'Найти профили. Выдача постраничная; `page` начинается с `0`. Тело запроса: `SearchRequest` (`application/json`).
+      При заданном токене запрос выполняется в контексте текущего профиля.'
+    x-client-methods:
+    - SearchApi.profileSearch
+    parameters:
+    - name: page
+      in: path
+      required: true
+      description: Номер страницы, начиная с `0`.
+      schema:
+        type: integer
+        format: int32
+        minimum: 0
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/pagination.yaml#/PageOfProfile
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: ../components/search.yaml#/SearchRequest
+    security:
+    - AnixartToken: []
+    - {}
+/search/releases/{page}:
+  post:
+    tags:
+    - Поиск
+    operationId: Search_releaseSearch
+    summary: Найти релизы
+    description: 'Найти релизы. Выдача постраничная; `page` начинается с `0`. Тело запроса: `SearchRequest` (`application/json`).
+      При заданном токене запрос выполняется в контексте текущего профиля.'
+    x-client-methods:
+    - SearchApi.releaseSearch
+    parameters:
+    - name: page
+      in: path
+      required: true
+      description: Номер страницы, начиная с `0`.
+      schema:
+        type: integer
+        format: int32
+        minimum: 0
+    - name: API-Version
+      in: header
+      required: false
+      description: Версия протокола API, которую ожидает клиент.
+      schema:
+        type: string
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/search.yaml#/ReleaseSearchResponse
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: ../components/search.yaml#/SearchRequest
+    security:
+    - AnixartToken: []
+    - {}

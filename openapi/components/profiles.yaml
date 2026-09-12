@@ -1,0 +1,639 @@
+Badge:
+  type: object
+  description: Значок, отображаемый рядом с профилем.
+  properties:
+    badgeUrl:
+      type: string
+      description: URL изображения или анимации значка.
+    id:
+      type: integer
+      format: int64
+      description: Уникальный идентификатор.
+    name:
+      type: string
+      description: Отображаемое название.
+    timestamp:
+      type: integer
+      format: int64
+      description: Временная метка.
+    type:
+      type: integer
+      format: int32
+      description: 'Тип значка: статический (`0`) или анимированный (`1`).'
+  x-response-constants:
+  - name: TYPE_ANIMATION
+    type: int
+    value: 1
+  - name: TYPE_STATIC
+    type: int
+    value: 0
+Profile:
+  type: object
+  description: Полная модель профиля пользователя.
+  properties:
+    badge:
+      $ref: '#/Badge'
+      description: Значок, выбранный для профиля.
+    badgeId:
+      type:
+      - integer
+      - 'null'
+      format: int64
+      description: Идентификатор значка.
+    badgeName:
+      type: string
+      description: Отображаемое название значка.
+    badgeType:
+      type:
+      - integer
+      - 'null'
+      format: int32
+      description: Тип значка (статический или анимированный).
+    badgeUrl:
+      type: string
+      description: URL изображения или анимации значка.
+    banExpires:
+      type: integer
+      format: int64
+      description: Временная метка «ban expires» в формате API.
+    banReason:
+      type: string
+      description: Причина блокировки.
+    blockListAddedDate:
+      type: integer
+      format: int64
+      description: Временная метка «block list added date» в формате API.
+    collectionCount:
+      type: integer
+      format: int32
+      description: Количество коллекций.
+    collectionsPreview:
+      type: array
+      items:
+        $ref: ./collections.yaml#/Collection
+      description: Коллекции, показанные в превью профиля.
+    commentCount:
+      type: integer
+      format: int32
+      description: Количество комментариев.
+    commentsPreview:
+      type: array
+      items:
+        $ref: ./comments.yaml#/Comment
+        x-generic-arguments:
+        - '? extends ProfileCompact'
+      description: Комментарии, показанные в превью профиля.
+    completedCount:
+      type: integer
+      format: int32
+      description: Количество профилей со статусом «Просмотрено».
+    deletionDeleteAt:
+      type: integer
+      format: int64
+      description: Планируемое время окончательного удаления аккаунта.
+    deletionRequestedAt:
+      type: integer
+      format: int64
+      description: Время, когда было запрошено удаление аккаунта.
+    droppedCount:
+      type: integer
+      format: int32
+      description: Количество профилей со статусом «Брошено».
+    favoriteCount:
+      type: integer
+      format: int32
+      description: Количество добавлений в избранное.
+    friendCount:
+      type: integer
+      format: int32
+      description: Количество друзей профиля.
+    friendStatus:
+      $ref: ./enums.yaml#/Profile_FriendStatus
+      description: Текущее состояние дружбы или заявки между профилями.
+    friendsPreview:
+      type: array
+      items:
+        $ref: '#/Profile'
+      description: Друзья, показанные в превью профиля.
+    history:
+      type: array
+      items:
+        $ref: ./releases.yaml#/Release
+      description: Недавняя история просмотров профиля.
+    holdOnCount:
+      type: integer
+      format: int32
+      description: Количество профилей со статусом «Отложено».
+    id:
+      type: integer
+      format: int64
+      description: Уникальный идентификатор.
+    isBanned:
+      type: boolean
+      description: Профиль заблокирован.
+    isBlocked:
+      type: boolean
+      description: Объект заблокирован для текущего профиля.
+    isCommentNotificationsEnabled:
+      type: boolean
+      description: Уведомления о комментариях включены.
+    isCountsHidden:
+      type: boolean
+      description: Счётчики профиля скрыты от других пользователей.
+    isDeleted:
+      type: boolean
+      description: Объект помечен удалённым.
+    isDeletionRequested:
+      type: boolean
+      description: Для аккаунта уже запрошено удаление.
+    isEpisodeNotificationsEnabled:
+      type: boolean
+      description: Уведомления о новых эпизодах включены.
+    isFirstEpisodeNotificationEnabled:
+      type: boolean
+      description: Уведомление о первом эпизоде включено.
+    isFriendRequestsDisallowed:
+      type: boolean
+      description: Новые заявки в друзья запрещены настройками профиля.
+    isGoogleBound:
+      type: boolean
+      description: К профилю привязан Google-аккаунт.
+    isIncognito:
+      type: boolean
+      description: Для профиля включён режим инкогнито.
+    isLoginChanged:
+      type: boolean
+      description: Логин профиля уже менялся.
+    isMeBlocked:
+      type: boolean
+      description: Целевой профиль заблокировал текущий профиль.
+    isOnline:
+      type: boolean
+      description: Профиль сейчас отмечен онлайн.
+    isPermBanned:
+      type: boolean
+      description: Профиль заблокирован без ограничения по сроку.
+    isSocial:
+      type: boolean
+      description: Профиль участвует в социальных функциях клиента.
+    isSocialHidden:
+      type: boolean
+      description: Социальные ссылки профиля скрыты.
+    isSponsor:
+      type: boolean
+      description: У профиля активен статус спонсора.
+    isStatsHidden:
+      type: boolean
+      description: Статистика профиля скрыта.
+    isTelegramBound:
+      type: boolean
+      description: К профилю привязан Telegram.
+    isVerified:
+      type: boolean
+      description: Профиль/канал подтверждён.
+    isVkBound:
+      type: boolean
+      description: К профилю привязан VK.
+    isYandexBound:
+      type: boolean
+      description: К профилю привязан Yandex.
+    lastActivityTime:
+      type: integer
+      format: int64
+      description: Время последней активности профиля в формате API.
+    pinnedSectionId:
+      type: integer
+      format: int32
+      description: Идентификатор закреплённого раздела.
+    planCount:
+      type: integer
+      format: int32
+      description: Количество профилей со статусом «В планах».
+    preferredAudiences:
+      type: array
+      items:
+        $ref: '#/ProfileGenre'
+      description: Предпочитаемые возрастные/аудиторные категории профиля.
+    preferredGenres:
+      type: array
+      items:
+        $ref: '#/ProfileGenre'
+      description: Предпочитаемые жанры профиля.
+    preferredThemes:
+      type: array
+      items:
+        $ref: '#/ProfileGenre'
+      description: Предпочитаемые тематические категории профиля.
+    privilegeLevel:
+      type: integer
+      format: int64
+      description: Уровень системных привилегий профиля.
+    ratingScore:
+      type: integer
+      format: int32
+      description: Репутация/рейтинговый балл профиля.
+    registerDate:
+      type: integer
+      format: int64
+      description: Время регистрации профиля в формате API.
+    releaseVideosPreview:
+      type: array
+      items:
+        $ref: ./video.yaml#/ReleaseVideo
+      description: Пользовательские видео, показанные в превью профиля.
+    roles:
+      type: array
+      items:
+        $ref: '#/RoleDto'
+      description: Роли профиля.
+    sponsorshipExpires:
+      type: integer
+      format: int64
+      description: Временная метка «sponsorship expires» в формате API.
+    themeAnimationEnabled:
+      type:
+      - boolean
+      - 'null'
+      description: Анимации темы включены.
+    themeAnimationSpeed:
+      $ref: ./enums.yaml#/ThemedContainerLayout_AnimationSpeed
+      description: Скорость анимации элементов темы.
+    themeBackgroundAlpha:
+      type:
+      - number
+      - 'null'
+      format: float
+      description: Прозрачность фонового изображения темы.
+    themeBackgroundMode:
+      $ref: ./enums.yaml#/ThemedContainerLayout_BackgroundMode
+      description: Способ масштабирования или повторения фонового изображения.
+    themeBackgroundUrl:
+      type: string
+      description: URL фонового изображения темы.
+    themeEnabled:
+      type:
+      - boolean
+      - 'null'
+      description: Тема доступна для выбора.
+    themeGradientAngle:
+      $ref: ./enums.yaml#/ThemedContainerLayout_GradientAngle
+      description: Направление или тип фонового градиента.
+    themeGradientEndColor:
+      type: string
+      description: Конечный цвет градиента.
+    themeGradientStartColor:
+      type: string
+      description: Начальный цвет градиента.
+    themeIconAlpha:
+      type:
+      - number
+      - 'null'
+      format: float
+      description: Прозрачность декоративных иконок темы.
+    themeIconColor:
+      type: string
+      description: Цвет декоративных иконок темы.
+    themeIconDensity:
+      $ref: ./enums.yaml#/ThemedContainerLayout_IconDensity
+      description: Плотность декоративных иконок.
+    themeIconResName:
+      type: string
+      description: Имя встроенного Android-ресурса декоративной иконки.
+    themeIconSize:
+      $ref: ./enums.yaml#/ThemedContainerLayout_IconSize
+      description: Размер декоративных иконок.
+    themeIconUrl:
+      type: string
+      description: URL внешнего набора/изображения иконок темы.
+    videoCount:
+      type: integer
+      format: int32
+      description: Количество пользовательских видео профиля.
+    vote:
+      type: integer
+      format: int32
+      description: Числовое значение пользовательского голоса/оценки в контексте профиля.
+    votes:
+      type: array
+      items:
+        $ref: ./releases.yaml#/Release
+      description: Релизы/объекты, связанные с голосованием профиля.
+    watchDynamics:
+      type: array
+      items:
+        $ref: '#/ProfileWatchDynamics'
+      description: Динамика просмотров профиля по временным интервалам.
+    watchedEpisodeCount:
+      type: integer
+      format: int64
+      description: Общее количество просмотренных эпизодов.
+    watchedTime:
+      type: integer
+      format: int64
+      description: Суммарное время просмотра, накопленное профилем, в единицах API.
+    watchingCount:
+      type: integer
+      format: int32
+      description: Количество профилей со статусом «Смотрю».
+    login:
+      type: string
+      description: Логин профиля.
+    password:
+      type: string
+      description: Пароль или его представление в запросе.
+    avatar:
+      type: string
+      description: URL или идентификатор изображения профиля.
+    status:
+      type: string
+      description: Текстовый статус профиля.
+    vkPage:
+      type: string
+      description: Ссылка или идентификатор страницы VK.
+    tgPage:
+      type: string
+      description: Ссылка или имя пользователя Telegram.
+    instPage:
+      type: string
+      description: Ссылка или имя профиля Instagram.
+    ttPage:
+      type: string
+      description: Ссылка или имя профиля TikTok.
+    discordPage:
+      type: string
+      description: Ссылка или имя пользователя Discord.
+  x-response-constants:
+  - name: ADMINISTRATOR
+    type: long
+    value: 4
+  - name: DEVELOPER
+    type: long
+    value: 5
+  - name: MEMBER
+    type: long
+    value: 1
+  - name: MODERATOR
+    type: long
+    value: 3
+  - name: NONE
+    type: long
+    value: 0
+  - name: RELEASER
+    type: long
+    value: 2
+ProfileArticleNotification:
+  allOf:
+  - $ref: ./notifications.yaml#/ProfileNotification
+  - type: object
+    properties:
+      article:
+        $ref: ./articles.yaml#/ArticleCompact
+        description: Связанная статья.
+ProfileBadgePageableResponse:
+  allOf:
+  - $ref: ./pagination.yaml#/PageableResponse
+  - type: object
+    properties:
+      content:
+        type: array
+        items:
+          $ref: '#/Badge'
+        description: Значки на текущей странице.
+      profile:
+        $ref: '#/Profile'
+        description: Профиль, для которого загружен список доступных значков.
+    description: Страница доступных значков вместе с данными текущего профиля.
+ProfileCompact:
+  type: object
+  description: Компактное представление профиля для списков, комментариев и уведомлений.
+  properties:
+    badge_id:
+      type:
+      - integer
+      - 'null'
+      format: int64
+      description: Идентификатор связанного объекта «badge».
+    badge_name:
+      type: string
+      description: Отображаемое название значка.
+    badge_type:
+      type:
+      - integer
+      - 'null'
+      format: int32
+      description: Тип значка (статический или анимированный).
+    badge_url:
+      type: string
+      description: URL изображения или анимации значка.
+    banExpires:
+      type: integer
+      format: int64
+      description: Временная метка «ban expires» в формате API.
+    banReason:
+      type: string
+      description: Причина блокировки.
+    id:
+      type: integer
+      format: int64
+      description: Уникальный идентификатор.
+    isBanned:
+      type: boolean
+      description: Профиль заблокирован.
+    isSponsor:
+      type: boolean
+      description: У профиля активен статус спонсора.
+    isVerified:
+      type: boolean
+      description: Профиль/канал подтверждён.
+    privilegeLevel:
+      type: integer
+      format: int64
+      description: Уровень системных привилегий профиля.
+    login:
+      type: string
+      description: Логин профиля.
+    avatar:
+      type: string
+      description: URL или идентификатор изображения профиля.
+ProfileEpisodeNotification:
+  allOf:
+  - $ref: ./notifications.yaml#/ProfileNotification
+  - type: object
+    properties:
+      episode:
+        $ref: ./episodes.yaml#/EpisodeCompact
+        description: Связанный эпизод.
+ProfileFriendNotification:
+  allOf:
+  - $ref: ./notifications.yaml#/ProfileNotification
+  - type: object
+    properties:
+      byProfile:
+        $ref: '#/ProfileSlim'
+        description: Профиль, который инициировал заявку или действие.
+      status:
+        $ref: ./enums.yaml#/ProfileFriendNotification_Status
+        description: Текущий статус объекта.
+ProfileGenre:
+  type: object
+  properties:
+    name:
+      type: string
+      description: Отображаемое название.
+    percentage:
+      type: integer
+      format: int32
+      description: Доля/процент, рассчитанный для жанра в статистике профиля.
+ProfileHealthStatusResponse:
+  allOf:
+  - $ref: ./common.yaml#/Response
+  - type: object
+    properties:
+      banCount:
+        type: integer
+        format: int64
+        description: Количество элементов категории «ban».
+      banFor3MonthCount:
+        type: integer
+        format: int64
+        description: Количество элементов категории «ban for3 month».
+      blogMuteExpires:
+        type: integer
+        format: int64
+        description: Временная метка «blog mute expires» в формате API.
+      blogSuspensionExpires:
+        type: integer
+        format: int64
+        description: Временная метка «blog suspension expires» в формате API.
+      lastBanExpires:
+        type: integer
+        format: int64
+        description: Временная метка «last ban expires» в формате API.
+      lastBanTimestamp:
+        type: integer
+        format: int64
+        description: Время последней блокировки аккаунта в формате API.
+ProfileInfoResponse:
+  allOf:
+  - $ref: ./common.yaml#/Response
+  - type: object
+    properties:
+      channelId:
+        type:
+        - integer
+        - 'null'
+        format: int64
+        description: Идентификатор канала.
+      isPermBanned:
+        type: boolean
+        description: Профиль заблокирован без ограничения по сроку.
+      isSponsor:
+        type: boolean
+        description: У профиля активен статус спонсора.
+      privilegeLevel:
+        type: integer
+        format: int64
+        description: Уровень системных привилегий профиля.
+      ratingScore:
+        type: integer
+        format: int32
+        description: Репутация/рейтинговый балл профиля.
+      sponsorshipExpires:
+        type: integer
+        format: int64
+        description: Временная метка «sponsorship expires» в формате API.
+ProfileProcessRequest:
+  type: object
+  properties:
+    banExpires:
+      type:
+      - integer
+      - 'null'
+      format: int64
+      description: Временная метка «ban expires» в формате API.
+    banReason:
+      type: string
+      description: Причина блокировки.
+    isBanned:
+      type: boolean
+      description: Профиль заблокирован.
+ProfileRelatedReleaseNotification:
+  allOf:
+  - $ref: ./notifications.yaml#/ProfileNotification
+  - type: object
+    properties:
+      release:
+        $ref: ./releases.yaml#/ReleaseCompact
+        description: Связанный релиз.
+ProfileResponse:
+  allOf:
+  - $ref: ./common.yaml#/Response
+  - type: object
+    properties:
+      isMyProfile:
+        type: boolean
+        description: Ответ относится к профилю текущей сессии.
+      profile:
+        $ref: '#/Profile'
+        description: Связанный профиль пользователя.
+ProfileRole:
+  allOf:
+  - $ref: '#/ProfileCompact'
+  - type: object
+    properties:
+      isOnline:
+        type: boolean
+        description: Профиль сейчас отмечен онлайн.
+      roles:
+        type: array
+        items:
+          $ref: '#/RoleDto'
+        description: Роли профиля.
+ProfileSlim:
+  type: object
+  description: 'Минимальное представление профиля: идентификатор, логин и аватар.'
+  properties:
+    avatar:
+      type: string
+      description: URL или идентификатор изображения профиля.
+    id:
+      type: integer
+      format: int64
+      description: Уникальный идентификатор.
+    login:
+      type: string
+      description: Логин профиля.
+ProfileWatchDynamics:
+  type: object
+  description: Одна точка статистики активности просмотра профиля.
+  properties:
+    count:
+      type: integer
+      format: int32
+      description: Числовое значение статистики для текущей точки.
+    day:
+      type: integer
+      format: int32
+      description: Номер дня/интервала в серии статистики просмотров.
+    id:
+      type: integer
+      format: int64
+      description: Уникальный идентификатор.
+    timestamp:
+      type: integer
+      format: int64
+      description: Временная метка.
+RoleDto:
+  type: object
+  description: Роль профиля и её оформление.
+  properties:
+    id:
+      type: integer
+      format: int64
+      description: Уникальный идентификатор.
+    name:
+      type: string
+      description: Отображаемое название.
+    color:
+      type: string
+      description: Цвет роли в строковом формате клиента.

@@ -1,0 +1,168 @@
+FirebaseResponse:
+  allOf:
+  - $ref: ./common.yaml#/Response
+  - type: object
+    properties:
+      topicName:
+        type: string
+        description: Название Firebase topic для push-уведомлений.
+NotificationCountResponse:
+  allOf:
+  - $ref: ./common.yaml#/Response
+  - type: object
+    properties:
+      count:
+        type: integer
+        format: int64
+        description: Числовое значение статистики для текущей точки.
+NotificationPreferenceResponse:
+  allOf:
+  - $ref: ./common.yaml#/Response
+  - type: object
+    properties:
+      isArticleNotificationsEnabled:
+        type: boolean
+        description: Уведомления о статьях включены.
+      isCommentNotificationsEnabled:
+        type: boolean
+        description: Уведомления о комментариях включены.
+      isEpisodeNotificationsEnabled:
+        type: boolean
+        description: Уведомления о новых эпизодах включены.
+      isFirstEpisodeNotificationEnabled:
+        type: boolean
+        description: Уведомление о первом эпизоде включено.
+      isMyArticleCommentNotificationsEnabled:
+        type: boolean
+        description: Уведомления об ответах на собственные комментарии к статьям включены.
+      isMyCollectionCommentNotificationsEnabled:
+        type: boolean
+        description: Уведомления об ответах на собственные комментарии к коллекциям включены.
+      isRelatedReleaseNotificationsEnabled:
+        type: boolean
+        description: Уведомления о связанных релизах включены.
+      isReleaseTypeNotificationsEnabled:
+        type: boolean
+        description: Уведомления по выбранным озвучкам релиза включены.
+      isReportProcessNotificationsEnabled:
+        type: boolean
+        description: Уведомления о результатах рассмотрения жалоб включены.
+      profileStatusNotificationPreferences:
+        type: array
+        items:
+          $ref: '#/ProfileStatusNotificationPreference'
+        description: Настройки уведомлений для статусов профиля/списков.
+      profileTypeNotificationPreferences:
+        type: array
+        items:
+          $ref: '#/ProfileTypeNotificationPreference'
+        description: Настройки уведомлений для выбранных озвучек.
+ProfileArticleCommentNotification:
+  allOf:
+  - $ref: '#/ProfileCommentNotification'
+  - type: object
+    properties: {}
+ProfileCollectionCommentNotification:
+  allOf:
+  - $ref: '#/ProfileCommentNotification'
+  - type: object
+    properties: {}
+ProfileCommentNotification:
+  allOf:
+  - $ref: '#/ProfileNotification'
+  - type: object
+    description: Уведомление, связанное с комментарием или ответом на комментарий.
+    properties:
+      comment:
+        $ref: ./comments.yaml#/CommentCompact
+        description: Комментарий, из-за которого создано уведомление.
+      parentComment:
+        $ref: ./comments.yaml#/CommentCompact
+        description: Родительский комментарий для уведомления об ответе.
+ProfileNotification:
+  type: object
+  properties:
+    id:
+      type: integer
+      format: int64
+      description: Уникальный идентификатор.
+    isNew:
+      type: boolean
+      description: Элемент ещё не был просмотрен пользователем.
+    isPushed:
+      type: boolean
+      description: Для уведомления уже отправлен push.
+    timestamp:
+      type: integer
+      format: int64
+      description: Временная метка.
+ProfileReleaseCommentNotification:
+  allOf:
+  - $ref: '#/ProfileCommentNotification'
+  - type: object
+    properties: {}
+ProfileReleaseTypeNotificationPreference:
+  type: object
+  properties:
+    type:
+      $ref: ./episodes.yaml#/Type
+      description: Озвучка/даббер, для которого настроены уведомления.
+ProfileReleaseTypeNotificationPreferencesEditRequest:
+  type: object
+  properties:
+    profileReleaseTypeNotificationPreferences:
+      type: array
+      items:
+        type:
+        - integer
+        - 'null'
+        format: int64
+      description: Настройки уведомлений по озвучкам конкретного релиза.
+    releaseId:
+      type: integer
+      format: int64
+      description: Идентификатор релиза.
+ProfileReleaseTypeNotificationPreferencesResponse:
+  allOf:
+  - $ref: ./common.yaml#/Response
+  - type: object
+    properties:
+      profileReleaseTypeNotificationPreferences:
+        type: array
+        items:
+          $ref: '#/ProfileReleaseTypeNotificationPreference'
+        description: Настройки уведомлений по озвучкам конкретного релиза.
+ProfileStatusNotificationPreference:
+  type: object
+  properties:
+    status:
+      $ref: ./enums.yaml#/ProfileStatusNotificationPreference_Status
+      description: Текущий статус объекта.
+ProfileStatusNotificationPreferencesEditRequest:
+  type: object
+  properties:
+    profileStatusNotificationPreferences:
+      type: array
+      items:
+        type:
+        - integer
+        - 'null'
+        format: int32
+      description: Настройки уведомлений для статусов профиля/списков.
+ProfileTypeNotificationPreference:
+  type: object
+  properties:
+    type:
+      $ref: ./episodes.yaml#/Type
+      description: Озвучка/даббер, для которого настроены уведомления.
+ProfileTypeNotificationPreferencesEditRequest:
+  type: object
+  properties:
+    profileTypeNotificationPreferences:
+      type: array
+      items:
+        type:
+        - integer
+        - 'null'
+        format: int64
+      description: Настройки уведомлений для выбранных озвучек.

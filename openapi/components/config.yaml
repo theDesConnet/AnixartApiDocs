@@ -1,0 +1,51 @@
+AnixPlayerConfigResponse:
+  allOf:
+  - $ref: ./common.yaml#/Response
+  - type: object
+    properties:
+      downloadLinks:
+        type: object
+        additionalProperties:
+          type: string
+        description: Список ссылок или зеркал для загрузки AnixPlayer.
+      lastVersionCode:
+        type: integer
+        format: int64
+        description: Код последней доступной версии.
+      whatsNew:
+        type: string
+        description: Текст с изменениями последней версии.
+ConfigUrlsResponse:
+  type: object
+  description: Адреса API и внешних сервисов, получаемые клиентом при запуске.
+  properties:
+    apiUrls:
+      type: array
+      uniqueItems: true
+      items:
+        type: string
+      description: Базовые адреса API/зеркал, доступные клиенту.
+    consentRequired:
+      type: boolean
+      description: Перед продолжением клиент должен получить согласие пользователя.
+    editorUrl:
+      type: string
+      description: Адрес веб-редактора или сервиса редактора.
+    googleAuthAvailable:
+      type: boolean
+      description: Авторизация через Google доступна.
+    shouldUseMirrorUrls:
+      type: boolean
+      description: Клиенту следует использовать зеркальные адреса API.
+    staticDomain:
+      type: string
+      description: Домен статических ресурсов.
+    telegramAuthAvailable:
+      type: boolean
+      description: Авторизация через Telegram доступна.
+    vkAuthAvailable:
+      type: boolean
+      description: Авторизация через VK доступна.
+    yandexAuthAvailable:
+      type: boolean
+      description: Авторизация через Yandex доступна.

@@ -1,0 +1,30 @@
+{
+  "name": "anixart-api-docs",
+  "author": "DesConnet",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "license": "AGPL-3.0-only",
+
+  "repository": "https://github.com/theDesConnet/AnixartApiDocs",
+  "homepage": "https://github.com/theDesConnet/AnixartApiDocs",
+  
+  "scripts": {
+    "openapi:bundle": "node scripts/bundle-openapi.mjs",
+    "predev": "npm run openapi:bundle",
+    "dev": "astro dev",
+    "prestart": "npm run openapi:bundle",
+    "start": "astro dev",
+    "prebuild": "npm run openapi:bundle",
+    "build": "astro build",
+    "preview": "astro preview"
+  },
+  "dependencies": {
+    "@astrojs/starlight": "0.42.0",
+    "@scalar/api-reference": "1.68.0",
+    "astro": "7.3.2"
+  },
+  "devDependencies": {
+    "yaml": "2.9.0"
+  }
+}

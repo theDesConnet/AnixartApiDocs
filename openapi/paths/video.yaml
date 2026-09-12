@@ -1,0 +1,398 @@
+/releaseVideoFavorite/add/{r_id}:
+  get:
+    tags:
+    - Видео
+    operationId: ReleaseVideoFavorite_add
+    summary: Добавить видео в избранное
+    description: Добавить видео в избранное. При заданном токене запрос выполняется в контексте текущего профиля.
+    x-client-methods:
+    - ReleaseVideoFavoriteApi.add
+    parameters:
+    - name: r_id
+      in: path
+      required: true
+      description: Идентификатор релиза.
+      schema:
+        type: integer
+        format: int64
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/library.yaml#/FavoritesResponse
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    security:
+    - AnixartToken: []
+    - {}
+    x-original-tags:
+    - Избранные видео
+/releaseVideoFavorite/all/{p_id}/{page}:
+  get:
+    tags:
+    - Видео
+    operationId: ReleaseVideoFavorite_favorites
+    summary: Получить избранные видео
+    description: Получить избранные видео. Выдача постраничная; `page` начинается с `0`. При заданном токене запрос выполняется
+      в контексте текущего профиля.
+    x-client-methods:
+    - ReleaseVideoFavoriteApi.favorites
+    parameters:
+    - name: p_id
+      in: path
+      required: true
+      description: Идентификатор профиля.
+      schema:
+        type: integer
+        format: int64
+    - name: page
+      in: path
+      required: true
+      description: Номер страницы, начиная с `0`.
+      schema:
+        type: integer
+        format: int32
+        minimum: 0
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/pagination.yaml#/PageOfReleaseVideo
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    security:
+    - AnixartToken: []
+    - {}
+    x-original-tags:
+    - Избранные видео
+/releaseVideoFavorite/delete/{r_id}:
+  get:
+    tags:
+    - Видео
+    operationId: ReleaseVideoFavorite_delete
+    summary: Удалить видео из избранного
+    description: Удалить видео из избранного. При заданном токене запрос выполняется в контексте текущего профиля.
+    x-client-methods:
+    - ReleaseVideoFavoriteApi.delete
+    parameters:
+    - name: r_id
+      in: path
+      required: true
+      description: Идентификатор релиза.
+      schema:
+        type: integer
+        format: int64
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/library.yaml#/FavoritesResponse
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    security:
+    - AnixartToken: []
+    - {}
+    x-original-tags:
+    - Избранные видео
+/video/appeal/add:
+  post:
+    tags:
+    - Видео
+    operationId: ReleaseVideoAppeal_add
+    summary: Отправить апелляцию по видео
+    description: 'Отправить апелляцию по видео. Тело запроса: `ReleaseVideoAppealRequest` (`application/json`). При заданном
+      токене запрос выполняется в контексте текущего профиля.'
+    x-client-methods:
+    - ReleaseVideoAppealApi.add
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/moderation.yaml#/ReleaseVideoAppealResponse
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: ../components/moderation.yaml#/ReleaseVideoAppealRequest
+    security:
+    - AnixartToken: []
+    - {}
+    x-original-tags:
+    - Жалобы на видео
+/video/appeal/delete/{appealId}:
+  post:
+    tags:
+    - Видео
+    operationId: ReleaseVideoAppeal_delete
+    summary: Удалить апелляцию по видео
+    description: Удалить апелляцию по видео. При заданном токене запрос выполняется в контексте текущего профиля.
+    x-client-methods:
+    - ReleaseVideoAppealApi.delete
+    parameters:
+    - name: appealId
+      in: path
+      required: true
+      description: Идентификатор апелляции.
+      schema:
+        type: integer
+        format: int64
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/moderation.yaml#/ReleaseVideoAppealResponse
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    security:
+    - AnixartToken: []
+    - {}
+    x-original-tags:
+    - Жалобы на видео
+/video/appeal/profile/last:
+  get:
+    tags:
+    - Видео
+    operationId: ReleaseVideoAppeal_appeals
+    summary: Получить последнюю апелляцию профиля
+    description: Получить последнюю апелляцию профиля. При заданном токене запрос выполняется в контексте текущего профиля.
+    x-client-methods:
+    - ReleaseVideoAppealApi.appeals
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/pagination.yaml#/PageOfReleaseVideo
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    security:
+    - AnixartToken: []
+    - {}
+    x-original-tags:
+    - Жалобы на видео
+/video/appeal/profile/{page}:
+  get:
+    tags:
+    - Видео
+    operationId: ReleaseVideoAppeal_appeals_2
+    summary: Получить апелляции профиля
+    description: Получить апелляции профиля. Выдача постраничная; `page` начинается с `0`. При заданном токене запрос выполняется
+      в контексте текущего профиля.
+    x-client-methods:
+    - ReleaseVideoAppealApi.appeals
+    parameters:
+    - name: page
+      in: path
+      required: true
+      description: Номер страницы, начиная с `0`.
+      schema:
+        type: integer
+        format: int32
+        minimum: 0
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/pagination.yaml#/PageOfReleaseVideo
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    security:
+    - AnixartToken: []
+    - {}
+    x-original-tags:
+    - Жалобы на видео
+/video/profile/{p_id}/{page}:
+  get:
+    tags:
+    - Видео
+    operationId: ReleaseVideo_profileVideo
+    summary: Получить видео профиля
+    description: Получить видео профиля. Выдача постраничная; `page` начинается с `0`. При заданном токене запрос выполняется
+      в контексте текущего профиля.
+    x-client-methods:
+    - ReleaseVideoApi.profileVideo
+    parameters:
+    - name: p_id
+      in: path
+      required: true
+      description: Идентификатор профиля.
+      schema:
+        type: integer
+        format: int64
+    - name: page
+      in: path
+      required: true
+      description: Номер страницы, начиная с `0`.
+      schema:
+        type: integer
+        format: int32
+        minimum: 0
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/pagination.yaml#/PageOfReleaseVideo
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    security:
+    - AnixartToken: []
+    - {}
+    x-original-tags:
+    - Видео релизов
+/video/release/categories:
+  get:
+    tags:
+    - Видео
+    operationId: ReleaseVideo_categories
+    summary: Получить категории видео
+    description: Получить категории видео.
+    x-client-methods:
+    - ReleaseVideoApi.categories
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/video.yaml#/ReleaseVideoCategoriesResponse
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    x-original-tags:
+    - Видео релизов
+/video/release/{releaseId}:
+  get:
+    tags:
+    - Видео
+    operationId: ReleaseVideo_main
+    summary: Получить главные видео релиза
+    description: Получить главные видео релиза.
+    x-client-methods:
+    - ReleaseVideoApi.main
+    parameters:
+    - name: releaseId
+      in: path
+      required: true
+      description: Идентификатор релиза.
+      schema:
+        type: integer
+        format: int64
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/video.yaml#/ReleaseVideosResponse
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    x-original-tags:
+    - Видео релизов
+/video/release/{releaseId}/category/{categoryId}/{page}:
+  get:
+    tags:
+    - Видео
+    operationId: ReleaseVideo_category
+    summary: Получить видео релиза по категории
+    description: Получить видео релиза по категории. Выдача постраничная; `page` начинается с `0`.
+    x-client-methods:
+    - ReleaseVideoApi.category
+    parameters:
+    - name: releaseId
+      in: path
+      required: true
+      description: Идентификатор релиза.
+      schema:
+        type: integer
+        format: int64
+    - name: categoryId
+      in: path
+      required: true
+      description: Идентификатор категории.
+      schema:
+        type: integer
+        format: int64
+    - name: page
+      in: path
+      required: true
+      description: Номер страницы, начиная с `0`.
+      schema:
+        type: integer
+        format: int32
+        minimum: 0
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/pagination.yaml#/PageOfReleaseVideo
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    x-original-tags:
+    - Видео релизов
+/video/release/{releaseId}/{page}:
+  get:
+    tags:
+    - Видео
+    operationId: ReleaseVideo_video
+    summary: Получить видео релиза
+    description: Получить видео релиза. Выдача постраничная; `page` начинается с `0`.
+    x-client-methods:
+    - ReleaseVideoApi.video
+    parameters:
+    - name: releaseId
+      in: path
+      required: true
+      description: Идентификатор релиза.
+      schema:
+        type: integer
+        format: int64
+    - name: page
+      in: path
+      required: true
+      description: Номер страницы, начиная с `0`.
+      schema:
+        type: integer
+        format: int32
+        minimum: 0
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/pagination.yaml#/PageOfReleaseVideo
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    x-original-tags:
+    - Видео релизов

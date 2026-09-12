@@ -1,0 +1,1296 @@
+openapi: 3.1.0
+info:
+  title: Anixart API
+  version: '10.0'
+  description: 'Неофициальная документация Anixart API актуальная под Anixart v10.0 (BUILD 26090418). Описывает доступные методы, параметры, модели данных и коды результатов.
+    Поведение API может меняться со временем.
+
+
+    by [DesConnet](https://github.com/theDesConnet) [![GitHub](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white)](https://github.com/theDesConnet/AnixartApiDocs)
+
+    '
+  contact:
+    name: null
+  x-documentation-source: https://github.com/theDesConnet/AnixartApiDocs
+  x-client-method-count: 290
+servers:
+- url: https://api-s.anixsekai.com/
+  description: Основной адрес API.
+tags:
+- name: Релизы
+  description: Карточки релизов, фильтрация, связанные тайтлы, расписание и официальные стриминговые площадки.
+- name: Эпизоды
+  description: Эпизоды, источники, озвучки, отметки просмотра и закрепление предпочитаемой озвучки.
+- name: Видео
+  description: Видео релизов, категории, избранное и связанные с видео апелляции.
+- name: Статьи
+  description: 'Публикации каналов: создание, редактирование, реакции, репосты и предложения статей.'
+- name: Коллекции
+  description: Публичные и собственные коллекции, их содержимое и избранные коллекции.
+- name: Комментарии
+  description: 'Комментарии к релизам, статьям и коллекциям: ответы, голоса и модерационные действия.'
+- name: Лента и рекомендации
+  description: Лента публикаций, блоки Discover и персональные рекомендации.
+- name: Поиск
+  description: Поиск по релизам, профилям, каналам, коллекциям и пользовательским спискам.
+- name: Профили
+  description: Профили пользователей, социальные данные, роли и значки.
+- name: Друзья
+  description: Друзья, заявки, рекомендации друзей и чёрный список.
+- name: Каналы
+  description: 'Каналы и блоги: подписки, права участников, оформление, блокировки и публикации.'
+- name: Библиотека
+  description: Пользовательские списки релизов, избранное, история просмотров и оценки.
+- name: Авторизация
+  description: Регистрация, вход, восстановление доступа и авторизация через внешние сервисы.
+- name: Настройки аккаунта
+  description: Профиль, приватность, почта, пароль, соцсети, тема и удаление аккаунта.
+- name: Уведомления
+  description: Уведомления и персональные правила их получения.
+- name: Модерация
+  description: Жалобы на контент и профили, ограничения аккаунта и апелляции.
+- name: Конфигурация
+  description: Конфигурация мобильного клиента, адреса API, зеркала и серверные feature flags.
+- name: Импорт и экспорт
+  description: Импорт и экспорт пользовательских списков и закладок.
+paths:
+  /article/comment/add/{articleId}:
+    $ref: ./paths/comments.yaml#/~1article~1comment~1add~1{articleId}
+  /article/comment/all/profile/{p_id}/{page}:
+    $ref: ./paths/comments.yaml#/~1article~1comment~1all~1profile~1{p_id}~1{page}
+  /article/comment/all/{a_id}/popular:
+    $ref: ./paths/comments.yaml#/~1article~1comment~1all~1{a_id}~1popular
+  /article/comment/all/{a_id}/{page}:
+    $ref: ./paths/comments.yaml#/~1article~1comment~1all~1{a_id}~1{page}
+  /article/comment/delete/{commentId}:
+    $ref: ./paths/comments.yaml#/~1article~1comment~1delete~1{commentId}
+  /article/comment/edit/{commentId}:
+    $ref: ./paths/comments.yaml#/~1article~1comment~1edit~1{commentId}
+  /article/comment/process/{commentId}:
+    $ref: ./paths/comments.yaml#/~1article~1comment~1process~1{commentId}
+  /article/comment/replies/{commentId}/{page}:
+    $ref: ./paths/comments.yaml#/~1article~1comment~1replies~1{commentId}~1{page}
+  /article/comment/vote/{commentId}/{vote}:
+    $ref: ./paths/comments.yaml#/~1article~1comment~1vote~1{commentId}~1{vote}
+  /article/comment/votes/{commentId}/{page}:
+    $ref: ./paths/comments.yaml#/~1article~1comment~1votes~1{commentId}~1{page}
+  /article/comment/{articleId}:
+    $ref: ./paths/comments.yaml#/~1article~1comment~1{articleId}
+  /article/create/{c_id}:
+    $ref: ./paths/articles.yaml#/~1article~1create~1{c_id}
+  /article/delete/{a_id}:
+    $ref: ./paths/articles.yaml#/~1article~1delete~1{a_id}
+  /article/edit/pinned/{a_id}:
+    $ref: ./paths/articles.yaml#/~1article~1edit~1pinned~1{a_id}
+  /article/edit/{a_id}:
+    $ref: ./paths/articles.yaml#/~1article~1edit~1{a_id}
+  /article/event:
+    $ref: ./paths/articles.yaml#/~1article~1event
+  /article/mute/{a_id}:
+    $ref: ./paths/articles.yaml#/~1article~1mute~1{a_id}
+  /article/reposts/{a_id}/{page}:
+    $ref: ./paths/articles.yaml#/~1article~1reposts~1{a_id}~1{page}
+  /article/suggestion/all/{page}:
+    $ref: ./paths/articles.yaml#/~1article~1suggestion~1all~1{page}
+  /article/suggestion/create/{b_id}:
+    $ref: ./paths/articles.yaml#/~1article~1suggestion~1create~1{b_id}
+  /article/suggestion/delete/{a_id}:
+    $ref: ./paths/articles.yaml#/~1article~1suggestion~1delete~1{a_id}
+  /article/suggestion/edit/{a_id}:
+    $ref: ./paths/articles.yaml#/~1article~1suggestion~1edit~1{a_id}
+  /article/suggestion/publish/{a_id}:
+    $ref: ./paths/articles.yaml#/~1article~1suggestion~1publish~1{a_id}
+  /article/suggestion/{a_id}:
+    $ref: ./paths/articles.yaml#/~1article~1suggestion~1{a_id}
+  /article/unmute/{a_id}:
+    $ref: ./paths/articles.yaml#/~1article~1unmute~1{a_id}
+  /article/vote/{a_id}/{vote}:
+    $ref: ./paths/articles.yaml#/~1article~1vote~1{a_id}~1{vote}
+  /article/votes/{a_id}/{page}:
+    $ref: ./paths/articles.yaml#/~1article~1votes~1{a_id}~1{page}
+  /article/{a_id}:
+    $ref: ./paths/articles.yaml#/~1article~1{a_id}
+  /auth/checkLogin:
+    $ref: ./paths/auth.yaml#/~1auth~1checkLogin
+  /auth/firebase:
+    $ref: ./paths/auth.yaml#/~1auth~1firebase
+  /auth/google:
+    $ref: ./paths/auth.yaml#/~1auth~1google
+  /auth/resend:
+    $ref: ./paths/auth.yaml#/~1auth~1resend
+  /auth/restore:
+    $ref: ./paths/auth.yaml#/~1auth~1restore
+  /auth/restore/resend:
+    $ref: ./paths/auth.yaml#/~1auth~1restore~1resend
+  /auth/restore/verify:
+    $ref: ./paths/auth.yaml#/~1auth~1restore~1verify
+  /auth/signIn:
+    $ref: ./paths/auth.yaml#/~1auth~1signIn
+  /auth/signUp:
+    $ref: ./paths/auth.yaml#/~1auth~1signUp
+  /auth/telegram:
+    $ref: ./paths/auth.yaml#/~1auth~1telegram
+  /auth/verify:
+    $ref: ./paths/auth.yaml#/~1auth~1verify
+  /auth/vk:
+    $ref: ./paths/auth.yaml#/~1auth~1vk
+  /auth/yandex:
+    $ref: ./paths/auth.yaml#/~1auth~1yandex
+  /channel/all/{page}:
+    $ref: ./paths/channels.yaml#/~1channel~1all~1{page}
+  /channel/avatar/upload/{c_id}:
+    $ref: ./paths/channels.yaml#/~1channel~1avatar~1upload~1{c_id}
+  /channel/blog/create:
+    $ref: ./paths/channels.yaml#/~1channel~1blog~1create
+  /channel/blog/{p_id}:
+    $ref: ./paths/channels.yaml#/~1channel~1blog~1{p_id}
+  /channel/cover/delete/{c_id}:
+    $ref: ./paths/channels.yaml#/~1channel~1cover~1delete~1{c_id}
+  /channel/cover/upload/{c_id}:
+    $ref: ./paths/channels.yaml#/~1channel~1cover~1upload~1{c_id}
+  /channel/create:
+    $ref: ./paths/channels.yaml#/~1channel~1create
+  /channel/edit/{c_id}:
+    $ref: ./paths/channels.yaml#/~1channel~1edit~1{c_id}
+  /channel/editor/available/all:
+    $ref: ./paths/channels.yaml#/~1channel~1editor~1available~1all
+  /channel/mute/all/{page}:
+    $ref: ./paths/channels.yaml#/~1channel~1mute~1all~1{page}
+  /channel/mute/{c_id}:
+    $ref: ./paths/channels.yaml#/~1channel~1mute~1{c_id}
+  /channel/recommendations/{page}:
+    $ref: ./paths/channels.yaml#/~1channel~1recommendations~1{page}
+  /channel/subscribe/{c_id}:
+    $ref: ./paths/channels.yaml#/~1channel~1subscribe~1{c_id}
+  /channel/subscription/all/{page}:
+    $ref: ./paths/channels.yaml#/~1channel~1subscription~1all~1{page}
+  /channel/subscription/count:
+    $ref: ./paths/channels.yaml#/~1channel~1subscription~1count
+  /channel/unmute/{c_id}:
+    $ref: ./paths/channels.yaml#/~1channel~1unmute~1{c_id}
+  /channel/unsubscribe/{c_id}:
+    $ref: ./paths/channels.yaml#/~1channel~1unsubscribe~1{c_id}
+  /channel/{c_id}:
+    $ref: ./paths/channels.yaml#/~1channel~1{c_id}
+  /channel/{c_id}/article/all/{page}:
+    $ref: ./paths/channels.yaml#/~1channel~1{c_id}~1article~1all~1{page}
+  /channel/{c_id}/block/all/{page}:
+    $ref: ./paths/channels.yaml#/~1channel~1{c_id}~1block~1all~1{page}
+  /channel/{c_id}/block/manage:
+    $ref: ./paths/channels.yaml#/~1channel~1{c_id}~1block~1manage
+  /channel/{c_id}/block/{p_id}:
+    $ref: ./paths/channels.yaml#/~1channel~1{c_id}~1block~1{p_id}
+  /channel/{c_id}/editor/available:
+    $ref: ./paths/channels.yaml#/~1channel~1{c_id}~1editor~1available
+  /channel/{c_id}/permission/all/{page}:
+    $ref: ./paths/channels.yaml#/~1channel~1{c_id}~1permission~1all~1{page}
+  /channel/{c_id}/permission/manage:
+    $ref: ./paths/channels.yaml#/~1channel~1{c_id}~1permission~1manage
+  /collection/all/profile/{p_id}/{page}:
+    $ref: ./paths/collections.yaml#/~1collection~1all~1profile~1{p_id}~1{page}
+  /collection/all/release/{r_id}/{page}:
+    $ref: ./paths/collections.yaml#/~1collection~1all~1release~1{r_id}~1{page}
+  /collection/all/{page}:
+    $ref: ./paths/collections.yaml#/~1collection~1all~1{page}
+  /collection/comment/add/{collectionId}:
+    $ref: ./paths/comments.yaml#/~1collection~1comment~1add~1{collectionId}
+  /collection/comment/all/profile/{p_id}/{page}:
+    $ref: ./paths/comments.yaml#/~1collection~1comment~1all~1profile~1{p_id}~1{page}
+  /collection/comment/all/{collectionId}/{page}:
+    $ref: ./paths/comments.yaml#/~1collection~1comment~1all~1{collectionId}~1{page}
+  /collection/comment/delete/{commentId}:
+    $ref: ./paths/comments.yaml#/~1collection~1comment~1delete~1{commentId}
+  /collection/comment/edit/{commentId}:
+    $ref: ./paths/comments.yaml#/~1collection~1comment~1edit~1{commentId}
+  /collection/comment/process/{commentId}:
+    $ref: ./paths/comments.yaml#/~1collection~1comment~1process~1{commentId}
+  /collection/comment/replies/{commentId}/{page}:
+    $ref: ./paths/comments.yaml#/~1collection~1comment~1replies~1{commentId}~1{page}
+  /collection/comment/vote/{commentId}/{vote}:
+    $ref: ./paths/comments.yaml#/~1collection~1comment~1vote~1{commentId}~1{vote}
+  /collection/comment/votes/{commentId}/{page}:
+    $ref: ./paths/comments.yaml#/~1collection~1comment~1votes~1{commentId}~1{page}
+  /collection/comment/{collectionId}:
+    $ref: ./paths/comments.yaml#/~1collection~1comment~1{collectionId}
+  /collection/{id}:
+    $ref: ./paths/collections.yaml#/~1collection~1{id}
+  /collection/{id}/releases/{page}:
+    $ref: ./paths/collections.yaml#/~1collection~1{id}~1releases~1{page}
+  /collectionFavorite/add/{id}:
+    $ref: ./paths/collections.yaml#/~1collectionFavorite~1add~1{id}
+  /collectionFavorite/all/{page}:
+    $ref: ./paths/collections.yaml#/~1collectionFavorite~1all~1{page}
+  /collectionFavorite/delete/{id}:
+    $ref: ./paths/collections.yaml#/~1collectionFavorite~1delete~1{id}
+  /collectionMy/create:
+    $ref: ./paths/collections.yaml#/~1collectionMy~1create
+  /collectionMy/delete/{collectionId}:
+    $ref: ./paths/collections.yaml#/~1collectionMy~1delete~1{collectionId}
+  /collectionMy/edit/{collectionId}:
+    $ref: ./paths/collections.yaml#/~1collectionMy~1edit~1{collectionId}
+  /collectionMy/editImage/{collectionId}:
+    $ref: ./paths/collections.yaml#/~1collectionMy~1editImage~1{collectionId}
+  /collectionMy/release/add/{collectionId}:
+    $ref: ./paths/collections.yaml#/~1collectionMy~1release~1add~1{collectionId}
+  /collectionMy/{id}/releases:
+    $ref: ./paths/collections.yaml#/~1collectionMy~1{id}~1releases
+  /config/anixplayer:
+    $ref: ./paths/config.yaml#/~1config~1anixplayer
+  /config/toggles:
+    $ref: ./paths/config.yaml#/~1config~1toggles
+  /config/urls:
+    $ref: ./paths/config.yaml#/~1config~1urls
+  /discover/comments:
+    $ref: ./paths/feed.yaml#/~1discover~1comments
+  /discover/discussing:
+    $ref: ./paths/feed.yaml#/~1discover~1discussing
+  /discover/interesting:
+    $ref: ./paths/feed.yaml#/~1discover~1interesting
+  /discover/recommendations/{page}:
+    $ref: ./paths/feed.yaml#/~1discover~1recommendations~1{page}
+  /discover/watching/{page}:
+    $ref: ./paths/feed.yaml#/~1discover~1watching~1{page}
+  /episode/target/{releaseId}/{sourceId}/{position}:
+    $ref: ./paths/episodes.yaml#/~1episode~1target~1{releaseId}~1{sourceId}~1{position}
+  /episode/unwatch/{releaseId}/{sourceId}:
+    $ref: ./paths/episodes.yaml#/~1episode~1unwatch~1{releaseId}~1{sourceId}
+  /episode/unwatch/{releaseId}/{sourceId}/{position}:
+    $ref: ./paths/episodes.yaml#/~1episode~1unwatch~1{releaseId}~1{sourceId}~1{position}
+  /episode/updates/{releaseId}/{page}:
+    $ref: ./paths/episodes.yaml#/~1episode~1updates~1{releaseId}~1{page}
+  /episode/watch/{releaseId}/{sourceId}:
+    $ref: ./paths/episodes.yaml#/~1episode~1watch~1{releaseId}~1{sourceId}
+  /episode/watch/{releaseId}/{sourceId}/{position}:
+    $ref: ./paths/episodes.yaml#/~1episode~1watch~1{releaseId}~1{sourceId}~1{position}
+  /episode/{releaseId}:
+    $ref: ./paths/episodes.yaml#/~1episode~1{releaseId}
+  /episode/{releaseId}/{typeId}:
+    $ref: ./paths/episodes.yaml#/~1episode~1{releaseId}~1{typeId}
+  /episode/{releaseId}/{typeId}/{sourceId}:
+    $ref: ./paths/episodes.yaml#/~1episode~1{releaseId}~1{typeId}~1{sourceId}
+  /export/bookmarks:
+    $ref: ./paths/import-export.yaml#/~1export~1bookmarks
+  /favorite/add/{r_id}:
+    $ref: ./paths/library.yaml#/~1favorite~1add~1{r_id}
+  /favorite/all/{page}:
+    $ref: ./paths/library.yaml#/~1favorite~1all~1{page}
+  /favorite/delete/{r_id}:
+    $ref: ./paths/library.yaml#/~1favorite~1delete~1{r_id}
+  /feed/all/{page}:
+    $ref: ./paths/feed.yaml#/~1feed~1all~1{page}
+  /feed/latest:
+    $ref: ./paths/feed.yaml#/~1feed~1latest
+  /feed/latest/all/{page}:
+    $ref: ./paths/feed.yaml#/~1feed~1latest~1all~1{page}
+  /filter/{page}:
+    $ref: ./paths/releases.yaml#/~1filter~1{page}
+  /history/add/{r_id}/{s_id}/{position}:
+    $ref: ./paths/library.yaml#/~1history~1add~1{r_id}~1{s_id}~1{position}
+  /history/delete/{r_id}:
+    $ref: ./paths/library.yaml#/~1history~1delete~1{r_id}
+  /history/{page}:
+    $ref: ./paths/library.yaml#/~1history~1{page}
+  /import/bookmarks:
+    $ref: ./paths/import-export.yaml#/~1import~1bookmarks
+  /import/status:
+    $ref: ./paths/import-export.yaml#/~1import~1status
+  /notification/all/{page}:
+    $ref: ./paths/notifications.yaml#/~1notification~1all~1{page}
+  /notification/article/comment/delete/{id}:
+    $ref: ./paths/notifications.yaml#/~1notification~1article~1comment~1delete~1{id}
+  /notification/article/comments/{page}:
+    $ref: ./paths/notifications.yaml#/~1notification~1article~1comments~1{page}
+  /notification/articles/{page}:
+    $ref: ./paths/notifications.yaml#/~1notification~1articles~1{page}
+  /notification/collectionComment/delete/{id}:
+    $ref: ./paths/notifications.yaml#/~1notification~1collectionComment~1delete~1{id}
+  /notification/collectionComments/{page}:
+    $ref: ./paths/notifications.yaml#/~1notification~1collectionComments~1{page}
+  /notification/count:
+    $ref: ./paths/notifications.yaml#/~1notification~1count
+  /notification/delete/all:
+    $ref: ./paths/notifications.yaml#/~1notification~1delete~1all
+  /notification/episode/delete/{id}:
+    $ref: ./paths/notifications.yaml#/~1notification~1episode~1delete~1{id}
+  /notification/episodes/{page}:
+    $ref: ./paths/notifications.yaml#/~1notification~1episodes~1{page}
+  /notification/friend/delete/{id}:
+    $ref: ./paths/notifications.yaml#/~1notification~1friend~1delete~1{id}
+  /notification/friends/{page}:
+    $ref: ./paths/notifications.yaml#/~1notification~1friends~1{page}
+  /notification/my/article/comment/delete/{id}:
+    $ref: ./paths/notifications.yaml#/~1notification~1my~1article~1comment~1delete~1{id}
+  /notification/my/collection/comment/delete/{id}:
+    $ref: ./paths/notifications.yaml#/~1notification~1my~1collection~1comment~1delete~1{id}
+  /notification/read:
+    $ref: ./paths/notifications.yaml#/~1notification~1read
+  /notification/related/release/delete/{id}:
+    $ref: ./paths/notifications.yaml#/~1notification~1related~1release~1delete~1{id}
+  /notification/related/release/{page}:
+    $ref: ./paths/notifications.yaml#/~1notification~1related~1release~1{page}
+  /notification/releaseComment/delete/{id}:
+    $ref: ./paths/notifications.yaml#/~1notification~1releaseComment~1delete~1{id}
+  /notification/releaseComments/{page}:
+    $ref: ./paths/notifications.yaml#/~1notification~1releaseComments~1{page}
+  /profile/blocklist/add/{id}:
+    $ref: ./paths/friends.yaml#/~1profile~1blocklist~1add~1{id}
+  /profile/blocklist/all/{page}:
+    $ref: ./paths/friends.yaml#/~1profile~1blocklist~1all~1{page}
+  /profile/blocklist/remove/{id}:
+    $ref: ./paths/friends.yaml#/~1profile~1blocklist~1remove~1{id}
+  /profile/deletion/cancel:
+    $ref: ./paths/account.yaml#/~1profile~1deletion~1cancel
+  /profile/deletion/request:
+    $ref: ./paths/account.yaml#/~1profile~1deletion~1request
+  /profile/deletion/status:
+    $ref: ./paths/account.yaml#/~1profile~1deletion~1status
+  /profile/friend/all/{id}/{page}:
+    $ref: ./paths/friends.yaml#/~1profile~1friend~1all~1{id}~1{page}
+  /profile/friend/recommendations:
+    $ref: ./paths/friends.yaml#/~1profile~1friend~1recommendations
+  /profile/friend/request/hide/{id}:
+    $ref: ./paths/friends.yaml#/~1profile~1friend~1request~1hide~1{id}
+  /profile/friend/request/remove/{id}:
+    $ref: ./paths/friends.yaml#/~1profile~1friend~1request~1remove~1{id}
+  /profile/friend/request/send/{id}:
+    $ref: ./paths/friends.yaml#/~1profile~1friend~1request~1send~1{id}
+  /profile/friend/requests/in/last:
+    $ref: ./paths/friends.yaml#/~1profile~1friend~1requests~1in~1last
+  /profile/friend/requests/in/{page}:
+    $ref: ./paths/friends.yaml#/~1profile~1friend~1requests~1in~1{page}
+  /profile/friend/requests/out/last:
+    $ref: ./paths/friends.yaml#/~1profile~1friend~1requests~1out~1last
+  /profile/friend/requests/out/{page}:
+    $ref: ./paths/friends.yaml#/~1profile~1friend~1requests~1out~1{page}
+  /profile/health/enforcement/account/all/{page}:
+    $ref: ./paths/moderation.yaml#/~1profile~1health~1enforcement~1account~1all~1{page}
+  /profile/health/enforcement/content/all/{page}:
+    $ref: ./paths/moderation.yaml#/~1profile~1health~1enforcement~1content~1all~1{page}
+  /profile/health/enforcement/{id}:
+    $ref: ./paths/moderation.yaml#/~1profile~1health~1enforcement~1{id}
+  /profile/health/enforcement/{id}/appeal:
+    $ref: ./paths/moderation.yaml#/~1profile~1health~1enforcement~1{id}~1appeal
+  /profile/health/status:
+    $ref: ./paths/moderation.yaml#/~1profile~1health~1status
+  /profile/info:
+    $ref: ./paths/profiles.yaml#/~1profile~1info
+  /profile/list/add/{status}/{r_id}:
+    $ref: ./paths/library.yaml#/~1profile~1list~1add~1{status}~1{r_id}
+  /profile/list/all/{p_id}/{status}/{page}:
+    $ref: ./paths/library.yaml#/~1profile~1list~1all~1{p_id}~1{status}~1{page}
+  /profile/list/all/{status}/{page}:
+    $ref: ./paths/library.yaml#/~1profile~1list~1all~1{status}~1{page}
+  /profile/list/delete/{status}/{r_id}:
+    $ref: ./paths/library.yaml#/~1profile~1list~1delete~1{status}~1{r_id}
+  /profile/login/history/all/{id}/{page}:
+    $ref: ./paths/profiles.yaml#/~1profile~1login~1history~1all~1{id}~1{page}
+  /profile/preference/avatar/delete:
+    $ref: ./paths/account.yaml#/~1profile~1preference~1avatar~1delete
+  /profile/preference/avatar/edit:
+    $ref: ./paths/account.yaml#/~1profile~1preference~1avatar~1edit
+  /profile/preference/badge/all/{page}:
+    $ref: ./paths/profiles.yaml#/~1profile~1preference~1badge~1all~1{page}
+  /profile/preference/badge/edit/{id}:
+    $ref: ./paths/profiles.yaml#/~1profile~1preference~1badge~1edit~1{id}
+  /profile/preference/badge/remove:
+    $ref: ./paths/profiles.yaml#/~1profile~1preference~1badge~1remove
+  /profile/preference/email/change:
+    $ref: ./paths/account.yaml#/~1profile~1preference~1email~1change
+  /profile/preference/email/resend:
+    $ref: ./paths/account.yaml#/~1profile~1preference~1email~1resend
+  /profile/preference/email/verify:
+    $ref: ./paths/account.yaml#/~1profile~1preference~1email~1verify
+  /profile/preference/episode-widget/edit:
+    $ref: ./paths/account.yaml#/~1profile~1preference~1episode-widget~1edit
+  /profile/preference/google/bind:
+    $ref: ./paths/account.yaml#/~1profile~1preference~1google~1bind
+  /profile/preference/google/unbind:
+    $ref: ./paths/account.yaml#/~1profile~1preference~1google~1unbind
+  /profile/preference/login/change:
+    $ref: ./paths/account.yaml#/~1profile~1preference~1login~1change
+  /profile/preference/login/info:
+    $ref: ./paths/account.yaml#/~1profile~1preference~1login~1info
+  /profile/preference/my:
+    $ref: ./paths/account.yaml#/~1profile~1preference~1my
+  /profile/preference/notification/article/edit:
+    $ref: ./paths/notifications.yaml#/~1profile~1preference~1notification~1article~1edit
+  /profile/preference/notification/comment/edit:
+    $ref: ./paths/notifications.yaml#/~1profile~1preference~1notification~1comment~1edit
+  /profile/preference/notification/episode/edit:
+    $ref: ./paths/notifications.yaml#/~1profile~1preference~1notification~1episode~1edit
+  /profile/preference/notification/episode/first/edit:
+    $ref: ./paths/notifications.yaml#/~1profile~1preference~1notification~1episode~1first~1edit
+  /profile/preference/notification/my:
+    $ref: ./paths/notifications.yaml#/~1profile~1preference~1notification~1my
+  /profile/preference/notification/my/article/comment/edit:
+    $ref: ./paths/notifications.yaml#/~1profile~1preference~1notification~1my~1article~1comment~1edit
+  /profile/preference/notification/my/collection/comment/edit:
+    $ref: ./paths/notifications.yaml#/~1profile~1preference~1notification~1my~1collection~1comment~1edit
+  /profile/preference/notification/related/release/edit:
+    $ref: ./paths/notifications.yaml#/~1profile~1preference~1notification~1related~1release~1edit
+  /profile/preference/notification/release/all/{page}:
+    $ref: ./paths/notifications.yaml#/~1profile~1preference~1notification~1release~1all~1{page}
+  /profile/preference/notification/release/type/edit:
+    $ref: ./paths/notifications.yaml#/~1profile~1preference~1notification~1release~1type~1edit
+  /profile/preference/notification/release/type/{releaseId}:
+    $ref: ./paths/notifications.yaml#/~1profile~1preference~1notification~1release~1type~1{releaseId}
+  /profile/preference/notification/report/process/edit:
+    $ref: ./paths/notifications.yaml#/~1profile~1preference~1notification~1report~1process~1edit
+  /profile/preference/notification/selected/releases/edit:
+    $ref: ./paths/notifications.yaml#/~1profile~1preference~1notification~1selected~1releases~1edit
+  /profile/preference/notification/status/edit:
+    $ref: ./paths/notifications.yaml#/~1profile~1preference~1notification~1status~1edit
+  /profile/preference/notification/type/edit:
+    $ref: ./paths/notifications.yaml#/~1profile~1preference~1notification~1type~1edit
+  /profile/preference/password/change:
+    $ref: ./paths/account.yaml#/~1profile~1preference~1password~1change
+  /profile/preference/privacy/counts/edit:
+    $ref: ./paths/account.yaml#/~1profile~1preference~1privacy~1counts~1edit
+  /profile/preference/privacy/friendRequests/edit:
+    $ref: ./paths/account.yaml#/~1profile~1preference~1privacy~1friendRequests~1edit
+  /profile/preference/privacy/incognito/edit:
+    $ref: ./paths/account.yaml#/~1profile~1preference~1privacy~1incognito~1edit
+  /profile/preference/privacy/social/edit:
+    $ref: ./paths/account.yaml#/~1profile~1preference~1privacy~1social~1edit
+  /profile/preference/privacy/stats/edit:
+    $ref: ./paths/account.yaml#/~1profile~1preference~1privacy~1stats~1edit
+  /profile/preference/section/edit:
+    $ref: ./paths/account.yaml#/~1profile~1preference~1section~1edit
+  /profile/preference/social:
+    $ref: ./paths/account.yaml#/~1profile~1preference~1social
+  /profile/preference/social/edit:
+    $ref: ./paths/account.yaml#/~1profile~1preference~1social~1edit
+  /profile/preference/status/edit:
+    $ref: ./paths/account.yaml#/~1profile~1preference~1status~1edit
+  /profile/preference/telegram/bind:
+    $ref: ./paths/account.yaml#/~1profile~1preference~1telegram~1bind
+  /profile/preference/telegram/unbind:
+    $ref: ./paths/account.yaml#/~1profile~1preference~1telegram~1unbind
+  /profile/preference/themes/edit:
+    $ref: ./paths/account.yaml#/~1profile~1preference~1themes~1edit
+  /profile/preference/vk/bind:
+    $ref: ./paths/account.yaml#/~1profile~1preference~1vk~1bind
+  /profile/preference/vk/unbind:
+    $ref: ./paths/account.yaml#/~1profile~1preference~1vk~1unbind
+  /profile/preference/yandex/bind:
+    $ref: ./paths/account.yaml#/~1profile~1preference~1yandex~1bind
+  /profile/preference/yandex/unbind:
+    $ref: ./paths/account.yaml#/~1profile~1preference~1yandex~1unbind
+  /profile/process/{id}:
+    $ref: ./paths/profiles.yaml#/~1profile~1process~1{id}
+  /profile/social/{id}:
+    $ref: ./paths/profiles.yaml#/~1profile~1social~1{id}
+  /profile/vote/release/unvoted/last:
+    $ref: ./paths/library.yaml#/~1profile~1vote~1release~1unvoted~1last
+  /profile/vote/release/unvoted/{page}:
+    $ref: ./paths/library.yaml#/~1profile~1vote~1release~1unvoted~1{page}
+  /profile/vote/release/voted/{p_id}/{page}:
+    $ref: ./paths/library.yaml#/~1profile~1vote~1release~1voted~1{p_id}~1{page}
+  /profile/{id}:
+    $ref: ./paths/profiles.yaml#/~1profile~1{id}
+  /related/{relatedId}/{page}:
+    $ref: ./paths/releases.yaml#/~1related~1{relatedId}~1{page}
+  /release/collection/{id}/random:
+    $ref: ./paths/releases.yaml#/~1release~1collection~1{id}~1random
+  /release/comment/add/{releaseId}:
+    $ref: ./paths/comments.yaml#/~1release~1comment~1add~1{releaseId}
+  /release/comment/all/profile/{p_id}/{page}:
+    $ref: ./paths/comments.yaml#/~1release~1comment~1all~1profile~1{p_id}~1{page}
+  /release/comment/all/{releaseId}/{page}:
+    $ref: ./paths/comments.yaml#/~1release~1comment~1all~1{releaseId}~1{page}
+  /release/comment/delete/{commentId}:
+    $ref: ./paths/comments.yaml#/~1release~1comment~1delete~1{commentId}
+  /release/comment/edit/{commentId}:
+    $ref: ./paths/comments.yaml#/~1release~1comment~1edit~1{commentId}
+  /release/comment/process/{commentId}:
+    $ref: ./paths/comments.yaml#/~1release~1comment~1process~1{commentId}
+  /release/comment/replies/{commentId}/{page}:
+    $ref: ./paths/comments.yaml#/~1release~1comment~1replies~1{commentId}~1{page}
+  /release/comment/vote/{commentId}/{vote}:
+    $ref: ./paths/comments.yaml#/~1release~1comment~1vote~1{commentId}~1{vote}
+  /release/comment/votes/{commentId}/{page}:
+    $ref: ./paths/comments.yaml#/~1release~1comment~1votes~1{commentId}~1{page}
+  /release/comment/{releaseId}:
+    $ref: ./paths/comments.yaml#/~1release~1comment~1{releaseId}
+  /release/random:
+    $ref: ./paths/releases.yaml#/~1release~1random
+  /release/random/favorite:
+    $ref: ./paths/releases.yaml#/~1release~1random~1favorite
+  /release/random/profile/list/{p_id}/{status}:
+    $ref: ./paths/releases.yaml#/~1release~1random~1profile~1list~1{p_id}~1{status}
+  /release/streaming/platform/{releaseId}:
+    $ref: ./paths/releases.yaml#/~1release~1streaming~1platform~1{releaseId}
+  /release/vote/add/{r_id}/{vote}:
+    $ref: ./paths/releases.yaml#/~1release~1vote~1add~1{r_id}~1{vote}
+  /release/vote/delete/{r_id}:
+    $ref: ./paths/releases.yaml#/~1release~1vote~1delete~1{r_id}
+  /release/{r_id}:
+    $ref: ./paths/releases.yaml#/~1release~1{r_id}
+  /releaseVideoFavorite/add/{r_id}:
+    $ref: ./paths/video.yaml#/~1releaseVideoFavorite~1add~1{r_id}
+  /releaseVideoFavorite/all/{p_id}/{page}:
+    $ref: ./paths/video.yaml#/~1releaseVideoFavorite~1all~1{p_id}~1{page}
+  /releaseVideoFavorite/delete/{r_id}:
+    $ref: ./paths/video.yaml#/~1releaseVideoFavorite~1delete~1{r_id}
+  /report/article:
+    $ref: ./paths/moderation.yaml#/~1report~1article
+  /report/article/reasons:
+    $ref: ./paths/moderation.yaml#/~1report~1article~1reasons
+  /report/channel:
+    $ref: ./paths/moderation.yaml#/~1report~1channel
+  /report/channel/reasons:
+    $ref: ./paths/moderation.yaml#/~1report~1channel~1reasons
+  /report/collection:
+    $ref: ./paths/moderation.yaml#/~1report~1collection
+  /report/collection/reasons:
+    $ref: ./paths/moderation.yaml#/~1report~1collection~1reasons
+  /report/comment/article:
+    $ref: ./paths/moderation.yaml#/~1report~1comment~1article
+  /report/comment/article/reasons:
+    $ref: ./paths/moderation.yaml#/~1report~1comment~1article~1reasons
+  /report/comment/collection:
+    $ref: ./paths/moderation.yaml#/~1report~1comment~1collection
+  /report/comment/collection/reasons:
+    $ref: ./paths/moderation.yaml#/~1report~1comment~1collection~1reasons
+  /report/comment/release:
+    $ref: ./paths/moderation.yaml#/~1report~1comment~1release
+  /report/comment/release/reasons:
+    $ref: ./paths/moderation.yaml#/~1report~1comment~1release~1reasons
+  /report/episode:
+    $ref: ./paths/moderation.yaml#/~1report~1episode
+  /report/episode/reasons:
+    $ref: ./paths/moderation.yaml#/~1report~1episode~1reasons
+  /report/profile:
+    $ref: ./paths/moderation.yaml#/~1report~1profile
+  /report/profile/reasons:
+    $ref: ./paths/moderation.yaml#/~1report~1profile~1reasons
+  /report/release:
+    $ref: ./paths/moderation.yaml#/~1report~1release
+  /report/release/reasons:
+    $ref: ./paths/moderation.yaml#/~1report~1release~1reasons
+  /role/all/{page}/{role_id}:
+    $ref: ./paths/profiles.yaml#/~1role~1all~1{page}~1{role_id}
+  /schedule:
+    $ref: ./paths/releases.yaml#/~1schedule
+  /search/articles/{page}:
+    $ref: ./paths/search.yaml#/~1search~1articles~1{page}
+  /search/channel/{c_id}/subscribers/{page}:
+    $ref: ./paths/search.yaml#/~1search~1channel~1{c_id}~1subscribers~1{page}
+  /search/channels/{page}:
+    $ref: ./paths/search.yaml#/~1search~1channels~1{page}
+  /search/collections/{page}:
+    $ref: ./paths/search.yaml#/~1search~1collections~1{page}
+  /search/favoriteCollections/{page}:
+    $ref: ./paths/search.yaml#/~1search~1favoriteCollections~1{page}
+  /search/favorites/{page}:
+    $ref: ./paths/search.yaml#/~1search~1favorites~1{page}
+  /search/feed/{page}:
+    $ref: ./paths/search.yaml#/~1search~1feed~1{page}
+  /search/history/{page}:
+    $ref: ./paths/search.yaml#/~1search~1history~1{page}
+  /search/profile/list/{status}/{page}:
+    $ref: ./paths/search.yaml#/~1search~1profile~1list~1{status}~1{page}
+  /search/profileCollections/{p_id}/{page}:
+    $ref: ./paths/search.yaml#/~1search~1profileCollections~1{p_id}~1{page}
+  /search/profiles/{page}:
+    $ref: ./paths/search.yaml#/~1search~1profiles~1{page}
+  /search/releases/{page}:
+    $ref: ./paths/search.yaml#/~1search~1releases~1{page}
+  /type/all:
+    $ref: ./paths/episodes.yaml#/~1type~1all
+  /type/pin/{releaseId}/{typeId}:
+    $ref: ./paths/episodes.yaml#/~1type~1pin~1{releaseId}~1{typeId}
+  /type/unpin/{releaseId}/{typeId}:
+    $ref: ./paths/episodes.yaml#/~1type~1unpin~1{releaseId}~1{typeId}
+  /type/widget/hide/{typeId}:
+    $ref: ./paths/episodes.yaml#/~1type~1widget~1hide~1{typeId}
+  /type/widget/unhide/{typeId}:
+    $ref: ./paths/episodes.yaml#/~1type~1widget~1unhide~1{typeId}
+  /type/{typeId}/channel:
+    $ref: ./paths/episodes.yaml#/~1type~1{typeId}~1channel
+  /video/appeal/add:
+    $ref: ./paths/video.yaml#/~1video~1appeal~1add
+  /video/appeal/delete/{appealId}:
+    $ref: ./paths/video.yaml#/~1video~1appeal~1delete~1{appealId}
+  /video/appeal/profile/last:
+    $ref: ./paths/video.yaml#/~1video~1appeal~1profile~1last
+  /video/appeal/profile/{page}:
+    $ref: ./paths/video.yaml#/~1video~1appeal~1profile~1{page}
+  /video/profile/{p_id}/{page}:
+    $ref: ./paths/video.yaml#/~1video~1profile~1{p_id}~1{page}
+  /video/release/categories:
+    $ref: ./paths/video.yaml#/~1video~1release~1categories
+  /video/release/{releaseId}:
+    $ref: ./paths/video.yaml#/~1video~1release~1{releaseId}
+  /video/release/{releaseId}/category/{categoryId}/{page}:
+    $ref: ./paths/video.yaml#/~1video~1release~1{releaseId}~1category~1{categoryId}~1{page}
+  /video/release/{releaseId}/{page}:
+    $ref: ./paths/video.yaml#/~1video~1release~1{releaseId}~1{page}
+components:
+  schemas:
+    CommonResult:
+      $ref: ./components/result-codes.yaml#/CommonResult
+    AnixPlayerConfigResponse:
+      $ref: ./components/config.yaml#/AnixPlayerConfigResponse
+    Article:
+      $ref: ./components/articles.yaml#/Article
+    ArticleBlock:
+      $ref: ./components/articles.yaml#/ArticleBlock
+    ArticleComment:
+      $ref: ./components/comments.yaml#/ArticleComment
+    ArticleCommentCompact:
+      $ref: ./components/comments.yaml#/ArticleCommentCompact
+    ArticleCompact:
+      $ref: ./components/articles.yaml#/ArticleCompact
+    ArticleCreateEditRequest:
+      $ref: ./components/articles.yaml#/ArticleCreateEditRequest
+    ArticleCreateEditResponse:
+      $ref: ./components/articles.yaml#/ArticleCreateEditResponse
+    ArticleData:
+      $ref: ./components/articles.yaml#/ArticleData
+    ArticleDeleteResponse:
+      $ref: ./components/articles.yaml#/ArticleDeleteResponse
+    ArticleEditPinnedResponse:
+      $ref: ./components/articles.yaml#/ArticleEditPinnedResponse
+    ArticleEventRequest:
+      $ref: ./components/articles.yaml#/ArticleEventRequest
+    ArticleMuteResponse:
+      $ref: ./components/articles.yaml#/ArticleMuteResponse
+    ArticlePayload:
+      $ref: ./components/articles.yaml#/ArticlePayload
+    ArticleResponse:
+      $ref: ./components/articles.yaml#/ArticleResponse
+    ArticleSuggestionCreateEditRequest:
+      $ref: ./components/articles.yaml#/ArticleSuggestionCreateEditRequest
+    ArticleSuggestionDeleteResponse:
+      $ref: ./components/articles.yaml#/ArticleSuggestionDeleteResponse
+    ArticleSuggestionsFilterRequest:
+      $ref: ./components/articles.yaml#/ArticleSuggestionsFilterRequest
+    ArticlesSearchRequest:
+      $ref: ./components/articles.yaml#/ArticlesSearchRequest
+    AvailableTheme:
+      $ref: ./components/account.yaml#/AvailableTheme
+    Badge:
+      $ref: ./components/profiles.yaml#/Badge
+    BlockProfileListAddResponse:
+      $ref: ./components/friends.yaml#/BlockProfileListAddResponse
+    BlogCreateResponse:
+      $ref: ./components/channels.yaml#/BlogCreateResponse
+    BookmarksExportRequest:
+      $ref: ./components/library.yaml#/BookmarksExportRequest
+    BookmarksExportResponse:
+      $ref: ./components/library.yaml#/BookmarksExportResponse
+    BookmarksImportRequest:
+      $ref: ./components/library.yaml#/BookmarksImportRequest
+    BookmarksImportResponse:
+      $ref: ./components/library.yaml#/BookmarksImportResponse
+    BookmarksImportStatusResponse:
+      $ref: ./components/library.yaml#/BookmarksImportStatusResponse
+    Category:
+      $ref: ./components/releases.yaml#/Category
+    ChangeEmailResendResponse:
+      $ref: ./components/account.yaml#/ChangeEmailResendResponse
+    ChangeEmailResponse:
+      $ref: ./components/account.yaml#/ChangeEmailResponse
+    ChangeEmailVerifyResponse:
+      $ref: ./components/account.yaml#/ChangeEmailVerifyResponse
+    ChangeLogin:
+      $ref: ./components/account.yaml#/ChangeLogin
+    ChangeLoginInfoResponse:
+      $ref: ./components/account.yaml#/ChangeLoginInfoResponse
+    ChangeLoginResponse:
+      $ref: ./components/account.yaml#/ChangeLoginResponse
+    ChangePasswordResponse:
+      $ref: ./components/account.yaml#/ChangePasswordResponse
+    Channel:
+      $ref: ./components/channels.yaml#/Channel
+    ChannelBlock:
+      $ref: ./components/channels.yaml#/ChannelBlock
+    ChannelBlockManageRequest:
+      $ref: ./components/channels.yaml#/ChannelBlockManageRequest
+    ChannelBlockResponse:
+      $ref: ./components/channels.yaml#/ChannelBlockResponse
+    ChannelCompact:
+      $ref: ./components/channels.yaml#/ChannelCompact
+    ChannelCreateEditRequest:
+      $ref: ./components/channels.yaml#/ChannelCreateEditRequest
+    ChannelCreateEditResponse:
+      $ref: ./components/channels.yaml#/ChannelCreateEditResponse
+    ChannelPermissionManageRequest:
+      $ref: ./components/channels.yaml#/ChannelPermissionManageRequest
+    ChannelPermissionManageResponse:
+      $ref: ./components/channels.yaml#/ChannelPermissionManageResponse
+    ChannelPermissionsFilterRequest:
+      $ref: ./components/channels.yaml#/ChannelPermissionsFilterRequest
+    ChannelProfile:
+      $ref: ./components/channels.yaml#/ChannelProfile
+    ChannelResponse:
+      $ref: ./components/channels.yaml#/ChannelResponse
+    ChannelSubscribeResponse:
+      $ref: ./components/channels.yaml#/ChannelSubscribeResponse
+    ChannelUnsubscribeResponse:
+      $ref: ./components/channels.yaml#/ChannelUnsubscribeResponse
+    ChannelUploadCoverAvatarResponse:
+      $ref: ./components/channels.yaml#/ChannelUploadCoverAvatarResponse
+    ChannelsFilterRequest:
+      $ref: ./components/channels.yaml#/ChannelsFilterRequest
+    ChannelsSearchRequest:
+      $ref: ./components/channels.yaml#/ChannelsSearchRequest
+    CheckLoginResponse:
+      $ref: ./components/auth.yaml#/CheckLoginResponse
+    Collection:
+      $ref: ./components/collections.yaml#/Collection
+    CollectionComment:
+      $ref: ./components/comments.yaml#/CollectionComment
+    CollectionCommentCompact:
+      $ref: ./components/comments.yaml#/CollectionCommentCompact
+    CollectionCompact:
+      $ref: ./components/collections.yaml#/CollectionCompact
+    CollectionCreateEditRequest:
+      $ref: ./components/collections.yaml#/CollectionCreateEditRequest
+    CollectionCreateEditResponse:
+      $ref: ./components/collections.yaml#/CollectionCreateEditResponse
+    CollectionDeleteResponse:
+      $ref: ./components/collections.yaml#/CollectionDeleteResponse
+    CollectionEditImageResponse:
+      $ref: ./components/collections.yaml#/CollectionEditImageResponse
+    CollectionResponse:
+      $ref: ./components/collections.yaml#/CollectionResponse
+    Comment:
+      $ref: ./components/comments.yaml#/Comment
+    CommentAddRequest:
+      $ref: ./components/comments.yaml#/CommentAddRequest
+    CommentAddResponse:
+      $ref: ./components/comments.yaml#/CommentAddResponse
+    CommentCompact:
+      $ref: ./components/comments.yaml#/CommentCompact
+    CommentDeleteResponse:
+      $ref: ./components/comments.yaml#/CommentDeleteResponse
+    CommentEditRequest:
+      $ref: ./components/comments.yaml#/CommentEditRequest
+    CommentEditResponse:
+      $ref: ./components/comments.yaml#/CommentEditResponse
+    CommentProcessRequest:
+      $ref: ./components/comments.yaml#/CommentProcessRequest
+    ConfigUrlsResponse:
+      $ref: ./components/config.yaml#/ConfigUrlsResponse
+    DeleteVoteReleaseResponse:
+      $ref: ./components/releases.yaml#/DeleteVoteReleaseResponse
+    EditorAvailableResponse:
+      $ref: ./components/articles.yaml#/EditorAvailableResponse
+    EditorChannel:
+      $ref: ./components/articles.yaml#/EditorChannel
+    EditorChannelsResponse:
+      $ref: ./components/articles.yaml#/EditorChannelsResponse
+    Episode:
+      $ref: ./components/episodes.yaml#/Episode
+    EpisodeCompact:
+      $ref: ./components/episodes.yaml#/EpisodeCompact
+    EpisodeResponse:
+      $ref: ./components/episodes.yaml#/EpisodeResponse
+    EpisodeTargetResponse:
+      $ref: ./components/episodes.yaml#/EpisodeTargetResponse
+    EpisodeUnwatchResponse:
+      $ref: ./components/episodes.yaml#/EpisodeUnwatchResponse
+    EpisodeUpdate:
+      $ref: ./components/episodes.yaml#/EpisodeUpdate
+    EpisodeWatchResponse:
+      $ref: ./components/episodes.yaml#/EpisodeWatchResponse
+    FavoriteCollectionAddResponse:
+      $ref: ./components/collections.yaml#/FavoriteCollectionAddResponse
+    FavoriteCollectionDeleteResponse:
+      $ref: ./components/collections.yaml#/FavoriteCollectionDeleteResponse
+    FavoritesResponse:
+      $ref: ./components/library.yaml#/FavoritesResponse
+    FeedSearchResponse:
+      $ref: ./components/search.yaml#/FeedSearchResponse
+    FilterRequest:
+      $ref: ./components/releases.yaml#/FilterRequest
+    FirebaseResponse:
+      $ref: ./components/notifications.yaml#/FirebaseResponse
+    GoogleBindResponse:
+      $ref: ./components/account.yaml#/GoogleBindResponse
+    GoogleResponse:
+      $ref: ./components/account.yaml#/GoogleResponse
+    GoogleUnbindResponse:
+      $ref: ./components/account.yaml#/GoogleUnbindResponse
+    HistoryResponse:
+      $ref: ./components/library.yaml#/HistoryResponse
+    Interesting:
+      $ref: ./components/feed.yaml#/Interesting
+    LatestArticleResponse:
+      $ref: ./components/feed.yaml#/LatestArticleResponse
+    NotificationCountResponse:
+      $ref: ./components/notifications.yaml#/NotificationCountResponse
+    NotificationPreferenceResponse:
+      $ref: ./components/notifications.yaml#/NotificationPreferenceResponse
+    PageableResponse:
+      $ref: ./components/pagination.yaml#/PageableResponse
+    PopularComment:
+      $ref: ./components/comments.yaml#/PopularComment
+    PrivacyEditRequest:
+      $ref: ./components/account.yaml#/PrivacyEditRequest
+    Profile:
+      $ref: ./components/profiles.yaml#/Profile
+    ProfileArticleCommentNotification:
+      $ref: ./components/notifications.yaml#/ProfileArticleCommentNotification
+    ProfileArticleNotification:
+      $ref: ./components/profiles.yaml#/ProfileArticleNotification
+    ProfileBadgePageableResponse:
+      $ref: ./components/profiles.yaml#/ProfileBadgePageableResponse
+    ProfileCollectionCommentNotification:
+      $ref: ./components/notifications.yaml#/ProfileCollectionCommentNotification
+    ProfileCommentNotification:
+      $ref: ./components/notifications.yaml#/ProfileCommentNotification
+    ProfileCompact:
+      $ref: ./components/profiles.yaml#/ProfileCompact
+    ProfileDeletionResponse:
+      $ref: ./components/account.yaml#/ProfileDeletionResponse
+    ProfileEnforcement:
+      $ref: ./components/moderation.yaml#/ProfileEnforcement
+    ProfileEnforcementAppealRequest:
+      $ref: ./components/moderation.yaml#/ProfileEnforcementAppealRequest
+    ProfileEnforcementAppealResponse:
+      $ref: ./components/moderation.yaml#/ProfileEnforcementAppealResponse
+    ProfileEnforcementResponse:
+      $ref: ./components/moderation.yaml#/ProfileEnforcementResponse
+    ProfileEpisodeNotification:
+      $ref: ./components/profiles.yaml#/ProfileEpisodeNotification
+    ProfileFriendNotification:
+      $ref: ./components/profiles.yaml#/ProfileFriendNotification
+    ProfileGenre:
+      $ref: ./components/profiles.yaml#/ProfileGenre
+    ProfileHealthStatusResponse:
+      $ref: ./components/profiles.yaml#/ProfileHealthStatusResponse
+    ProfileInfoResponse:
+      $ref: ./components/profiles.yaml#/ProfileInfoResponse
+    ProfileListResponse:
+      $ref: ./components/library.yaml#/ProfileListResponse
+    ProfileNotification:
+      $ref: ./components/notifications.yaml#/ProfileNotification
+    ProfilePreferenceResponse:
+      $ref: ./components/account.yaml#/ProfilePreferenceResponse
+    ProfileProcessRequest:
+      $ref: ./components/profiles.yaml#/ProfileProcessRequest
+    ProfileRelatedReleaseNotification:
+      $ref: ./components/profiles.yaml#/ProfileRelatedReleaseNotification
+    ProfileReleaseCommentNotification:
+      $ref: ./components/notifications.yaml#/ProfileReleaseCommentNotification
+    ProfileReleaseTypeNotificationPreference:
+      $ref: ./components/notifications.yaml#/ProfileReleaseTypeNotificationPreference
+    ProfileReleaseTypeNotificationPreferencesEditRequest:
+      $ref: ./components/notifications.yaml#/ProfileReleaseTypeNotificationPreferencesEditRequest
+    ProfileReleaseTypeNotificationPreferencesResponse:
+      $ref: ./components/notifications.yaml#/ProfileReleaseTypeNotificationPreferencesResponse
+    ProfileResponse:
+      $ref: ./components/profiles.yaml#/ProfileResponse
+    ProfileRole:
+      $ref: ./components/profiles.yaml#/ProfileRole
+    ProfileSelectThemeResponse:
+      $ref: ./components/account.yaml#/ProfileSelectThemeResponse
+    ProfileSlim:
+      $ref: ./components/profiles.yaml#/ProfileSlim
+    ProfileSocialResponse:
+      $ref: ./components/account.yaml#/ProfileSocialResponse
+    ProfileStatusNotificationPreference:
+      $ref: ./components/notifications.yaml#/ProfileStatusNotificationPreference
+    ProfileStatusNotificationPreferencesEditRequest:
+      $ref: ./components/notifications.yaml#/ProfileStatusNotificationPreferencesEditRequest
+    ProfileToken:
+      $ref: ./components/auth.yaml#/ProfileToken
+    ProfileTypeNotificationPreference:
+      $ref: ./components/notifications.yaml#/ProfileTypeNotificationPreference
+    ProfileTypeNotificationPreferencesEditRequest:
+      $ref: ./components/notifications.yaml#/ProfileTypeNotificationPreferencesEditRequest
+    ProfileWatchDynamics:
+      $ref: ./components/profiles.yaml#/ProfileWatchDynamics
+    Related:
+      $ref: ./components/releases.yaml#/Related
+    Release:
+      $ref: ./components/releases.yaml#/Release
+    ReleaseAddCollectionResponse:
+      $ref: ./components/collections.yaml#/ReleaseAddCollectionResponse
+    ReleaseComment:
+      $ref: ./components/comments.yaml#/ReleaseComment
+    ReleaseCommentCompact:
+      $ref: ./components/comments.yaml#/ReleaseCommentCompact
+    ReleaseCompact:
+      $ref: ./components/releases.yaml#/ReleaseCompact
+    ReleaseResponse:
+      $ref: ./components/releases.yaml#/ReleaseResponse
+    ReleaseSearchResponse:
+      $ref: ./components/search.yaml#/ReleaseSearchResponse
+    ReleaseStatus:
+      $ref: ./components/releases.yaml#/ReleaseStatus
+    ReleaseStreamingPlatform:
+      $ref: ./components/releases.yaml#/ReleaseStreamingPlatform
+    ReleaseVideo:
+      $ref: ./components/video.yaml#/ReleaseVideo
+    ReleaseVideoAppealRequest:
+      $ref: ./components/moderation.yaml#/ReleaseVideoAppealRequest
+    ReleaseVideoAppealResponse:
+      $ref: ./components/moderation.yaml#/ReleaseVideoAppealResponse
+    ReleaseVideoBanner:
+      $ref: ./components/video.yaml#/ReleaseVideoBanner
+    ReleaseVideoBlock:
+      $ref: ./components/video.yaml#/ReleaseVideoBlock
+    ReleaseVideoCategoriesResponse:
+      $ref: ./components/video.yaml#/ReleaseVideoCategoriesResponse
+    ReleaseVideoCategory:
+      $ref: ./components/video.yaml#/ReleaseVideoCategory
+    ReleaseVideoHosting:
+      $ref: ./components/video.yaml#/ReleaseVideoHosting
+    ReleaseVideosResponse:
+      $ref: ./components/video.yaml#/ReleaseVideosResponse
+    RemoveFriendRequestResponse:
+      $ref: ./components/friends.yaml#/RemoveFriendRequestResponse
+    ReportReason:
+      $ref: ./components/moderation.yaml#/ReportReason
+    ReportRequest:
+      $ref: ./components/moderation.yaml#/ReportRequest
+    ReportResponse:
+      $ref: ./components/moderation.yaml#/ReportResponse
+    ResendResponse:
+      $ref: ./components/auth.yaml#/ResendResponse
+    Response:
+      $ref: ./components/common.yaml#/Response
+    RestoreResendResponse:
+      $ref: ./components/auth.yaml#/RestoreResendResponse
+    RestoreResponse:
+      $ref: ./components/auth.yaml#/RestoreResponse
+    RestoreVerifyResponse:
+      $ref: ./components/auth.yaml#/RestoreVerifyResponse
+    RoleDto:
+      $ref: ./components/profiles.yaml#/RoleDto
+    ScheduleResponse:
+      $ref: ./components/releases.yaml#/ScheduleResponse
+    SearchRequest:
+      $ref: ./components/search.yaml#/SearchRequest
+    SelectPinnedSectionRequest:
+      $ref: ./components/common.yaml#/SelectPinnedSectionRequest
+    SelectThemeRequest:
+      $ref: ./components/account.yaml#/SelectThemeRequest
+    SendFriendRequestResponse:
+      $ref: ./components/friends.yaml#/SendFriendRequestResponse
+    SignInResponse:
+      $ref: ./components/auth.yaml#/SignInResponse
+    SignUpResponse:
+      $ref: ./components/auth.yaml#/SignUpResponse
+    SocialEditResponse:
+      $ref: ./components/account.yaml#/SocialEditResponse
+    SocialPagesEditRequest:
+      $ref: ./components/account.yaml#/SocialPagesEditRequest
+    Source:
+      $ref: ./components/episodes.yaml#/Source
+    SourceCompact:
+      $ref: ./components/episodes.yaml#/SourceCompact
+    SourcesResponse:
+      $ref: ./components/episodes.yaml#/SourcesResponse
+    StatusEditRequest:
+      $ref: ./components/common.yaml#/StatusEditRequest
+    SubscriptionCountResponse:
+      $ref: ./components/channels.yaml#/SubscriptionCountResponse
+    TelegramBindResponse:
+      $ref: ./components/account.yaml#/TelegramBindResponse
+    TelegramResponse:
+      $ref: ./components/account.yaml#/TelegramResponse
+    TelegramUnbindResponse:
+      $ref: ./components/account.yaml#/TelegramUnbindResponse
+    Theme:
+      $ref: ./components/account.yaml#/Theme
+    TogglesResponse:
+      $ref: ./components/account.yaml#/TogglesResponse
+    Type:
+      $ref: ./components/episodes.yaml#/Type
+    TypeChannelResponse:
+      $ref: ./components/episodes.yaml#/TypeChannelResponse
+    TypeCompact:
+      $ref: ./components/episodes.yaml#/TypeCompact
+    TypeResponse:
+      $ref: ./components/episodes.yaml#/TypeResponse
+    TypesResponse:
+      $ref: ./components/episodes.yaml#/TypesResponse
+    VerifyResponse:
+      $ref: ./components/auth.yaml#/VerifyResponse
+    VkBindResponse:
+      $ref: ./components/account.yaml#/VkBindResponse
+    VkResponse:
+      $ref: ./components/account.yaml#/VkResponse
+    VkUnbindResponse:
+      $ref: ./components/account.yaml#/VkUnbindResponse
+    VoteReleaseResponse:
+      $ref: ./components/releases.yaml#/VoteReleaseResponse
+    YandexBindResponse:
+      $ref: ./components/account.yaml#/YandexBindResponse
+    YandexResponse:
+      $ref: ./components/account.yaml#/YandexResponse
+    YandexUnbindResponse:
+      $ref: ./components/account.yaml#/YandexUnbindResponse
+    ListType:
+      $ref: ./components/enums.yaml#/ListType
+    QuoteAlignment:
+      $ref: ./components/enums.yaml#/QuoteAlignment
+    ProfileFriendNotification_Status:
+      $ref: ./components/enums.yaml#/ProfileFriendNotification_Status
+    ProfileStatusNotificationPreference_Status:
+      $ref: ./components/enums.yaml#/ProfileStatusNotificationPreference_Status
+    ProfileEnforcement_AppealStatus:
+      $ref: ./components/enums.yaml#/ProfileEnforcement_AppealStatus
+    ProfileEnforcement_AppealType:
+      $ref: ./components/enums.yaml#/ProfileEnforcement_AppealType
+    ProfileEnforcement_EntityType:
+      $ref: ./components/enums.yaml#/ProfileEnforcement_EntityType
+    ProfileEnforcement_TargetEntityType:
+      $ref: ./components/enums.yaml#/ProfileEnforcement_TargetEntityType
+    Profile_FriendStatus:
+      $ref: ./components/enums.yaml#/Profile_FriendStatus
+    ArticleEventRequest_EntryPoint:
+      $ref: ./components/enums.yaml#/ArticleEventRequest_EntryPoint
+    ArticleEventRequest_Type:
+      $ref: ./components/enums.yaml#/ArticleEventRequest_Type
+    ArticleEditorView_ChannelSelectError:
+      $ref: ./components/enums.yaml#/ArticleEditorView_ChannelSelectError
+    EpisodesPresenter_WidgetMenuState:
+      $ref: ./components/enums.yaml#/EpisodesPresenter_WidgetMenuState
+    ProfileHealthUiController_EditAction:
+      $ref: ./components/enums.yaml#/ProfileHealthUiController_EditAction
+    ChoosePlayerDialogFragment_AnixDownloadState:
+      $ref: ./components/enums.yaml#/ChoosePlayerDialogFragment_AnixDownloadState
+    ArticleEditorState_MediaSelectionPhase:
+      $ref: ./components/enums.yaml#/ArticleEditorState_MediaSelectionPhase
+    ArticlePreviewState_PreviewMode:
+      $ref: ./components/enums.yaml#/ArticlePreviewState_PreviewMode
+    ChangeLoginPreferenceState_LoginCheckStatus:
+      $ref: ./components/enums.yaml#/ChangeLoginPreferenceState_LoginCheckStatus
+    ProfileFriendsState_FriendStatusLogic:
+      $ref: ./components/enums.yaml#/ProfileFriendsState_FriendStatusLogic
+    ProfileHealthState_ScreenState:
+      $ref: ./components/enums.yaml#/ProfileHealthState_ScreenState
+    ProfileHealthState_Tab:
+      $ref: ./components/enums.yaml#/ProfileHealthState_Tab
+    UpdateBannerView_Action:
+      $ref: ./components/enums.yaml#/UpdateBannerView_Action
+    AppIcon:
+      $ref: ./components/enums.yaml#/AppIcon
+    ScreenSide:
+      $ref: ./components/enums.yaml#/ScreenSide
+    ThemedContainerLayout_AnimationSpeed:
+      $ref: ./components/enums.yaml#/ThemedContainerLayout_AnimationSpeed
+    ThemedContainerLayout_BackgroundMode:
+      $ref: ./components/enums.yaml#/ThemedContainerLayout_BackgroundMode
+    ThemedContainerLayout_GradientAngle:
+      $ref: ./components/enums.yaml#/ThemedContainerLayout_GradientAngle
+    ThemedContainerLayout_IconDensity:
+      $ref: ./components/enums.yaml#/ThemedContainerLayout_IconDensity
+    ThemedContainerLayout_IconSize:
+      $ref: ./components/enums.yaml#/ThemedContainerLayout_IconSize
+    PageOfArticleComment:
+      $ref: ./components/pagination.yaml#/PageOfArticleComment
+    PageOfProfile:
+      $ref: ./components/pagination.yaml#/PageOfProfile
+    PageOfArticle:
+      $ref: ./components/pagination.yaml#/PageOfArticle
+    PageOfChannel:
+      $ref: ./components/pagination.yaml#/PageOfChannel
+    PageOfChannelProfile:
+      $ref: ./components/pagination.yaml#/PageOfChannelProfile
+    PageOfCollection:
+      $ref: ./components/pagination.yaml#/PageOfCollection
+    PageOfCollectionComment:
+      $ref: ./components/pagination.yaml#/PageOfCollectionComment
+    PageOfRelease:
+      $ref: ./components/pagination.yaml#/PageOfRelease
+    PageOfReleaseComment:
+      $ref: ./components/pagination.yaml#/PageOfReleaseComment
+    PageOfInteresting:
+      $ref: ./components/pagination.yaml#/PageOfInteresting
+    PageOfEpisodeUpdate:
+      $ref: ./components/pagination.yaml#/PageOfEpisodeUpdate
+    PageOfProfileNotification:
+      $ref: ./components/pagination.yaml#/PageOfProfileNotification
+    PageOfProfileArticleCommentNotification:
+      $ref: ./components/pagination.yaml#/PageOfProfileArticleCommentNotification
+    PageOfProfileArticleNotification:
+      $ref: ./components/pagination.yaml#/PageOfProfileArticleNotification
+    PageOfProfileCollectionCommentNotification:
+      $ref: ./components/pagination.yaml#/PageOfProfileCollectionCommentNotification
+    PageOfProfileEpisodeNotification:
+      $ref: ./components/pagination.yaml#/PageOfProfileEpisodeNotification
+    PageOfProfileFriendNotification:
+      $ref: ./components/pagination.yaml#/PageOfProfileFriendNotification
+    PageOfProfileRelatedReleaseNotification:
+      $ref: ./components/pagination.yaml#/PageOfProfileRelatedReleaseNotification
+    PageOfProfileReleaseCommentNotification:
+      $ref: ./components/pagination.yaml#/PageOfProfileReleaseCommentNotification
+    PageOfChangeLogin:
+      $ref: ./components/pagination.yaml#/PageOfChangeLogin
+    PageOfReleaseStreamingPlatform:
+      $ref: ./components/pagination.yaml#/PageOfReleaseStreamingPlatform
+    PageOfReleaseVideo:
+      $ref: ./components/pagination.yaml#/PageOfReleaseVideo
+    PageOfProfileRole:
+      $ref: ./components/pagination.yaml#/PageOfProfileRole
+    PageOfString:
+      $ref: ./components/pagination.yaml#/PageOfString
+    ArticleCommentAddResponse:
+      $ref: ./components/comments.yaml#/ArticleCommentAddResponse
+    CollectionCommentAddResponse:
+      $ref: ./components/comments.yaml#/CollectionCommentAddResponse
+    ReleaseCommentAddResponse:
+      $ref: ./components/comments.yaml#/ReleaseCommentAddResponse
+    CommonResponse:
+      $ref: ./components/common.yaml#/CommonResponse
+    BlockListAddResult:
+      $ref: ./components/result-codes.yaml#/BlockListAddResult
+    ArticleCreateEditResult:
+      $ref: ./components/result-codes.yaml#/ArticleCreateEditResult
+    ArticleDeleteResult:
+      $ref: ./components/result-codes.yaml#/ArticleDeleteResult
+    ArticleEditPinnedResult:
+      $ref: ./components/result-codes.yaml#/ArticleEditPinnedResult
+    ArticleMuteResult:
+      $ref: ./components/result-codes.yaml#/ArticleMuteResult
+    ArticleResult:
+      $ref: ./components/result-codes.yaml#/ArticleResult
+    EditorAvailableResult:
+      $ref: ./components/result-codes.yaml#/EditorAvailableResult
+    ArticleSuggestionDeleteResult:
+      $ref: ./components/result-codes.yaml#/ArticleSuggestionDeleteResult
+    CheckLoginResult:
+      $ref: ./components/result-codes.yaml#/CheckLoginResult
+    GoogleResult:
+      $ref: ./components/result-codes.yaml#/GoogleResult
+    ResendResult:
+      $ref: ./components/result-codes.yaml#/ResendResult
+    RestoreResendResult:
+      $ref: ./components/result-codes.yaml#/RestoreResendResult
+    RestoreResult:
+      $ref: ./components/result-codes.yaml#/RestoreResult
+    RestoreVerifyResult:
+      $ref: ./components/result-codes.yaml#/RestoreVerifyResult
+    SignInResult:
+      $ref: ./components/result-codes.yaml#/SignInResult
+    SignUpResult:
+      $ref: ./components/result-codes.yaml#/SignUpResult
+    TelegramResult:
+      $ref: ./components/result-codes.yaml#/TelegramResult
+    VerifyResult:
+      $ref: ./components/result-codes.yaml#/VerifyResult
+    VkResult:
+      $ref: ./components/result-codes.yaml#/VkResult
+    YandexResult:
+      $ref: ./components/result-codes.yaml#/YandexResult
+    BookmarksExportResult:
+      $ref: ./components/result-codes.yaml#/BookmarksExportResult
+    BookmarksImportResult:
+      $ref: ./components/result-codes.yaml#/BookmarksImportResult
+    BookmarksImportStatusResult:
+      $ref: ./components/result-codes.yaml#/BookmarksImportStatusResult
+    BlogCreateResult:
+      $ref: ./components/result-codes.yaml#/BlogCreateResult
+    ChannelBlockResult:
+      $ref: ./components/result-codes.yaml#/ChannelBlockResult
+    ChannelCreateEditResult:
+      $ref: ./components/result-codes.yaml#/ChannelCreateEditResult
+    ChannelPermissionManageResult:
+      $ref: ./components/result-codes.yaml#/ChannelPermissionManageResult
+    ChannelResult:
+      $ref: ./components/result-codes.yaml#/ChannelResult
+    ChannelSubscribeResult:
+      $ref: ./components/result-codes.yaml#/ChannelSubscribeResult
+    ChannelUnsubscribeResult:
+      $ref: ./components/result-codes.yaml#/ChannelUnsubscribeResult
+    ChannelUploadCoverAvatarResult:
+      $ref: ./components/result-codes.yaml#/ChannelUploadCoverAvatarResult
+    CollectionCreateEditResult:
+      $ref: ./components/result-codes.yaml#/CollectionCreateEditResult
+    CollectionDeleteResult:
+      $ref: ./components/result-codes.yaml#/CollectionDeleteResult
+    CollectionEditImageResult:
+      $ref: ./components/result-codes.yaml#/CollectionEditImageResult
+    CollectionResult:
+      $ref: ./components/result-codes.yaml#/CollectionResult
+    FavoriteCollectionAddResult:
+      $ref: ./components/result-codes.yaml#/FavoriteCollectionAddResult
+    FavoriteCollectionDeleteResult:
+      $ref: ./components/result-codes.yaml#/FavoriteCollectionDeleteResult
+    ReleaseAddCollectionResult:
+      $ref: ./components/result-codes.yaml#/ReleaseAddCollectionResult
+    CommentAddResult:
+      $ref: ./components/result-codes.yaml#/CommentAddResult
+    CommentDeleteResult:
+      $ref: ./components/result-codes.yaml#/CommentDeleteResult
+    CommentEditResult:
+      $ref: ./components/result-codes.yaml#/CommentEditResult
+    ProfileSelectThemeResult:
+      $ref: ./components/result-codes.yaml#/ProfileSelectThemeResult
+    ChangeEmailResendResult:
+      $ref: ./components/result-codes.yaml#/ChangeEmailResendResult
+    ChangeEmailResult:
+      $ref: ./components/result-codes.yaml#/ChangeEmailResult
+    ChangeEmailVerifyResult:
+      $ref: ./components/result-codes.yaml#/ChangeEmailVerifyResult
+    ChangeLoginResult:
+      $ref: ./components/result-codes.yaml#/ChangeLoginResult
+    ChangePasswordResult:
+      $ref: ./components/result-codes.yaml#/ChangePasswordResult
+    GoogleBindResult:
+      $ref: ./components/result-codes.yaml#/GoogleBindResult
+    GoogleUnbindResult:
+      $ref: ./components/result-codes.yaml#/GoogleUnbindResult
+    ProfileDeletionResult:
+      $ref: ./components/result-codes.yaml#/ProfileDeletionResult
+    RemoveFriendRequestResult:
+      $ref: ./components/result-codes.yaml#/RemoveFriendRequestResult
+    SendFriendRequestResult:
+      $ref: ./components/result-codes.yaml#/SendFriendRequestResult
+    SocialEditResult:
+      $ref: ./components/result-codes.yaml#/SocialEditResult
+    TelegramBindResult:
+      $ref: ./components/result-codes.yaml#/TelegramBindResult
+    TelegramUnbindResult:
+      $ref: ./components/result-codes.yaml#/TelegramUnbindResult
+    VkBindResult:
+      $ref: ./components/result-codes.yaml#/VkBindResult
+    VkUnbindResult:
+      $ref: ./components/result-codes.yaml#/VkUnbindResult
+    YandexBindResult:
+      $ref: ./components/result-codes.yaml#/YandexBindResult
+    YandexUnbindResult:
+      $ref: ./components/result-codes.yaml#/YandexUnbindResult
+    ReleaseVideoResult:
+      $ref: ./components/result-codes.yaml#/ReleaseVideoResult
+    ReleaseVideoAppealResult:
+      $ref: ./components/result-codes.yaml#/ReleaseVideoAppealResult
+    ReportResult:
+      $ref: ./components/result-codes.yaml#/ReportResult
+  securitySchemes:
+    AnixartToken:
+      $ref: ./components/security.yaml#/AnixartToken
+x-tagGroups:
+- name: Контент
+  tags:
+  - Релизы
+  - Эпизоды
+  - Видео
+  - Статьи
+  - Коллекции
+  - Комментарии
+  - Лента и рекомендации
+  - Поиск
+- name: Сообщество
+  tags:
+  - Профили
+  - Друзья
+  - Каналы
+- name: Аккаунт
+  tags:
+  - Библиотека
+  - Авторизация
+  - Настройки аккаунта
+  - Уведомления
+- name: Система
+  tags:
+  - Модерация
+  - Конфигурация
+  - Импорт и экспорт

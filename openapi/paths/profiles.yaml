@@ -1,0 +1,289 @@
+/profile/info:
+  get:
+    tags:
+    - Профили
+    operationId: Profile_info
+    summary: Получить информацию о текущем профиле
+    description: Получить информацию о текущем профиле. При заданном токене запрос выполняется в контексте текущего профиля.
+    x-client-methods:
+    - ProfileApi.info
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/profiles.yaml#/ProfileInfoResponse
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    security:
+    - AnixartToken: []
+    - {}
+/profile/login/history/all/{id}/{page}:
+  get:
+    tags:
+    - Профили
+    operationId: Profile_changeLoginHistory
+    summary: Получить историю смены логина
+    description: Получить историю смены логина. Выдача постраничная; `page` начинается с `0`. При заданном токене запрос выполняется
+      в контексте текущего профиля.
+    x-client-methods:
+    - ProfileApi.changeLoginHistory
+    parameters:
+    - name: id
+      in: path
+      required: true
+      description: Идентификатор целевого объекта.
+      schema:
+        type: integer
+        format: int64
+    - name: page
+      in: path
+      required: true
+      description: Номер страницы, начиная с `0`.
+      schema:
+        type: integer
+        format: int32
+        minimum: 0
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/pagination.yaml#/PageOfChangeLogin
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    security:
+    - AnixartToken: []
+    - {}
+/profile/preference/badge/all/{page}:
+  get:
+    tags:
+    - Профили
+    operationId: ProfileBadge_all
+    summary: Получить доступные значки профиля
+    description: Получить доступные значки профиля. Выдача постраничная; `page` начинается с `0`. При заданном токене запрос
+      выполняется в контексте текущего профиля.
+    x-client-methods:
+    - ProfileBadgeApi.all
+    parameters:
+    - name: page
+      in: path
+      required: true
+      description: Номер страницы, начиная с `0`.
+      schema:
+        type: integer
+        format: int32
+        minimum: 0
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/profiles.yaml#/ProfileBadgePageableResponse
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    security:
+    - AnixartToken: []
+    - {}
+    x-original-tags:
+    - Значки профиля
+/profile/preference/badge/edit/{id}:
+  get:
+    tags:
+    - Профили
+    operationId: ProfileBadge_edit
+    summary: Выбрать значок профиля
+    description: Выбрать значок профиля. При заданном токене запрос выполняется в контексте текущего профиля.
+    x-client-methods:
+    - ProfileBadgeApi.edit
+    parameters:
+    - name: id
+      in: path
+      required: true
+      description: Идентификатор целевого объекта.
+      schema:
+        type: integer
+        format: int64
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/common.yaml#/CommonResponse
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    security:
+    - AnixartToken: []
+    - {}
+    x-original-tags:
+    - Значки профиля
+/profile/preference/badge/remove:
+  get:
+    tags:
+    - Профили
+    operationId: ProfileBadge_remove
+    summary: Снять значок профиля
+    description: Снять значок профиля. При заданном токене запрос выполняется в контексте текущего профиля.
+    x-client-methods:
+    - ProfileBadgeApi.remove
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/common.yaml#/CommonResponse
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    security:
+    - AnixartToken: []
+    - {}
+    x-original-tags:
+    - Значки профиля
+/profile/process/{id}:
+  post:
+    tags:
+    - Профили
+    operationId: Profile_process
+    summary: Выполнить модерационное действие над профилем
+    description: 'Выполнить модерационное действие над профилем. Тело запроса: `ProfileProcessRequest` (`application/json`).
+      При заданном токене запрос выполняется в контексте текущего профиля.'
+    x-client-methods:
+    - ProfileApi.process
+    parameters:
+    - name: id
+      in: path
+      required: true
+      description: Идентификатор целевого объекта.
+      schema:
+        type: integer
+        format: int64
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/common.yaml#/CommonResponse
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: ../components/profiles.yaml#/ProfileProcessRequest
+    security:
+    - AnixartToken: []
+    - {}
+/profile/social/{id}:
+  get:
+    tags:
+    - Профили
+    operationId: Profile_social
+    summary: Получить социальные ссылки профиля
+    description: Получить социальные ссылки профиля. При заданном токене запрос выполняется в контексте текущего профиля.
+    x-client-methods:
+    - ProfileApi.social
+    parameters:
+    - name: id
+      in: path
+      required: true
+      description: Идентификатор целевого объекта.
+      schema:
+        type: integer
+        format: int64
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/account.yaml#/ProfileSocialResponse
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    security:
+    - AnixartToken: []
+    - {}
+/profile/{id}:
+  get:
+    tags:
+    - Профили
+    operationId: Profile_profile
+    summary: Получить профиль
+    description: Получить профиль. При заданном токене запрос выполняется в контексте текущего профиля.
+    x-client-methods:
+    - ProfileApi.profile
+    parameters:
+    - name: id
+      in: path
+      required: true
+      description: Идентификатор целевого объекта.
+      schema:
+        type: integer
+        format: int64
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/profiles.yaml#/ProfileResponse
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    security:
+    - AnixartToken: []
+    - {}
+/role/all/{page}/{role_id}:
+  get:
+    tags:
+    - Профили
+    operationId: ProfileRoleList_all
+    summary: Получить профили с выбранной ролью
+    description: Получить профили с выбранной ролью. Выдача постраничная; `page` начинается с `0`. При заданном токене запрос
+      выполняется в контексте текущего профиля.
+    x-client-methods:
+    - ProfileRoleListApi.all
+    parameters:
+    - name: page
+      in: path
+      required: true
+      description: Номер страницы, начиная с `0`.
+      schema:
+        type: integer
+        format: int32
+        minimum: 0
+    - name: role_id
+      in: path
+      required: true
+      description: Идентификатор роли.
+      schema:
+        type: integer
+        format: int64
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/pagination.yaml#/PageOfProfileRole
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
+          схемой.
+    security:
+    - AnixartToken: []
+    - {}
+    x-original-tags:
+    - Роли профиля
