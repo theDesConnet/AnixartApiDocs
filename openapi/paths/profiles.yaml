@@ -65,8 +65,8 @@
     - Профили
     operationId: ProfileBadge_all
     summary: Получить доступные значки профиля
-    description: Получить доступные значки профиля. Выдача постраничная; `page` начинается с `0`. При заданном токене запрос
-      выполняется в контексте текущего профиля.
+    description: Устаревшее объявление клиента 10.0, отсутствующее в Retrofit 10.5. Доступность на сервере не проверялась. Для актуального
+      списка используйте /profile/{id}/badge/list и /profile/{id}/badge/list/{categoryId}/{page}.
     x-client-methods:
     - ProfileBadgeApi.all
     parameters:
@@ -86,13 +86,14 @@
             schema:
               $ref: ../components/profiles.yaml#/ProfileBadgePageableResponse
       default:
-        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
-          схемой.
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено схемой.
     security:
     - AnixartToken: []
     - {}
     x-original-tags:
     - Значки профиля
+    deprecated: true
+    x-client-removed-in: "10.5"
 /profile/preference/badge/edit/{id}:
   get:
     tags:
@@ -116,10 +117,9 @@
         content:
           application/json:
             schema:
-              $ref: ../components/common.yaml#/CommonResponse
+              $ref: ../components/profiles.yaml#/ProfileBadgeResponse
       default:
-        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
-          схемой.
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено схемой.
     security:
     - AnixartToken: []
     - {}
@@ -287,3 +287,219 @@
     - {}
     x-original-tags:
     - Роли профиля
+/achievement/get/{code}:
+  get:
+    tags:
+    - Профили
+    operationId: Achievement_claimCode
+    summary: Получить достижение по коду
+    description: Объявление и типы сверены статически с APK Anixart 10.5 (26101718). Поведение сервера не проверялось.
+    x-client-methods:
+    - AchievementApi.claimCode
+    parameters:
+    - name: code
+      in: path
+      required: true
+      schema:
+        type: string
+    - name: badge_id
+      in: query
+      required: true
+      schema:
+        type: integer
+        format: int64
+    responses:
+      "200":
+        description: Код результата находится в поле code.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/profiles.yaml#/AchievementResponse
+      default:
+        description: Ошибка запроса или серверное ограничение.
+    security:
+    - AnixartToken: []
+    - {}
+/achievement/preview/{code}:
+  get:
+    tags:
+    - Профили
+    operationId: Achievement_previewCode
+    summary: Предпросмотр достижения по коду
+    description: Объявление и типы сверены статически с APK Anixart 10.5 (26101718). Поведение сервера не проверялось.
+    x-client-methods:
+    - AchievementApi.previewCode
+    parameters:
+    - name: code
+      in: path
+      required: true
+      schema:
+        type: string
+    responses:
+      "200":
+        description: Код результата находится в поле code.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/profiles.yaml#/AchievementPreviewResponse
+      default:
+        description: Ошибка запроса или серверное ограничение.
+    security: []
+/profile/{id}/badge/list:
+  get:
+    tags:
+    - Профили
+    operationId: ProfileBadge_list
+    summary: Получить разделы и витрину значков профиля
+    description: Объявление и типы сверены статически с APK Anixart 10.5 (26101718). Поведение сервера не проверялось.
+    x-client-methods:
+    - ProfileBadgeApi.list
+    parameters:
+    - name: id
+      in: path
+      required: true
+      schema:
+        type: integer
+        format: int64
+    - name: recent
+      in: query
+      required: false
+      schema:
+        type: string
+      description: Строковый параметр recent; формат значения в Retrofit не уточнён.
+    responses:
+      "200":
+        description: Код результата находится в поле code.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/profiles.yaml#/ProfileBadgeSectionsResponse
+      default:
+        description: Ошибка запроса или серверное ограничение.
+    security:
+    - AnixartToken: []
+    - {}
+/profile/preference/badge/showcase/pin/{id}:
+  post:
+    tags:
+    - Профили
+    operationId: ProfileBadge_pinToShowcase
+    summary: Закрепить значок на витрине
+    description: Объявление и типы сверены статически с APK Anixart 10.5 (26101718). Поведение сервера не проверялось.
+    x-client-methods:
+    - ProfileBadgeApi.pinToShowcase
+    parameters:
+    - name: id
+      in: path
+      required: true
+      schema:
+        type: integer
+        format: int64
+    responses:
+      "200":
+        description: Код результата находится в поле code.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/profiles.yaml#/ProfileBadgeShowcaseResponse
+      default:
+        description: Ошибка запроса или серверное ограничение.
+    security:
+    - AnixartToken: []
+    - {}
+/profile/preference/badge/showcase/reorder:
+  post:
+    tags:
+    - Профили
+    operationId: ProfileBadge_reorderShowcase
+    summary: Изменить порядок значков на витрине
+    description: Объявление и типы сверены статически с APK Anixart 10.5 (26101718). Поведение сервера не проверялось.
+    x-client-methods:
+    - ProfileBadgeApi.reorderShowcase
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: ../components/account.yaml#/ReorderBadgeShowcaseRequest
+    responses:
+      "200":
+        description: Код результата находится в поле code.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/profiles.yaml#/ProfileBadgeShowcaseResponse
+      default:
+        description: Ошибка запроса или серверное ограничение.
+    security:
+    - AnixartToken: []
+    - {}
+/profile/{id}/badge/list/{categoryId}/{page}:
+  get:
+    tags:
+    - Профили
+    operationId: ProfileBadge_section
+    summary: Получить страницу значков категории профиля
+    description: Объявление и типы сверены статически с APK Anixart 10.5 (26101718). Поведение сервера не проверялось.
+    x-client-methods:
+    - ProfileBadgeApi.section
+    parameters:
+    - name: id
+      in: path
+      required: true
+      schema:
+        type: integer
+        format: int64
+    - name: categoryId
+      in: path
+      required: true
+      schema:
+        type: integer
+        format: int64
+    - name: page
+      in: path
+      required: true
+      schema:
+        type: integer
+        format: int32
+      description: Номер страницы, начиная с 0.
+    responses:
+      "200":
+        description: Код результата находится в поле code.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/profiles.yaml#/ProfileBadgePageableResponse
+      default:
+        description: Ошибка запроса или серверное ограничение.
+    security:
+    - AnixartToken: []
+    - {}
+/profile/preference/badge/showcase/unpin/{id}:
+  post:
+    tags:
+    - Профили
+    operationId: ProfileBadge_unpinFromShowcase
+    summary: Снять значок с витрины
+    description: Объявление и типы сверены статически с APK Anixart 10.5 (26101718). Поведение сервера не проверялось.
+    x-client-methods:
+    - ProfileBadgeApi.unpinFromShowcase
+    parameters:
+    - name: id
+      in: path
+      required: true
+      schema:
+        type: integer
+        format: int64
+    responses:
+      "200":
+        description: Код результата находится в поле code.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/profiles.yaml#/ProfileBadgeShowcaseResponse
+      default:
+        description: Ошибка запроса или серверное ограничение.
+    security:
+    - AnixartToken: []
+    - {}

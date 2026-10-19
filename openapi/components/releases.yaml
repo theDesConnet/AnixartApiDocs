@@ -551,6 +551,13 @@ Release:
       description: Оценка текущего профиля от 1 до 5; альтернативное поле клиента.
       minimum: 0
       maximum: 5
+    badge_count:
+      type: integer
+      format: int64
+    badges_preview:
+      type: array
+      items:
+        $ref: ./profiles.yaml#/Badge
 ReleaseCompact:
   type: object
   description: Компактная карточка релиза.

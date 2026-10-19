@@ -41,6 +41,13 @@ GET /notification/related/release/{page}
 
 Для части типов есть отдельный endpoint удаления конкретного уведомления.
 
+```http
+GET /notification/article/delete/{id}?token={token}
+GET /notification/articleComment/delete/{id}?token={token}
+```
+
+Первый удаляет уведомление о статье и возвращает базовый `Response` с `code`. Второй удаляет уведомление о комментарии к статье; в APK путь использует `articleComment`.
+
 ## Настройки
 
 Текущие настройки:

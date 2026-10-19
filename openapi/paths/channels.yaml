@@ -864,3 +864,31 @@
     security:
     - AnixartToken: []
     - {}
+/channel/delete/{c_id}:
+  post:
+    tags:
+    - Каналы
+    operationId: Channel_delete
+    summary: Удалить канал
+    description: Объявление и типы сверены статически с APK Anixart 10.5 (26101718). Поведение сервера не проверялось.
+    x-client-methods:
+    - ChannelApi.delete
+    parameters:
+    - name: c_id
+      in: path
+      required: true
+      schema:
+        type: integer
+        format: int64
+    responses:
+      "200":
+        description: Код результата находится в поле code.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/channels.yaml#/ChannelDeleteResponse
+      default:
+        description: Ошибка запроса или серверное ограничение.
+    security:
+    - AnixartToken: []
+    - {}

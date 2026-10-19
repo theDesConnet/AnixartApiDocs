@@ -1477,3 +1477,51 @@ ReportResult:
     '2': Объект жалобы не найден.
     '3': Текст жалобы не прошёл проверку.
     '4': Причина жалобы не найдена.
+AchievementResult:
+  type: integer
+  format: int32
+  description: Дополнительные коды ответа AchievementResponse; общие значения см. CommonResult.
+  enum:
+  - 2
+  - 3
+  - 4
+  - 5
+  - 6
+  x-enum-varnames:
+  - AlreadyGranted
+  - AchievementNotFound
+  - ProfileNotFound
+  - GrantLimitReached
+  - BadgeChanged
+  x-apk-constant-names:
+  - ALREADY_GRANTED
+  - ACHIEVEMENT_NOT_FOUND
+  - PROFILE_NOT_FOUND
+  - GRANT_LIMIT_REACHED
+  - BADGE_CHANGED
+ProfileBadgeShowcaseResult:
+  type: integer
+  format: int32
+  description: Дополнительные коды ответа ProfileBadgeShowcaseResponse; общие значения см. CommonResult.
+  enum:
+  - 2
+  - 3
+  x-enum-varnames:
+  - InvalidBadge
+  - LimitReached
+  x-apk-constant-names:
+  - INVALID_BADGE
+  - LIMIT_REACHED
+ChannelDeleteResult:
+  type: integer
+  format: int32
+  description: Дополнительные коды ответа ChannelDeleteResponse; общие значения см. CommonResult.
+  enum:
+  - 2
+  - 3
+  x-enum-varnames:
+  - ChannelNotFound
+  - ChannelNotOwned
+  x-apk-constant-names:
+  - CHANNEL_NOT_FOUND
+  - CHANNEL_NOT_OWNED

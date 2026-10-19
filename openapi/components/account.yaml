@@ -764,3 +764,18 @@ YandexUnbindResponse:
         description: 'Код результата: общий `CommonResult` либо `YandexUnbindResult` для ошибок этой операции.'
         example: 0
   x-result-enum: '#/components/schemas/YandexUnbindResult'
+ReorderBadgeShowcaseRequest:
+  type: object
+  required:
+  - ids
+  properties:
+    ids:
+      type: array
+      items:
+        type: integer
+        format: int64
+      description: Идентификаторы значков в желаемом порядке.
+  example:
+    ids:
+    - 123
+    - 456

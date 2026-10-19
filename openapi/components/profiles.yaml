@@ -1,17 +1,44 @@
 Badge:
   type: object
-  description: Значок, отображаемый рядом с профилем.
+  description: Значок профиля или релиза.
   properties:
+    award:
+      $ref: ./profiles.yaml#/BadgeAward
     image_url:
       type: string
       description: URL изображения или анимации значка.
+    category:
+      $ref: ./profiles.yaml#/BadgeCategory
+    description:
+      type: string
     id:
       type: integer
       format: int64
       description: Уникальный идентификатор.
+    image_medium_url:
+      type: string
+    image_small_url:
+      type: string
+    is_available:
+      type:
+      - boolean
+      - "null"
+    is_owned:
+      type: boolean
+    is_selected:
+      type: boolean
+    is_showcased:
+      type: boolean
     name:
       type: string
       description: Отображаемое название.
+    ownership_percentage:
+      type:
+      - number
+      - "null"
+      format: double
+    rarity:
+      type: string
     timestamp:
       type: integer
       format: int64
@@ -19,7 +46,7 @@ Badge:
     type:
       type: integer
       format: int32
-      description: 'Тип значка: статический (`0`) или анимированный (`1`).'
+      description: "Тип значка: статический (`0`) или анимированный (`1`)."
   x-response-constants:
   - name: TYPE_ANIMATION
     type: int
@@ -362,6 +389,13 @@ Profile:
     discord_page:
       type: string
       description: Ссылка или имя пользователя Discord.
+    badge_count:
+      type: integer
+      format: int64
+    badges_preview:
+      type: array
+      items:
+        $ref: ./profiles.yaml#/Badge
   x-response-constants:
   - name: ADMINISTRATOR
     type: long
@@ -637,3 +671,153 @@ RoleDto:
     color:
       type: string
       description: Цвет роли в строковом формате клиента.
+BadgeAward:
+  type: object
+  description: Условия получения значка.
+  properties:
+    episode_name:
+      type: string
+    profile_list_status:
+      type:
+      - integer
+      - "null"
+      format: int32
+    release_id:
+      type:
+      - integer
+      - "null"
+      format: int64
+    release_image:
+      type: string
+    release_title:
+      type: string
+    trigger:
+      type: string
+  x-response-constants:
+  - name: TRIGGER_CLAIM_CODE
+    type: String
+    value: CLAIM_CODE
+  - name: TRIGGER_EPISODE_WATCHED
+    type: String
+    value: EPISODE_WATCHED
+  - name: TRIGGER_MANUAL
+    type: String
+    value: MANUAL
+  - name: TRIGGER_PROFILE_LIST_STATUS
+    type: String
+    value: PROFILE_LIST_STATUS
+BadgeCategory:
+  type: object
+  description: Категория значков.
+  properties:
+    id:
+      type: integer
+      format: int64
+    title:
+      type: string
+BadgeSection:
+  type: object
+  description: Раздел значков с предварительным списком.
+  properties:
+    content:
+      type: array
+      items:
+        $ref: ./profiles.yaml#/Badge
+    count:
+      type: integer
+      format: int64
+    id:
+      type: integer
+      format: int64
+    title:
+      type: string
+ProfileBadgeSectionsResponse:
+  allOf:
+  - $ref: ./common.yaml#/Response
+  - type: object
+    properties:
+      profile:
+        $ref: ./profiles.yaml#/Profile
+      recent:
+        type: array
+        items:
+          $ref: ./profiles.yaml#/Badge
+      sections:
+        type: array
+        items:
+          $ref: ./profiles.yaml#/BadgeSection
+      showcased:
+        type: array
+        items:
+          $ref: ./profiles.yaml#/Badge
+      total_count:
+        type: integer
+        format: int64
+ProfileBadgeResponse:
+  allOf:
+  - $ref: ./common.yaml#/Response
+  - type: object
+    properties:
+      badge:
+        $ref: ./profiles.yaml#/Badge
+AchievementPreviewResponse:
+  allOf:
+  - $ref: ./common.yaml#/Response
+  - type: object
+    properties:
+      achievement:
+        $ref: ./profiles.yaml#/AchievementPreview
+AchievementResponse:
+  allOf:
+  - $ref: ./common.yaml#/Response
+  - type: object
+    properties:
+      code:
+        anyOf:
+        - $ref: ./result-codes.yaml#/CommonResult
+        - $ref: ./result-codes.yaml#/AchievementResult
+        description: Общий код результата либо код этой операции.
+        example: 0
+  x-result-enum: "#/components/schemas/AchievementResult"
+  x-response-constants:
+  - name: ALREADY_GRANTED
+    type: int
+    value: 2
+  - name: ACHIEVEMENT_NOT_FOUND
+    type: int
+    value: 3
+  - name: PROFILE_NOT_FOUND
+    type: int
+    value: 4
+  - name: GRANT_LIMIT_REACHED
+    type: int
+    value: 5
+  - name: BADGE_CHANGED
+    type: int
+    value: 6
+ProfileBadgeShowcaseResponse:
+  allOf:
+  - $ref: ./common.yaml#/Response
+  - type: object
+    properties:
+      code:
+        anyOf:
+        - $ref: ./result-codes.yaml#/CommonResult
+        - $ref: ./result-codes.yaml#/ProfileBadgeShowcaseResult
+        description: Общий код результата либо код этой операции.
+        example: 0
+  x-result-enum: "#/components/schemas/ProfileBadgeShowcaseResult"
+  x-response-constants:
+  - name: INVALID_BADGE
+    type: int
+    value: 2
+  - name: LIMIT_REACHED
+    type: int
+    value: 3
+AchievementPreview:
+  type: object
+  properties:
+    badge:
+      $ref: ./profiles.yaml#/Badge
+    name:
+      type: string

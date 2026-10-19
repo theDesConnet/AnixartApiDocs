@@ -50,6 +50,7 @@ POST /profile/preference/privacy/friendRequests/edit
 ```http
 POST /profile/preference/login/info
 POST /profile/preference/login/change
+POST /profile/preference/login/history/delete
 POST /profile/preference/password/change
 
 POST /profile/preference/email/change
@@ -58,6 +59,8 @@ GET  /profile/preference/email/verify
 ```
 
 Смена почты проходит в несколько шагов и использует `code` и `hash`.
+
+Удаление истории смены логина принимает токен в query и возвращает базовый `Response`; тело запроса не требуется.
 
 ## Внешние аккаунты
 

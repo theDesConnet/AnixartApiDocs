@@ -30,36 +30,6 @@
     security:
     - AnixartToken: []
     - {}
-/notification/article/comment/delete/{id}:
-  get:
-    tags:
-    - Уведомления
-    operationId: Notification_deleteArticleCommentNotification
-    summary: Удалить уведомление о комментарии к статье
-    description: Удалить уведомление о комментарии к статье. При заданном токене запрос выполняется в контексте текущего профиля.
-    x-client-methods:
-    - NotificationApi.deleteArticleCommentNotification
-    parameters:
-    - name: id
-      in: path
-      required: true
-      description: Идентификатор целевого объекта.
-      schema:
-        type: integer
-        format: int64
-    responses:
-      '200':
-        description: Запрос выполнен.
-        content:
-          application/json:
-            schema:
-              $ref: ../components/common.yaml#/CommonResponse
-      default:
-        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
-          схемой.
-    security:
-    - AnixartToken: []
-    - {}
 /notification/article/comments/{page}:
   get:
     tags:
@@ -959,3 +929,60 @@
     - {}
     x-original-tags:
     - Настройки уведомлений
+/notification/articleComment/delete/{id}:
+  get:
+    tags:
+    - Уведомления
+    operationId: Notification_deleteArticleCommentNotification
+    summary: Удалить уведомление о комментарии к статье
+    description: Удалить уведомление о комментарии к статье. При заданном токене запрос выполняется в контексте текущего профиля.
+    x-client-methods:
+    - NotificationApi.deleteArticleCommentNotification
+    parameters:
+    - name: id
+      in: path
+      required: true
+      description: Идентификатор целевого объекта.
+      schema:
+        type: integer
+        format: int64
+    responses:
+      '200':
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/common.yaml#/CommonResponse
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено схемой.
+    security:
+    - AnixartToken: []
+    - {}
+/notification/article/delete/{id}:
+  get:
+    tags:
+    - Уведомления
+    operationId: Notification_deleteArticleNotification
+    summary: Удалить уведомление о статье
+    description: Объявление и типы сверены статически с APK Anixart 10.5 (26101718). Поведение сервера не проверялось.
+    x-client-methods:
+    - NotificationApi.deleteArticleNotification
+    parameters:
+    - name: id
+      in: path
+      required: true
+      schema:
+        type: integer
+        format: int64
+    responses:
+      "200":
+        description: Код результата находится в поле code.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/common.yaml#/Response
+      default:
+        description: Ошибка запроса или серверное ограничение.
+    security:
+    - AnixartToken: []
+    - {}

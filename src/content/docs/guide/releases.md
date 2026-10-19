@@ -72,4 +72,12 @@ GET /schedule
 GET /release/streaming/platform/{releaseId}
 ```
 
+## Значки релиза
+
+```http
+GET /release/{r_id}/badges/{page}?token={token}
+```
+
+`page` начинается с `0`. Ответ — страница `PageableResponse<Badge>` (схема `PageOfBadge` в Reference) со списком значков в `content`. В карточке релиза доступны `badge_count` и `badges_preview`.
+
 Схемы ответов находятся в [API Reference](/api/).

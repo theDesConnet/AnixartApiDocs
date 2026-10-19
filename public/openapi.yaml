@@ -2,15 +2,17 @@
 openapi: 3.1.0
 info:
   title: Anixart API
-  version: "10.0"
+  version: "10.5"
   description: |
-    Неофициальная документация Anixart API актуальная под Anixart v10.0 (BUILD 26090418). Описывает доступные методы, параметры, модели данных и коды результатов. Поведение API может меняться со временем.
+    Неофициальная документация Anixart API актуальная под Anixart v10.5 (BUILD 26101718). Описывает доступные методы, параметры, модели данных и коды результатов. Поведение API может меняться со временем.
 
     by [DesConnet](https://github.com/theDesConnet) [![GitHub](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white)](https://github.com/theDesConnet/AnixartApiDocs)
   contact:
     name: null
   x-documentation-source: https://github.com/theDesConnet/AnixartApiDocs
-  x-client-method-count: 290
+  x-client-method-count: 300
+  x-client-route-count: 296
+  x-legacy-route-count: 1
 servers:
   - url: https://api-s.anixsekai.com/
     description: Основной адрес API.
@@ -4473,36 +4475,6 @@ paths:
       security:
         - AnixartToken: []
         - {}
-  /notification/article/comment/delete/{id}:
-    get:
-      tags:
-        - Уведомления
-      operationId: Notification_deleteArticleCommentNotification
-      summary: Удалить уведомление о комментарии к статье
-      description: Удалить уведомление о комментарии к статье. При заданном токене запрос выполняется в контексте текущего профиля.
-      x-client-methods:
-        - NotificationApi.deleteArticleCommentNotification
-      parameters:
-        - name: id
-          in: path
-          required: true
-          description: Идентификатор целевого объекта.
-          schema:
-            type: integer
-            format: int64
-      responses:
-        "200":
-          description: Запрос выполнен.
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/CommonResponse"
-        default:
-          description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно
-            предусмотрено схемой.
-      security:
-        - AnixartToken: []
-        - {}
   /notification/article/comments/{page}:
     get:
       tags:
@@ -5960,8 +5932,8 @@ paths:
         - Профили
       operationId: ProfileBadge_all
       summary: Получить доступные значки профиля
-      description: Получить доступные значки профиля. Выдача постраничная; `page` начинается с `0`. При заданном токене запрос
-        выполняется в контексте текущего профиля.
+      description: Устаревшее объявление клиента 10.0, отсутствующее в Retrofit 10.5. Доступность на сервере не проверялась.
+        Для актуального списка используйте /profile/{id}/badge/list и /profile/{id}/badge/list/{categoryId}/{page}.
       x-client-methods:
         - ProfileBadgeApi.all
       parameters:
@@ -5988,6 +5960,8 @@ paths:
         - {}
       x-original-tags:
         - Значки профиля
+      deprecated: true
+      x-client-removed-in: "10.5"
   /profile/preference/badge/edit/{id}:
     get:
       tags:
@@ -6011,7 +5985,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/CommonResponse"
+                $ref: "#/components/schemas/ProfileBadgeResponse"
         default:
           description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно
             предусмотрено схемой.
@@ -9896,8 +9870,376 @@ paths:
             предусмотрено схемой.
       x-original-tags:
         - Видео релизов
+  /notification/articleComment/delete/{id}:
+    get:
+      tags:
+        - Уведомления
+      operationId: Notification_deleteArticleCommentNotification
+      summary: Удалить уведомление о комментарии к статье
+      description: Удалить уведомление о комментарии к статье. При заданном токене запрос выполняется в контексте текущего профиля.
+      x-client-methods:
+        - NotificationApi.deleteArticleCommentNotification
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Идентификатор целевого объекта.
+          schema:
+            type: integer
+            format: int64
+      responses:
+        "200":
+          description: Запрос выполнен.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CommonResponse"
+        default:
+          description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно
+            предусмотрено схемой.
+      security:
+        - AnixartToken: []
+        - {}
+  /achievement/get/{code}:
+    get:
+      tags:
+        - Профили
+      operationId: Achievement_claimCode
+      summary: Получить достижение по коду
+      description: Объявление и типы сверены статически с APK Anixart 10.5 (26101718). Поведение сервера не проверялось.
+      x-client-methods:
+        - AchievementApi.claimCode
+      parameters:
+        - name: code
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: badge_id
+          in: query
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        "200":
+          description: Код результата находится в поле code.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AchievementResponse"
+        default:
+          description: Ошибка запроса или серверное ограничение.
+      security:
+        - AnixartToken: []
+        - {}
+  /achievement/preview/{code}:
+    get:
+      tags:
+        - Профили
+      operationId: Achievement_previewCode
+      summary: Предпросмотр достижения по коду
+      description: Объявление и типы сверены статически с APK Anixart 10.5 (26101718). Поведение сервера не проверялось.
+      x-client-methods:
+        - AchievementApi.previewCode
+      parameters:
+        - name: code
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Код результата находится в поле code.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AchievementPreviewResponse"
+        default:
+          description: Ошибка запроса или серверное ограничение.
+      security: []
+  /channel/delete/{c_id}:
+    post:
+      tags:
+        - Каналы
+      operationId: Channel_delete
+      summary: Удалить канал
+      description: Объявление и типы сверены статически с APK Anixart 10.5 (26101718). Поведение сервера не проверялось.
+      x-client-methods:
+        - ChannelApi.delete
+      parameters:
+        - name: c_id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        "200":
+          description: Код результата находится в поле code.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ChannelDeleteResponse"
+        default:
+          description: Ошибка запроса или серверное ограничение.
+      security:
+        - AnixartToken: []
+        - {}
+  /notification/article/delete/{id}:
+    get:
+      tags:
+        - Уведомления
+      operationId: Notification_deleteArticleNotification
+      summary: Удалить уведомление о статье
+      description: Объявление и типы сверены статически с APK Anixart 10.5 (26101718). Поведение сервера не проверялось.
+      x-client-methods:
+        - NotificationApi.deleteArticleNotification
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        "200":
+          description: Код результата находится в поле code.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Response"
+        default:
+          description: Ошибка запроса или серверное ограничение.
+      security:
+        - AnixartToken: []
+        - {}
+  /profile/{id}/badge/list:
+    get:
+      tags:
+        - Профили
+      operationId: ProfileBadge_list
+      summary: Получить разделы и витрину значков профиля
+      description: Объявление и типы сверены статически с APK Anixart 10.5 (26101718). Поведение сервера не проверялось.
+      x-client-methods:
+        - ProfileBadgeApi.list
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - name: recent
+          in: query
+          required: false
+          schema:
+            type: string
+          description: Строковый параметр recent; формат значения в Retrofit не уточнён.
+      responses:
+        "200":
+          description: Код результата находится в поле code.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ProfileBadgeSectionsResponse"
+        default:
+          description: Ошибка запроса или серверное ограничение.
+      security:
+        - AnixartToken: []
+        - {}
+  /profile/preference/badge/showcase/pin/{id}:
+    post:
+      tags:
+        - Профили
+      operationId: ProfileBadge_pinToShowcase
+      summary: Закрепить значок на витрине
+      description: Объявление и типы сверены статически с APK Anixart 10.5 (26101718). Поведение сервера не проверялось.
+      x-client-methods:
+        - ProfileBadgeApi.pinToShowcase
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        "200":
+          description: Код результата находится в поле code.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ProfileBadgeShowcaseResponse"
+        default:
+          description: Ошибка запроса или серверное ограничение.
+      security:
+        - AnixartToken: []
+        - {}
+  /profile/preference/badge/showcase/reorder:
+    post:
+      tags:
+        - Профили
+      operationId: ProfileBadge_reorderShowcase
+      summary: Изменить порядок значков на витрине
+      description: Объявление и типы сверены статически с APK Anixart 10.5 (26101718). Поведение сервера не проверялось.
+      x-client-methods:
+        - ProfileBadgeApi.reorderShowcase
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ReorderBadgeShowcaseRequest"
+      responses:
+        "200":
+          description: Код результата находится в поле code.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ProfileBadgeShowcaseResponse"
+        default:
+          description: Ошибка запроса или серверное ограничение.
+      security:
+        - AnixartToken: []
+        - {}
+  /profile/{id}/badge/list/{categoryId}/{page}:
+    get:
+      tags:
+        - Профили
+      operationId: ProfileBadge_section
+      summary: Получить страницу значков категории профиля
+      description: Объявление и типы сверены статически с APK Anixart 10.5 (26101718). Поведение сервера не проверялось.
+      x-client-methods:
+        - ProfileBadgeApi.section
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - name: categoryId
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - name: page
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int32
+          description: Номер страницы, начиная с 0.
+      responses:
+        "200":
+          description: Код результата находится в поле code.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ProfileBadgePageableResponse"
+        default:
+          description: Ошибка запроса или серверное ограничение.
+      security:
+        - AnixartToken: []
+        - {}
+  /profile/preference/badge/showcase/unpin/{id}:
+    post:
+      tags:
+        - Профили
+      operationId: ProfileBadge_unpinFromShowcase
+      summary: Снять значок с витрины
+      description: Объявление и типы сверены статически с APK Anixart 10.5 (26101718). Поведение сервера не проверялось.
+      x-client-methods:
+        - ProfileBadgeApi.unpinFromShowcase
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        "200":
+          description: Код результата находится в поле code.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ProfileBadgeShowcaseResponse"
+        default:
+          description: Ошибка запроса или серверное ограничение.
+      security:
+        - AnixartToken: []
+        - {}
+  /profile/preference/login/history/delete:
+    post:
+      tags:
+        - Настройки аккаунта
+      operationId: ProfilePreference_deleteLoginHistory
+      summary: Удалить историю смены логина
+      description: Объявление и типы сверены статически с APK Anixart 10.5 (26101718). Поведение сервера не проверялось.
+      x-client-methods:
+        - ProfilePreferenceApi.deleteLoginHistory
+      responses:
+        "200":
+          description: Код результата находится в поле code.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Response"
+        default:
+          description: Ошибка запроса или серверное ограничение.
+      security:
+        - AnixartToken: []
+        - {}
+  /release/{r_id}/badges/{page}:
+    get:
+      tags:
+        - Релизы
+      operationId: Release_badges
+      summary: Получить значки релиза
+      description: Объявление и типы сверены статически с APK Anixart 10.5 (26101718). Поведение сервера не проверялось.
+      x-client-methods:
+        - ReleaseApi.badges
+      parameters:
+        - name: r_id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - name: page
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int32
+          description: Номер страницы, начиная с 0.
+      responses:
+        "200":
+          description: Код результата находится в поле code.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PageOfBadge"
+        default:
+          description: Ошибка запроса или серверное ограничение.
+      security:
+        - AnixartToken: []
+        - {}
 components:
   schemas:
+    PageOfBadge:
+      allOf:
+        - $ref: "#/components/schemas/PageableResponse"
+        - type: object
+          properties:
+            content:
+              type: array
+              items:
+                $ref: "#/components/schemas/Badge"
+      description: Страница значков релиза (PageableResponse<Badge> в APK 10.5).
     CommonResult:
       type: integer
       format: int32
@@ -10251,18 +10593,45 @@ components:
           description: Отображаемое название.
     Badge:
       type: object
-      description: Значок, отображаемый рядом с профилем.
+      description: Значок профиля или релиза.
       properties:
+        award:
+          $ref: "#/components/schemas/BadgeAward"
         image_url:
           type: string
           description: URL изображения или анимации значка.
+        category:
+          $ref: "#/components/schemas/BadgeCategory"
+        description:
+          type: string
         id:
           type: integer
           format: int64
           description: Уникальный идентификатор.
+        image_medium_url:
+          type: string
+        image_small_url:
+          type: string
+        is_available:
+          type:
+            - boolean
+            - "null"
+        is_owned:
+          type: boolean
+        is_selected:
+          type: boolean
+        is_showcased:
+          type: boolean
         name:
           type: string
           description: Отображаемое название.
+        ownership_percentage:
+          type:
+            - number
+            - "null"
+          format: double
+        rarity:
+          type: string
         timestamp:
           type: integer
           format: int64
@@ -12400,6 +12769,13 @@ components:
         discord_page:
           type: string
           description: Ссылка или имя пользователя Discord.
+        badge_count:
+          type: integer
+          format: int64
+        badges_preview:
+          type: array
+          items:
+            $ref: "#/components/schemas/Badge"
       x-response-constants:
         - name: ADMINISTRATOR
           type: long
@@ -13367,6 +13743,13 @@ components:
           description: Оценка текущего профиля от 1 до 5; альтернативное поле клиента.
           minimum: 0
           maximum: 5
+        badge_count:
+          type: integer
+          format: int64
+        badges_preview:
+          type: array
+          items:
+            $ref: "#/components/schemas/Badge"
     ReleaseAddCollectionResponse:
       allOf:
         - $ref: "#/components/schemas/Response"
@@ -16649,6 +17032,238 @@ components:
         "2": Объект жалобы не найден.
         "3": Текст жалобы не прошёл проверку.
         "4": Причина жалобы не найдена.
+    BadgeAward:
+      type: object
+      description: Условия получения значка.
+      properties:
+        episode_name:
+          type: string
+        profile_list_status:
+          type:
+            - integer
+            - "null"
+          format: int32
+        release_id:
+          type:
+            - integer
+            - "null"
+          format: int64
+        release_image:
+          type: string
+        release_title:
+          type: string
+        trigger:
+          type: string
+      x-response-constants:
+        - name: TRIGGER_CLAIM_CODE
+          type: String
+          value: CLAIM_CODE
+        - name: TRIGGER_EPISODE_WATCHED
+          type: String
+          value: EPISODE_WATCHED
+        - name: TRIGGER_MANUAL
+          type: String
+          value: MANUAL
+        - name: TRIGGER_PROFILE_LIST_STATUS
+          type: String
+          value: PROFILE_LIST_STATUS
+    BadgeCategory:
+      type: object
+      description: Категория значков.
+      properties:
+        id:
+          type: integer
+          format: int64
+        title:
+          type: string
+    BadgeSection:
+      type: object
+      description: Раздел значков с предварительным списком.
+      properties:
+        content:
+          type: array
+          items:
+            $ref: "#/components/schemas/Badge"
+        count:
+          type: integer
+          format: int64
+        id:
+          type: integer
+          format: int64
+        title:
+          type: string
+    ProfileBadgeSectionsResponse:
+      allOf:
+        - $ref: "#/components/schemas/Response"
+        - type: object
+          properties:
+            profile:
+              $ref: "#/components/schemas/Profile"
+            recent:
+              type: array
+              items:
+                $ref: "#/components/schemas/Badge"
+            sections:
+              type: array
+              items:
+                $ref: "#/components/schemas/BadgeSection"
+            showcased:
+              type: array
+              items:
+                $ref: "#/components/schemas/Badge"
+            total_count:
+              type: integer
+              format: int64
+    ProfileBadgeResponse:
+      allOf:
+        - $ref: "#/components/schemas/Response"
+        - type: object
+          properties:
+            badge:
+              $ref: "#/components/schemas/Badge"
+    AchievementPreviewResponse:
+      allOf:
+        - $ref: "#/components/schemas/Response"
+        - type: object
+          properties:
+            achievement:
+              $ref: "#/components/schemas/AchievementPreview"
+    AchievementResult:
+      type: integer
+      format: int32
+      description: Дополнительные коды ответа AchievementResponse; общие значения см. CommonResult.
+      enum:
+        - 2
+        - 3
+        - 4
+        - 5
+        - 6
+      x-enum-varnames:
+        - AlreadyGranted
+        - AchievementNotFound
+        - ProfileNotFound
+        - GrantLimitReached
+        - BadgeChanged
+      x-apk-constant-names:
+        - ALREADY_GRANTED
+        - ACHIEVEMENT_NOT_FOUND
+        - PROFILE_NOT_FOUND
+        - GRANT_LIMIT_REACHED
+        - BADGE_CHANGED
+    AchievementResponse:
+      allOf:
+        - $ref: "#/components/schemas/Response"
+        - type: object
+          properties:
+            code:
+              anyOf:
+                - $ref: "#/components/schemas/CommonResult"
+                - $ref: "#/components/schemas/AchievementResult"
+              description: Общий код результата либо код этой операции.
+              example: 0
+      x-result-enum: "#/components/schemas/AchievementResult"
+      x-response-constants:
+        - name: ALREADY_GRANTED
+          type: int
+          value: 2
+        - name: ACHIEVEMENT_NOT_FOUND
+          type: int
+          value: 3
+        - name: PROFILE_NOT_FOUND
+          type: int
+          value: 4
+        - name: GRANT_LIMIT_REACHED
+          type: int
+          value: 5
+        - name: BADGE_CHANGED
+          type: int
+          value: 6
+    ProfileBadgeShowcaseResult:
+      type: integer
+      format: int32
+      description: Дополнительные коды ответа ProfileBadgeShowcaseResponse; общие значения см. CommonResult.
+      enum:
+        - 2
+        - 3
+      x-enum-varnames:
+        - InvalidBadge
+        - LimitReached
+      x-apk-constant-names:
+        - INVALID_BADGE
+        - LIMIT_REACHED
+    ProfileBadgeShowcaseResponse:
+      allOf:
+        - $ref: "#/components/schemas/Response"
+        - type: object
+          properties:
+            code:
+              anyOf:
+                - $ref: "#/components/schemas/CommonResult"
+                - $ref: "#/components/schemas/ProfileBadgeShowcaseResult"
+              description: Общий код результата либо код этой операции.
+              example: 0
+      x-result-enum: "#/components/schemas/ProfileBadgeShowcaseResult"
+      x-response-constants:
+        - name: INVALID_BADGE
+          type: int
+          value: 2
+        - name: LIMIT_REACHED
+          type: int
+          value: 3
+    ChannelDeleteResult:
+      type: integer
+      format: int32
+      description: Дополнительные коды ответа ChannelDeleteResponse; общие значения см. CommonResult.
+      enum:
+        - 2
+        - 3
+      x-enum-varnames:
+        - ChannelNotFound
+        - ChannelNotOwned
+      x-apk-constant-names:
+        - CHANNEL_NOT_FOUND
+        - CHANNEL_NOT_OWNED
+    ChannelDeleteResponse:
+      allOf:
+        - $ref: "#/components/schemas/Response"
+        - type: object
+          properties:
+            code:
+              anyOf:
+                - $ref: "#/components/schemas/CommonResult"
+                - $ref: "#/components/schemas/ChannelDeleteResult"
+              description: Общий код результата либо код этой операции.
+              example: 0
+      x-result-enum: "#/components/schemas/ChannelDeleteResult"
+      x-response-constants:
+        - name: CHANNEL_NOT_FOUND
+          type: int
+          value: 2
+        - name: CHANNEL_NOT_OWNED
+          type: int
+          value: 3
+    AchievementPreview:
+      type: object
+      properties:
+        badge:
+          $ref: "#/components/schemas/Badge"
+        name:
+          type: string
+    ReorderBadgeShowcaseRequest:
+      type: object
+      required:
+        - ids
+      properties:
+        ids:
+          type: array
+          items:
+            type: integer
+            format: int64
+          description: Идентификаторы значков в желаемом порядке.
+      example:
+        ids:
+          - 123
+          - 456
   securitySchemes:
     AnixartToken:
       type: apiKey

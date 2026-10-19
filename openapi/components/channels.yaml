@@ -539,3 +539,22 @@ SubscriptionCountResponse:
         type: integer
         format: int32
         description: Количество элементов категории «subscription».
+ChannelDeleteResponse:
+  allOf:
+  - $ref: ./common.yaml#/Response
+  - type: object
+    properties:
+      code:
+        anyOf:
+        - $ref: ./result-codes.yaml#/CommonResult
+        - $ref: ./result-codes.yaml#/ChannelDeleteResult
+        description: Общий код результата либо код этой операции.
+        example: 0
+  x-result-enum: "#/components/schemas/ChannelDeleteResult"
+  x-response-constants:
+  - name: CHANNEL_NOT_FOUND
+    type: int
+    value: 2
+  - name: CHANNEL_NOT_OWNED
+    type: int
+    value: 3

@@ -391,3 +391,38 @@
           схемой.
     x-original-tags:
     - Расписание
+/release/{r_id}/badges/{page}:
+  get:
+    tags:
+    - Релизы
+    operationId: Release_badges
+    summary: Получить значки релиза
+    description: Объявление и типы сверены статически с APK Anixart 10.5 (26101718). Поведение сервера не проверялось.
+    x-client-methods:
+    - ReleaseApi.badges
+    parameters:
+    - name: r_id
+      in: path
+      required: true
+      schema:
+        type: integer
+        format: int64
+    - name: page
+      in: path
+      required: true
+      schema:
+        type: integer
+        format: int32
+      description: Номер страницы, начиная с 0.
+    responses:
+      "200":
+        description: Код результата находится в поле code.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/pagination.yaml#/PageOfBadge
+      default:
+        description: Ошибка запроса или серверное ограничение.
+    security:
+    - AnixartToken: []
+    - {}

@@ -1,18 +1,21 @@
 openapi: 3.1.0
 info:
   title: Anixart API
-  version: '10.0'
-  description: 'Неофициальная документация Anixart API актуальная под Anixart v10.0 (BUILD 26090418). Описывает доступные методы, параметры, модели данных и коды результатов.
-    Поведение API может меняться со временем.
+  version: '10.5'
+  description: 'Неофициальная документация Anixart API актуальная под Anixart v10.5 (BUILD 26101718). Описывает доступные методы, параметры,
+    модели данных и коды результатов. Поведение API может меняться со временем.
 
 
-    by [DesConnet](https://github.com/theDesConnet) [![GitHub](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white)](https://github.com/theDesConnet/AnixartApiDocs)
+    by [DesConnet](https://github.com/theDesConnet)
+    [![GitHub](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white)](https://github.com/theDesConnet/AnixartApiDocs)
 
     '
   contact:
     name: null
   x-documentation-source: https://github.com/theDesConnet/AnixartApiDocs
-  x-client-method-count: 290
+  x-client-method-count: 300
+  x-client-route-count: 296
+  x-legacy-route-count: 1
 servers:
 - url: https://api-s.anixsekai.com/
   description: Основной адрес API.
@@ -296,8 +299,6 @@ paths:
     $ref: ./paths/import-export.yaml#/~1import~1status
   /notification/all/{page}:
     $ref: ./paths/notifications.yaml#/~1notification~1all~1{page}
-  /notification/article/comment/delete/{id}:
-    $ref: ./paths/notifications.yaml#/~1notification~1article~1comment~1delete~1{id}
   /notification/article/comments/{page}:
     $ref: ./paths/notifications.yaml#/~1notification~1article~1comments~1{page}
   /notification/articles/{page}:
@@ -626,8 +627,34 @@ paths:
     $ref: ./paths/video.yaml#/~1video~1release~1{releaseId}~1category~1{categoryId}~1{page}
   /video/release/{releaseId}/{page}:
     $ref: ./paths/video.yaml#/~1video~1release~1{releaseId}~1{page}
+  /notification/articleComment/delete/{id}:
+    $ref: ./paths/notifications.yaml#/~1notification~1articleComment~1delete~1{id}
+  /achievement/get/{code}:
+    $ref: ./paths/profiles.yaml#/~1achievement~1get~1{code}
+  /achievement/preview/{code}:
+    $ref: ./paths/profiles.yaml#/~1achievement~1preview~1{code}
+  /channel/delete/{c_id}:
+    $ref: ./paths/channels.yaml#/~1channel~1delete~1{c_id}
+  /notification/article/delete/{id}:
+    $ref: ./paths/notifications.yaml#/~1notification~1article~1delete~1{id}
+  /profile/{id}/badge/list:
+    $ref: ./paths/profiles.yaml#/~1profile~1{id}~1badge~1list
+  /profile/preference/badge/showcase/pin/{id}:
+    $ref: ./paths/profiles.yaml#/~1profile~1preference~1badge~1showcase~1pin~1{id}
+  /profile/preference/badge/showcase/reorder:
+    $ref: ./paths/profiles.yaml#/~1profile~1preference~1badge~1showcase~1reorder
+  /profile/{id}/badge/list/{categoryId}/{page}:
+    $ref: ./paths/profiles.yaml#/~1profile~1{id}~1badge~1list~1{categoryId}~1{page}
+  /profile/preference/badge/showcase/unpin/{id}:
+    $ref: ./paths/profiles.yaml#/~1profile~1preference~1badge~1showcase~1unpin~1{id}
+  /profile/preference/login/history/delete:
+    $ref: ./paths/account.yaml#/~1profile~1preference~1login~1history~1delete
+  /release/{r_id}/badges/{page}:
+    $ref: ./paths/releases.yaml#/~1release~1{r_id}~1badges~1{page}
 components:
   schemas:
+    PageOfBadge:
+      $ref: ./components/pagination.yaml#/PageOfBadge
     CommonResult:
       $ref: ./components/result-codes.yaml#/CommonResult
     AnixPlayerConfigResponse:
@@ -1264,6 +1291,34 @@ components:
       $ref: ./components/result-codes.yaml#/ReleaseVideoAppealResult
     ReportResult:
       $ref: ./components/result-codes.yaml#/ReportResult
+    BadgeAward:
+      $ref: ./components/profiles.yaml#/BadgeAward
+    BadgeCategory:
+      $ref: ./components/profiles.yaml#/BadgeCategory
+    BadgeSection:
+      $ref: ./components/profiles.yaml#/BadgeSection
+    ProfileBadgeSectionsResponse:
+      $ref: ./components/profiles.yaml#/ProfileBadgeSectionsResponse
+    ProfileBadgeResponse:
+      $ref: ./components/profiles.yaml#/ProfileBadgeResponse
+    AchievementPreviewResponse:
+      $ref: ./components/profiles.yaml#/AchievementPreviewResponse
+    AchievementResult:
+      $ref: ./components/result-codes.yaml#/AchievementResult
+    AchievementResponse:
+      $ref: ./components/profiles.yaml#/AchievementResponse
+    ProfileBadgeShowcaseResult:
+      $ref: ./components/result-codes.yaml#/ProfileBadgeShowcaseResult
+    ProfileBadgeShowcaseResponse:
+      $ref: ./components/profiles.yaml#/ProfileBadgeShowcaseResponse
+    ChannelDeleteResult:
+      $ref: ./components/result-codes.yaml#/ChannelDeleteResult
+    ChannelDeleteResponse:
+      $ref: ./components/channels.yaml#/ChannelDeleteResponse
+    AchievementPreview:
+      $ref: ./components/profiles.yaml#/AchievementPreview
+    ReorderBadgeShowcaseRequest:
+      $ref: ./components/account.yaml#/ReorderBadgeShowcaseRequest
   securitySchemes:
     AnixartToken:
       $ref: ./components/security.yaml#/AnixartToken

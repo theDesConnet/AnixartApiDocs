@@ -1,3 +1,13 @@
+PageOfBadge:
+  allOf:
+  - $ref: '#/PageableResponse'
+  - type: object
+    properties:
+      content:
+        type: array
+        items:
+          $ref: ./profiles.yaml#/Badge
+  description: Страница значков релиза (PageableResponse<Badge> в APK 10.5).
 PageableResponse:
   allOf:
   - $ref: ./common.yaml#/Response

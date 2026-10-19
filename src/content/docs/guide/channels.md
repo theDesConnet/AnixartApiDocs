@@ -68,6 +68,14 @@ POST /channel/edit/{c_id}
 
 Аватар и обложка загружаются отдельными multipart-запросами.
 
+## Удаление канала
+
+```http
+POST /channel/delete/{c_id}?token={token}
+```
+
+Тело запроса не требуется. `ChannelDeleteResponse` содержит код результата: `2` — `CHANNEL_NOT_FOUND`, `3` — `CHANNEL_NOT_OWNED`.
+
 ## Права и блокировки
 
 ```http
