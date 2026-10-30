@@ -222,6 +222,11 @@ Related:
     image:
       type: string
       description: URL или идентификатор изображения.
+    cover_animation:
+      type:
+      - string
+      - "null"
+      description: URL анимации обложки группы связанных релизов.
 Release:
   type: object
   description: Полная карточка релиза с метаданными и состоянием текущего профиля.
@@ -558,6 +563,18 @@ Release:
       type: array
       items:
         $ref: ./profiles.yaml#/Badge
+    poster_animation:
+      type:
+      - string
+      - "null"
+      description: URL анимации постера релиза.
+    screenshot_animations:
+      type:
+      - array
+      - "null"
+      items:
+        type: string
+      description: Анимации скриншотов релиза.
 ReleaseCompact:
   type: object
   description: Компактная карточка релиза.

@@ -607,3 +607,77 @@
     security:
     - AnixartToken: []
     - {}
+
+/content/upload:
+  post:
+    tags:
+      - Статьи
+    operationId: Article_uploadArticleImage
+    summary: Загрузить изображение для статьи
+    description: Маршрут и типы сверены с исходниками AnixartJS v1.2.0. Поведение сервера не проверялось.
+    x-source: https://github.com/theDesConnet/AnixartJS/tree/v1.2.0
+    parameters: []
+    requestBody:
+      required: true
+      content:
+        multipart/form-data:
+          schema:
+            type: object
+            properties:
+              file:
+                type: string
+                format: binary
+            required:
+              - file
+    responses:
+      "200":
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/articles.yaml#/ArticleUploadFileResponse
+      default:
+        description: Ошибка запроса или серверное ограничение.
+    security:
+      - EditorBearer: []
+  servers:
+    - url: https://editor.anixsekai.com
+      description: Сервис редактора статей; отдельный Bearer-токен.
+/embed/{type}:
+  get:
+    tags:
+      - Статьи
+    operationId: Article_generateEmbedData
+    summary: Подготовить вставку внешней ссылки
+    description: Маршрут и типы сверены с исходниками AnixartJS v1.2.0. Поведение сервера не проверялось.
+    x-source: https://github.com/theDesConnet/AnixartJS/tree/v1.2.0
+    parameters:
+      - name: type
+        in: path
+        required: true
+        schema:
+          type: string
+          enum:
+            - youtube
+            - vk
+            - link
+      - name: url
+        in: query
+        required: true
+        schema:
+          type: string
+          description: Внешняя ссылка для вставки.
+    responses:
+      "200":
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/articles.yaml#/ArticleEmbedResponse
+      default:
+        description: Ошибка запроса или серверное ограничение.
+    security:
+      - EditorBearer: []
+  servers:
+    - url: https://editor.anixsekai.com
+      description: Сервис редактора статей; отдельный Bearer-токен.

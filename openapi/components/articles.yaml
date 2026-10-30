@@ -309,3 +309,58 @@ EditorChannelsResponse:
         items:
           $ref: '#/EditorChannel'
         description: Каналы в результате запроса.
+
+ArticleImageItem:
+  type: object
+  properties:
+    id:
+      type: string
+    url:
+      type: string
+    hash:
+      type: string
+    width:
+      type: integer
+      format: int32
+    height:
+      type: integer
+      format: int32
+ArticleUploadFileResponse:
+  type: object
+  properties:
+    file:
+      $ref: ./articles.yaml#/ArticleImageItem
+    success:
+      type: integer
+      format: int32
+      description: Признак результата сервиса редактора.
+ArticleEmbedResponse:
+  type: object
+  properties:
+    success:
+      type: integer
+      format: int32
+    url:
+      type: string
+      description: В AnixartJS это поле устанавливается из исходной ссылки после запроса; наличие в ответе сервера не подтверждено.
+    hash:
+      type: string
+    embed:
+      type: string
+    width:
+      type: integer
+      format: int32
+    height:
+      type: integer
+      format: int32
+    image:
+      type: string
+    title:
+      type: string
+    service:
+      type: string
+    site_name:
+      type: string
+    description:
+      type: string
+  description: Модель вставки ссылки из AnixartJS v1.2.0. Сервис редактора использует success вместо code.

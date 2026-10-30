@@ -46,7 +46,7 @@ GET /notification/article/delete/{id}?token={token}
 GET /notification/articleComment/delete/{id}?token={token}
 ```
 
-Первый удаляет уведомление о статье и возвращает базовый `Response` с `code`. Второй удаляет уведомление о комментарии к статье; в APK путь использует `articleComment`.
+Первый удаляет уведомление о статье и возвращает базовый `Response` с `code`. Второй удаляет уведомление о комментарии к статье; путь использует `articleComment`.
 
 ## Настройки
 

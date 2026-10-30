@@ -24,24 +24,6 @@ Channel:
     avatar:
       type: string
       description: URL или идентификатор изображения профиля.
-    badge_id:
-      type:
-      - integer
-      - 'null'
-      format: int64
-      description: Идентификатор значка.
-    badge_name:
-      type: string
-      description: Отображаемое название значка.
-    badge_type:
-      type:
-      - integer
-      - 'null'
-      format: int32
-      description: Тип значка (статический или анимированный).
-    badge_url:
-      type: string
-      description: URL изображения или анимации значка.
     block_expire_date:
       type:
       - integer
@@ -153,6 +135,38 @@ Channel:
       type: integer
       format: int32
       description: Количество статей в виджете эпизодов.
+    avatar_animation:
+      type:
+      - string
+      - "null"
+      description: URL анимации аватара канала.
+    cover_animation:
+      type:
+      - string
+      - "null"
+      description: URL анимации обложки канала.
+    channel_badge_id:
+      type:
+      - integer
+      - "null"
+      format: int64
+      description: Идентификатор значка канала.
+    channel_badge_name:
+      type:
+      - string
+      - "null"
+      description: Название значка канала.
+    channel_badge_type:
+      type:
+      - integer
+      - "null"
+      format: int32
+      description: Тип значка канала.
+    channel_badge_url:
+      type:
+      - string
+      - "null"
+      description: URL значка канала.
   x-response-constants:
   - name: AUTO_HIDE_THRESHOLD
     type: int

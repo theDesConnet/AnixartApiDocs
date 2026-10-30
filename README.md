@@ -5,7 +5,7 @@
 <h1 align="center">AnixartApiDocs</h1>
 
 <p align="center">
-  Неофициальная документация Anixart API актуальная под <b>Anixart v10.5</b> (BUILD <code>26101718</code>).
+  Неофициальная документация Anixart API актуальная под <b>Anixart 11 BETA</b> (BUILD <code>26102910</code>).
 </p>
 
 В репозитории находятся OpenAPI-спецификация, API Reference и гайды по основным разделам API.

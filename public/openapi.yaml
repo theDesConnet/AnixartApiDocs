@@ -2,17 +2,23 @@
 openapi: 3.1.0
 info:
   title: Anixart API
-  version: "10.5"
-  description: |
-    Неофициальная документация Anixart API актуальная под Anixart v10.5 (BUILD 26101718). Описывает доступные методы, параметры, модели данных и коды результатов. Поведение API может меняться со временем.
+  version: 11 BETA
+  description: |-
+    Неофициальная документация Anixart API, статически сверенная с APK Anixart 11 BETA (BUILD 26102910). Описывает доступные методы, параметры, модели данных и коды результатов. Методы сервиса редактора дополнены по AnixartJS v1.2.0. Поведение API может меняться со временем.
 
-    by [DesConnet](https://github.com/theDesConnet) [![GitHub](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white)](https://github.com/theDesConnet/AnixartApiDocs)
+    by [DesConnet](https://github.com/theDesConnet)
+    [![GitHub](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white)](https://github.com/theDesConnet/AnixartApiDocs)
   contact:
     name: null
   x-documentation-source: https://github.com/theDesConnet/AnixartApiDocs
-  x-client-method-count: 300
-  x-client-route-count: 296
+  x-client-method-count: 307
+  x-client-route-count: 303
   x-legacy-route-count: 1
+  x-sdk-source: https://github.com/theDesConnet/AnixartJS/tree/v1.2.0
+  x-editor-route-count: 2
+  x-apk-version-code: 26102910
+  x-apk-file: anixart_11-beta.apk
+  x-apk-sha256: 5C6CA3F5BF77EAC9F7D1B81A387F49F76A8AEE255FB2C0192FC5C0BC591DC1DA
 servers:
   - url: https://api-s.anixsekai.com/
     description: Основной адрес API.
@@ -1208,6 +1214,17 @@ paths:
                   type: string
                 email:
                   type: string
+      parameters:
+        - name: X-Long-Code
+          in: header
+          required: false
+          description: APK 11 BETA передаёт 1 для поддержки длинного кода. Для OAuth заголовок указан у варианта регистрации
+            signUpWith…, а не у входа signInWith….
+          schema:
+            type: string
+            enum:
+              - "1"
+            default: "1"
   /auth/resend:
     post:
       tags:
@@ -1250,6 +1267,17 @@ paths:
                   type: string
                 hash:
                   type: string
+      parameters:
+        - name: X-Long-Code
+          in: header
+          required: false
+          description: APK 11 BETA передаёт 1 для поддержки длинного кода. Для OAuth заголовок указан у варианта регистрации
+            signUpWith…, а не у входа signInWith….
+          schema:
+            type: string
+            enum:
+              - "1"
+            default: "1"
   /auth/restore:
     post:
       tags:
@@ -1278,6 +1306,17 @@ paths:
               properties:
                 data:
                   type: string
+      parameters:
+        - name: X-Long-Code
+          in: header
+          required: false
+          description: APK 11 BETA передаёт 1 для поддержки длинного кода. Для OAuth заголовок указан у варианта регистрации
+            signUpWith…, а не у входа signInWith….
+          schema:
+            type: string
+            enum:
+              - "1"
+            default: "1"
   /auth/restore/resend:
     post:
       tags:
@@ -1310,6 +1349,17 @@ paths:
                   type: string
                 hash:
                   type: string
+      parameters:
+        - name: X-Long-Code
+          in: header
+          required: false
+          description: APK 11 BETA передаёт 1 для поддержки длинного кода. Для OAuth заголовок указан у варианта регистрации
+            signUpWith…, а не у входа signInWith….
+          schema:
+            type: string
+            enum:
+              - "1"
+            default: "1"
   /auth/restore/verify:
     post:
       tags:
@@ -1406,6 +1456,17 @@ paths:
                   type: string
                 password:
                   type: string
+      parameters:
+        - name: X-Long-Code
+          in: header
+          required: false
+          description: APK 11 BETA передаёт 1 для поддержки длинного кода. Для OAuth заголовок указан у варианта регистрации
+            signUpWith…, а не у входа signInWith….
+          schema:
+            type: string
+            enum:
+              - "1"
+            default: "1"
   /auth/telegram:
     post:
       tags:
@@ -1439,6 +1500,17 @@ paths:
                   type: string
                 email:
                   type: string
+      parameters:
+        - name: X-Long-Code
+          in: header
+          required: false
+          description: APK 11 BETA передаёт 1 для поддержки длинного кода. Для OAuth заголовок указан у варианта регистрации
+            signUpWith…, а не у входа signInWith….
+          schema:
+            type: string
+            enum:
+              - "1"
+            default: "1"
   /auth/verify:
     post:
       tags:
@@ -1516,6 +1588,17 @@ paths:
                   type: string
                 email:
                   type: string
+      parameters:
+        - name: X-Long-Code
+          in: header
+          required: false
+          description: APK 11 BETA передаёт 1 для поддержки длинного кода. Для OAuth заголовок указан у варианта регистрации
+            signUpWith…, а не у входа signInWith….
+          schema:
+            type: string
+            enum:
+              - "1"
+            default: "1"
   /auth/yandex:
     post:
       tags:
@@ -1549,6 +1632,17 @@ paths:
                   type: string
                 email:
                   type: string
+      parameters:
+        - name: X-Long-Code
+          in: header
+          required: false
+          description: APK 11 BETA передаёт 1 для поддержки длинного кода. Для OAuth заголовок указан у варианта регистрации
+            signUpWith…, а не у входа signInWith….
+          schema:
+            type: string
+            enum:
+              - "1"
+            default: "1"
   /channel/all/{page}:
     post:
       tags:
@@ -10228,6 +10322,346 @@ paths:
       security:
         - AnixartToken: []
         - {}
+  /auth/qr/create:
+    post:
+      tags:
+        - Авторизация
+      operationId: Auth_createQrAuth
+      summary: Создать запрос QR-авторизации
+      description: Статически сверено с APK Anixart 11 BETA (26102910); поведение сервера не проверялось.
+      x-source: https://github.com/theDesConnet/AnixartJS/tree/v1.2.0
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                device:
+                  type: string
+                  description: Название устройства.
+              required:
+                - device
+      responses:
+        "200":
+          description: Запрос выполнен.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/QrAuthResponse"
+        default:
+          description: Ошибка запроса или серверное ограничение.
+      security: []
+      x-sdk-methods:
+        - auth.createQrAuth
+      x-client-methods:
+        - AuthApi.createQrAuth
+      x-apk-version-code: 26102910
+  /auth/qr/open:
+    post:
+      tags:
+        - Авторизация
+      operationId: Auth_openQrAuth
+      summary: Открыть запрос QR-авторизации
+      description: Статически сверено с APK Anixart 11 BETA (26102910); поведение сервера не проверялось.
+      x-source: https://github.com/theDesConnet/AnixartJS/tree/v1.2.0
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                key:
+                  type: string
+                  description: Ключ QR-запроса.
+              required:
+                - key
+      responses:
+        "200":
+          description: Запрос выполнен.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/QrAuthResponse"
+        default:
+          description: Ошибка запроса или серверное ограничение.
+      security:
+        - AnixartToken: []
+      x-sdk-methods:
+        - auth.openQrAuth
+      x-client-methods:
+        - AuthApi.openQrAuth
+      x-apk-version-code: 26102910
+  /auth/qr/confirm:
+    post:
+      tags:
+        - Авторизация
+      operationId: Auth_confirmQrAuth
+      summary: Подтвердить QR-авторизацию
+      description: Статически сверено с APK Anixart 11 BETA (26102910); поведение сервера не проверялось.
+      x-source: https://github.com/theDesConnet/AnixartJS/tree/v1.2.0
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                key:
+                  type: string
+                  description: Ключ QR-запроса.
+                pin:
+                  type: string
+                  description: PIN; передаётся строкой.
+              required:
+                - key
+                - pin
+      responses:
+        "200":
+          description: Запрос выполнен.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/QrAuthResponse"
+        default:
+          description: Ошибка запроса или серверное ограничение.
+      security:
+        - AnixartToken: []
+      x-sdk-methods:
+        - auth.confirmQrAuth
+      x-client-methods:
+        - AuthApi.confirmQrAuth
+      x-apk-version-code: 26102910
+  /auth/qr/decline:
+    post:
+      tags:
+        - Авторизация
+      operationId: Auth_declineQrAuth
+      summary: Отклонить QR-авторизацию
+      description: Статически сверено с APK Anixart 11 BETA (26102910); поведение сервера не проверялось.
+      x-source: https://github.com/theDesConnet/AnixartJS/tree/v1.2.0
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                key:
+                  type: string
+                  description: Ключ QR-запроса.
+              required:
+                - key
+      responses:
+        "200":
+          description: Запрос выполнен.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/QrAuthResponse"
+        default:
+          description: Ошибка запроса или серверное ограничение.
+      security:
+        - AnixartToken: []
+      x-sdk-methods:
+        - auth.declineQrAuth
+      x-client-methods:
+        - AuthApi.declineQrAuth
+      x-apk-version-code: 26102910
+  /auth/qr/status:
+    post:
+      tags:
+        - Авторизация
+      operationId: Auth_statusQrAuth
+      summary: Проверить статус QR-авторизации
+      description: Статически сверено с APK Anixart 11 BETA (26102910); поведение сервера не проверялось.
+      x-source: https://github.com/theDesConnet/AnixartJS/tree/v1.2.0
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                key:
+                  type: string
+                  description: Ключ QR-запроса.
+                secret:
+                  type: string
+                  description: Секрет из ответа create.
+              required:
+                - key
+                - secret
+      responses:
+        "200":
+          description: Запрос выполнен.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/QrAuthResponse"
+        default:
+          description: Ошибка запроса или серверное ограничение.
+      security: []
+      x-sdk-methods:
+        - auth.statusQrAuth
+      x-client-methods:
+        - AuthApi.qrAuthStatus
+      x-apk-version-code: 26102910
+  /content/upload:
+    post:
+      tags:
+        - Статьи
+      operationId: Article_uploadArticleImage
+      summary: Загрузить изображение для статьи
+      description: Маршрут и типы сверены с исходниками AnixartJS v1.2.0. Поведение сервера не проверялось.
+      x-source: https://github.com/theDesConnet/AnixartJS/tree/v1.2.0
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                file:
+                  type: string
+                  format: binary
+              required:
+                - file
+      responses:
+        "200":
+          description: Запрос выполнен.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ArticleUploadFileResponse"
+        default:
+          description: Ошибка запроса или серверное ограничение.
+      security:
+        - EditorBearer: []
+    servers:
+      - url: https://editor.anixsekai.com
+        description: Сервис редактора статей; отдельный Bearer-токен.
+  /embed/{type}:
+    get:
+      tags:
+        - Статьи
+      operationId: Article_generateEmbedData
+      summary: Подготовить вставку внешней ссылки
+      description: Маршрут и типы сверены с исходниками AnixartJS v1.2.0. Поведение сервера не проверялось.
+      x-source: https://github.com/theDesConnet/AnixartJS/tree/v1.2.0
+      parameters:
+        - name: type
+          in: path
+          required: true
+          schema:
+            type: string
+            enum:
+              - youtube
+              - vk
+              - link
+        - name: url
+          in: query
+          required: true
+          schema:
+            type: string
+            description: Внешняя ссылка для вставки.
+      responses:
+        "200":
+          description: Запрос выполнен.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ArticleEmbedResponse"
+        default:
+          description: Ошибка запроса или серверное ограничение.
+      security:
+        - EditorBearer: []
+    servers:
+      - url: https://editor.anixsekai.com
+        description: Сервис редактора статей; отдельный Bearer-токен.
+  /release/{r_id}/continue:
+    get:
+      tags:
+        - Релизы
+      operationId: Release_continueWatching
+      summary: Продолжить просмотр релиза
+      description: Статически сверено с APK Anixart 11 BETA (26102910); поведение сервера не проверялось.
+      x-source: https://github.com/theDesConnet/AnixartJS/tree/v1.2.0
+      parameters:
+        - name: r_id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+          description: Идентификатор релиза.
+      responses:
+        "200":
+          description: Запрос выполнен.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ReleaseResponse"
+        default:
+          description: Ошибка запроса или серверное ограничение.
+      security:
+        - AnixartToken: []
+        - {}
+      x-client-methods:
+        - ReleaseApi.continueWatching
+      x-apk-version-code: 26102910
+  /search/profile/friends/{p_id}/{page}:
+    post:
+      tags:
+        - Поиск
+      operationId: Search_profileFriends
+      summary: Найти друзей профиля
+      description: Статически сверено с APK Anixart 11 BETA (26102910); поведение сервера не проверялось.
+      x-source: https://github.com/theDesConnet/AnixartJS/tree/v1.2.0
+      parameters:
+        - name: p_id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+          description: Идентификатор профиля.
+        - name: page
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int32
+            minimum: 0
+          description: Номер страницы, начиная с 0.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/SearchRequest"
+      responses:
+        "200":
+          description: Запрос выполнен.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PageOfProfile"
+        default:
+          description: Ошибка запроса или серверное ограничение.
+      security:
+        - AnixartToken: []
+        - {}
+      x-client-methods:
+        - SearchApi.profileFriendSearch
+      x-apk-version-code: 26102910
 components:
   schemas:
     PageOfBadge:
@@ -10596,22 +11030,34 @@ components:
       description: Значок профиля или релиза.
       properties:
         award:
-          $ref: "#/components/schemas/BadgeAward"
+          anyOf:
+            - $ref: "#/components/schemas/BadgeAward"
+            - type: "null"
         image_url:
-          type: string
-          description: URL изображения или анимации значка.
+          type:
+            - string
+            - "null"
+          description: URL значка. В APK 11 BETA Java-свойство badgeUrl сериализуется как image_url.
         category:
-          $ref: "#/components/schemas/BadgeCategory"
+          anyOf:
+            - $ref: "#/components/schemas/BadgeCategory"
+            - type: "null"
         description:
-          type: string
+          type:
+            - string
+            - "null"
         id:
           type: integer
           format: int64
           description: Уникальный идентификатор.
         image_medium_url:
-          type: string
+          type:
+            - string
+            - "null"
         image_small_url:
-          type: string
+          type:
+            - string
+            - "null"
         is_available:
           type:
             - boolean
@@ -10631,7 +11077,9 @@ components:
             - "null"
           format: double
         rarity:
-          type: string
+          type:
+            - string
+            - "null"
         timestamp:
           type: integer
           format: int64
@@ -10777,16 +11225,16 @@ components:
         - $ref: "#/components/schemas/Response"
         - type: object
           properties:
-            timestamp_expires:
-              type: integer
-              format: int64
-              description: Временная метка «timestamp expires» в формате API.
             code:
               anyOf:
                 - $ref: "#/components/schemas/CommonResult"
                 - $ref: "#/components/schemas/ChangeEmailResendResult"
               description: "Код результата: общий `CommonResult` либо `ChangeEmailResendResult` для ошибок этой операции."
               example: 0
+            timestampExpires:
+              type: integer
+              format: int64
+              description: Временная метка «timestamp expires» в формате API.
       x-result-enum: "#/components/schemas/ChangeEmailResendResult"
     ChangeEmailResponse:
       allOf:
@@ -10796,16 +11244,16 @@ components:
             hash:
               type: string
               description: Серверный идентификатор текущего шага подтверждения; используется в следующем запросе.
-            timestamp_expires:
-              type: integer
-              format: int64
-              description: Временная метка «timestamp expires» в формате API.
             code:
               anyOf:
                 - $ref: "#/components/schemas/CommonResult"
                 - $ref: "#/components/schemas/ChangeEmailResult"
               description: "Код результата: общий `CommonResult` либо `ChangeEmailResult` для ошибок этой операции."
               example: 0
+            timestampExpires:
+              type: integer
+              format: int64
+              description: Временная метка «timestamp expires» в формате API.
       x-result-enum: "#/components/schemas/ChangeEmailResult"
     ChangeEmailVerifyResponse:
       allOf:
@@ -10898,24 +11346,6 @@ components:
         avatar:
           type: string
           description: URL или идентификатор изображения профиля.
-        badge_id:
-          type:
-            - integer
-            - "null"
-          format: int64
-          description: Идентификатор значка.
-        badge_name:
-          type: string
-          description: Отображаемое название значка.
-        badge_type:
-          type:
-            - integer
-            - "null"
-          format: int32
-          description: Тип значка (статический или анимированный).
-        badge_url:
-          type: string
-          description: URL изображения или анимации значка.
         block_expire_date:
           type:
             - integer
@@ -11027,6 +11457,38 @@ components:
           type: integer
           format: int32
           description: Количество статей в виджете эпизодов.
+        avatar_animation:
+          type:
+            - string
+            - "null"
+          description: URL анимации аватара канала.
+        cover_animation:
+          type:
+            - string
+            - "null"
+          description: URL анимации обложки канала.
+        channel_badge_id:
+          type:
+            - integer
+            - "null"
+          format: int64
+          description: Идентификатор значка канала.
+        channel_badge_name:
+          type:
+            - string
+            - "null"
+          description: Название значка канала.
+        channel_badge_type:
+          type:
+            - integer
+            - "null"
+          format: int32
+          description: Тип значка канала.
+        channel_badge_url:
+          type:
+            - string
+            - "null"
+          description: URL значка канала.
       x-response-constants:
         - name: AUTO_HIDE_THRESHOLD
           type: int
@@ -11474,6 +11936,11 @@ components:
           items:
             $ref: "#/components/schemas/Release"
           description: Релизы в коллекции или ответе.
+        cover_animation:
+          type:
+            - string
+            - "null"
+          description: URL анимации обложки коллекции.
     CollectionComment:
       allOf:
         - $ref: "#/components/schemas/Comment"
@@ -11923,6 +12390,11 @@ components:
         url:
           type: string
           description: URL ресурса.
+      x-client-fields:
+        - name: playbackDuration
+          type: long
+          description: Длительность воспроизведения в локальной модели клиента 11 BETA. Имя JSON-поля и передача сервером не
+            подтверждены.
     EpisodeCompact:
       type: object
       description: Компактная информация об эпизоде.
@@ -12242,19 +12714,12 @@ components:
         - $ref: "#/components/schemas/Response"
         - type: object
           properties:
-            code_timestamp_expires:
-              type: integer
-              format: int64
-              description: Временная метка «code timestamp expires» в формате API.
             hash:
               type: string
               description: Серверный идентификатор текущего шага подтверждения; используется в следующем запросе.
             profile:
               $ref: "#/components/schemas/Profile"
               description: Связанный профиль пользователя.
-            profile_token:
-              $ref: "#/components/schemas/ProfileToken"
-              description: Сессионный токен профиля.
             suggested_logins:
               type: array
               items:
@@ -12266,6 +12731,14 @@ components:
                 - $ref: "#/components/schemas/GoogleResult"
               description: "Код результата: общий `CommonResult` либо `GoogleResult` для ошибок этой операции."
               example: 0
+            profileToken:
+              $ref: "#/components/schemas/ProfileToken"
+              description: Сессионный токен профиля.
+            codeTimestampExpires:
+              type: integer
+              format: int64
+              description: Временная метка «code timestamp expires» в формате API.
+        - $ref: "#/components/schemas/CodeInputResponse"
       x-result-enum: "#/components/schemas/GoogleResult"
     GoogleUnbindResponse:
       allOf:
@@ -12311,6 +12784,11 @@ components:
         action:
           type: string
           description: Действие, которое клиент выполняет при выборе карточки.
+        image_animation:
+          type:
+            - string
+            - "null"
+          description: URL анимации изображения блока рекомендаций.
     LatestArticleResponse:
       allOf:
         - $ref: "#/components/schemas/Response"
@@ -12776,6 +13254,11 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/Badge"
+        avatar_animation:
+          type:
+            - string
+            - "null"
+          description: URL анимации аватара (APK 11 BETA).
       x-response-constants:
         - name: ADMINISTRATOR
           type: long
@@ -13074,6 +13557,13 @@ components:
               type: integer
               format: int64
               description: Временная метка «sponsorship expires» в формате API.
+            ban_expires:
+              type: integer
+              format: int64
+              description: Время окончания блокировки.
+            is_banned:
+              type: boolean
+              description: Профиль заблокирован.
     ProfileListResponse:
       allOf:
         - $ref: "#/components/schemas/Response"
@@ -13414,6 +13904,11 @@ components:
         image:
           type: string
           description: URL или идентификатор изображения.
+        cover_animation:
+          type:
+            - string
+            - "null"
+          description: URL анимации обложки группы связанных релизов.
     Release:
       type: object
       description: Полная карточка релиза с метаданными и состоянием текущего профиля.
@@ -13750,6 +14245,18 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/Badge"
+        poster_animation:
+          type:
+            - string
+            - "null"
+          description: URL анимации постера релиза.
+        screenshot_animations:
+          type:
+            - array
+            - "null"
+          items:
+            type: string
+          description: Анимации скриншотов релиза.
     ReleaseAddCollectionResponse:
       allOf:
         - $ref: "#/components/schemas/Response"
@@ -14089,16 +14596,17 @@ components:
         - $ref: "#/components/schemas/Response"
         - type: object
           properties:
-            timestamp_expires:
-              type: integer
-              format: int64
-              description: Временная метка «timestamp expires» в формате API.
             code:
               anyOf:
                 - $ref: "#/components/schemas/CommonResult"
                 - $ref: "#/components/schemas/ResendResult"
               description: "Код результата: общий `CommonResult` либо `ResendResult` для ошибок этой операции."
               example: 0
+            timestampExpires:
+              type: integer
+              format: int64
+              description: Временная метка «timestamp expires» в формате API.
+        - $ref: "#/components/schemas/CodeInputResponse"
       x-result-enum: "#/components/schemas/ResendResult"
     Response:
       type: object
@@ -14129,26 +14637,23 @@ components:
         - $ref: "#/components/schemas/Response"
         - type: object
           properties:
-            timestamp_expires:
-              type: integer
-              format: int64
-              description: Временная метка «timestamp expires» в формате API.
             code:
               anyOf:
                 - $ref: "#/components/schemas/CommonResult"
                 - $ref: "#/components/schemas/RestoreResendResult"
               description: "Код результата: общий `CommonResult` либо `RestoreResendResult` для ошибок этой операции."
               example: 0
+            timestampExpires:
+              type: integer
+              format: int64
+              description: Временная метка «timestamp expires» в формате API.
+        - $ref: "#/components/schemas/CodeInputResponse"
       x-result-enum: "#/components/schemas/RestoreResendResult"
     RestoreResponse:
       allOf:
         - $ref: "#/components/schemas/Response"
         - type: object
           properties:
-            code_timestamp_expires:
-              type: integer
-              format: int64
-              description: Временная метка «code timestamp expires» в формате API.
             hash:
               type: string
               description: Серверный идентификатор текущего шага подтверждения; используется в следующем запросе.
@@ -14158,6 +14663,11 @@ components:
                 - $ref: "#/components/schemas/RestoreResult"
               description: "Код результата: общий `CommonResult` либо `RestoreResult` для ошибок этой операции."
               example: 0
+            codeTimestampExpires:
+              type: integer
+              format: int64
+              description: Временная метка «code timestamp expires» в формате API.
+        - $ref: "#/components/schemas/CodeInputResponse"
       x-result-enum: "#/components/schemas/RestoreResult"
     RestoreVerifyResponse:
       allOf:
@@ -14167,15 +14677,21 @@ components:
             profile:
               $ref: "#/components/schemas/Profile"
               description: Связанный профиль пользователя.
-            profile_token:
-              $ref: "#/components/schemas/ProfileToken"
-              description: Сессионный токен профиля.
             code:
               anyOf:
                 - $ref: "#/components/schemas/CommonResult"
                 - $ref: "#/components/schemas/RestoreVerifyResult"
               description: "Код результата: общий `CommonResult` либо `RestoreVerifyResult` для ошибок этой операции."
               example: 0
+            attempts_left:
+              type:
+                - integer
+                - "null"
+              format: int32
+              description: Оставшееся число попыток ввода кода.
+            profileToken:
+              $ref: "#/components/schemas/ProfileToken"
+              description: Сессионный токен профиля.
       x-result-enum: "#/components/schemas/RestoreVerifyResult"
     RoleDto:
       type: object
@@ -14279,25 +14795,21 @@ components:
             profile:
               $ref: "#/components/schemas/Profile"
               description: Связанный профиль пользователя.
-            profile_token:
-              $ref: "#/components/schemas/ProfileToken"
-              description: Сессионный токен профиля.
             code:
               anyOf:
                 - $ref: "#/components/schemas/CommonResult"
                 - $ref: "#/components/schemas/SignInResult"
               description: "Код результата: общий `CommonResult` либо `SignInResult` для ошибок этой операции."
               example: 0
+            profileToken:
+              $ref: "#/components/schemas/ProfileToken"
+              description: Сессионный токен профиля.
       x-result-enum: "#/components/schemas/SignInResult"
     SignUpResponse:
       allOf:
         - $ref: "#/components/schemas/Response"
         - type: object
           properties:
-            code_timestamp_expires:
-              type: integer
-              format: int64
-              description: Временная метка «code timestamp expires» в формате API.
             hash:
               type: string
               description: Серверный идентификатор текущего шага подтверждения; используется в следующем запросе.
@@ -14312,6 +14824,11 @@ components:
                 - $ref: "#/components/schemas/SignUpResult"
               description: "Код результата: общий `CommonResult` либо `SignUpResult` для ошибок этой операции."
               example: 0
+            codeTimestampExpires:
+              type: integer
+              format: int64
+              description: Временная метка «code timestamp expires» в формате API.
+        - $ref: "#/components/schemas/CodeInputResponse"
       x-result-enum: "#/components/schemas/SignUpResult"
     SocialEditResponse:
       allOf:
@@ -14417,19 +14934,12 @@ components:
         - $ref: "#/components/schemas/Response"
         - type: object
           properties:
-            code_timestamp_expires:
-              type: integer
-              format: int64
-              description: Временная метка «code timestamp expires» в формате API.
             hash:
               type: string
               description: Серверный идентификатор текущего шага подтверждения; используется в следующем запросе.
             profile:
               $ref: "#/components/schemas/Profile"
               description: Связанный профиль пользователя.
-            profile_token:
-              $ref: "#/components/schemas/ProfileToken"
-              description: Сессионный токен профиля.
             suggested_logins:
               type: array
               items:
@@ -14441,6 +14951,14 @@ components:
                 - $ref: "#/components/schemas/TelegramResult"
               description: "Код результата: общий `CommonResult` либо `TelegramResult` для ошибок этой операции."
               example: 0
+            profileToken:
+              $ref: "#/components/schemas/ProfileToken"
+              description: Сессионный токен профиля.
+            codeTimestampExpires:
+              type: integer
+              format: int64
+              description: Временная метка «code timestamp expires» в формате API.
+        - $ref: "#/components/schemas/CodeInputResponse"
       x-result-enum: "#/components/schemas/TelegramResult"
     TelegramUnbindResponse:
       allOf:
@@ -14756,6 +15274,14 @@ components:
               items:
                 $ref: "#/components/schemas/Type"
               description: Озвучки/дабберы, доступные клиенту.
+            popular_type_ids:
+              type:
+                - array
+                - "null"
+              items:
+                type: integer
+                format: int64
+              description: Идентификаторы популярных озвучек.
     TypesResponse:
       allOf:
         - $ref: "#/components/schemas/Response"
@@ -14774,9 +15300,6 @@ components:
             profile:
               $ref: "#/components/schemas/Profile"
               description: Связанный профиль пользователя.
-            profile_token:
-              $ref: "#/components/schemas/ProfileToken"
-              description: Сессионный токен профиля.
             suggested_logins:
               type: array
               items:
@@ -14788,6 +15311,9 @@ components:
                 - $ref: "#/components/schemas/VerifyResult"
               description: "Код результата: общий `CommonResult` либо `VerifyResult` для ошибок этой операции."
               example: 0
+            profileToken:
+              $ref: "#/components/schemas/ProfileToken"
+              description: Сессионный токен профиля.
       x-result-enum: "#/components/schemas/VerifyResult"
     VkBindResponse:
       allOf:
@@ -14806,19 +15332,12 @@ components:
         - $ref: "#/components/schemas/Response"
         - type: object
           properties:
-            code_timestamp_expires:
-              type: integer
-              format: int64
-              description: Временная метка «code timestamp expires» в формате API.
             hash:
               type: string
               description: Серверный идентификатор текущего шага подтверждения; используется в следующем запросе.
             profile:
               $ref: "#/components/schemas/Profile"
               description: Связанный профиль пользователя.
-            profile_token:
-              $ref: "#/components/schemas/ProfileToken"
-              description: Сессионный токен профиля.
             suggested_logins:
               type: array
               items:
@@ -14830,6 +15349,14 @@ components:
                 - $ref: "#/components/schemas/VkResult"
               description: "Код результата: общий `CommonResult` либо `VkResult` для ошибок этой операции."
               example: 0
+            profileToken:
+              $ref: "#/components/schemas/ProfileToken"
+              description: Сессионный токен профиля.
+            codeTimestampExpires:
+              type: integer
+              format: int64
+              description: Временная метка «code timestamp expires» в формате API.
+        - $ref: "#/components/schemas/CodeInputResponse"
       x-result-enum: "#/components/schemas/VkResult"
     VkUnbindResponse:
       allOf:
@@ -14865,10 +15392,6 @@ components:
         - $ref: "#/components/schemas/Response"
         - type: object
           properties:
-            code_timestamp_expires:
-              type: integer
-              format: int64
-              description: Временная метка «code timestamp expires» в формате API.
             email:
               type: string
               description: Адрес электронной почты.
@@ -14878,9 +15401,6 @@ components:
             profile:
               $ref: "#/components/schemas/Profile"
               description: Связанный профиль пользователя.
-            profile_token:
-              $ref: "#/components/schemas/ProfileToken"
-              description: Сессионный токен профиля.
             suggested_logins:
               type: array
               items:
@@ -14892,6 +15412,14 @@ components:
                 - $ref: "#/components/schemas/YandexResult"
               description: "Код результата: общий `CommonResult` либо `YandexResult` для ошибок этой операции."
               example: 0
+            profileToken:
+              $ref: "#/components/schemas/ProfileToken"
+              description: Сессионный токен профиля.
+            codeTimestampExpires:
+              type: integer
+              format: int64
+              description: Временная метка «code timestamp expires» в формате API.
+        - $ref: "#/components/schemas/CodeInputResponse"
       x-result-enum: "#/components/schemas/YandexResult"
     YandexUnbindResponse:
       allOf:
@@ -17264,12 +17792,229 @@ components:
         ids:
           - 123
           - 456
+    QrAuthResult:
+      type: integer
+      format: int32
+      description: Дополнительные коды QR-авторизации из AnixartJS v1.2.0; общие коды описаны в CommonResult.
+      enum:
+        - 2
+        - 3
+        - 4
+        - 5
+        - 6
+      x-enum-varnames:
+        - Expired
+        - Declined
+        - TooManyAttempts
+        - PinInvalid
+        - TooManyRequests
+      x-enum-descriptions:
+        "2": Запрос истёк.
+        "3": Авторизация отклонена.
+        "4": Превышено число попыток.
+        "5": Неверный PIN.
+        "6": Слишком много запросов.
+    QrAuthStatus:
+      type: integer
+      format: int32
+      description: Состояние QR-авторизации из AnixartJS v1.2.0.
+      enum:
+        - 0
+        - 1
+        - 2
+      x-enum-varnames:
+        - Waiting
+        - Scanned
+        - Confirmed
+      x-enum-descriptions:
+        "0": Ожидание сканирования.
+        "1": QR-код отсканирован.
+        "2": Авторизация подтверждена.
+    QrAuthResponse:
+      description: Общий DTO всех пяти QR-методов в APK 11 BETA. Набор заполненных полей зависит от этапа авторизации.
+      allOf:
+        - $ref: "#/components/schemas/Response"
+        - type: object
+          properties:
+            code:
+              anyOf:
+                - $ref: "#/components/schemas/CommonResult"
+                - $ref: "#/components/schemas/QrAuthResult"
+            attempts_left:
+              type:
+                - integer
+                - "null"
+              format: int32
+              description: Оставшееся число попыток.
+            country_code:
+              type:
+                - string
+                - "null"
+              description: Код страны.
+            device:
+              type:
+                - string
+                - "null"
+              description: Название устройства, инициировавшего запрос.
+            expires_in:
+              type:
+                - integer
+                - "null"
+              format: int64
+              description: Срок действия; мобильный клиент трактует значение в секундах.
+            key:
+              type:
+                - string
+                - "null"
+              description: Ключ QR-запроса.
+            pin:
+              type:
+                - string
+                - "null"
+              description: PIN для подтверждения; строка сохраняет ведущие нули.
+            poll_interval:
+              type:
+                - integer
+                - "null"
+              format: int32
+              description: Интервал опроса статуса в секундах; клиент использует минимум 2 секунды.
+            profile:
+              anyOf:
+                - $ref: "#/components/schemas/Profile"
+                - type: "null"
+              description: Профиль авторизованной сессии.
+            profileToken:
+              anyOf:
+                - $ref: "#/components/schemas/ProfileToken"
+                - type: "null"
+              description: Токен сессии после подтверждения авторизации.
+            secret:
+              type:
+                - string
+                - "null"
+              description: Секрет для проверки статуса QR-запроса.
+            status:
+              anyOf:
+                - $ref: "#/components/schemas/QrAuthStatus"
+                - type: "null"
+      x-result-enum: "#/components/schemas/QrAuthResult"
+      x-apk-version-code: 26102910
+      x-response-constants:
+        - name: DECLINED
+          type: int
+          value: 3
+        - name: EXPIRED
+          type: int
+          value: 2
+        - name: PIN_INVALID
+          type: int
+          value: 5
+        - name: STATUS_CONFIRMED
+          type: int
+          value: 2
+        - name: STATUS_SCANNED
+          type: int
+          value: 1
+        - name: STATUS_WAITING
+          type: int
+          value: 0
+        - name: TOO_MANY_ATTEMPTS
+          type: int
+          value: 4
+        - name: TOO_MANY_REQUESTS
+          type: int
+          value: 6
+    ArticleImageItem:
+      type: object
+      properties:
+        id:
+          type: string
+        url:
+          type: string
+        hash:
+          type: string
+        width:
+          type: integer
+          format: int32
+        height:
+          type: integer
+          format: int32
+    ArticleUploadFileResponse:
+      type: object
+      properties:
+        file:
+          $ref: "#/components/schemas/ArticleImageItem"
+        success:
+          type: integer
+          format: int32
+          description: Признак результата сервиса редактора.
+    ArticleEmbedResponse:
+      type: object
+      properties:
+        success:
+          type: integer
+          format: int32
+        url:
+          type: string
+          description: В AnixartJS это поле устанавливается из исходной ссылки после запроса; наличие в ответе сервера не
+            подтверждено.
+        hash:
+          type: string
+        embed:
+          type: string
+        width:
+          type: integer
+          format: int32
+        height:
+          type: integer
+          format: int32
+        image:
+          type: string
+        title:
+          type: string
+        service:
+          type: string
+        site_name:
+          type: string
+        description:
+          type: string
+      description: Модель вставки ссылки из AnixartJS v1.2.0. Сервис редактора использует success вместо code.
+    CodeInputResponse:
+      type: object
+      description: Параметры ввода кода подтверждения (CodeInputResponse в APK 11 BETA).
+      properties:
+        code_length:
+          type:
+            - integer
+            - "null"
+          format: int32
+          description: "Длина кода; константы клиента: DEFAULT_CODE_LENGTH = 4, MAX_CODE_LENGTH = 5."
+        code_time_left:
+          type:
+            - integer
+            - "null"
+          format: int64
+          description: Оставшееся время действия кода. Единицы в DTO не заданы.
+      x-response-constants:
+        - name: DEFAULT_CODE_LENGTH
+          type: int
+          value: 4
+        - name: MAX_CODE_LENGTH
+          type: int
+          value: 5
+        - name: LONG_CODE_HEADER
+          type: String
+          value: "X-Long-Code: 1"
   securitySchemes:
     AnixartToken:
       type: apiKey
       in: query
       name: token
       description: Токен сессии из `profileToken.token`, получаемый после входа или подтверждения регистрации.
+    EditorBearer:
+      type: http
+      scheme: bearer
+      description: "Токен сервиса редактора (mediaToken в AnixartJS). Передаётся в Authorization: Bearer <token>."
 x-tagGroups:
   - name: Контент
     tags:

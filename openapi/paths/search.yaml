@@ -4,8 +4,8 @@
     - Поиск
     operationId: Search_articleSearch
     summary: Найти статьи
-    description: 'Найти статьи. Выдача постраничная; `page` начинается с `0`. Тело запроса: `ArticlesSearchRequest` (`application/json`).
-      При заданном токене запрос выполняется в контексте текущего профиля.'
+    description: 'Найти статьи. Выдача постраничная; `page` начинается с `0`. Тело запроса: `ArticlesSearchRequest`
+      (`application/json`). При заданном токене запрос выполняется в контексте текущего профиля.'
     x-client-methods:
     - SearchApi.articleSearch
     parameters:
@@ -25,8 +25,8 @@
             schema:
               $ref: ../components/pagination.yaml#/PageOfArticle
       default:
-        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
-          схемой.
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно
+          предусмотрено схемой.
     requestBody:
       required: true
       content:
@@ -42,8 +42,8 @@
     - Поиск
     operationId: Search_channelSubscribersSearch
     summary: Найти подписчиков канала
-    description: 'Найти подписчиков канала. Выдача постраничная; `page` начинается с `0`. Тело запроса: `SearchRequest` (`application/json`).
-      При заданном токене запрос выполняется в контексте текущего профиля.'
+    description: 'Найти подписчиков канала. Выдача постраничная; `page` начинается с `0`. Тело запроса: `SearchRequest`
+      (`application/json`). При заданном токене запрос выполняется в контексте текущего профиля.'
     x-client-methods:
     - SearchApi.channelSubscribersSearch
     parameters:
@@ -70,8 +70,8 @@
             schema:
               $ref: ../components/pagination.yaml#/PageOfChannelProfile
       default:
-        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
-          схемой.
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно
+          предусмотрено схемой.
     requestBody:
       required: true
       content:
@@ -87,8 +87,8 @@
     - Поиск
     operationId: Search_channelSearch
     summary: Найти каналы
-    description: 'Найти каналы. Выдача постраничная; `page` начинается с `0`. Тело запроса: `ChannelsSearchRequest` (`application/json`).
-      При заданном токене запрос выполняется в контексте текущего профиля.'
+    description: 'Найти каналы. Выдача постраничная; `page` начинается с `0`. Тело запроса: `ChannelsSearchRequest`
+      (`application/json`). При заданном токене запрос выполняется в контексте текущего профиля.'
     x-client-methods:
     - SearchApi.channelSearch
     parameters:
@@ -108,8 +108,8 @@
             schema:
               $ref: ../components/pagination.yaml#/PageOfChannel
       default:
-        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
-          схемой.
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно
+          предусмотрено схемой.
     requestBody:
       required: true
       content:
@@ -125,8 +125,8 @@
     - Поиск
     operationId: Search_collectionSearch
     summary: Найти коллекции
-    description: 'Найти коллекции. Выдача постраничная; `page` начинается с `0`. Тело запроса: `SearchRequest` (`application/json`).
-      При заданном токене запрос выполняется в контексте текущего профиля.'
+    description: 'Найти коллекции. Выдача постраничная; `page` начинается с `0`. Тело запроса: `SearchRequest`
+      (`application/json`). При заданном токене запрос выполняется в контексте текущего профиля.'
     x-client-methods:
     - SearchApi.collectionSearch
     parameters:
@@ -146,8 +146,8 @@
             schema:
               $ref: ../components/pagination.yaml#/PageOfCollection
       default:
-        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
-          схемой.
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно
+          предусмотрено схемой.
     requestBody:
       required: true
       content:
@@ -163,8 +163,8 @@
     - Поиск
     operationId: Search_favoriteCollectionsSearch
     summary: Найти избранные коллекции
-    description: 'Найти избранные коллекции. Выдача постраничная; `page` начинается с `0`. Тело запроса: `SearchRequest` (`application/json`).
-      При заданном токене запрос выполняется в контексте текущего профиля.'
+    description: 'Найти избранные коллекции. Выдача постраничная; `page` начинается с `0`. Тело запроса: `SearchRequest`
+      (`application/json`). При заданном токене запрос выполняется в контексте текущего профиля.'
     x-client-methods:
     - SearchApi.favoriteCollectionsSearch
     parameters:
@@ -184,8 +184,8 @@
             schema:
               $ref: ../components/pagination.yaml#/PageOfCollection
       default:
-        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
-          схемой.
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно
+          предусмотрено схемой.
     requestBody:
       required: true
       content:
@@ -201,8 +201,8 @@
     - Поиск
     operationId: Search_favoritesSearch
     summary: Найти избранные релизы
-    description: 'Найти избранные релизы. Выдача постраничная; `page` начинается с `0`. Тело запроса: `SearchRequest` (`application/json`).
-      При заданном токене запрос выполняется в контексте текущего профиля.'
+    description: 'Найти избранные релизы. Выдача постраничная; `page` начинается с `0`. Тело запроса: `SearchRequest`
+      (`application/json`). При заданном токене запрос выполняется в контексте текущего профиля.'
     x-client-methods:
     - SearchApi.favoritesSearch
     parameters:
@@ -222,8 +222,8 @@
             schema:
               $ref: ../components/pagination.yaml#/PageOfRelease
       default:
-        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
-          схемой.
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно
+          предусмотрено схемой.
     requestBody:
       required: true
       content:
@@ -239,8 +239,8 @@
     - Поиск
     operationId: Search_feedSearch
     summary: Найти ленту
-    description: 'Найти ленту. Выдача постраничная; `page` начинается с `0`. Тело запроса: `SearchRequest` (`application/json`).
-      При заданном токене запрос выполняется в контексте текущего профиля.'
+    description: 'Найти ленту. Выдача постраничная; `page` начинается с `0`. Тело запроса: `SearchRequest`
+      (`application/json`). При заданном токене запрос выполняется в контексте текущего профиля.'
     x-client-methods:
     - SearchApi.feedSearch
     parameters:
@@ -260,8 +260,8 @@
             schema:
               $ref: ../components/search.yaml#/FeedSearchResponse
       default:
-        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
-          схемой.
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно
+          предусмотрено схемой.
     requestBody:
       required: true
       content:
@@ -277,8 +277,8 @@
     - Поиск
     operationId: Search_historySearch
     summary: Найти историю просмотров
-    description: 'Найти историю просмотров. Выдача постраничная; `page` начинается с `0`. Тело запроса: `SearchRequest` (`application/json`).
-      При заданном токене запрос выполняется в контексте текущего профиля.'
+    description: 'Найти историю просмотров. Выдача постраничная; `page` начинается с `0`. Тело запроса: `SearchRequest`
+      (`application/json`). При заданном токене запрос выполняется в контексте текущего профиля.'
     x-client-methods:
     - SearchApi.historySearch
     parameters:
@@ -298,8 +298,8 @@
             schema:
               $ref: ../components/pagination.yaml#/PageOfRelease
       default:
-        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
-          схемой.
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно
+          предусмотрено схемой.
     requestBody:
       required: true
       content:
@@ -343,8 +343,8 @@
             schema:
               $ref: ../components/pagination.yaml#/PageOfRelease
       default:
-        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
-          схемой.
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно
+          предусмотрено схемой.
     requestBody:
       required: true
       content:
@@ -360,8 +360,8 @@
     - Поиск
     operationId: Search_profileCollectionSearch
     summary: Найти коллекции профиля
-    description: 'Найти коллекции профиля. Выдача постраничная; `page` начинается с `0`. Тело запроса: `SearchRequest` (`application/json`).
-      При заданном токене запрос выполняется в контексте текущего профиля.'
+    description: 'Найти коллекции профиля. Выдача постраничная; `page` начинается с `0`. Тело запроса: `SearchRequest`
+      (`application/json`). При заданном токене запрос выполняется в контексте текущего профиля.'
     x-client-methods:
     - SearchApi.profileCollectionSearch
     parameters:
@@ -395,8 +395,8 @@
             schema:
               $ref: ../components/pagination.yaml#/PageOfCollection
       default:
-        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
-          схемой.
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно
+          предусмотрено схемой.
     requestBody:
       required: true
       content:
@@ -412,8 +412,8 @@
     - Поиск
     operationId: Search_profileSearch
     summary: Найти профили
-    description: 'Найти профили. Выдача постраничная; `page` начинается с `0`. Тело запроса: `SearchRequest` (`application/json`).
-      При заданном токене запрос выполняется в контексте текущего профиля.'
+    description: 'Найти профили. Выдача постраничная; `page` начинается с `0`. Тело запроса: `SearchRequest`
+      (`application/json`). При заданном токене запрос выполняется в контексте текущего профиля.'
     x-client-methods:
     - SearchApi.profileSearch
     parameters:
@@ -433,8 +433,8 @@
             schema:
               $ref: ../components/pagination.yaml#/PageOfProfile
       default:
-        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
-          схемой.
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно
+          предусмотрено схемой.
     requestBody:
       required: true
       content:
@@ -450,8 +450,8 @@
     - Поиск
     operationId: Search_releaseSearch
     summary: Найти релизы
-    description: 'Найти релизы. Выдача постраничная; `page` начинается с `0`. Тело запроса: `SearchRequest` (`application/json`).
-      При заданном токене запрос выполняется в контексте текущего профиля.'
+    description: 'Найти релизы. Выдача постраничная; `page` начинается с `0`. Тело запроса: `SearchRequest`
+      (`application/json`). При заданном токене запрос выполняется в контексте текущего профиля.'
     x-client-methods:
     - SearchApi.releaseSearch
     parameters:
@@ -477,8 +477,8 @@
             schema:
               $ref: ../components/search.yaml#/ReleaseSearchResponse
       default:
-        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
-          схемой.
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно
+          предусмотрено схемой.
     requestBody:
       required: true
       content:
@@ -488,3 +488,48 @@
     security:
     - AnixartToken: []
     - {}
+/search/profile/friends/{p_id}/{page}:
+  post:
+    tags:
+    - Поиск
+    operationId: Search_profileFriends
+    summary: Найти друзей профиля
+    description: Статически сверено с APK Anixart 11 BETA (26102910); поведение сервера не проверялось.
+    x-source: https://github.com/theDesConnet/AnixartJS/tree/v1.2.0
+    parameters:
+    - name: p_id
+      in: path
+      required: true
+      schema:
+        type: integer
+        format: int64
+      description: Идентификатор профиля.
+    - name: page
+      in: path
+      required: true
+      schema:
+        type: integer
+        format: int32
+        minimum: 0
+      description: Номер страницы, начиная с 0.
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: ../components/search.yaml#/SearchRequest
+    responses:
+      "200":
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/pagination.yaml#/PageOfProfile
+      default:
+        description: Ошибка запроса или серверное ограничение.
+    security:
+    - AnixartToken: []
+    - {}
+    x-client-methods:
+    - SearchApi.profileFriendSearch
+    x-apk-version-code: 26102910

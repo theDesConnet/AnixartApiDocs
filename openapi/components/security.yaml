@@ -3,3 +3,8 @@ AnixartToken:
   in: query
   name: token
   description: Токен сессии из `profileToken.token`, получаемый после входа или подтверждения регистрации.
+
+EditorBearer:
+  type: http
+  scheme: bearer
+  description: "Токен сервиса редактора (mediaToken в AnixartJS). Передаётся в Authorization: Bearer <token>."

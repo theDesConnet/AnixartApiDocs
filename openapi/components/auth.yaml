@@ -34,42 +34,40 @@ ResendResponse:
   - $ref: ./common.yaml#/Response
   - type: object
     properties:
-      timestamp_expires:
-        type: integer
-        format: int64
-        description: Временная метка «timestamp expires» в формате API.
       code:
         anyOf:
         - $ref: ./result-codes.yaml#/CommonResult
         - $ref: ./result-codes.yaml#/ResendResult
         description: 'Код результата: общий `CommonResult` либо `ResendResult` для ошибок этой операции.'
         example: 0
+      timestampExpires:
+        type: integer
+        format: int64
+        description: Временная метка «timestamp expires» в формате API.
+  - $ref: ./auth.yaml#/CodeInputResponse
   x-result-enum: '#/components/schemas/ResendResult'
 RestoreResendResponse:
   allOf:
   - $ref: ./common.yaml#/Response
   - type: object
     properties:
-      timestamp_expires:
-        type: integer
-        format: int64
-        description: Временная метка «timestamp expires» в формате API.
       code:
         anyOf:
         - $ref: ./result-codes.yaml#/CommonResult
         - $ref: ./result-codes.yaml#/RestoreResendResult
         description: 'Код результата: общий `CommonResult` либо `RestoreResendResult` для ошибок этой операции.'
         example: 0
+      timestampExpires:
+        type: integer
+        format: int64
+        description: Временная метка «timestamp expires» в формате API.
+  - $ref: ./auth.yaml#/CodeInputResponse
   x-result-enum: '#/components/schemas/RestoreResendResult'
 RestoreResponse:
   allOf:
   - $ref: ./common.yaml#/Response
   - type: object
     properties:
-      code_timestamp_expires:
-        type: integer
-        format: int64
-        description: Временная метка «code timestamp expires» в формате API.
       hash:
         type: string
         description: Серверный идентификатор текущего шага подтверждения; используется в следующем запросе.
@@ -79,6 +77,11 @@ RestoreResponse:
         - $ref: ./result-codes.yaml#/RestoreResult
         description: 'Код результата: общий `CommonResult` либо `RestoreResult` для ошибок этой операции.'
         example: 0
+      codeTimestampExpires:
+        type: integer
+        format: int64
+        description: Временная метка «code timestamp expires» в формате API.
+  - $ref: ./auth.yaml#/CodeInputResponse
   x-result-enum: '#/components/schemas/RestoreResult'
 RestoreVerifyResponse:
   allOf:
@@ -88,15 +91,21 @@ RestoreVerifyResponse:
       profile:
         $ref: ./profiles.yaml#/Profile
         description: Связанный профиль пользователя.
-      profile_token:
-        $ref: '#/ProfileToken'
-        description: Сессионный токен профиля.
       code:
         anyOf:
         - $ref: ./result-codes.yaml#/CommonResult
         - $ref: ./result-codes.yaml#/RestoreVerifyResult
         description: 'Код результата: общий `CommonResult` либо `RestoreVerifyResult` для ошибок этой операции.'
         example: 0
+      attempts_left:
+        type:
+        - integer
+        - "null"
+        format: int32
+        description: Оставшееся число попыток ввода кода.
+      profileToken:
+        $ref: '#/ProfileToken'
+        description: Сессионный токен профиля.
   x-result-enum: '#/components/schemas/RestoreVerifyResult'
 SignInResponse:
   allOf:
@@ -106,25 +115,21 @@ SignInResponse:
       profile:
         $ref: ./profiles.yaml#/Profile
         description: Связанный профиль пользователя.
-      profile_token:
-        $ref: '#/ProfileToken'
-        description: Сессионный токен профиля.
       code:
         anyOf:
         - $ref: ./result-codes.yaml#/CommonResult
         - $ref: ./result-codes.yaml#/SignInResult
         description: 'Код результата: общий `CommonResult` либо `SignInResult` для ошибок этой операции.'
         example: 0
+      profileToken:
+        $ref: '#/ProfileToken'
+        description: Сессионный токен профиля.
   x-result-enum: '#/components/schemas/SignInResult'
 SignUpResponse:
   allOf:
   - $ref: ./common.yaml#/Response
   - type: object
     properties:
-      code_timestamp_expires:
-        type: integer
-        format: int64
-        description: Временная метка «code timestamp expires» в формате API.
       hash:
         type: string
         description: Серверный идентификатор текущего шага подтверждения; используется в следующем запросе.
@@ -139,6 +144,11 @@ SignUpResponse:
         - $ref: ./result-codes.yaml#/SignUpResult
         description: 'Код результата: общий `CommonResult` либо `SignUpResult` для ошибок этой операции.'
         example: 0
+      codeTimestampExpires:
+        type: integer
+        format: int64
+        description: Временная метка «code timestamp expires» в формате API.
+  - $ref: ./auth.yaml#/CodeInputResponse
   x-result-enum: '#/components/schemas/SignUpResult'
 VerifyResponse:
   allOf:
@@ -148,9 +158,6 @@ VerifyResponse:
       profile:
         $ref: ./profiles.yaml#/Profile
         description: Связанный профиль пользователя.
-      profile_token:
-        $ref: '#/ProfileToken'
-        description: Сессионный токен профиля.
       suggested_logins:
         type: array
         items:
@@ -162,4 +169,144 @@ VerifyResponse:
         - $ref: ./result-codes.yaml#/VerifyResult
         description: 'Код результата: общий `CommonResult` либо `VerifyResult` для ошибок этой операции.'
         example: 0
+      profileToken:
+        $ref: '#/ProfileToken'
+        description: Сессионный токен профиля.
   x-result-enum: '#/components/schemas/VerifyResult'
+
+QrAuthStatus:
+  type: integer
+  format: int32
+  description: Состояние QR-авторизации из AnixartJS v1.2.0.
+  enum:
+  - 0
+  - 1
+  - 2
+  x-enum-varnames:
+  - Waiting
+  - Scanned
+  - Confirmed
+  x-enum-descriptions:
+    "0": Ожидание сканирования.
+    "1": QR-код отсканирован.
+    "2": Авторизация подтверждена.
+QrAuthResponse:
+  description: Общий DTO всех пяти QR-методов в APK 11 BETA. Набор заполненных полей зависит от этапа авторизации.
+  allOf:
+  - $ref: ./common.yaml#/Response
+  - type: object
+    properties:
+      code:
+        anyOf:
+        - $ref: ./result-codes.yaml#/CommonResult
+        - $ref: ./result-codes.yaml#/QrAuthResult
+      attempts_left:
+        type:
+        - integer
+        - "null"
+        format: int32
+        description: Оставшееся число попыток.
+      country_code:
+        type:
+        - string
+        - "null"
+        description: Код страны.
+      device:
+        type:
+        - string
+        - "null"
+        description: Название устройства, инициировавшего запрос.
+      expires_in:
+        type:
+        - integer
+        - "null"
+        format: int64
+        description: Срок действия; мобильный клиент трактует значение в секундах.
+      key:
+        type:
+        - string
+        - "null"
+        description: Ключ QR-запроса.
+      pin:
+        type:
+        - string
+        - "null"
+        description: PIN для подтверждения; строка сохраняет ведущие нули.
+      poll_interval:
+        type:
+        - integer
+        - "null"
+        format: int32
+        description: Интервал опроса статуса в секундах; клиент использует минимум 2 секунды.
+      profile:
+        anyOf:
+        - $ref: ./profiles.yaml#/Profile
+        - type: "null"
+        description: Профиль авторизованной сессии.
+      profileToken:
+        anyOf:
+        - $ref: ./auth.yaml#/ProfileToken
+        - type: "null"
+        description: Токен сессии после подтверждения авторизации.
+      secret:
+        type:
+        - string
+        - "null"
+        description: Секрет для проверки статуса QR-запроса.
+      status:
+        anyOf:
+        - $ref: ./auth.yaml#/QrAuthStatus
+        - type: "null"
+  x-result-enum: "#/components/schemas/QrAuthResult"
+  x-apk-version-code: 26102910
+  x-response-constants:
+  - name: DECLINED
+    type: int
+    value: 3
+  - name: EXPIRED
+    type: int
+    value: 2
+  - name: PIN_INVALID
+    type: int
+    value: 5
+  - name: STATUS_CONFIRMED
+    type: int
+    value: 2
+  - name: STATUS_SCANNED
+    type: int
+    value: 1
+  - name: STATUS_WAITING
+    type: int
+    value: 0
+  - name: TOO_MANY_ATTEMPTS
+    type: int
+    value: 4
+  - name: TOO_MANY_REQUESTS
+    type: int
+    value: 6
+CodeInputResponse:
+  type: object
+  description: Параметры ввода кода подтверждения (CodeInputResponse в APK 11 BETA).
+  properties:
+    code_length:
+      type:
+      - integer
+      - "null"
+      format: int32
+      description: "Длина кода; константы клиента: DEFAULT_CODE_LENGTH = 4, MAX_CODE_LENGTH = 5."
+    code_time_left:
+      type:
+      - integer
+      - "null"
+      format: int64
+      description: Оставшееся время действия кода. Единицы в DTO не заданы.
+  x-response-constants:
+  - name: DEFAULT_CODE_LENGTH
+    type: int
+    value: 4
+  - name: MAX_CODE_LENGTH
+    type: int
+    value: 5
+  - name: LONG_CODE_HEADER
+    type: String
+    value: "X-Long-Code: 1"

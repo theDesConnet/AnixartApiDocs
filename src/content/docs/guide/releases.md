@@ -11,6 +11,16 @@ GET /release/{r_id}
 
 `r_id`: ID релиза. Параметр `extended_mode` необязательный.
 
+## Продолжение просмотра
+
+```http
+GET /release/{r_id}/continue
+```
+
+Возвращает `ReleaseResponse` в контексте продолжения просмотра. При наличии токена передай его в query.
+
+Модель `Release` также содержит `poster_animation` и `screenshot_animations` — анимации постера и скриншотов. У группы связанных релизов `Related` есть поле `cover_animation`.
+
 ## Фильтр
 
 Для выборки релизов есть отдельный POST:

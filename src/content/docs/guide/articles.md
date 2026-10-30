@@ -67,3 +67,14 @@ POST /article/suggestion/delete/{a_id}
 ```http
 POST /article/suggestion/all/{page}
 ```
+
+## Изображения и внешние ссылки
+
+Эти методы работают на отдельном сервере `https://editor.anixsekai.com`. Используй токен редактора в заголовке `Authorization: Bearer <token>`. В Reference эта схема называется `EditorBearer`.
+
+| Метод | Маршрут | Параметры | Ответ |
+| --- | --- | --- | --- |
+| `POST` | `/content/upload` | `multipart/form-data`, бинарное поле `file` | `ArticleUploadFileResponse` |
+| `GET` | `/embed/{type}` | `type`: `youtube`, `vk` или `link`; query-параметр `url` | `ArticleEmbedResponse` |
+
+Загрузка возвращает `file` с полями `id`, `url`, `hash`, `width` и `height`. Ответ вставки описывает HTML в `embed`, размеры, изображение и метаданные ссылки. Оба ответа используют числовое поле `success`.

@@ -1,21 +1,26 @@
 openapi: 3.1.0
 info:
   title: Anixart API
-  version: '10.5'
-  description: 'Неофициальная документация Anixart API актуальная под Anixart v10.5 (BUILD 26101718). Описывает доступные методы, параметры,
-    модели данных и коды результатов. Поведение API может меняться со временем.
+  version: '11 BETA'
+  description: 'Неофициальная документация Anixart API, статически сверенная с APK Anixart 11 BETA (BUILD 26102910).
+    Описывает доступные методы, параметры, модели данных и коды результатов. Методы сервиса редактора дополнены по
+    AnixartJS v1.2.0. Поведение API может меняться со временем.
 
 
     by [DesConnet](https://github.com/theDesConnet)
-    [![GitHub](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white)](https://github.com/theDesConnet/AnixartApiDocs)
 
-    '
+    [![GitHub](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white)](https://github.com/theDesConnet/AnixartApiDocs)'
   contact:
     name: null
   x-documentation-source: https://github.com/theDesConnet/AnixartApiDocs
-  x-client-method-count: 300
-  x-client-route-count: 296
+  x-client-method-count: 307
+  x-client-route-count: 303
   x-legacy-route-count: 1
+  x-sdk-source: https://github.com/theDesConnet/AnixartJS/tree/v1.2.0
+  x-editor-route-count: 2
+  x-apk-version-code: 26102910
+  x-apk-file: anixart_11-beta.apk
+  x-apk-sha256: 5C6CA3F5BF77EAC9F7D1B81A387F49F76A8AEE255FB2C0192FC5C0BC591DC1DA
 servers:
 - url: https://api-s.anixsekai.com/
   description: Основной адрес API.
@@ -651,6 +656,24 @@ paths:
     $ref: ./paths/account.yaml#/~1profile~1preference~1login~1history~1delete
   /release/{r_id}/badges/{page}:
     $ref: ./paths/releases.yaml#/~1release~1{r_id}~1badges~1{page}
+  /auth/qr/create:
+    $ref: ./paths/auth.yaml#/~1auth~1qr~1create
+  /auth/qr/open:
+    $ref: ./paths/auth.yaml#/~1auth~1qr~1open
+  /auth/qr/confirm:
+    $ref: ./paths/auth.yaml#/~1auth~1qr~1confirm
+  /auth/qr/decline:
+    $ref: ./paths/auth.yaml#/~1auth~1qr~1decline
+  /auth/qr/status:
+    $ref: ./paths/auth.yaml#/~1auth~1qr~1status
+  /content/upload:
+    $ref: ./paths/articles.yaml#/~1content~1upload
+  /embed/{type}:
+    $ref: ./paths/articles.yaml#/~1embed~1{type}
+  /release/{r_id}/continue:
+    $ref: ./paths/releases.yaml#/~1release~1{r_id}~1continue
+  /search/profile/friends/{p_id}/{page}:
+    $ref: ./paths/search.yaml#/~1search~1profile~1friends~1{p_id}~1{page}
 components:
   schemas:
     PageOfBadge:
@@ -1319,9 +1342,25 @@ components:
       $ref: ./components/profiles.yaml#/AchievementPreview
     ReorderBadgeShowcaseRequest:
       $ref: ./components/account.yaml#/ReorderBadgeShowcaseRequest
+    QrAuthResult:
+      $ref: ./components/result-codes.yaml#/QrAuthResult
+    QrAuthStatus:
+      $ref: ./components/auth.yaml#/QrAuthStatus
+    QrAuthResponse:
+      $ref: ./components/auth.yaml#/QrAuthResponse
+    ArticleImageItem:
+      $ref: ./components/articles.yaml#/ArticleImageItem
+    ArticleUploadFileResponse:
+      $ref: ./components/articles.yaml#/ArticleUploadFileResponse
+    ArticleEmbedResponse:
+      $ref: ./components/articles.yaml#/ArticleEmbedResponse
+    CodeInputResponse:
+      $ref: ./components/auth.yaml#/CodeInputResponse
   securitySchemes:
     AnixartToken:
       $ref: ./components/security.yaml#/AnixartToken
+    EditorBearer:
+      $ref: ./components/security.yaml#/EditorBearer
 x-tagGroups:
 - name: Контент
   tags:

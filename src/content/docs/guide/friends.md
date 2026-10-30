@@ -9,6 +9,17 @@ description: Заявки в друзья, рекомендации и чёрн�
 GET /profile/friend/all/{id}/{page}
 ```
 
+Поиск среди друзей профиля:
+
+```http
+POST /search/profile/friends/{p_id}/{page}
+Content-Type: application/json
+
+{"query": "login"}
+```
+
+`p_id` — ID профиля, `page` начинается с `0`. Тело — `SearchRequest`, ответ — `PageOfProfile`. Токен передаётся в query, если задан.
+
 ## Заявки
 
 Отправить:

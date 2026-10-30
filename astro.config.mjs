@@ -5,7 +5,7 @@ export default defineConfig({
   integrations: [
     starlight({
       title: 'Anixart API',
-      description: 'Неофициальная документация Anixart API актуальная под Anixart v10.0 (BUILD 26090418).',
+      description: 'Неофициальная документация Anixart API под Anixart 11 BETA (BUILD 26102910).',
       favicon: '/favicon.svg',
       logo: {
         src: './src/assets/logo.svg',

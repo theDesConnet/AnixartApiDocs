@@ -1525,3 +1525,26 @@ ChannelDeleteResult:
   x-apk-constant-names:
   - CHANNEL_NOT_FOUND
   - CHANNEL_NOT_OWNED
+
+QrAuthResult:
+  type: integer
+  format: int32
+  description: Дополнительные коды QR-авторизации из AnixartJS v1.2.0; общие коды описаны в CommonResult.
+  enum:
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+  x-enum-varnames:
+    - Expired
+    - Declined
+    - TooManyAttempts
+    - PinInvalid
+    - TooManyRequests
+  x-enum-descriptions:
+    "2": Запрос истёк.
+    "3": Авторизация отклонена.
+    "4": Превышено число попыток.
+    "5": Неверный PIN.
+    "6": Слишком много запросов.

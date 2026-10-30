@@ -13,16 +13,16 @@ ChangeEmailResendResponse:
   - $ref: ./common.yaml#/Response
   - type: object
     properties:
-      timestamp_expires:
-        type: integer
-        format: int64
-        description: Временная метка «timestamp expires» в формате API.
       code:
         anyOf:
         - $ref: ./result-codes.yaml#/CommonResult
         - $ref: ./result-codes.yaml#/ChangeEmailResendResult
         description: 'Код результата: общий `CommonResult` либо `ChangeEmailResendResult` для ошибок этой операции.'
         example: 0
+      timestampExpires:
+        type: integer
+        format: int64
+        description: Временная метка «timestamp expires» в формате API.
   x-result-enum: '#/components/schemas/ChangeEmailResendResult'
 ChangeEmailResponse:
   allOf:
@@ -32,16 +32,16 @@ ChangeEmailResponse:
       hash:
         type: string
         description: Серверный идентификатор текущего шага подтверждения; используется в следующем запросе.
-      timestamp_expires:
-        type: integer
-        format: int64
-        description: Временная метка «timestamp expires» в формате API.
       code:
         anyOf:
         - $ref: ./result-codes.yaml#/CommonResult
         - $ref: ./result-codes.yaml#/ChangeEmailResult
         description: 'Код результата: общий `CommonResult` либо `ChangeEmailResult` для ошибок этой операции.'
         example: 0
+      timestampExpires:
+        type: integer
+        format: int64
+        description: Временная метка «timestamp expires» в формате API.
   x-result-enum: '#/components/schemas/ChangeEmailResult'
 ChangeEmailVerifyResponse:
   allOf:
@@ -140,19 +140,12 @@ GoogleResponse:
   - $ref: ./common.yaml#/Response
   - type: object
     properties:
-      code_timestamp_expires:
-        type: integer
-        format: int64
-        description: Временная метка «code timestamp expires» в формате API.
       hash:
         type: string
         description: Серверный идентификатор текущего шага подтверждения; используется в следующем запросе.
       profile:
         $ref: ./profiles.yaml#/Profile
         description: Связанный профиль пользователя.
-      profile_token:
-        $ref: ./auth.yaml#/ProfileToken
-        description: Сессионный токен профиля.
       suggested_logins:
         type: array
         items:
@@ -164,6 +157,14 @@ GoogleResponse:
         - $ref: ./result-codes.yaml#/GoogleResult
         description: 'Код результата: общий `CommonResult` либо `GoogleResult` для ошибок этой операции.'
         example: 0
+      profileToken:
+        $ref: ./auth.yaml#/ProfileToken
+        description: Сессионный токен профиля.
+      codeTimestampExpires:
+        type: integer
+        format: int64
+        description: Временная метка «code timestamp expires» в формате API.
+  - $ref: ./auth.yaml#/CodeInputResponse
   x-result-enum: '#/components/schemas/GoogleResult'
 GoogleUnbindResponse:
   allOf:
@@ -388,19 +389,12 @@ TelegramResponse:
   - $ref: ./common.yaml#/Response
   - type: object
     properties:
-      code_timestamp_expires:
-        type: integer
-        format: int64
-        description: Временная метка «code timestamp expires» в формате API.
       hash:
         type: string
         description: Серверный идентификатор текущего шага подтверждения; используется в следующем запросе.
       profile:
         $ref: ./profiles.yaml#/Profile
         description: Связанный профиль пользователя.
-      profile_token:
-        $ref: ./auth.yaml#/ProfileToken
-        description: Сессионный токен профиля.
       suggested_logins:
         type: array
         items:
@@ -412,6 +406,14 @@ TelegramResponse:
         - $ref: ./result-codes.yaml#/TelegramResult
         description: 'Код результата: общий `CommonResult` либо `TelegramResult` для ошибок этой операции.'
         example: 0
+      profileToken:
+        $ref: ./auth.yaml#/ProfileToken
+        description: Сессионный токен профиля.
+      codeTimestampExpires:
+        type: integer
+        format: int64
+        description: Временная метка «code timestamp expires» в формате API.
+  - $ref: ./auth.yaml#/CodeInputResponse
   x-result-enum: '#/components/schemas/TelegramResult'
 TelegramUnbindResponse:
   allOf:
@@ -670,19 +672,12 @@ VkResponse:
   - $ref: ./common.yaml#/Response
   - type: object
     properties:
-      code_timestamp_expires:
-        type: integer
-        format: int64
-        description: Временная метка «code timestamp expires» в формате API.
       hash:
         type: string
         description: Серверный идентификатор текущего шага подтверждения; используется в следующем запросе.
       profile:
         $ref: ./profiles.yaml#/Profile
         description: Связанный профиль пользователя.
-      profile_token:
-        $ref: ./auth.yaml#/ProfileToken
-        description: Сессионный токен профиля.
       suggested_logins:
         type: array
         items:
@@ -694,6 +689,14 @@ VkResponse:
         - $ref: ./result-codes.yaml#/VkResult
         description: 'Код результата: общий `CommonResult` либо `VkResult` для ошибок этой операции.'
         example: 0
+      profileToken:
+        $ref: ./auth.yaml#/ProfileToken
+        description: Сессионный токен профиля.
+      codeTimestampExpires:
+        type: integer
+        format: int64
+        description: Временная метка «code timestamp expires» в формате API.
+  - $ref: ./auth.yaml#/CodeInputResponse
   x-result-enum: '#/components/schemas/VkResult'
 VkUnbindResponse:
   allOf:
@@ -724,10 +727,6 @@ YandexResponse:
   - $ref: ./common.yaml#/Response
   - type: object
     properties:
-      code_timestamp_expires:
-        type: integer
-        format: int64
-        description: Временная метка «code timestamp expires» в формате API.
       email:
         type: string
         description: Адрес электронной почты.
@@ -737,9 +736,6 @@ YandexResponse:
       profile:
         $ref: ./profiles.yaml#/Profile
         description: Связанный профиль пользователя.
-      profile_token:
-        $ref: ./auth.yaml#/ProfileToken
-        description: Сессионный токен профиля.
       suggested_logins:
         type: array
         items:
@@ -751,6 +747,14 @@ YandexResponse:
         - $ref: ./result-codes.yaml#/YandexResult
         description: 'Код результата: общий `CommonResult` либо `YandexResult` для ошибок этой операции.'
         example: 0
+      profileToken:
+        $ref: ./auth.yaml#/ProfileToken
+        description: Сессионный токен профиля.
+      codeTimestampExpires:
+        type: integer
+        format: int64
+        description: Временная метка «code timestamp expires» в формате API.
+  - $ref: ./auth.yaml#/CodeInputResponse
   x-result-enum: '#/components/schemas/YandexResult'
 YandexUnbindResponse:
   allOf:

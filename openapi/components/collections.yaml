@@ -48,6 +48,11 @@ Collection:
       items:
         $ref: ./releases.yaml#/Release
       description: Релизы в коллекции или ответе.
+    cover_animation:
+      type:
+      - string
+      - "null"
+      description: URL анимации обложки коллекции.
 CollectionCompact:
   type: object
   properties:

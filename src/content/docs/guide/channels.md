@@ -3,6 +3,8 @@ title: Каналы
 description: Каналы, подписки, статьи и права участников.
 ---
 
+В модели `Channel` доступны `avatar_animation` и `cover_animation`. Поля значка сериализуются с префиксом канала: `channel_badge_id`, `channel_badge_name`, `channel_badge_type`, `channel_badge_url`.
+
 Карточка канала:
 
 ```http

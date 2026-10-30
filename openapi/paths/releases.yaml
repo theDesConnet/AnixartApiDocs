@@ -4,8 +4,8 @@
     - Релизы
     operationId: Filter_filter
     summary: Отфильтровать релизы
-    description: 'Отфильтровать релизы. Выдача постраничная; `page` начинается с `0`. Тело запроса: `FilterRequest` (`application/json`).
-      При заданном токене запрос выполняется в контексте текущего профиля.'
+    description: 'Отфильтровать релизы. Выдача постраничная; `page` начинается с `0`. Тело запроса: `FilterRequest`
+      (`application/json`). При заданном токене запрос выполняется в контексте текущего профиля.'
     x-client-methods:
     - FilterApi.filter
     parameters:
@@ -33,8 +33,8 @@
             schema:
               $ref: ../components/pagination.yaml#/PageOfRelease
       default:
-        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
-          схемой.
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно
+          предусмотрено схемой.
     requestBody:
       required: true
       content:
@@ -52,8 +52,8 @@
     - Релизы
     operationId: Related_related
     summary: Получить связанные релизы
-    description: Получить связанные релизы. Выдача постраничная; `page` начинается с `0`. При заданном токене запрос выполняется
-      в контексте текущего профиля.
+    description: Получить связанные релизы. Выдача постраничная; `page` начинается с `0`. При заданном токене запрос
+      выполняется в контексте текущего профиля.
     x-client-methods:
     - RelatedApi.related
     parameters:
@@ -86,8 +86,8 @@
             schema:
               $ref: ../components/pagination.yaml#/PageOfRelease
       default:
-        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
-          схемой.
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно
+          предусмотрено схемой.
     security:
     - AnixartToken: []
     - {}
@@ -124,8 +124,8 @@
             schema:
               $ref: ../components/releases.yaml#/ReleaseResponse
       default:
-        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
-          схемой.
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно
+          предусмотрено схемой.
     security:
     - AnixartToken: []
     - {}
@@ -153,8 +153,8 @@
             schema:
               $ref: ../components/releases.yaml#/ReleaseResponse
       default:
-        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
-          схемой.
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно
+          предусмотрено схемой.
     security:
     - AnixartToken: []
     - {}
@@ -182,8 +182,8 @@
             schema:
               $ref: ../components/releases.yaml#/ReleaseResponse
       default:
-        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
-          схемой.
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно
+          предусмотрено схемой.
     security:
     - AnixartToken: []
     - {}
@@ -225,8 +225,8 @@
             schema:
               $ref: ../components/releases.yaml#/ReleaseResponse
       default:
-        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
-          схемой.
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно
+          предусмотрено схемой.
     security:
     - AnixartToken: []
     - {}
@@ -255,8 +255,8 @@
             schema:
               $ref: ../components/pagination.yaml#/PageOfReleaseStreamingPlatform
       default:
-        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
-          схемой.
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно
+          предусмотрено схемой.
     x-original-tags:
     - Стриминговые платформы
 /release/vote/add/{r_id}/{vote}:
@@ -299,8 +299,8 @@
             schema:
               $ref: ../components/releases.yaml#/VoteReleaseResponse
       default:
-        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
-          схемой.
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно
+          предусмотрено схемой.
     security:
     - AnixartToken: []
     - {}
@@ -329,8 +329,8 @@
             schema:
               $ref: ../components/releases.yaml#/DeleteVoteReleaseResponse
       default:
-        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
-          схемой.
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно
+          предусмотрено схемой.
     security:
     - AnixartToken: []
     - {}
@@ -365,8 +365,8 @@
             schema:
               $ref: ../components/releases.yaml#/ReleaseResponse
       default:
-        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
-          схемой.
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно
+          предусмотрено схемой.
     security:
     - AnixartToken: []
     - {}
@@ -387,8 +387,8 @@
             schema:
               $ref: ../components/releases.yaml#/ScheduleResponse
       default:
-        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
-          схемой.
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно
+          предусмотрено схемой.
     x-original-tags:
     - Расписание
 /release/{r_id}/badges/{page}:
@@ -426,3 +426,34 @@
     security:
     - AnixartToken: []
     - {}
+/release/{r_id}/continue:
+  get:
+    tags:
+    - Релизы
+    operationId: Release_continueWatching
+    summary: Продолжить просмотр релиза
+    description: Статически сверено с APK Anixart 11 BETA (26102910); поведение сервера не проверялось.
+    x-source: https://github.com/theDesConnet/AnixartJS/tree/v1.2.0
+    parameters:
+    - name: r_id
+      in: path
+      required: true
+      schema:
+        type: integer
+        format: int64
+      description: Идентификатор релиза.
+    responses:
+      "200":
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/releases.yaml#/ReleaseResponse
+      default:
+        description: Ошибка запроса или серверное ограничение.
+    security:
+    - AnixartToken: []
+    - {}
+    x-client-methods:
+    - ReleaseApi.continueWatching
+    x-apk-version-code: 26102910

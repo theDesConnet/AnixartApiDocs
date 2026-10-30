@@ -3,22 +3,34 @@ Badge:
   description: Значок профиля или релиза.
   properties:
     award:
-      $ref: ./profiles.yaml#/BadgeAward
+      anyOf:
+      - $ref: ./profiles.yaml#/BadgeAward
+      - type: "null"
     image_url:
-      type: string
-      description: URL изображения или анимации значка.
+      type:
+      - string
+      - "null"
+      description: URL значка. В APK 11 BETA Java-свойство badgeUrl сериализуется как image_url.
     category:
-      $ref: ./profiles.yaml#/BadgeCategory
+      anyOf:
+      - $ref: ./profiles.yaml#/BadgeCategory
+      - type: "null"
     description:
-      type: string
+      type:
+      - string
+      - "null"
     id:
       type: integer
       format: int64
       description: Уникальный идентификатор.
     image_medium_url:
-      type: string
+      type:
+      - string
+      - "null"
     image_small_url:
-      type: string
+      type:
+      - string
+      - "null"
     is_available:
       type:
       - boolean
@@ -38,7 +50,9 @@ Badge:
       - "null"
       format: double
     rarity:
-      type: string
+      type:
+      - string
+      - "null"
     timestamp:
       type: integer
       format: int64
@@ -396,6 +410,11 @@ Profile:
       type: array
       items:
         $ref: ./profiles.yaml#/Badge
+    avatar_animation:
+      type:
+      - string
+      - "null"
+      description: URL анимации аватара (APK 11 BETA).
   x-response-constants:
   - name: ADMINISTRATOR
     type: long
@@ -576,6 +595,13 @@ ProfileInfoResponse:
         type: integer
         format: int64
         description: Временная метка «sponsorship expires» в формате API.
+      ban_expires:
+        type: integer
+        format: int64
+        description: Время окончания блокировки.
+      is_banned:
+        type: boolean
+        description: Профиль заблокирован.
 ProfileProcessRequest:
   type: object
   properties:

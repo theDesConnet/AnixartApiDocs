@@ -25,6 +25,11 @@ Interesting:
     action:
       type: string
       description: Действие, которое клиент выполняет при выборе карточки.
+    image_animation:
+      type:
+      - string
+      - "null"
+      description: URL анимации изображения блока рекомендаций.
 LatestArticleResponse:
   allOf:
   - $ref: ./common.yaml#/Response

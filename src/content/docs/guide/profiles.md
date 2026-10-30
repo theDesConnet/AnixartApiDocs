@@ -40,7 +40,7 @@ GET /profile/preference/badge/remove
 
 Список разделов возвращает `profile`, `recent`, `sections`, `showcased` и `total_count`. Параметр `recent` передаётся строкой; его формат в Retrofit не уточнён. Для страницы категории используются `categoryId` и `page` (с `0`). Выбор значка возвращает `ProfileBadgeResponse` с полем `badge`.
 
-`GET /profile/preference/badge/all/{page}` отсутствует в клиенте 10.5 и отмечен в Reference как устаревший. Доступность старого маршрута на сервере не проверялась.
+`GET /profile/preference/badge/all/{page}` отмечен в Reference как устаревший. Доступность старого маршрута на сервере не проверялась.
 
 ## Витрина значков
 
@@ -53,6 +53,8 @@ POST /profile/preference/badge/showcase/reorder
 Для изменения порядка передай JSON `{"ids": [123, 456]}`. Ответ `ProfileBadgeShowcaseResponse` содержит код результата: `2` — `INVALID_BADGE`, `3` — `LIMIT_REACHED`.
 
 `Profile` и `Release` содержат `badge_count` и `badges_preview`. Модель `Badge` включает категорию, редкость, описание, условия получения, изображения и признаки владения, выбора и размещения на витрине.
+
+Основной URL значка передаётся в поле `image_url`. Модель `Profile` также содержит `avatar_animation`; `ProfileInfoResponse` — `is_banned` и `ban_expires`.
 
 ## Достижения
 

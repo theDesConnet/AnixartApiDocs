@@ -51,6 +51,10 @@ Episode:
     url:
       type: string
       description: URL ресурса.
+  x-client-fields:
+  - name: playbackDuration
+    type: long
+    description: Длительность воспроизведения в локальной модели клиента 11 BETA. Имя JSON-поля и передача сервером не подтверждены.
 EpisodeCompact:
   type: object
   description: Компактная информация об эпизоде.
@@ -232,6 +236,14 @@ TypeResponse:
         items:
           $ref: '#/Type'
         description: Озвучки/дабберы, доступные клиенту.
+      popular_type_ids:
+        type:
+        - array
+        - "null"
+        items:
+          type: integer
+          format: int64
+        description: Идентификаторы популярных озвучек.
 TypesResponse:
   allOf:
   - $ref: ./common.yaml#/Response
