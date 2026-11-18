@@ -1,19 +1,41 @@
 ---
 title: Лента и рекомендации
-description: Несколько независимых подборок контента из Discover и Feed.
+description: Подборки для главного экрана и лента статей.
 ---
 
-Discover и Feed возвращают независимые подборки.
+Подборки для главного экрана можно получить одним запросом к Discover. Для ленты статей есть отдельные методы Feed.
 
-## Интересное
+## Главный экран
 
-[Открыть `POST /discover/interesting` в API Reference](/api/#tag/feed/Discover_interesting)
+[Открыть `GET /discover/hub` в API Reference](/api/#tag/feed/Discover_hub)
 
 ```http
-POST /discover/interesting
+GET /discover/hub?recommendations_previous_page=-1&collections_previous_page=-1
 ```
 
-Ответ: `PageOfInteresting`.
+В ответе `DiscoverHubResponse` приходят подборки:
+
+| Поле | Содержимое |
+| --- | --- |
+| `interesting` | Блоки «Интересное» |
+| `watching` | Релизы, которые сейчас смотрят |
+| `discussing` | Обсуждаемые релизы |
+| `comments` | Комментарии к релизам |
+| `recommendations` | Рекомендованные релизы |
+| `collections` | Коллекции |
+
+Каждая подборка — массив или `null`.
+
+## Следующая страница
+
+В первом запросе оба параметра равны `-1`. Для следующего запроса возьми номера страниц из ответа:
+
+| Поле ответа | Параметр следующего запроса |
+| --- | --- |
+| `recommendations_page` | `recommendations_previous_page` |
+| `collections_page` | `collections_previous_page` |
+
+У рекомендаций и коллекций своя пагинация. Количество страниц коллекций приходит в `collections_page_count`.
 
 ## Сейчас смотрят
 
@@ -24,16 +46,6 @@ POST /discover/watching/0
 ```
 
 Ответ: `PageOfRelease`.
-
-## Обсуждают
-
-[Открыть `POST /discover/discussing` в API Reference](/api/#tag/feed/Discover_discussing)
-
-```http
-POST /discover/discussing
-```
-
-Возвращает страницу релизов.
 
 ## Рекомендации
 
@@ -69,6 +81,6 @@ GET /feed/all/0
 
 У этого метода есть необязательные `channel_id` и `date`.
 
-Номера страниц у разных подборок не связаны между собой. Для персонализированных данных передавай `token`, если он есть.
+Для персональных подборок нужен `token`. Методы `POST /discover/interesting`, `POST /discover/comments` и `POST /discover/discussing` устарели — вместо них используй `GET /discover/hub`.
 
 Связанный раздел: [Лента и рекомендации](/guide/feed/).

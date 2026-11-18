@@ -278,6 +278,10 @@ EditorAvailableResponse:
         - $ref: ./result-codes.yaml#/EditorAvailableResult
         description: 'Код результата: общий `CommonResult` либо `EditorAvailableResult` для ошибок этой операции.'
         example: 0
+      limits:
+        anyOf:
+        - $ref: ./articles.yaml#/ArticleLimits
+        - type: "null"
   x-result-enum: '#/components/schemas/EditorAvailableResult'
 EditorChannel:
   type: object
@@ -364,3 +368,67 @@ ArticleEmbedResponse:
     description:
       type: string
   description: Модель вставки ссылки из AnixartJS v1.2.0. Сервис редактора использует success вместо code.
+ArticleLimits:
+  type: object
+  properties:
+    max_block_count:
+      type:
+      - integer
+      - "null"
+      format: int32
+    max_header_text_length:
+      type:
+      - integer
+      - "null"
+      format: int32
+    max_list_item_count:
+      type:
+      - integer
+      - "null"
+      format: int32
+    max_list_item_text_length:
+      type:
+      - integer
+      - "null"
+      format: int32
+    max_media_item_count:
+      type:
+      - integer
+      - "null"
+      format: int32
+    max_paragraph_text_length:
+      type:
+      - integer
+      - "null"
+      format: int32
+    max_quote_caption_length:
+      type:
+      - integer
+      - "null"
+      format: int32
+    max_quote_line_break_count:
+      type:
+      - integer
+      - "null"
+      format: int32
+    max_quote_serialized_text_length:
+      type:
+      - integer
+      - "null"
+      format: int32
+    max_quote_text_length:
+      type:
+      - integer
+      - "null"
+      format: int32
+    max_quote_total_href_length:
+      type:
+      - integer
+      - "null"
+      format: int32
+    max_tag_count:
+      type:
+      - integer
+      - "null"
+      format: int32
+  description: "Ограничения редактора: количество блоков, тегов и элементов, длина текста и ссылок. Значения могут быть null."

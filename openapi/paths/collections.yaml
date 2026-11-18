@@ -4,8 +4,8 @@
     - Коллекции
     operationId: Collection_profileCollections
     summary: Получить коллекции профиля
-    description: Получить коллекции профиля. Выдача постраничная; `page` начинается с `0`. При заданном токене запрос выполняется
-      в контексте текущего профиля.
+    description: Получить коллекции профиля. Выдача постраничная; `page` начинается с `0`. При заданном токене запрос
+      выполняется в контексте текущего профиля.
     x-client-methods:
     - CollectionApi.profileCollections
     parameters:
@@ -24,6 +24,20 @@
         type: integer
         format: int32
         minimum: 0
+    - name: sort
+      in: query
+      required: false
+      description: Порядок сортировки коллекций.
+      schema:
+        type: integer
+        format: int32
+    - name: release_id
+      in: query
+      required: false
+      description: Идентификатор релиза для фильтрации коллекций.
+      schema:
+        type: integer
+        format: int64
     responses:
       '200':
         description: Запрос выполнен.
@@ -32,8 +46,8 @@
             schema:
               $ref: ../components/pagination.yaml#/PageOfCollection
       default:
-        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
-          схемой.
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно
+          предусмотрено схемой.
     security:
     - AnixartToken: []
     - {}
@@ -43,8 +57,8 @@
     - Коллекции
     operationId: Collection_releaseCollections
     summary: Получить коллекции с релизом
-    description: Получить коллекции с релизом. Выдача постраничная; `page` начинается с `0`. При заданном токене запрос выполняется
-      в контексте текущего профиля.
+    description: Получить коллекции с релизом. Выдача постраничная; `page` начинается с `0`. При заданном токене запрос
+      выполняется в контексте текущего профиля.
     x-client-methods:
     - CollectionApi.releaseCollections
     parameters:
@@ -70,6 +84,12 @@
       schema:
         type: integer
         format: int32
+    - name: friends
+      in: query
+      required: false
+      description: Фильтровать коллекции по друзьям.
+      schema:
+        type: boolean
     responses:
       '200':
         description: Запрос выполнен.
@@ -78,8 +98,8 @@
             schema:
               $ref: ../components/pagination.yaml#/PageOfCollection
       default:
-        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
-          схемой.
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно
+          предусмотрено схемой.
     security:
     - AnixartToken: []
     - {}
@@ -522,3 +542,95 @@
     - {}
     x-original-tags:
     - Мои коллекции
+/collection/hub:
+  get:
+    tags:
+    - Коллекции
+    operationId: Collection_hub
+    summary: Получить главную страницу коллекций
+    x-client-methods:
+    - CollectionApi.hub
+    parameters: []
+    responses:
+      "200":
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/collections.yaml#/CollectionHubResponse
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле code.
+    security:
+    - AnixartToken: []
+    - {}
+/collectionMy/all/release/{r_id}/{page}:
+  get:
+    tags:
+    - Коллекции
+    operationId: CollectionMy_releaseCollections
+    summary: Получить свои коллекции для релиза
+    x-client-methods:
+    - CollectionMyApi.releaseCollections
+    parameters:
+    - name: r_id
+      in: path
+      required: true
+      description: Идентификатор релиза.
+      schema:
+        type: integer
+        format: int64
+    - name: page
+      in: path
+      required: true
+      description: Номер страницы, начиная с 0.
+      schema:
+        type: integer
+        format: int32
+        minimum: 0
+    responses:
+      "200":
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/pagination.yaml#/PageOfCollection
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле code.
+    security:
+    - AnixartToken: []
+    - {}
+/collectionMy/release/remove/{collectionId}:
+  get:
+    tags:
+    - Коллекции
+    operationId: CollectionMy_releaseRemove
+    summary: Удалить релиз из коллекции
+    x-client-methods:
+    - CollectionMyApi.releaseRemove
+    parameters:
+    - name: collectionId
+      in: path
+      required: true
+      description: Идентификатор коллекции.
+      schema:
+        type: integer
+        format: int64
+    - name: release_id
+      in: query
+      required: true
+      description: Идентификатор удаляемого релиза.
+      schema:
+        type: integer
+        format: int64
+    responses:
+      "200":
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/collections.yaml#/ReleaseRemoveCollectionResponse
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле code.
+    security:
+    - AnixartToken: []
+    - {}

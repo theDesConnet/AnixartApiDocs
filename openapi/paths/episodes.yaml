@@ -7,6 +7,7 @@
     description: Получить конкретный эпизод.
     x-client-methods:
     - EpisodeApi.episodeTarget
+    - EpisodeApi.episodeDownloadTarget
     parameters:
     - name: releaseId
       in: path
@@ -29,6 +30,13 @@
       schema:
         type: integer
         format: int32
+    - name: download
+      in: query
+      required: false
+      description: Получить эпизод для загрузки.
+      schema:
+        type: boolean
+        default: false
     responses:
       '200':
         description: Запрос выполнен.
@@ -37,8 +45,8 @@
             schema:
               $ref: ../components/episodes.yaml#/EpisodeTargetResponse
       default:
-        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
-          схемой.
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно
+          предусмотрено схемой.
 /episode/unwatch/{releaseId}/{sourceId}:
   post:
     tags:
@@ -555,3 +563,31 @@
     - {}
     x-original-tags:
     - Озвучки
+/episode/watched:
+  get:
+    tags:
+    - Эпизоды
+    operationId: Episode_watched
+    summary: Получить отметки просмотра эпизодов
+    x-client-methods:
+    - EpisodeApi.watched
+    parameters:
+    - name: release_ids
+      in: query
+      required: true
+      description: Идентификаторы релизов через запятую.
+      schema:
+        type: string
+        example: 123,456
+    responses:
+      "200":
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/episodes.yaml#/EpisodeWatchedResponse
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле code.
+    security:
+    - AnixartToken: []
+    - {}

@@ -45,6 +45,14 @@ GET /episode/target/{releaseId}/{sourceId}/{position}
 
 `position` - номер серии.
 
+Чтобы скачать эпизод, передай `download=true`:
+
+```http
+GET /episode/target/{releaseId}/{sourceId}/{position}?download=true
+```
+
+В `EpisodeTargetResponse` приходят `episode` и ограничение скорости `download_speed_limit`. Код `2` (`DownloadRestricted`) означает запрет загрузки, `3` (`DownloadSourceRestricted`) — запрет загрузки из выбранного источника. У `Source` есть ограничение скорости `download_speed_limit` и флаг `is_download_disabled`.
+
 ## Просмотр
 
 Чтобы отметить просмотр указанной серии:
@@ -60,6 +68,14 @@ POST /episode/unwatch/{releaseId}/{sourceId}/{position}
 ```
 
 Есть варианты без `position`, если операция относится сразу ко всему источнику.
+
+Получить отметки просмотра для нескольких релизов:
+
+```http
+GET /episode/watched?release_ids=123,456&token=YOUR_TOKEN
+```
+
+В `release_ids` передай ID релизов через запятую. В ответе `EpisodeWatchedResponse.sources` будут источники: `release_id`, `source_id` и номера просмотренных серий в `positions`. Поле `sources` может быть `null`.
 
 ## Закреплённая озвучка
 

@@ -575,6 +575,11 @@ Release:
       items:
         type: string
       description: Анимации скриншотов релиза.
+    restriction_note:
+      type:
+      - string
+      - "null"
+      description: Пояснение к ограничениям релиза.
 ReleaseCompact:
   type: object
   description: Компактная карточка релиза.

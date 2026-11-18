@@ -1,8 +1,8 @@
 openapi: 3.1.0
 info:
   title: Anixart API
-  version: '11 BETA'
-  description: 'Неофициальная документация Anixart API, статически сверенная с APK Anixart 11 BETA (BUILD 26102910).
+  version: '11 BETA 3'
+  description: 'Неофициальная документация Anixart API, статически сверенная с APK Anixart 11 BETA 3 (BUILD 26111702).
     Описывает доступные методы, параметры, модели данных и коды результатов. Методы сервиса редактора дополнены по
     AnixartJS v1.2.0. Поведение API может меняться со временем.
 
@@ -13,14 +13,15 @@ info:
   contact:
     name: null
   x-documentation-source: https://github.com/theDesConnet/AnixartApiDocs
-  x-client-method-count: 307
+  x-client-method-count: 309
   x-client-route-count: 303
-  x-legacy-route-count: 1
+  x-legacy-route-count: 6
   x-sdk-source: https://github.com/theDesConnet/AnixartJS/tree/v1.2.0
   x-editor-route-count: 2
-  x-apk-version-code: 26102910
-  x-apk-file: anixart_11-beta.apk
-  x-apk-sha256: 5C6CA3F5BF77EAC9F7D1B81A387F49F76A8AEE255FB2C0192FC5C0BC591DC1DA
+  x-apk-version-code: 26111702
+  x-apk-file: anixart_11-beta-3.apk
+  x-apk-sha256: 8951D10585E81166ED89292E83A4292703812BFE2F3CC63E46C900FA5C5668AE
+  x-client-raw-route-count: 305
 servers:
 - url: https://api-s.anixsekai.com/
   description: Основной адрес API.
@@ -674,6 +675,16 @@ paths:
     $ref: ./paths/releases.yaml#/~1release~1{r_id}~1continue
   /search/profile/friends/{p_id}/{page}:
     $ref: ./paths/search.yaml#/~1search~1profile~1friends~1{p_id}~1{page}
+  /collection/hub:
+    $ref: ./paths/collections.yaml#/~1collection~1hub
+  /collectionMy/all/release/{r_id}/{page}:
+    $ref: ./paths/collections.yaml#/~1collectionMy~1all~1release~1{r_id}~1{page}
+  /collectionMy/release/remove/{collectionId}:
+    $ref: ./paths/collections.yaml#/~1collectionMy~1release~1remove~1{collectionId}
+  /discover/hub:
+    $ref: ./paths/feed.yaml#/~1discover~1hub
+  /episode/watched:
+    $ref: ./paths/episodes.yaml#/~1episode~1watched
 components:
   schemas:
     PageOfBadge:
@@ -1356,6 +1367,24 @@ components:
       $ref: ./components/articles.yaml#/ArticleEmbedResponse
     CodeInputResponse:
       $ref: ./components/auth.yaml#/CodeInputResponse
+    CollectionReleasePreview:
+      $ref: ./components/collections.yaml#/CollectionReleasePreview
+    CollectionHubResponse:
+      $ref: ./components/collections.yaml#/CollectionHubResponse
+    ReleaseRemoveCollectionResult:
+      $ref: ./components/result-codes.yaml#/ReleaseRemoveCollectionResult
+    ReleaseRemoveCollectionResponse:
+      $ref: ./components/collections.yaml#/ReleaseRemoveCollectionResponse
+    DiscoverHubResponse:
+      $ref: ./components/feed.yaml#/DiscoverHubResponse
+    WatchedSource:
+      $ref: ./components/episodes.yaml#/WatchedSource
+    EpisodeWatchedResponse:
+      $ref: ./components/episodes.yaml#/EpisodeWatchedResponse
+    EpisodeDownloadTargetResult:
+      $ref: ./components/result-codes.yaml#/EpisodeDownloadTargetResult
+    ArticleLimits:
+      $ref: ./components/articles.yaml#/ArticleLimits
   securitySchemes:
     AnixartToken:
       $ref: ./components/security.yaml#/AnixartToken

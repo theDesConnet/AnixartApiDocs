@@ -41,3 +41,54 @@ LatestArticleResponse:
         - 'null'
         format: int64
         description: Идентификатор статьи.
+DiscoverHubResponse:
+  allOf:
+  - $ref: ./common.yaml#/Response
+  - type: object
+    properties:
+      collections:
+        type:
+        - array
+        - "null"
+        items:
+          $ref: ./collections.yaml#/Collection
+      collections_page:
+        type: integer
+        format: int32
+      collections_page_count:
+        type: integer
+        format: int32
+      comments:
+        type:
+        - array
+        - "null"
+        items:
+          $ref: ./comments.yaml#/ReleaseComment
+      discussing:
+        type:
+        - array
+        - "null"
+        items:
+          $ref: ./releases.yaml#/Release
+      interesting:
+        type:
+        - array
+        - "null"
+        items:
+          $ref: ./feed.yaml#/Interesting
+      recommendations:
+        type:
+        - array
+        - "null"
+        items:
+          $ref: ./releases.yaml#/Release
+      recommendations_page:
+        type: integer
+        format: int32
+      watching:
+        type:
+        - array
+        - "null"
+        items:
+          $ref: ./releases.yaml#/Release
+  description: Объединённые подборки Discover. Поля comments, discussing и interesting являются массивами, а не объектами пагинации.

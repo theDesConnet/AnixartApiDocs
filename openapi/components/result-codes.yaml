@@ -1,9 +1,8 @@
 CommonResult:
   type: integer
   format: int32
-  description: Общие коды результата, которые могут встречаться в ответах API. Имена приведены в форме CommonResult из AnixartJS.
-    В APK v10 базовый Response называет 0/1/402/403 как SUCCESSFUL/FAILED/BANNED/PERM_BANNED; отдельной именованной константы
-    401 в базовом Response APK не обнаружено.
+  description: Общие коды результата API. Имена приведены в форме CommonResult; базовый Response использует имена
+    SUCCESSFUL, FAILED, INVALID_TOKEN, BANNED и PERM_BANNED для 0, 1, 401, 402 и 403 соответственно.
   enum:
   - 0
   - 1
@@ -19,13 +18,13 @@ CommonResult:
   x-enum-descriptions:
     '0': 'Операция выполнена успешно. APK: SUCCESSFUL.'
     '1': 'Непредвиденная или общая ошибка. APK: FAILED.'
-    '401': Пользовательская сессия отсутствует или не авторизована. Значение присутствует в AnixartJS CommonResult.
+    '401': 'Пользовательская сессия отсутствует или недействительна. Response: INVALID_TOKEN.'
     '402': 'Клиент или User-Agent отклонён сервером. AnixartJS: InvalidUserAgent; APK v10 использует имя BANNED.'
     '403': 'Постоянная блокировка. APK: PERM_BANNED.'
   x-apk-constant-names:
   - SUCCESSFUL
   - FAILED
-  - null
+  - INVALID_TOKEN
   - BANNED
   - PERM_BANNED
   example: 0
@@ -1531,20 +1530,68 @@ QrAuthResult:
   format: int32
   description: Дополнительные коды QR-авторизации из AnixartJS v1.2.0; общие коды описаны в CommonResult.
   enum:
-    - 2
-    - 3
-    - 4
-    - 5
-    - 6
+  - 2
+  - 3
+  - 4
+  - 5
+  - 6
   x-enum-varnames:
-    - Expired
-    - Declined
-    - TooManyAttempts
-    - PinInvalid
-    - TooManyRequests
+  - Expired
+  - Declined
+  - TooManyAttempts
+  - PinInvalid
+  - TooManyRequests
   x-enum-descriptions:
     "2": Запрос истёк.
     "3": Авторизация отклонена.
     "4": Превышено число попыток.
     "5": Неверный PIN.
     "6": Слишком много запросов.
+ReleaseRemoveCollectionResult:
+  type: integer
+  format: int32
+  description: Дополнительные коды удаления релиза из коллекции.
+  enum:
+  - 2
+  - 3
+  - 4
+  - 5
+  - 6
+  - 7
+  x-enum-varnames:
+  - CollectionNotFound
+  - CollectionNotOwned
+  - InvalidRelease
+  - ReleaseNotInCollection
+  - CollectionDeleted
+  - LastRelease
+  x-apk-constant-names:
+  - COLLECTION_NOT_FOUND
+  - COLLECTION_NOT_OWNED
+  - INVALID_RELEASE
+  - RELEASE_NOT_IN_COLLECTION
+  - COLLECTION_DELETED
+  - LAST_RELEASE
+  x-enum-descriptions:
+    "2": Коллекция не найдена.
+    "3": Коллекция не принадлежит текущему профилю.
+    "4": Релиз не подходит для операции.
+    "5": Релиз отсутствует в коллекции.
+    "6": Коллекция удалена.
+    "7": Нельзя удалить последний релиз из коллекции.
+EpisodeDownloadTargetResult:
+  type: integer
+  format: int32
+  description: Дополнительные коды получения эпизода для загрузки.
+  enum:
+  - 2
+  - 3
+  x-enum-varnames:
+  - DownloadRestricted
+  - DownloadSourceRestricted
+  x-apk-constant-names:
+  - DOWNLOAD_RESTRICTED
+  - DOWNLOAD_SOURCE_RESTRICTED
+  x-enum-descriptions:
+    "2": Загрузка ограничена.
+    "3": Загрузка из выбранного источника ограничена.

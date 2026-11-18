@@ -9,7 +9,13 @@ description: Карточка релиза, фильтр, оценки и рас
 GET /release/{r_id}
 ```
 
-`r_id`: ID релиза. Параметр `extended_mode` необязательный.
+`r_id`: ID релиза. Параметры `extended_mode` и `details` необязательные. Для получения ответа без детализации передай `details=false`:
+
+```http
+GET /release/{r_id}?details=false
+```
+
+Ответ — `ReleaseResponse`. В `Release.restriction_note` может прийти пояснение к ограничениям релиза или `null`.
 
 ## Продолжение просмотра
 
@@ -17,7 +23,7 @@ GET /release/{r_id}
 GET /release/{r_id}/continue
 ```
 
-Возвращает `ReleaseResponse` в контексте продолжения просмотра. При наличии токена передай его в query.
+Этот метод устарел. Карточку релиза получай через `GET /release/{r_id}`, отметки просмотра — через `GET /episode/watched`.
 
 Модель `Release` также содержит `poster_animation` и `screenshot_animations` — анимации постера и скриншотов. У группы связанных релизов `Related` есть поле `cover_animation`.
 

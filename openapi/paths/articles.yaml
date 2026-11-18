@@ -437,7 +437,7 @@
     - Статьи
     operationId: ArticleSuggestion_articleSuggestion
     summary: Получить предложение статьи
-    description: Получить предложение статьи. При заданном токене запрос выполняется в контексте текущего профиля.
+    description: Устаревший маршрут. Доступность на сервере не проверялась.
     x-client-methods:
     - ArticleSuggestionApi.articleSuggestion
     parameters:
@@ -456,13 +456,15 @@
             schema:
               $ref: ../components/articles.yaml#/ArticleResponse
       default:
-        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
-          схемой.
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно
+          предусмотрено схемой.
     security:
     - AnixartToken: []
     - {}
     x-original-tags:
     - Предложения статей
+    deprecated: true
+    x-client-removed-in: 11 BETA 3
 /article/unmute/{a_id}:
   get:
     tags:

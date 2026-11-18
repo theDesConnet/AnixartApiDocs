@@ -53,6 +53,27 @@ Collection:
       - string
       - "null"
       description: URL анимации обложки коллекции.
+    release_count:
+      type:
+      - integer
+      - "null"
+      format: int64
+    watched_count:
+      type:
+      - integer
+      - "null"
+      format: int64
+    has_release:
+      type:
+      - boolean
+      - "null"
+      description: Признак наличия выбранного релиза в коллекции.
+    releases_preview:
+      type:
+      - array
+      - "null"
+      items:
+        $ref: ./collections.yaml#/CollectionReleasePreview
 CollectionCompact:
   type: object
   properties:
@@ -198,4 +219,78 @@ ReleaseAddCollectionResponse:
         - $ref: ./result-codes.yaml#/ReleaseAddCollectionResult
         description: 'Код результата: общий `CommonResult` либо `ReleaseAddCollectionResult` для ошибок этой операции.'
         example: 0
+      collection:
+        anyOf:
+        - $ref: ./collections.yaml#/Collection
+        - type: "null"
+        description: Обновлённая коллекция; может быть null.
   x-result-enum: '#/components/schemas/ReleaseAddCollectionResult'
+CollectionReleasePreview:
+  type: object
+  properties:
+    id:
+      type: integer
+      format: int64
+    image:
+      type: string
+  description: Краткие данные релиза в превью коллекции.
+CollectionHubResponse:
+  allOf:
+  - $ref: ./common.yaml#/Response
+  - type: object
+    properties:
+      my:
+        type:
+        - array
+        - "null"
+        items:
+          $ref: ./collections.yaml#/Collection
+      my_count:
+        type: integer
+        format: int64
+      recommended:
+        type:
+        - array
+        - "null"
+        items:
+          $ref: ./collections.yaml#/Collection
+      weekly:
+        type:
+        - array
+        - "null"
+        items:
+          $ref: ./collections.yaml#/Collection
+  description: Свои коллекции, их количество, рекомендации и подборка недели.
+ReleaseRemoveCollectionResponse:
+  allOf:
+  - $ref: ./common.yaml#/Response
+  - type: object
+    properties:
+      code:
+        anyOf:
+        - $ref: ./result-codes.yaml#/CommonResult
+        - $ref: ./result-codes.yaml#/ReleaseRemoveCollectionResult
+      collection:
+        anyOf:
+        - $ref: ./collections.yaml#/Collection
+        - type: "null"
+  x-result-enum: "#/components/schemas/ReleaseRemoveCollectionResult"
+  x-response-constants:
+  - name: COLLECTION_DELETED
+    type: int
+    value: 6
+  - name: COLLECTION_NOT_FOUND
+    type: int
+    value: 2
+  - name: COLLECTION_NOT_OWNED
+    type: int
+    value: 3
+  - name: INVALID_RELEASE
+    type: int
+    value: 4
+  - name: LAST_RELEASE
+    type: int
+    value: 7
+  - name: RELEASE_NOT_IN_COLLECTION
+    type: int
+    value: 5

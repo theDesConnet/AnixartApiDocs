@@ -69,6 +69,8 @@ playbackPosition сохранённая позиция
 GET /episode/target/{releaseId}/{sourceId}/{position}
 ```
 
+Для загрузки эпизода используется параметр `download=true`. Поле `download_speed_limit` в ответе содержит ограничение скорости. Код `2` означает запрет загрузки, `3` — запрет загрузки из выбранного источника. Флаг `Source.is_download_disabled` указывает, что загрузка из источника отключена.
+
 Отметить эпизод просмотренным:
 
 [Открыть `POST /episode/watch/{releaseId}/{sourceId}/{position}` в API Reference](/api/#tag/episodes/Episode_watch_2)

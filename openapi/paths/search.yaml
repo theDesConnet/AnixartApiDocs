@@ -383,7 +383,7 @@
     - name: release_id
       in: query
       required: false
-      description: Идентификатор релиза.
+      description: Необязательный идентификатор релиза для фильтрации коллекций; для поиска без фильтра не передавай параметр.
       schema:
         type: integer
         format: int64

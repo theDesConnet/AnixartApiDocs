@@ -86,6 +86,22 @@ EpisodeTargetResponse:
       episode:
         $ref: '#/Episode'
         description: Связанный эпизод.
+      download_speed_limit:
+        type: integer
+        format: int64
+        description: Ограничение скорости загрузки; единицы в DTO не заданы.
+      code:
+        anyOf:
+        - $ref: ./result-codes.yaml#/CommonResult
+        - $ref: ./result-codes.yaml#/EpisodeDownloadTargetResult
+  x-result-enum: "#/components/schemas/EpisodeDownloadTargetResult"
+  x-response-constants:
+  - name: DOWNLOAD_RESTRICTED
+    type: int
+    value: 2
+  - name: DOWNLOAD_SOURCE_RESTRICTED
+    type: int
+    value: 3
 EpisodeUnwatchResponse:
   allOf:
   - $ref: ./common.yaml#/Response
@@ -142,6 +158,13 @@ Source:
     type:
       $ref: '#/Type'
       description: Озвучка/даббер, к которому относится источник.
+    download_speed_limit:
+      type: integer
+      format: int64
+      description: Ограничение скорости загрузки; единицы в DTO не заданы.
+    is_download_disabled:
+      type: boolean
+      description: Загрузка из источника отключена.
 SourceCompact:
   type: object
   description: Краткое описание источника эпизодов.
@@ -254,3 +277,29 @@ TypesResponse:
         items:
           $ref: '#/Type'
         description: Озвучки/дабберы, доступные клиенту.
+WatchedSource:
+  type: object
+  properties:
+    release_id:
+      type: integer
+      format: int64
+    source_id:
+      type: integer
+      format: int64
+    positions:
+      type: array
+      items:
+        type: integer
+        format: int32
+  description: Источник с идентификатором релиза и позициями просмотренных серий.
+EpisodeWatchedResponse:
+  allOf:
+  - $ref: ./common.yaml#/Response
+  - type: object
+    properties:
+      sources:
+        type:
+        - array
+        - "null"
+        items:
+          $ref: ./episodes.yaml#/WatchedSource

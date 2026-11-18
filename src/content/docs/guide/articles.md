@@ -35,6 +35,22 @@ POST /article/delete/{a_id}
 
 `payload` содержит данные статьи в формате API. Это не обычная строка с Markdown.
 
+Проверить доступность редактора и получить ограничения:
+
+```http
+GET /channel/{c_id}/editor/available
+```
+
+В `EditorAvailableResponse` приходят токен загрузки `media_upload_token` и лимиты редактора `limits`:
+
+- `max_block_count` и `max_tag_count` — количество блоков и тегов;
+- `max_header_text_length` и `max_paragraph_text_length` — длина заголовка и абзаца;
+- `max_list_item_count` и `max_list_item_text_length` — количество и длина элементов списка;
+- `max_media_item_count` — количество медиаэлементов;
+- `max_quote_text_length`, `max_quote_caption_length`, `max_quote_line_break_count`, `max_quote_serialized_text_length` и `max_quote_total_href_length` — ограничения цитат.
+
+И весь объект `limits`, и отдельные лимиты могут быть `null`.
+
 ## Голоса и репосты
 
 ```http
@@ -56,7 +72,6 @@ GET /article/unmute/{a_id}
 
 ```http
 POST /article/suggestion/create/{b_id}
-GET  /article/suggestion/{a_id}
 POST /article/suggestion/edit/{a_id}
 POST /article/suggestion/publish/{a_id}
 POST /article/suggestion/delete/{a_id}
@@ -67,6 +82,8 @@ POST /article/suggestion/delete/{a_id}
 ```http
 POST /article/suggestion/all/{page}
 ```
+
+`GET /article/suggestion/{a_id}` — устаревший метод. Он сохранён в справочнике с пометкой `deprecated`.
 
 ## Изображения и внешние ссылки
 

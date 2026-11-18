@@ -22,6 +22,9 @@ Response:
   - name: SUCCESSFUL
     type: int
     value: 0
+  - name: INVALID_TOKEN
+    type: int
+    value: 401
 SelectPinnedSectionRequest:
   type: object
   properties:

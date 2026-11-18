@@ -343,6 +343,7 @@
     description: Получить релиз. При заданном токене запрос выполняется в контексте текущего профиля.
     x-client-methods:
     - ReleaseApi.release
+    - ReleaseApi.releaseWithoutDetails
     parameters:
     - name: r_id
       in: path
@@ -357,6 +358,13 @@
       description: Включает расширенный режим ответа или фильтрации.
       schema:
         type: boolean
+    - name: details
+      in: query
+      required: false
+      description: Получить детализированный ответ.
+      schema:
+        type: boolean
+        default: true
     responses:
       '200':
         description: Запрос выполнен.
@@ -432,7 +440,7 @@
     - Релизы
     operationId: Release_continueWatching
     summary: Продолжить просмотр релиза
-    description: Статически сверено с APK Anixart 11 BETA (26102910); поведение сервера не проверялось.
+    description: Устаревший маршрут. Доступность на сервере не проверялась.
     x-source: https://github.com/theDesConnet/AnixartJS/tree/v1.2.0
     parameters:
     - name: r_id
@@ -457,3 +465,5 @@
     x-client-methods:
     - ReleaseApi.continueWatching
     x-apk-version-code: 26102910
+    deprecated: true
+    x-client-removed-in: 11 BETA 3

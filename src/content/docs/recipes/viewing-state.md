@@ -42,6 +42,16 @@ position  номер серии
 
 ## Получить историю
 
+Проверить, какие серии просмотрены у нескольких релизов:
+
+```http
+GET /episode/watched?release_ids=123,456&token=YOUR_TOKEN
+```
+
+В `EpisodeWatchedResponse.sources` приходят `release_id`, `source_id` и номера просмотренных серий в `positions`. Если `sources` равен `null`, списка отметок нет.
+
+Получить историю релизов:
+
 [Открыть `GET /history/{page}` в API Reference](/api/#tag/library/History_history)
 
 ```http

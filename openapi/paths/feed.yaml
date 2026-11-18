@@ -4,7 +4,8 @@
     - Лента и рекомендации
     operationId: Discover_commentsWeek
     summary: Получить популярные комментарии недели
-    description: Получить популярные комментарии недели.
+    description: Устаревший маршрут. Для соответствующей подборки используй GET /discover/hub. Доступность старого маршрута
+      на сервере не проверялась.
     x-client-methods:
     - DiscoverApi.commentsWeek
     responses:
@@ -15,17 +16,20 @@
             schema:
               $ref: ../components/pagination.yaml#/PageOfReleaseComment
       default:
-        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
-          схемой.
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно
+          предусмотрено схемой.
     x-original-tags:
     - Рекомендации
+    deprecated: true
+    x-client-removed-in: 11 BETA 3
 /discover/discussing:
   post:
     tags:
     - Лента и рекомендации
     operationId: Discover_discussing
     summary: Получить обсуждаемые релизы
-    description: Получить обсуждаемые релизы. При заданном токене запрос выполняется в контексте текущего профиля.
+    description: Устаревший маршрут. Для соответствующей подборки используй GET /discover/hub. Доступность старого маршрута
+      на сервере не проверялась.
     x-client-methods:
     - DiscoverApi.discussing
     responses:
@@ -36,20 +40,23 @@
             schema:
               $ref: ../components/pagination.yaml#/PageOfRelease
       default:
-        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
-          схемой.
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно
+          предусмотрено схемой.
     security:
     - AnixartToken: []
     - {}
     x-original-tags:
     - Рекомендации
+    deprecated: true
+    x-client-removed-in: 11 BETA 3
 /discover/interesting:
   post:
     tags:
     - Лента и рекомендации
     operationId: Discover_interesting
     summary: Получить блок «Интересное»
-    description: Получить блок «Интересное».
+    description: Устаревший маршрут. Для соответствующей подборки используй GET /discover/hub. Доступность старого маршрута
+      на сервере не проверялась.
     x-client-methods:
     - DiscoverApi.interesting
     responses:
@@ -60,10 +67,12 @@
             schema:
               $ref: ../components/pagination.yaml#/PageOfInteresting
       default:
-        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно предусмотрено
-          схемой.
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле `code` ответа, если оно
+          предусмотрено схемой.
     x-original-tags:
     - Рекомендации
+    deprecated: true
+    x-client-removed-in: 11 BETA 3
 /discover/recommendations/{page}:
   post:
     tags:
@@ -247,3 +256,40 @@
     - {}
     x-original-tags:
     - Лента
+/discover/hub:
+  get:
+    tags:
+    - Лента и рекомендации
+    operationId: Discover_hub
+    summary: Получить объединённую страницу рекомендаций
+    x-client-methods:
+    - DiscoverApi.hub
+    parameters:
+    - name: recommendations_previous_page
+      in: query
+      required: true
+      description: Предыдущая страница рекомендаций. Для начального запроса передай -1.
+      schema:
+        type: integer
+        format: int32
+        default: -1
+    - name: collections_previous_page
+      in: query
+      required: true
+      description: Предыдущая страница коллекций. Для начального запроса передай -1.
+      schema:
+        type: integer
+        format: int32
+        default: -1
+    responses:
+      "200":
+        description: Запрос выполнен.
+        content:
+          application/json:
+            schema:
+              $ref: ../components/feed.yaml#/DiscoverHubResponse
+      default:
+        description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле code.
+    security:
+    - AnixartToken: []
+    - {}

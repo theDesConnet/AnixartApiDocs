@@ -2,23 +2,24 @@
 openapi: 3.1.0
 info:
   title: Anixart API
-  version: 11 BETA
+  version: 11 BETA 3
   description: |-
-    Неофициальная документация Anixart API, статически сверенная с APK Anixart 11 BETA (BUILD 26102910). Описывает доступные методы, параметры, модели данных и коды результатов. Методы сервиса редактора дополнены по AnixartJS v1.2.0. Поведение API может меняться со временем.
+    Неофициальная документация Anixart API, статически сверенная с APK Anixart 11 BETA 3 (BUILD 26111702). Описывает доступные методы, параметры, модели данных и коды результатов. Методы сервиса редактора дополнены по AnixartJS v1.2.0. Поведение API может меняться со временем.
 
     by [DesConnet](https://github.com/theDesConnet)
     [![GitHub](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white)](https://github.com/theDesConnet/AnixartApiDocs)
   contact:
     name: null
   x-documentation-source: https://github.com/theDesConnet/AnixartApiDocs
-  x-client-method-count: 307
+  x-client-method-count: 309
   x-client-route-count: 303
-  x-legacy-route-count: 1
+  x-legacy-route-count: 6
   x-sdk-source: https://github.com/theDesConnet/AnixartJS/tree/v1.2.0
   x-editor-route-count: 2
-  x-apk-version-code: 26102910
-  x-apk-file: anixart_11-beta.apk
-  x-apk-sha256: 5C6CA3F5BF77EAC9F7D1B81A387F49F76A8AEE255FB2C0192FC5C0BC591DC1DA
+  x-apk-version-code: 26111702
+  x-apk-file: anixart_11-beta-3.apk
+  x-apk-sha256: 8951D10585E81166ED89292E83A4292703812BFE2F3CC63E46C900FA5C5668AE
+  x-client-raw-route-count: 305
 servers:
   - url: https://api-s.anixsekai.com/
     description: Основной адрес API.
@@ -961,7 +962,7 @@ paths:
         - Статьи
       operationId: ArticleSuggestion_articleSuggestion
       summary: Получить предложение статьи
-      description: Получить предложение статьи. При заданном токене запрос выполняется в контексте текущего профиля.
+      description: Устаревший маршрут. Доступность на сервере не проверялась.
       x-client-methods:
         - ArticleSuggestionApi.articleSuggestion
       parameters:
@@ -987,6 +988,8 @@ paths:
         - {}
       x-original-tags:
         - Предложения статей
+      deprecated: true
+      x-client-removed-in: 11 BETA 3
   /article/unmute/{a_id}:
     get:
       tags:
@@ -2537,6 +2540,20 @@ paths:
             type: integer
             format: int32
             minimum: 0
+        - name: sort
+          in: query
+          required: false
+          description: Порядок сортировки коллекций.
+          schema:
+            type: integer
+            format: int32
+        - name: release_id
+          in: query
+          required: false
+          description: Идентификатор релиза для фильтрации коллекций.
+          schema:
+            type: integer
+            format: int64
       responses:
         "200":
           description: Запрос выполнен.
@@ -2583,6 +2600,12 @@ paths:
           schema:
             type: integer
             format: int32
+        - name: friends
+          in: query
+          required: false
+          description: Фильтровать коллекции по друзьям.
+          schema:
+            type: boolean
       responses:
         "200":
           description: Запрос выполнен.
@@ -3569,7 +3592,8 @@ paths:
         - Лента и рекомендации
       operationId: Discover_commentsWeek
       summary: Получить популярные комментарии недели
-      description: Получить популярные комментарии недели.
+      description: Устаревший маршрут. Для соответствующей подборки используй GET /discover/hub. Доступность старого маршрута
+        на сервере не проверялась.
       x-client-methods:
         - DiscoverApi.commentsWeek
       responses:
@@ -3584,13 +3608,16 @@ paths:
             предусмотрено схемой.
       x-original-tags:
         - Рекомендации
+      deprecated: true
+      x-client-removed-in: 11 BETA 3
   /discover/discussing:
     post:
       tags:
         - Лента и рекомендации
       operationId: Discover_discussing
       summary: Получить обсуждаемые релизы
-      description: Получить обсуждаемые релизы. При заданном токене запрос выполняется в контексте текущего профиля.
+      description: Устаревший маршрут. Для соответствующей подборки используй GET /discover/hub. Доступность старого маршрута
+        на сервере не проверялась.
       x-client-methods:
         - DiscoverApi.discussing
       responses:
@@ -3608,13 +3635,16 @@ paths:
         - {}
       x-original-tags:
         - Рекомендации
+      deprecated: true
+      x-client-removed-in: 11 BETA 3
   /discover/interesting:
     post:
       tags:
         - Лента и рекомендации
       operationId: Discover_interesting
       summary: Получить блок «Интересное»
-      description: Получить блок «Интересное».
+      description: Устаревший маршрут. Для соответствующей подборки используй GET /discover/hub. Доступность старого маршрута
+        на сервере не проверялась.
       x-client-methods:
         - DiscoverApi.interesting
       responses:
@@ -3629,6 +3659,8 @@ paths:
             предусмотрено схемой.
       x-original-tags:
         - Рекомендации
+      deprecated: true
+      x-client-removed-in: 11 BETA 3
   /discover/recommendations/{page}:
     post:
       tags:
@@ -3713,6 +3745,7 @@ paths:
       description: Получить конкретный эпизод.
       x-client-methods:
         - EpisodeApi.episodeTarget
+        - EpisodeApi.episodeDownloadTarget
       parameters:
         - name: releaseId
           in: path
@@ -3735,6 +3768,13 @@ paths:
           schema:
             type: integer
             format: int32
+        - name: download
+          in: query
+          required: false
+          description: Получить эпизод для загрузки.
+          schema:
+            type: boolean
+            default: false
       responses:
         "200":
           description: Запрос выполнен.
@@ -8249,6 +8289,7 @@ paths:
       description: Получить релиз. При заданном токене запрос выполняется в контексте текущего профиля.
       x-client-methods:
         - ReleaseApi.release
+        - ReleaseApi.releaseWithoutDetails
       parameters:
         - name: r_id
           in: path
@@ -8263,6 +8304,13 @@ paths:
           description: Включает расширенный режим ответа или фильтрации.
           schema:
             type: boolean
+        - name: details
+          in: query
+          required: false
+          description: Получить детализированный ответ.
+          schema:
+            type: boolean
+            default: true
       responses:
         "200":
           description: Запрос выполнен.
@@ -9362,7 +9410,7 @@ paths:
         - name: release_id
           in: query
           required: false
-          description: Идентификатор релиза.
+          description: Необязательный идентификатор релиза для фильтрации коллекций; для поиска без фильтра не передавай параметр.
           schema:
             type: integer
             format: int64
@@ -10592,7 +10640,7 @@ paths:
         - Релизы
       operationId: Release_continueWatching
       summary: Продолжить просмотр релиза
-      description: Статически сверено с APK Anixart 11 BETA (26102910); поведение сервера не проверялось.
+      description: Устаревший маршрут. Доступность на сервере не проверялась.
       x-source: https://github.com/theDesConnet/AnixartJS/tree/v1.2.0
       parameters:
         - name: r_id
@@ -10617,6 +10665,8 @@ paths:
       x-client-methods:
         - ReleaseApi.continueWatching
       x-apk-version-code: 26102910
+      deprecated: true
+      x-client-removed-in: 11 BETA 3
   /search/profile/friends/{p_id}/{page}:
     post:
       tags:
@@ -10662,6 +10712,163 @@ paths:
       x-client-methods:
         - SearchApi.profileFriendSearch
       x-apk-version-code: 26102910
+  /collection/hub:
+    get:
+      tags:
+        - Коллекции
+      operationId: Collection_hub
+      summary: Получить главную страницу коллекций
+      x-client-methods:
+        - CollectionApi.hub
+      parameters: []
+      responses:
+        "200":
+          description: Запрос выполнен.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CollectionHubResponse"
+        default:
+          description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле code.
+      security:
+        - AnixartToken: []
+        - {}
+  /collectionMy/all/release/{r_id}/{page}:
+    get:
+      tags:
+        - Коллекции
+      operationId: CollectionMy_releaseCollections
+      summary: Получить свои коллекции для релиза
+      x-client-methods:
+        - CollectionMyApi.releaseCollections
+      parameters:
+        - name: r_id
+          in: path
+          required: true
+          description: Идентификатор релиза.
+          schema:
+            type: integer
+            format: int64
+        - name: page
+          in: path
+          required: true
+          description: Номер страницы, начиная с 0.
+          schema:
+            type: integer
+            format: int32
+            minimum: 0
+      responses:
+        "200":
+          description: Запрос выполнен.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PageOfCollection"
+        default:
+          description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле code.
+      security:
+        - AnixartToken: []
+        - {}
+  /collectionMy/release/remove/{collectionId}:
+    get:
+      tags:
+        - Коллекции
+      operationId: CollectionMy_releaseRemove
+      summary: Удалить релиз из коллекции
+      x-client-methods:
+        - CollectionMyApi.releaseRemove
+      parameters:
+        - name: collectionId
+          in: path
+          required: true
+          description: Идентификатор коллекции.
+          schema:
+            type: integer
+            format: int64
+        - name: release_id
+          in: query
+          required: true
+          description: Идентификатор удаляемого релиза.
+          schema:
+            type: integer
+            format: int64
+      responses:
+        "200":
+          description: Запрос выполнен.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ReleaseRemoveCollectionResponse"
+        default:
+          description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле code.
+      security:
+        - AnixartToken: []
+        - {}
+  /discover/hub:
+    get:
+      tags:
+        - Лента и рекомендации
+      operationId: Discover_hub
+      summary: Получить объединённую страницу рекомендаций
+      x-client-methods:
+        - DiscoverApi.hub
+      parameters:
+        - name: recommendations_previous_page
+          in: query
+          required: true
+          description: Предыдущая страница рекомендаций. Для начального запроса передай -1.
+          schema:
+            type: integer
+            format: int32
+            default: -1
+        - name: collections_previous_page
+          in: query
+          required: true
+          description: Предыдущая страница коллекций. Для начального запроса передай -1.
+          schema:
+            type: integer
+            format: int32
+            default: -1
+      responses:
+        "200":
+          description: Запрос выполнен.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DiscoverHubResponse"
+        default:
+          description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле code.
+      security:
+        - AnixartToken: []
+        - {}
+  /episode/watched:
+    get:
+      tags:
+        - Эпизоды
+      operationId: Episode_watched
+      summary: Получить отметки просмотра эпизодов
+      x-client-methods:
+        - EpisodeApi.watched
+      parameters:
+        - name: release_ids
+          in: query
+          required: true
+          description: Идентификаторы релизов через запятую.
+          schema:
+            type: string
+            example: 123,456
+      responses:
+        "200":
+          description: Запрос выполнен.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/EpisodeWatchedResponse"
+        default:
+          description: Ошибка запроса или серверное ограничение. Код результата передаётся в поле code.
+      security:
+        - AnixartToken: []
+        - {}
 components:
   schemas:
     PageOfBadge:
@@ -10677,9 +10884,8 @@ components:
     CommonResult:
       type: integer
       format: int32
-      description: Общие коды результата, которые могут встречаться в ответах API. Имена приведены в форме CommonResult из
-        AnixartJS. В APK v10 базовый Response называет 0/1/402/403 как SUCCESSFUL/FAILED/BANNED/PERM_BANNED; отдельной
-        именованной константы 401 в базовом Response APK не обнаружено.
+      description: Общие коды результата API. Имена приведены в форме CommonResult; базовый Response использует имена
+        SUCCESSFUL, FAILED, INVALID_TOKEN, BANNED и PERM_BANNED для 0, 1, 401, 402 и 403 соответственно.
       enum:
         - 0
         - 1
@@ -10695,13 +10901,13 @@ components:
       x-enum-descriptions:
         "0": "Операция выполнена успешно. APK: SUCCESSFUL."
         "1": "Непредвиденная или общая ошибка. APK: FAILED."
-        "401": Пользовательская сессия отсутствует или не авторизована. Значение присутствует в AnixartJS CommonResult.
+        "401": "Пользовательская сессия отсутствует или недействительна. Response: INVALID_TOKEN."
         "402": "Клиент или User-Agent отклонён сервером. AnixartJS: InvalidUserAgent; APK v10 использует имя BANNED."
         "403": "Постоянная блокировка. APK: PERM_BANNED."
       x-apk-constant-names:
         - SUCCESSFUL
         - FAILED
-        - null
+        - INVALID_TOKEN
         - BANNED
         - PERM_BANNED
       example: 0
@@ -11941,6 +12147,27 @@ components:
             - string
             - "null"
           description: URL анимации обложки коллекции.
+        release_count:
+          type:
+            - integer
+            - "null"
+          format: int64
+        watched_count:
+          type:
+            - integer
+            - "null"
+          format: int64
+        has_release:
+          type:
+            - boolean
+            - "null"
+          description: Признак наличия выбранного релиза в коллекции.
+        releases_preview:
+          type:
+            - array
+            - "null"
+          items:
+            $ref: "#/components/schemas/CollectionReleasePreview"
     CollectionComment:
       allOf:
         - $ref: "#/components/schemas/Comment"
@@ -12306,6 +12533,10 @@ components:
                 - $ref: "#/components/schemas/EditorAvailableResult"
               description: "Код результата: общий `CommonResult` либо `EditorAvailableResult` для ошибок этой операции."
               example: 0
+            limits:
+              anyOf:
+                - $ref: "#/components/schemas/ArticleLimits"
+                - type: "null"
       x-result-enum: "#/components/schemas/EditorAvailableResult"
     EditorChannel:
       type: object
@@ -12426,6 +12657,22 @@ components:
             episode:
               $ref: "#/components/schemas/Episode"
               description: Связанный эпизод.
+            download_speed_limit:
+              type: integer
+              format: int64
+              description: Ограничение скорости загрузки; единицы в DTO не заданы.
+            code:
+              anyOf:
+                - $ref: "#/components/schemas/CommonResult"
+                - $ref: "#/components/schemas/EpisodeDownloadTargetResult"
+      x-result-enum: "#/components/schemas/EpisodeDownloadTargetResult"
+      x-response-constants:
+        - name: DOWNLOAD_RESTRICTED
+          type: int
+          value: 2
+        - name: DOWNLOAD_SOURCE_RESTRICTED
+          type: int
+          value: 3
     EpisodeUnwatchResponse:
       allOf:
         - $ref: "#/components/schemas/Response"
@@ -14257,6 +14504,11 @@ components:
           items:
             type: string
           description: Анимации скриншотов релиза.
+        restriction_note:
+          type:
+            - string
+            - "null"
+          description: Пояснение к ограничениям релиза.
     ReleaseAddCollectionResponse:
       allOf:
         - $ref: "#/components/schemas/Response"
@@ -14268,6 +14520,11 @@ components:
                 - $ref: "#/components/schemas/ReleaseAddCollectionResult"
               description: "Код результата: общий `CommonResult` либо `ReleaseAddCollectionResult` для ошибок этой операции."
               example: 0
+            collection:
+              anyOf:
+                - $ref: "#/components/schemas/Collection"
+                - type: "null"
+              description: Обновлённая коллекция; может быть null.
       x-result-enum: "#/components/schemas/ReleaseAddCollectionResult"
     ReleaseComment:
       allOf:
@@ -14632,6 +14889,9 @@ components:
         - name: SUCCESSFUL
           type: int
           value: 0
+        - name: INVALID_TOKEN
+          type: int
+          value: 401
     RestoreResendResponse:
       allOf:
         - $ref: "#/components/schemas/Response"
@@ -14882,6 +15142,13 @@ components:
         type:
           $ref: "#/components/schemas/Type"
           description: Озвучка/даббер, к которому относится источник.
+        download_speed_limit:
+          type: integer
+          format: int64
+          description: Ограничение скорости загрузки; единицы в DTO не заданы.
+        is_download_disabled:
+          type: boolean
+          description: Загрузка из источника отключена.
     SourceCompact:
       type: object
       description: Краткое описание источника эпизодов.
@@ -18005,6 +18272,265 @@ components:
         - name: LONG_CODE_HEADER
           type: String
           value: "X-Long-Code: 1"
+    CollectionReleasePreview:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        image:
+          type: string
+      description: Краткие данные релиза в превью коллекции.
+    CollectionHubResponse:
+      allOf:
+        - $ref: "#/components/schemas/Response"
+        - type: object
+          properties:
+            my:
+              type:
+                - array
+                - "null"
+              items:
+                $ref: "#/components/schemas/Collection"
+            my_count:
+              type: integer
+              format: int64
+            recommended:
+              type:
+                - array
+                - "null"
+              items:
+                $ref: "#/components/schemas/Collection"
+            weekly:
+              type:
+                - array
+                - "null"
+              items:
+                $ref: "#/components/schemas/Collection"
+      description: Свои коллекции, их количество, рекомендации и подборка недели.
+    ReleaseRemoveCollectionResult:
+      type: integer
+      format: int32
+      description: Дополнительные коды удаления релиза из коллекции.
+      enum:
+        - 2
+        - 3
+        - 4
+        - 5
+        - 6
+        - 7
+      x-enum-varnames:
+        - CollectionNotFound
+        - CollectionNotOwned
+        - InvalidRelease
+        - ReleaseNotInCollection
+        - CollectionDeleted
+        - LastRelease
+      x-apk-constant-names:
+        - COLLECTION_NOT_FOUND
+        - COLLECTION_NOT_OWNED
+        - INVALID_RELEASE
+        - RELEASE_NOT_IN_COLLECTION
+        - COLLECTION_DELETED
+        - LAST_RELEASE
+      x-enum-descriptions:
+        "2": Коллекция не найдена.
+        "3": Коллекция не принадлежит текущему профилю.
+        "4": Релиз не подходит для операции.
+        "5": Релиз отсутствует в коллекции.
+        "6": Коллекция удалена.
+        "7": Нельзя удалить последний релиз из коллекции.
+    ReleaseRemoveCollectionResponse:
+      allOf:
+        - $ref: "#/components/schemas/Response"
+        - type: object
+          properties:
+            code:
+              anyOf:
+                - $ref: "#/components/schemas/CommonResult"
+                - $ref: "#/components/schemas/ReleaseRemoveCollectionResult"
+            collection:
+              anyOf:
+                - $ref: "#/components/schemas/Collection"
+                - type: "null"
+      x-result-enum: "#/components/schemas/ReleaseRemoveCollectionResult"
+      x-response-constants:
+        - name: COLLECTION_DELETED
+          type: int
+          value: 6
+        - name: COLLECTION_NOT_FOUND
+          type: int
+          value: 2
+        - name: COLLECTION_NOT_OWNED
+          type: int
+          value: 3
+        - name: INVALID_RELEASE
+          type: int
+          value: 4
+        - name: LAST_RELEASE
+          type: int
+          value: 7
+        - name: RELEASE_NOT_IN_COLLECTION
+          type: int
+          value: 5
+    DiscoverHubResponse:
+      allOf:
+        - $ref: "#/components/schemas/Response"
+        - type: object
+          properties:
+            collections:
+              type:
+                - array
+                - "null"
+              items:
+                $ref: "#/components/schemas/Collection"
+            collections_page:
+              type: integer
+              format: int32
+            collections_page_count:
+              type: integer
+              format: int32
+            comments:
+              type:
+                - array
+                - "null"
+              items:
+                $ref: "#/components/schemas/ReleaseComment"
+            discussing:
+              type:
+                - array
+                - "null"
+              items:
+                $ref: "#/components/schemas/Release"
+            interesting:
+              type:
+                - array
+                - "null"
+              items:
+                $ref: "#/components/schemas/Interesting"
+            recommendations:
+              type:
+                - array
+                - "null"
+              items:
+                $ref: "#/components/schemas/Release"
+            recommendations_page:
+              type: integer
+              format: int32
+            watching:
+              type:
+                - array
+                - "null"
+              items:
+                $ref: "#/components/schemas/Release"
+      description: Объединённые подборки Discover. Поля comments, discussing и interesting являются массивами, а не объектами
+        пагинации.
+    WatchedSource:
+      type: object
+      properties:
+        release_id:
+          type: integer
+          format: int64
+        source_id:
+          type: integer
+          format: int64
+        positions:
+          type: array
+          items:
+            type: integer
+            format: int32
+      description: Источник с идентификатором релиза и позициями просмотренных серий.
+    EpisodeWatchedResponse:
+      allOf:
+        - $ref: "#/components/schemas/Response"
+        - type: object
+          properties:
+            sources:
+              type:
+                - array
+                - "null"
+              items:
+                $ref: "#/components/schemas/WatchedSource"
+    EpisodeDownloadTargetResult:
+      type: integer
+      format: int32
+      description: Дополнительные коды получения эпизода для загрузки.
+      enum:
+        - 2
+        - 3
+      x-enum-varnames:
+        - DownloadRestricted
+        - DownloadSourceRestricted
+      x-apk-constant-names:
+        - DOWNLOAD_RESTRICTED
+        - DOWNLOAD_SOURCE_RESTRICTED
+      x-enum-descriptions:
+        "2": Загрузка ограничена.
+        "3": Загрузка из выбранного источника ограничена.
+    ArticleLimits:
+      type: object
+      properties:
+        max_block_count:
+          type:
+            - integer
+            - "null"
+          format: int32
+        max_header_text_length:
+          type:
+            - integer
+            - "null"
+          format: int32
+        max_list_item_count:
+          type:
+            - integer
+            - "null"
+          format: int32
+        max_list_item_text_length:
+          type:
+            - integer
+            - "null"
+          format: int32
+        max_media_item_count:
+          type:
+            - integer
+            - "null"
+          format: int32
+        max_paragraph_text_length:
+          type:
+            - integer
+            - "null"
+          format: int32
+        max_quote_caption_length:
+          type:
+            - integer
+            - "null"
+          format: int32
+        max_quote_line_break_count:
+          type:
+            - integer
+            - "null"
+          format: int32
+        max_quote_serialized_text_length:
+          type:
+            - integer
+            - "null"
+          format: int32
+        max_quote_text_length:
+          type:
+            - integer
+            - "null"
+          format: int32
+        max_quote_total_href_length:
+          type:
+            - integer
+            - "null"
+          format: int32
+        max_tag_count:
+          type:
+            - integer
+            - "null"
+          format: int32
+      description: "Ограничения редактора: количество блоков, тегов и элементов, длина текста и ссылок. Значения могут быть null."
   securitySchemes:
     AnixartToken:
       type: apiKey
